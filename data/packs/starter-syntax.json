@@ -1,0 +1,363 @@
+{
+  "schemaVersion": 1,
+  "pack": {
+    "id": "starter-syntax",
+    "name": "Starter · Syntax & Flow",
+    "description": "5 native-sounding sentence structures, clefts, and discourse pivots.",
+    "category": "Syntax",
+    "cefr": "C1",
+    "version": "1.0.0",
+    "source": "Lexis Curated Starter"
+  },
+  "items": [
+    {
+      "id": "sf-01",
+      "phrase": "Pseudo-cleft fronting (\"What struck me most was...\")",
+      "ipa": "/wɒt strʌk miː məʊst wɒz/",
+      "speechText": "What struck me most wasn't the price—it was how effortless the whole trip felt.",
+      "category": "Syntax",
+      "register": "Nuanced",
+      "flat": "The thing that impressed me most was how calm the team stayed during the outage.",
+      "upgraded": "What struck me most was how calm everyone stayed throughout the entire migration.",
+      "dialogues": [
+        {
+          "context": "Everyday Reflection",
+          "lines": [
+            {
+              "speaker": "Maya",
+              "text": "What struck me most wasn't the price—it was how effortless the whole trip felt."
+            },
+            {
+              "speaker": "Liam",
+              "text": "Exactly, paying a tiny bit more for direct trains saved hours."
+            }
+          ]
+        },
+        {
+          "context": "Product Scoping",
+          "lines": [
+            {
+              "speaker": "PM",
+              "text": "If we include SSO and custom roles, how much time does that add?"
+            },
+            {
+              "speaker": "Tech Lead",
+              "text": "What we're really looking at is an extra sprint, plus two days of security review."
+            }
+          ]
+        }
+      ],
+      "nuance": "Polish uses flexible word order to spotlight focus ('Tym, co najbardziej uderza, jest...'), whereas English has rigid Subject-Verb-Object order. Starting with 'What struck me most was...' or 'What we're really looking at is...' builds natural anticipation and spotlights your main takeaway.",
+      "polish": "Tym, co najbardziej uderza, jest... / Tak naprawdę chodzi tu o...",
+      "clozeSentence": "___ struck me most about their pitch wasn't the slides—it was how deeply they understood our users.",
+      "clozeAnswer": "What",
+      "clozeAccepted": [
+        "what"
+      ],
+      "clozeHint": "4-letter relative pronoun launching a pseudo-cleft clause.",
+      "quizPrompt": "The thing that surprised me most was how quickly new hires got up to speed.",
+      "quizOptions": [
+        "What struck me most was how quickly new hires got up to speed.",
+        "That what struck me most was how quickly new hires got up to speed.",
+        "The primary element striking my observation constituted onboarding velocity.",
+        "What struck me most were how quickly new hires got up to speed."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Natural, articulate emphasis that flows effortlessly in both speech and writing.",
+        "Classic non-native error: English uses 'What...', never 'That what...'.",
+        "Painfully stiff.",
+        "Singular cleft clause ('What struck me most') takes singular 'was', not 'were'."
+      ],
+      "sandboxPrompt": "Use 'What struck me most was...' or 'What we're really looking at is...' to frame a core takeaway.",
+      "sandboxSample": "What struck me most about Kyoto wasn't just the temples, but how peaceful the residential side streets felt.",
+      "sandboxRubric": [
+        "Register: Clear, articulate framing.",
+        "Collocation: Starts cleanly with 'What...' (no 'That what...') and matches singular 'is/was'.",
+        "Cadence: Creates a memorable focal point."
+      ],
+      "cefr": "C1",
+      "packId": "starter-syntax"
+    },
+    {
+      "id": "sf-02",
+      "phrase": "Softening with past continuous & \"would\" (\"I was hoping we could...\" / \"I'd argue that...\")",
+      "ipa": "/aɪ wɒz ˈhəʊpɪŋ wiː kʊd / aɪd ˈɑːɡjuː ðæt/",
+      "speechText": "I was hoping we could push our sync back by fifteen minutes.",
+      "category": "Syntax",
+      "register": "Diplomatic",
+      "flat": "Can we move our meeting 15 minutes later? Also, I think the simpler layout works better.",
+      "upgraded": "I was hoping we could push our sync back fifteen minutes—and I'd argue the simpler layout works better anyway.",
+      "dialogues": [
+        {
+          "context": "Slack · Schedule Request",
+          "lines": [
+            {
+              "speaker": "Clara",
+              "text": "Hey! I was hoping we could swap our Thursday slot for Friday morning?"
+            },
+            {
+              "speaker": "Ben",
+              "text": "Works great for me—just moved the invite."
+            }
+          ]
+        },
+        {
+          "context": "Design Debate",
+          "lines": [
+            {
+              "speaker": "Sam",
+              "text": "Should we add three more filters to the dashboard?"
+            },
+            {
+              "speaker": "Partner",
+              "text": "I'd argue that keeping it focused on two core metrics makes it way easier to scan."
+            }
+          ]
+        }
+      ],
+      "nuance": "Why native speakers use the past tense ('I was hoping we could...') and conditional ('I'd argue that...') for present requests and opinions: shifting back in tense creates polite social distance, making a request or disagreement sound considerate rather than blunt—especially helpful for Slavic speakers who can inadvertently sound overly direct in English.",
+      "polish": "Miałem/am nadzieję, że moglibyśmy... / Powiedziałbym, że... (uprzejme zmiękczenie)",
+      "clozeSentence": "I was ___ we could hold off on sending the announcement until tomorrow morning.",
+      "clozeAnswer": "hoping",
+      "clozeAccepted": [
+        "hoping",
+        "wondering"
+      ],
+      "clozeHint": "-ing verb in 'I was ___ we could...'",
+      "quizPrompt": "You want to politely ask a busy colleague from another team to review a document today.",
+      "quizOptions": [
+        "I was hoping we could get your eyes on this draft for ten minutes today?",
+        "You must review this document today if you have ten minutes.",
+        "I am hoping whether you will execute a review of this draft today.",
+        "I was hoping we could getting your eyes on this draft."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Warm, polite, and respects the colleague's time without sounding submissive.",
+        "Way too blunt and demanding.",
+        "Unnaturally stiff.",
+        "Modal 'could' takes base verb 'get', not 'getting'."
+      ],
+      "sandboxPrompt": "Politely ask a teammate to reschedule a call using 'I was hoping we could...' or share an opinion using 'I'd argue that...'.",
+      "sandboxSample": "I was hoping we could push tomorrow's coffee back half an hour—my morning train gets in at 9:15.",
+      "sandboxRubric": [
+        "Register: Warm, considerate, non-demanding register.",
+        "Collocation: Uses past continuous ('I was hoping we could...') or conditional ('I'd argue that...').",
+        "Cadence: Clear, specific request or point."
+      ],
+      "cefr": "C1",
+      "packId": "starter-syntax"
+    },
+    {
+      "id": "sf-03",
+      "phrase": "Concessive \"Much as...\" (\"Much as I appreciate the idea...\")",
+      "ipa": "/mʌtʃ æz aɪ əˈpriːʃieɪt ði aɪˈdɪə/",
+      "speechText": "Much as I appreciate the idea, I think starting with a smaller pilot is safer.",
+      "category": "Syntax",
+      "register": "Diplomatic",
+      "flat": "Even though I appreciate your idea, I think it will take too long right now.",
+      "upgraded": "Much as I appreciate the idea, I think starting with a smaller pilot is safer.",
+      "dialogues": [
+        {
+          "context": "Design Critique",
+          "lines": [
+            {
+              "speaker": "Lead",
+              "text": "Much as I appreciate the idea behind the custom animations, they're slowing down mobile load times."
+            },
+            {
+              "speaker": "Designer",
+              "text": "Fair point—let's keep them on desktop and streamline mobile."
+            }
+          ]
+        },
+        {
+          "context": "Weekend Plans",
+          "lines": [
+            {
+              "speaker": "Alex",
+              "text": "Much as I'd love to stay for another round, I've got a 7 a.m. train."
+            },
+            {
+              "speaker": "Maya",
+              "text": "Totally get it—get home and get some sleep!"
+            }
+          ]
+        }
+      ],
+      "nuance": "A sleek, natural upgrade over repeating 'Even though...' or 'Although...'. Validates the other person's point or invitation right upfront before delivering a firm no or caveat—disarming defensiveness immediately.",
+      "polish": "Choć bardzo doceniam ten pomysł... / Mimo że bardzo podoba mi się...",
+      "clozeSentence": "Much ___ I appreciate the invite, I'm going to sit this weekend out and recharge.",
+      "clozeAnswer": "as",
+      "clozeAccepted": [
+        "as"
+      ],
+      "clozeHint": "2-letter conjunction in 'Much ___ I appreciate...'",
+      "quizPrompt": "Even though I appreciate your enthusiasm, we don't have budget for a full rebrand this quarter.",
+      "quizOptions": [
+        "Much as I appreciate the enthusiasm, we don't have the budget for a rebrand this quarter.",
+        "Much like I appreciate the enthusiasm, we don't have budget.",
+        "Notwithstanding my appreciation of your enthusiasm, fiscal allocation is absent.",
+        "Much as I appreciate the enthusiasm, but we don't have the budget."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Graceful, diplomatic concession followed by a crisp counterpoint.",
+        "'Much like' means 'similar to', not 'even though'.",
+        "Painfully stiff jargon.",
+        "Never pair 'Much as...' with 'but' in the second clause."
+      ],
+      "sandboxPrompt": "Validate a friend's or teammate's idea before politely explaining why you have to say no right now.",
+      "sandboxSample": "Much as I appreciate the idea, I think keeping the launch scope lean is our best bet this month.",
+      "sandboxRubric": [
+        "Register: Empathetic, validating opening clause.",
+        "Collocation: Used 'Much as + subject + verb' (without 'but' in the second clause).",
+        "Cadence: Clear, polite counterpoint."
+      ],
+      "cefr": "C1",
+      "packId": "starter-syntax"
+    },
+    {
+      "id": "sf-04",
+      "phrase": "Clean participle clauses (\"Having weighed both options,...\")",
+      "ipa": "/ˈhævɪŋ weɪd bəʊθ ˈɒpʃənz/",
+      "speechText": "Having weighed both options, I'd lean toward starting small.",
+      "category": "Syntax",
+      "register": "Nuanced",
+      "flat": "After we carefully compared both options, we decided to go with the local team.",
+      "upgraded": "Having weighed both options, we're leaning toward the Warsaw team for faster support.",
+      "dialogues": [
+        {
+          "context": "Project Recommendation",
+          "lines": [
+            {
+              "speaker": "Analyst",
+              "text": "Having weighed both options, I think cutting paid search won't hurt organic sign-ups."
+            },
+            {
+              "speaker": "Lead",
+              "text": "Makes sense—let's run a two-week test."
+            }
+          ]
+        },
+        {
+          "context": "Personal Reflection",
+          "lines": [
+            {
+              "speaker": "Nina",
+              "text": "Having lived in both cities, which one felt easier to settle into?"
+            },
+            {
+              "speaker": "Tom",
+              "text": "Honestly, Lisbon—people were super welcoming right away."
+            }
+          ]
+        }
+      ],
+      "nuance": "AVOID THE DANGLING PARTICIPLE TRAP: The person/team right after the comma MUST be the one who performed the 'Having...' action! Say 'Having weighed both options, THE TEAM picked A'—never *'Having weighed both options, OPTION A was picked'*.",
+      "polish": "Rozważywszy obie opcje... / Po przeanalizowaniu...",
+      "clozeSentence": "Having ___ through all the user feedback, we noticed three clear themes.",
+      "clozeAnswer": "gone",
+      "clozeAccepted": [
+        "gone",
+        "read",
+        "looked",
+        "worked"
+      ],
+      "clozeHint": "Past participle after 'Having' (e.g. gone / read / looked).",
+      "quizPrompt": "Which sentence uses a participle clause cleanly without a dangling modifier?",
+      "quizOptions": [
+        "Having weighed both options, the engineers recommended the lighter frame.",
+        "Having weighed both options, the lighter frame was recommended.",
+        "Having been weighing both options, recommendation occurred.",
+        "Having weigh both options, the engineers picked the lighter one."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Spot on: 'the engineers' right after the comma are the ones who weighed both options.",
+        "Dangling participle: 'the lighter frame' cannot weigh options!",
+        "Grammatically broken and unnatural.",
+        "Requires past participle 'weighed' after 'Having'."
+      ],
+      "sandboxPrompt": "Write one smooth recommendation starting with 'Having weighed both options,...' or 'Having tried...'.",
+      "sandboxSample": "Having weighed both options, I'd pick the coworking space near the park—it's way quieter.",
+      "sandboxRubric": [
+        "Register: Smooth, cohesive sentence flow without clunky 'After we...' repetition.",
+        "Collocation: Subject after the comma logically performed the 'Having + past participle' action.",
+        "Cadence: Natural, unpretentious vocabulary."
+      ],
+      "cefr": "C1",
+      "packId": "starter-syntax"
+    },
+    {
+      "id": "sf-05",
+      "phrase": "Subtle negative inversion (\"Rarely do you see...\", \"Not only did it...\")",
+      "ipa": "/ˈreəli duː juː siː / nɒt ˈəʊnli dɪd ɪt/",
+      "speechText": "Rarely do you see a team ship that cleanly under pressure.",
+      "category": "Syntax",
+      "register": "Nuanced",
+      "flat": "You very rarely see a product launch go so smoothly, and it also saved us hours of support.",
+      "upgraded": "Rarely do you see a migration go that smoothly—not only did it finish early, it cut latency in half.",
+      "dialogues": [
+        {
+          "context": "Team Shoutout · Slack",
+          "lines": [
+            {
+              "speaker": "VP Eng",
+              "text": "Huge kudos to infra—rarely do you see a zero-downtime cutover handled that calmly."
+            },
+            {
+              "speaker": "Lead",
+              "text": "Appreciate it! The dry runs paid off."
+            }
+          ]
+        },
+        {
+          "context": "Film / Book Chat",
+          "lines": [
+            {
+              "speaker": "Ella",
+              "text": "How was the documentary?"
+            },
+            {
+              "speaker": "Dan",
+              "text": "Phenomenal—not only did it keep me hooked for two hours, it completely changed my view."
+            }
+          ]
+        }
+      ],
+      "nuance": "Used sparingly in conversation or praise, fronting 'Rarely...' or 'Not only...' with auxiliary inversion ('do you see', 'did it finish') gives your sentence effortless rhythm and weight without sounding pompous.",
+      "polish": "Rzadko kiedy widzi się... / Nie dość, że..., to jeszcze...",
+      "clozeSentence": "Rarely ___ you find a neighborhood spot with great coffee, fast Wi-Fi, and zero noise.",
+      "clozeAnswer": "do",
+      "clozeAccepted": [
+        "do"
+      ],
+      "clozeHint": "2-letter auxiliary verb inverted after 'Rarely'.",
+      "quizPrompt": "You rarely meet someone who explains complex topics so simply.",
+      "quizOptions": [
+        "Rarely do you meet someone who breaks down complex topics so effortlessly.",
+        "Rarely you meet someone who explains complex topics so simply.",
+        "Rarely do one encounter such pedagogical simplicity.",
+        "Rarely do you meets someone who explains things simply."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Clean auxiliary inversion ('do you meet') paired with natural modern vocabulary.",
+        "Missing auxiliary inversion after fronted 'Rarely'.",
+        "Overly stiff and awkward subject-verb agreement.",
+        "Main verb stays in base form ('meet') after auxiliary 'do'."
+      ],
+      "sandboxPrompt": "Give genuine praise or share an observation starting with 'Rarely do you...' or 'Not only did...'.",
+      "sandboxSample": "Rarely do you find a restaurant where every single dish on a small menu is a hit.",
+      "sandboxRubric": [
+        "Register: Natural, earned emphasis (not over-dramatic).",
+        "Collocation: Auxiliary verb placed directly before the subject ('Rarely do you...', 'Not only did it...').",
+        "Cadence: Grounded, everyday or modern workplace context."
+      ],
+      "cefr": "C1",
+      "packId": "starter-syntax"
+    }
+  ]
+}

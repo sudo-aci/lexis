@@ -1,0 +1,674 @@
+{
+  "schemaVersion": 1,
+  "pack": {
+    "id": "expansion-precision-c1",
+    "name": "Expansion · Precision & Pushback (C1)",
+    "description": "12 high-leverage idioms, soft pushback phrases, and natural discourse patterns for fluent English.",
+    "category": "Mixed",
+    "cefr": "C1",
+    "version": "1.0.0",
+    "source": "Lexis Expansion Pack"
+  },
+  "items": [
+    {
+      "id": "exp-01",
+      "phrase": "take it with a grain of salt",
+      "ipa": "/teɪk ɪt wɪð ə ɡreɪn əv sɔːlt/",
+      "speechText": "take it with a grain of salt",
+      "category": "Everyday",
+      "register": "Conversational",
+      "cefr": "C1",
+      "packId": "expansion-precision-c1",
+      "flat": "You should not completely believe what he said because it might be exaggerated.",
+      "upgraded": "I'd take those early reviews with a grain of salt—most of them are from day one.",
+      "dialogues": [
+        {
+          "context": "Coffee Chat · Restaurant Reviews",
+          "lines": [
+            { "speaker": "Kasia", "text": "Someone on Reddit said the new bistro is wildly overpriced." },
+            { "speaker": "Tom", "text": "Take it with a grain of salt—people mostly post when they're annoyed." }
+          ]
+        },
+        {
+          "context": "Phone Call · Travel Advice",
+          "lines": [
+            { "speaker": "Marek", "text": "My cousin swore it rains nonstop in Lisbon in April." },
+            { "speaker": "Anna", "text": "I'd take that with a grain of salt; he went during one freak storm." }
+          ]
+        }
+      ],
+      "nuance": "Signals healthy skepticism without accusing someone of lying. In British English you'll often hear 'a pinch of salt' instead of 'a grain of salt'—both are completely natural.",
+      "polish": "brać coś z przymrużeniem oka / podchodzić do czegoś z dystansem",
+      "clozeSentence": "He tends to exaggerate, so I always take his estimates with a ___ of salt.",
+      "clozeAnswer": "grain",
+      "clozeAccepted": ["grain", "pinch"],
+      "clozeHint": "5-letter noun (or 'pinch' in UK English).",
+      "quizPrompt": "Don't fully trust that rumor; it might not be accurate.",
+      "quizOptions": [
+        "I'd take that rumor with a grain of salt until we hear it directly.",
+        "I'd take that rumor with a spoon of salt until we know more.",
+        "Please receive that rumor with skeptical distance and caution.",
+        "Take that rumor through a wink of an eye."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Idiomatic and natural—exactly how native speakers express measured skepticism.",
+        "Incorrect noun collocation ('grain' or 'pinch', never 'spoon').",
+        "Overly stiff and bureaucratic for an everyday conversation.",
+        "Direct calque from Polish 'z przymrużeniem oka' that doesn't exist in English."
+      ],
+      "sandboxPrompt": "Advise a friend to stay skeptical about a viral fitness trend.",
+      "sandboxSample": "I'd take that 7-day transformation claim with a grain of salt—the lighting alone is doing half the work.",
+      "sandboxRubric": [
+        "Register: Casual, grounded skepticism rather than harsh dismissal.",
+        "Collocation: Exact phrase 'take [something] with a grain/pinch of salt'.",
+        "Cadence: Smooth transition into the brief reason for skepticism."
+      ]
+    },
+    {
+      "id": "exp-02",
+      "phrase": "off the top of my head",
+      "ipa": "/ɒf ðə tɒp əv maɪ hed/",
+      "speechText": "off the top of my head",
+      "category": "Everyday",
+      "register": "Conversational",
+      "cefr": "B2-C1",
+      "packId": "expansion-precision-c1",
+      "flat": "Without checking my notes, I think the train leaves at 6:15.",
+      "upgraded": "Off the top of my head, I think the last train is around 6:15, though let me double-check.",
+      "dialogues": [
+        {
+          "context": "Dinner · Recommendations",
+          "lines": [
+            { "speaker": "Liam", "text": "Do you know any good quiet cafes near the station?" },
+            { "speaker": "Julia", "text": "Off the top of my head, Forum on the corner is great—especially upstairs." }
+          ]
+        },
+        {
+          "context": "Quick Call · Budget Estimate",
+          "lines": [
+            { "speaker": "Chris", "text": "Roughly how many people signed up last quarter?" },
+            { "speaker": "Nina", "text": "Off the top of my head, somewhere around 400, but I'll pull the exact number." }
+          ]
+        }
+      ],
+      "nuance": "Signals you are answering purely from memory without verifying yet, which protects you if the detail is slightly off. Very common in both casual talk and workplace meetings.",
+      "polish": "tak z głowy / na szybko z pamięci",
+      "clozeSentence": "Off the ___ of my head, I can't recall her last name, but it's in my inbox.",
+      "clozeAnswer": "top",
+      "clozeAccepted": ["top"],
+      "clozeHint": "3-letter noun referring to the upper part.",
+      "quizPrompt": "Speaking only from memory without checking, I think we spent about $200.",
+      "quizOptions": [
+        "Off the top of my head, I think it came out to around $200.",
+        "Out of my head, I think we paid $200.",
+        "From the memory of my head, it was approximately $200.",
+        "On the top of my head, I believe the cost was $200."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Spot-on idiomatic preposition ('off') and natural phrasing.",
+        "'Out of my head' means crazy/delirious—not from memory.",
+        "Wordy literal phrasing influenced by Polish 'z pamięci / z głowy'.",
+        "Wrong preposition ('on' instead of 'off')."
+      ],
+      "sandboxPrompt": "Give a rough answer from memory when someone asks for your favorite book from last year.",
+      "sandboxSample": "Off the top of my head, probably 'The Overstory', though I'd have to check my reading list to be sure.",
+      "sandboxRubric": [
+        "Register: Relaxed and honest about answering from memory.",
+        "Collocation: Exact preposition 'off the top of my head'.",
+        "Cadence: Natural lead-in before an approximate answer."
+      ]
+    },
+    {
+      "id": "exp-03",
+      "phrase": "it's a toss-up",
+      "ipa": "/ɪts ə ˈtɒs.ʌp/",
+      "speechText": "it's a toss-up",
+      "category": "Everyday",
+      "register": "Casual",
+      "cefr": "C1",
+      "packId": "expansion-precision-c1",
+      "flat": "Both options are equally likely or equally good, so it is hard to choose.",
+      "upgraded": "Honestly, it's a toss-up between Kyoto and Lisbon for October.",
+      "dialogues": [
+        {
+          "context": "Friends · Movie Night",
+          "lines": [
+            { "speaker": "Ben", "text": "Which of the two films should we see tonight?" },
+            { "speaker": "Ola", "text": "It's a toss-up for me—both look great, so you pick." }
+          ]
+        },
+        {
+          "context": "Sports Chat",
+          "lines": [
+            { "speaker": "Sam", "text": "Who do you think takes the final on Sunday?" },
+            { "speaker": "Dan", "text": "Total toss-up. Whoever serves better in the first set wins." }
+          ]
+        }
+      ],
+      "nuance": "Comes from flipping a coin ('tossing up' a coin). Works for both uncertain outcomes ('who wins is a toss-up') and personal indecision ('it's a toss-up between A and B').",
+      "polish": "pół na pół / rzut monetą / trudno zdecydować",
+      "clozeSentence": "With both candidates so strong, the final vote is really a ___.",
+      "clozeAnswer": "toss-up",
+      "clozeAccepted": ["toss-up", "toss up"],
+      "clozeHint": "Hyphenated noun from flipping a coin.",
+      "quizPrompt": "Both neighborhoods are equally appealing, so I genuinely can't decide between them.",
+      "quizOptions": [
+        "It's a real toss-up between the two neighborhoods—I'd be happy in either.",
+        "It is a coin throw between both districts for my preference.",
+        "It's a throw-up between those two neighborhoods.",
+        "The choice between the districts is mathematically fifty to fifty."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Natural, effortless idiom for an even choice.",
+        "Literal translation of 'rzut monetą'—not idiomatic in English.",
+        "Dangerous error: 'throw-up' means vomit, not a coin toss!",
+        "Robotic and overly clinical for a casual decision."
+      ],
+      "sandboxPrompt": "Tell a friend you can't decide between two weekend plans.",
+      "sandboxSample": "It's a toss-up between hiking in the Tatras and just staying in town to catch up on sleep.",
+      "sandboxRubric": [
+        "Register: Casual, decisive about being undecided.",
+        "Collocation: 'a toss-up between X and Y' (never 'throw-up').",
+        "Cadence: Compact contrast between two clear choices."
+      ]
+    },
+    {
+      "id": "exp-04",
+      "phrase": "in the grand scheme of things",
+      "ipa": "/ɪn ðə ɡrænd skiːm əv θɪŋz/",
+      "speechText": "in the grand scheme of things",
+      "category": "Everyday",
+      "register": "Nuanced",
+      "cefr": "C1",
+      "packId": "expansion-precision-c1",
+      "flat": "When you look at the big picture, this mistake is not very important.",
+      "upgraded": "In the grand scheme of things, missing one deadline by a day isn't going to sink us.",
+      "dialogues": [
+        {
+          "context": "Walk Home · Decompressing",
+          "lines": [
+            { "speaker": "Ewa", "text": "I'm still cringing about stumbling over that slide in the demo." },
+            { "speaker": "Alex", "text": "In the grand scheme of things, nobody even remembers it—the product landed well." }
+          ]
+        },
+        {
+          "context": "Home Renovation",
+          "lines": [
+            { "speaker": "Piotr", "text": "The tile delivery is delayed by three days." },
+            { "speaker": "Sara", "text": "Annoying, sure, but in the grand scheme of things it's minor." }
+          ]
+        }
+      ],
+      "nuance": "Gently zooms out to put a setback or minor cost into perspective. Sounds calm and mature rather than dismissive when paired with a brief acknowledgment ('Annoying, sure, but...').",
+      "polish": "w szerszej perspektywie / patrząc na całokształt",
+      "clozeSentence": "In the grand ___ of things, a $30 price difference barely matters over five years.",
+      "clozeAnswer": "scheme",
+      "clozeAccepted": ["scheme"],
+      "clozeHint": "6-letter noun meaning overall plan or arrangement.",
+      "quizPrompt": "Looking at the bigger picture, a ten-minute delay is completely trivial.",
+      "quizOptions": [
+        "In the grand scheme of things, a ten-minute delay is nothing to stress over.",
+        "In the big schema of everything, ten minutes is not important.",
+        "Within the comprehensive overview of events, ten minutes is negligible.",
+        "In the grand plan of items, ten minutes won't matter."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Natural, reassuring, and idiomatic.",
+        "False friend/calque ('schema' instead of 'scheme').",
+        "Excessively academic for reassuring someone.",
+        "Broken fixed expression ('plan of items' isn't used)."
+      ],
+      "sandboxPrompt": "Reassure a friend who is stressed about a small scratch on their new bike.",
+      "sandboxSample": "I know the first scratch hurts, but in the grand scheme of things it just means you're actually riding it.",
+      "sandboxRubric": [
+        "Register: Empathetic yet grounded.",
+        "Collocation: Exact fixed phrase 'in the grand scheme of things'.",
+        "Cadence: Acknowledges the feeling before zooming out."
+      ]
+    },
+    {
+      "id": "exp-05",
+      "phrase": "bear with me",
+      "ipa": "/beə wɪð miː/",
+      "speechText": "bear with me",
+      "category": "Everyday",
+      "register": "Conversational",
+      "cefr": "B2-C1",
+      "packId": "expansion-precision-c1",
+      "flat": "Please be patient with me for a moment while I figure this out.",
+      "upgraded": "Bear with me for a second while I pull up the right tab.",
+      "dialogues": [
+        {
+          "context": "Video Call · Screen Share",
+          "lines": [
+            { "speaker": "Marta", "text": "Bear with me—my browser just froze right as I hit share." },
+            { "speaker": "Devon", "text": "No rush at all, take your time." }
+          ]
+        },
+        {
+          "context": "Storytelling · Complex Point",
+          "lines": [
+            { "speaker": "Luke", "text": "Bear with me on this analogy—it'll make sense in ten seconds." },
+            { "speaker": "Zosia", "text": "Alright, I'm listening." }
+          ]
+        }
+      ],
+      "nuance": "Polite, natural way to buy yourself a few seconds during a tech hiccup or a winding explanation. Watch the spelling in writing: 'bear' (to carry/endure), never 'bare' (uncovered)!",
+      "polish": "chwilka cierpliwości / daj mi sekundę / posłuchaj do końca",
+      "clozeSentence": "___ with me for just a moment while I find the confirmation email.",
+      "clozeAnswer": "Bear",
+      "clozeAccepted": ["Bear", "bear"],
+      "clozeHint": "4-letter verb meaning to endure/carry (not 'bare').",
+      "quizPrompt": "Please stay patient for a few seconds while I check the attachment.",
+      "quizOptions": [
+        "Bear with me for a second while I open the attachment.",
+        "Bare with me for a second while I open the attachment.",
+        "Hold your patience with me while I look at the file.",
+        "Endure me for a moment while I open the attachment."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Correct spelling and warm, natural phrasing.",
+        "Common homophone error ('bare' means unclothe/expose).",
+        "Unnatural literal phrasing.",
+        "'Endure me' sounds dramatic and awkward."
+      ],
+      "sandboxPrompt": "Ask a colleague for a moment while your slide deck finishes loading.",
+      "sandboxSample": "Bear with me for two seconds—the deck is still syncing over hotel Wi-Fi.",
+      "sandboxRubric": [
+        "Register: Polite, calm, zero over-apologizing.",
+        "Collocation: Correct spelling 'bear with me'.",
+        "Cadence: Brief reason attached cleanly."
+      ]
+    },
+    {
+      "id": "exp-06",
+      "phrase": "push back on",
+      "ipa": "/pʊʃ bæk ɒn/",
+      "speechText": "push back on",
+      "category": "Workplace",
+      "register": "Workplace",
+      "cefr": "C1",
+      "packId": "expansion-precision-c1",
+      "flat": "I want to politely disagree with and challenge that timeline.",
+      "upgraded": "I'd gently push back on cutting QA short—we paid for that last release.",
+      "dialogues": [
+        {
+          "context": "Slack · #product-planning",
+          "lines": [
+            { "speaker": "Hannah", "text": "Can we squeeze the onboarding redesign into next Tuesday's launch?" },
+            { "speaker": "Kuba", "text": "I'm going to push back on that slightly—rushing copy changes usually doubles support tickets." }
+          ]
+        },
+        {
+          "context": "1:1 Meeting · Scope",
+          "lines": [
+            { "speaker": "Manager", "text": "Did the client accept the revised estimate?" },
+            { "speaker": "Claire", "text": "They pushed back on the discovery phase, so we trimmed it to one week." }
+          ]
+        }
+      ],
+      "nuance": "The standard modern workplace verb for constructive disagreement. Pairing it with a softener ('gently push back on', 'push back slightly on') makes disagreement collaborative rather than confrontational.",
+      "polish": "zakwestionować / grzecznie się sprzeciwić / zgłosić zastrzeżenie",
+      "clozeSentence": "Feel free to push ___ on this proposal if any of the milestones look unrealistic.",
+      "clozeAnswer": "back",
+      "clozeAccepted": ["back"],
+      "clozeHint": "4-letter adverb completing the phrasal verb.",
+      "quizPrompt": "I want to challenge the assumption that we need a full rewrite.",
+      "quizOptions": [
+        "I'd like to push back on the assumption that we need a full rewrite.",
+        "I want to push against the assumption that we need a rewrite.",
+        "I hereby register my formal objection to the rewrite hypothesis.",
+        "I will fight back the assumption of a full rewrite."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Measured, idiomatic, and collaborative workplace phrasing.",
+        "Incorrect particle ('push back on', not 'push against' here).",
+        "Way too legalistic and stiff for a team discussion.",
+        "'Fight back' sounds combative and drops the preposition."
+      ],
+      "sandboxPrompt": "Politely challenge a proposed launch date that leaves no time for testing.",
+      "sandboxSample": "I'd push back a bit on shipping Friday afternoon—giving ourselves Monday morning lets us monitor errors properly.",
+      "sandboxRubric": [
+        "Register: Constructive, non-defensive workplace tone.",
+        "Collocation: 'push back on [noun/gerund]'.",
+        "Cadence: Pairs pushback with a concrete reason or alternative."
+      ]
+    },
+    {
+      "id": "exp-07",
+      "phrase": "flag this early",
+      "ipa": "/flæɡ ðɪs ˈɜːli/",
+      "speechText": "flag this early",
+      "category": "Workplace",
+      "register": "Workplace",
+      "cefr": "B2-C1",
+      "packId": "expansion-precision-c1",
+      "flat": "I want to warn you in advance about a possible problem before it gets worse.",
+      "upgraded": "Just wanted to flag this early: the vendor API is throttling requests above 100/min.",
+      "dialogues": [
+        {
+          "context": "Slack · #eng-release",
+          "lines": [
+            { "speaker": "Bartek", "text": "Flagging this early so there are no surprises—staging latency jumped after the migration." },
+            { "speaker": "Rachel", "text": "Appreciate the heads-up, let's profile it before freeze." }
+          ]
+        },
+        {
+          "context": "Email · Project Update",
+          "lines": [
+            { "speaker": "Owen", "text": "Wanted to flag early that legal review might slip into next week." },
+            { "speaker": "Maya", "text": "Thanks—I'll adjust the client comms accordingly." }
+          ]
+        }
+      ],
+      "nuance": "Signals proactive ownership rather than panic. Much lighter and more constructive than 'I have a serious problem to report' or 'I must warn you'.",
+      "polish": "zasygnalizować zawczasu / dać znać z wyprzedzeniem",
+      "clozeSentence": "Wanted to ___ this early so we have time to line up a backup speaker.",
+      "clozeAnswer": "flag",
+      "clozeAccepted": ["flag"],
+      "clozeHint": "4-letter verb meaning to draw attention to an issue.",
+      "quizPrompt": "I am warning you ahead of time that our cloud bill is trending above budget.",
+      "quizOptions": [
+        "Just flagging this early—our cloud spend is trending about 15% over budget.",
+        "I am putting a red alarm on our cloud bill before it happens.",
+        "I wish to notify you preemptively regarding a budgetary deviation.",
+        "I want to signalize this early about the cloud budget."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Concise, calm, and native Slack/email register.",
+        "Awkward literal phrasing.",
+        "Unnecessarily stiff corporate-speak.",
+        "'Signalize' is a classic Polish false friend ('sygnalizować')."
+      ],
+      "sandboxPrompt": "Write a short Slack message proactively mentioning a dependency delay.",
+      "sandboxSample": "Flagging this early: the design assets won't land until Thursday, so frontend QA may slide by a day.",
+      "sandboxRubric": [
+        "Register: Proactive, calm, matter-of-fact.",
+        "Collocation: 'flag [this/that] early' or 'flagging early that...'.",
+        "Cadence: States the impact immediately without filler."
+      ]
+    },
+    {
+      "id": "exp-08",
+      "phrase": "out of scope",
+      "ipa": "/aʊt əv skəʊp/",
+      "speechText": "out of scope",
+      "category": "Workplace",
+      "register": "Diplomatic",
+      "cefr": "B2-C1",
+      "packId": "expansion-precision-c1",
+      "flat": "That feature is not part of what we agreed to build in this phase.",
+      "upgraded": "That's a great idea, though it's probably out of scope for v1—let's park it for Phase 2.",
+      "dialogues": [
+        {
+          "context": "Sprint Planning",
+          "lines": [
+            { "speaker": "PM", "text": "Could we also add multi-currency billing while we're in checkout?" },
+            { "speaker": "Lead", "text": "Love it long-term, but that's out of scope for this sprint—it touches invoicing too." }
+          ]
+        },
+        {
+          "context": "Client Call",
+          "lines": [
+            { "speaker": "Client", "text": "Will the audit cover our mobile app as well?" },
+            { "speaker": "Consultant", "text": "Mobile is out of scope for this engagement, though we can easily scope a follow-up." }
+          ]
+        }
+      ],
+      "nuance": "Clean, objective boundary-setting without sounding unhelpful. Pairing it with a future home ('let's park it for Phase 2') keeps momentum positive.",
+      "polish": "poza zakresem (projektu / tego etapu)",
+      "clozeSentence": "Custom SSO integrations are out of ___ for the beta, but they're on our Q3 roadmap.",
+      "clozeAnswer": "scope",
+      "clozeAccepted": ["scope"],
+      "clozeHint": "5-letter noun meaning the agreed boundaries of work.",
+      "quizPrompt": "That request isn't included in what we agreed to deliver this quarter.",
+      "quizOptions": [
+        "That's out of scope for Q2, though we can revisit it once the core ships.",
+        "That request is outside our area of contract borders.",
+        "This item lies beyond the perimeter of our current deliverable mandate.",
+        "That is out of range for this quarter's sprint."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Crisp, diplomatic, and standard across tech/business teams.",
+        "Unnatural phrasing ('area of contract borders').",
+        "Overblown corporate jargon.",
+        "'Out of range' refers to distance or numbers, not project boundaries."
+      ],
+      "sandboxPrompt": "Politely tell a stakeholder that dark mode isn't included in this week's prototype.",
+      "sandboxSample": "Dark mode is out of scope for Friday's prototype, but I've logged it at the top of the polish backlog.",
+      "sandboxRubric": [
+        "Register: Firm boundary paired with constructive next step.",
+        "Collocation: 'out of scope for [milestone/phase]'.",
+        "Cadence: Direct and respectful."
+      ]
+    },
+    {
+      "id": "exp-09",
+      "phrase": "move the needle",
+      "ipa": "/muːv ðə ˈniːdl/",
+      "speechText": "move the needle",
+      "category": "Workplace",
+      "register": "Workplace",
+      "cefr": "C1",
+      "packId": "expansion-precision-c1",
+      "flat": "This change will actually produce a noticeable, measurable improvement.",
+      "upgraded": "Tweaking button colors won't move the needle—cutting signup steps from five to two will.",
+      "dialogues": [
+        {
+          "context": "Growth Review",
+          "lines": [
+            { "speaker": "Tomek", "text": "Should we spend a week A/B testing the footer copy?" },
+            { "speaker": "Elena", "text": "Probably not—I doubt it'll move the needle on conversion." }
+          ]
+        },
+        {
+          "context": "Strategy Offsite",
+          "lines": [
+            { "speaker": "VP", "text": "If we could only ship two bets this half, which ones actually move the needle?" },
+            { "speaker": "Sam", "text": "Faster onboarding and self-serve billing, hands down." }
+          ]
+        }
+      ],
+      "nuance": "Metaphor from a gauge or meter needle shifting noticeably. Best used selectively to separate high-impact work from busywork—especially in negative form ('won't move the needle').",
+      "polish": "zrobić realną różnicę / zauważalnie wpłynąć na wyniki",
+      "clozeSentence": "Adding another minor filter is nice, but it won't really move the ___ on retention.",
+      "clozeAnswer": "needle",
+      "clozeAccepted": ["needle"],
+      "clozeHint": "6-letter noun for the pointer on a dial/gauge.",
+      "quizPrompt": "That small tweak won't make any meaningful difference to our core metric.",
+      "quizOptions": [
+        "Realistically, that tweak isn't going to move the needle on activation.",
+        "That tweak will not shift the arrow on our metrics.",
+        "That minor modification fails to produce a statistically material shift.",
+        "That change won't push the pin on our numbers."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Sharp, natural, and idiomatic prioritization language.",
+        "Wrong noun ('needle', not 'arrow').",
+        "Stiff and overly academic for a team prioritization chat.",
+        "Incorrect noun collocation ('pin' instead of 'needle')."
+      ],
+      "sandboxPrompt": "Argue that improving page load speed matters more than redesigning the logo.",
+      "sandboxSample": "A logo refresh is cosmetic—cutting checkout load time in half is what will actually move the needle.",
+      "sandboxRubric": [
+        "Register: Crisp, outcome-focused without sounding cynical.",
+        "Collocation: 'move the needle (on [metric])'.",
+        "Cadence: Clear contrast between low-impact and high-impact work."
+      ]
+    },
+    {
+      "id": "exp-10",
+      "phrase": "get on the same page",
+      "ipa": "/ɡet ɒn ðə seɪm peɪdʒ/",
+      "speechText": "get on the same page",
+      "category": "Workplace",
+      "register": "Conversational",
+      "cefr": "B2-C1",
+      "packId": "expansion-precision-c1",
+      "flat": "Let's make sure we all share the same understanding before we start.",
+      "upgraded": "Let's hop on a quick 10-minute call to get on the same page before we kick off.",
+      "dialogues": [
+        {
+          "context": "Slack · #design-eng",
+          "lines": [
+            { "speaker": "Maja", "text": "Sounds like we're interpreting the spec slightly differently." },
+            { "speaker": "Leo", "text": "Good catch—let's sync for five minutes and get on the same page." }
+          ]
+        },
+        {
+          "context": "Kickoff Meeting",
+          "lines": [
+            { "speaker": "Host", "text": "Before we dive into tickets, I just want to make sure we're all on the same page about the launch criteria." },
+            { "speaker": "Team", "text": "Makes sense—let's run through them." }
+          ]
+        }
+      ],
+      "nuance": "Warm, non-blaming way to resolve misalignment—much friendlier than 'you misunderstood me' or 'let's clarify your confusion'. Works as both 'get on the same page' (action) and 'be on the same page' (state).",
+      "polish": "uzgodnić wspólne stanowisko / nadawać na tych samych falach (w projekcie)",
+      "clozeSentence": "Let's review the brief together so everyone's on the same ___ before Monday.",
+      "clozeAnswer": "page",
+      "clozeAccepted": ["page"],
+      "clozeHint": "4-letter noun from reading a book together.",
+      "quizPrompt": "Let's meet briefly so we all have the exact same understanding of priorities.",
+      "quizOptions": [
+        "Let's grab ten minutes today to get on the same page about Q3 priorities.",
+        "Let's meet to be on the same paper regarding priorities.",
+        "We should convene to harmonize our mutual comprehension of priorities.",
+        "Let's get into the same page about what comes first."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Friendly, natural, and universally used.",
+        "Incorrect noun ('page', never 'paper').",
+        "Painfully stiff corporate-speak.",
+        "Wrong preposition ('on', not 'into')."
+      ],
+      "sandboxPrompt": "Suggest a quick check-in after noticing two teammates have different expectations for a deliverable.",
+      "sandboxSample": "Looks like we've got two slightly different pictures of the handoff—want to huddle for five minutes to get on the same page?",
+      "sandboxRubric": [
+        "Register: Collaborative and blame-free.",
+        "Collocation: 'get/be on the same page (about/on ...)'.",
+        "Cadence: Brief, action-oriented invitation."
+      ]
+    },
+    {
+      "id": "exp-11",
+      "phrase": "what strikes me is...",
+      "ipa": "/wɒt straɪks miː ɪz/",
+      "speechText": "what strikes me is",
+      "category": "Syntax",
+      "register": "Nuanced",
+      "cefr": "C1",
+      "packId": "expansion-precision-c1",
+      "flat": "The thing that I notice most clearly about this design is how calm it feels.",
+      "upgraded": "What strikes me is how effortless the navigation feels even with thousands of entries.",
+      "dialogues": [
+        {
+          "context": "Design Critique",
+          "lines": [
+            { "speaker": "Designer", "text": "Any first impressions on the updated onboarding?" },
+            { "speaker": "Reviewer", "text": "What strikes me is how much clearer the hierarchy is—you immediately know where to click." }
+          ]
+        },
+        {
+          "context": "Book Club",
+          "lines": [
+            { "speaker": "Gosia", "text": "How did you find the ending?" },
+            { "speaker": "Ian", "text": "What strikes me is how restrained it is; she never spells out the moral." }
+          ]
+        }
+      ],
+      "nuance": "A natural wh-cleft ('What + verb + is...') that spotlights an observation with elegance and authority. Notice there is no extra 'that' before 'is'—avoid the common learner slip 'What strikes me is that...' when followed by 'how' or a noun phrase.",
+      "polish": "to, co mnie uderza / najbardziej rzuca mi się w oczy, to...",
+      "clozeSentence": "What ___ me about their team is how quickly they turn feedback into working prototypes.",
+      "clozeAnswer": "strikes",
+      "clozeAccepted": ["strikes", "struck"],
+      "clozeHint": "Verb meaning to impress or stand out sharply to someone.",
+      "quizPrompt": "The most noticeable thing to me about this data is the sudden drop on weekends.",
+      "quizOptions": [
+        "What strikes me about this data is the sharp drop every weekend.",
+        "That what hits me in this data is the weekend drop.",
+        "The aspect that impacts my observation is the weekend decline.",
+        "What is striking to me in this data, it is the weekend drop."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Clean, natural wh-cleft structure with idiomatic verb choice.",
+        "Calque from Polish 'to, co mnie uderza' ('That what hits me').",
+        "Stiff and overly wordy.",
+        "Redundant resumptive pronoun ('it') breaks the cleft syntax."
+      ],
+      "sandboxPrompt": "Highlight the most impressive aspect of a city you visited recently using 'What strikes me is...'.",
+      "sandboxSample": "What strikes me about Copenhagen is how quiet the city center feels once you take cars out of the equation.",
+      "sandboxRubric": [
+        "Register: Thoughtful, articulate, natural.",
+        "Collocation: Clean wh-cleft 'What strikes me (about X) is...'.",
+        "Cadence: Smooth focus shift onto the core insight."
+      ]
+    },
+    {
+      "id": "exp-12",
+      "phrase": "not so much X as Y",
+      "ipa": "/nɒt səʊ mʌtʃ ... æz/",
+      "speechText": "not so much as",
+      "category": "Syntax",
+      "register": "Diplomatic",
+      "cefr": "C1",
+      "packId": "expansion-precision-c1",
+      "flat": "The issue isn't really the price; it's mainly the long delivery time.",
+      "upgraded": "It's not so much the price as the six-week lead time that's holding us back.",
+      "dialogues": [
+        {
+          "context": "Feedback · Product Review",
+          "lines": [
+            { "speaker": "Founder", "text": "Do users find the dashboard too complex?" },
+            { "speaker": "Researcher", "text": "It's not so much that it's complex as that the labels don't match how they talk." }
+          ]
+        },
+        {
+          "context": "Coffee Chat · Burnout",
+          "lines": [
+            { "speaker": "Kamil", "text": "Are you working crazy hours lately?" },
+            { "speaker": "Nora", "text": "Not so much the hours as the constant context-switching—that's what drains me." }
+          ]
+        }
+      ],
+      "nuance": "Refines a diagnosis with surgical precision without bluntly saying 'no, you're wrong'. Keep X and Y grammatically parallel (noun + noun, or 'that'-clause + 'that'-clause).",
+      "polish": "nie tyle X, co Y",
+      "clozeSentence": "The bottleneck isn't so much budget ___ getting sign-off from three different departments.",
+      "clozeAnswer": "as",
+      "clozeAccepted": ["as"],
+      "clozeHint": "2-letter conjunction pairing with 'not so much'.",
+      "quizPrompt": "The problem isn't really lack of effort; the real issue is unclear priorities.",
+      "quizOptions": [
+        "It's not so much a lack of effort as a lack of clear priorities.",
+        "It's not so much lack of effort than unclear priorities.",
+        "It is not as much effort deficiency as it is priority ambiguity.",
+        "It's not so much the effort like the unclear priorities."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Balanced, parallel, and diplomatically sharp.",
+        "Wrong correlative conjunction ('as', never 'than').",
+        "Overly nominalized and heavy.",
+        "Wrong conjunction ('like' instead of 'as')."
+      ],
+      "sandboxPrompt": "Clarify that you're not tired of a hobby itself, just the long commute to get there.",
+      "sandboxSample": "I'm not so much tired of climbing as I am of spending an hour in traffic just to reach the gym.",
+      "sandboxRubric": [
+        "Register: Nuanced, reflective, non-blunt.",
+        "Collocation: Correlative pair 'not so much X as Y' with parallel grammar.",
+        "Cadence: Crisp contrast that lands cleanly on Y."
+      ]
+    }
+  ]
+}

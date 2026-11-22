@@ -964,7 +964,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
           <kbd class="hidden lg:inline-block border border-paper-border dark:border-charcoal-border bg-paper-subtle dark:bg-charcoal-subtle text-stone-500 dark:text-stone-400">3</kbd>
         </button>
         <button data-nav="backup" onclick="switchView('backup')" class="nav-btn px-3 py-1.5 rounded-lg text-sm font-medium transition-colors min-h-[38px] flex items-center gap-2 text-[#B05438] dark:text-[#E58E73] bg-[#C46548]/10">
-          <span>Backup</span>
+          <span>Packs &amp; Backup</span>
           <kbd class="hidden lg:inline-block border border-paper-border dark:border-charcoal-border bg-paper-subtle dark:bg-charcoal-subtle text-stone-500 dark:text-stone-400">4</kbd>
         </button>
       </nav>
@@ -1135,15 +1135,20 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
         <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
           <div>
             <p class="text-xs font-mono uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-1">
-              Searchable Reference Index
+              Searchable Reference Index · IndexedDB
             </p>
             <h1 class="serif-display text-2xl sm:text-3xl font-medium">
               Phrase &amp; Structure Library
             </h1>
           </div>
-          <span id="library-count-label" class="text-xs font-mono text-stone-500 dark:text-stone-400">
-            Showing 36 of 36 items
-          </span>
+          <div class="flex items-center gap-3 self-start sm:self-auto">
+            <span id="library-count-label" class="text-xs font-mono text-stone-500 dark:text-stone-400">
+              Loading library...
+            </span>
+            <button onclick="switchView('backup')" class="px-2.5 py-1.5 rounded-lg border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card hover:border-[#C46548] text-[11px] font-mono text-[#B05438] dark:text-[#E58E73] transition-colors min-h-[34px]">
+              Manage Packs →
+            </button>
+          </div>
         </div>
 
         <!-- Real-time Search Bar -->
@@ -1152,11 +1157,11 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
             <circle cx="11" cy="11" r="8"></circle>
             <path d="M21 21l-4.35-4.35"></path>
           </svg>
-          <input id="library-search-input" type="text" oninput="renderLibrary()" placeholder="Search phrases, textbook baselines, dialogues, nuances, or Polish equivalents... (Press /)" class="w-full pl-10 pr-4 py-3 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card text-sm placeholder-stone-400 dark:placeholder-stone-500 focus:outline-none focus:border-[#C46548] dark:focus:border-[#E08568] transition-colors min-h-[44px]">
+          <input id="library-search-input" type="text" oninput="debouncedRenderLibrary()" placeholder="Search phrases, textbook baselines, dialogues, nuances, or Polish equivalents... (Press /)" class="w-full pl-10 pr-4 py-3 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card text-sm placeholder-stone-400 dark:placeholder-stone-500 focus:outline-none focus:border-[#C46548] dark:focus:border-[#E08568] transition-colors min-h-[44px]">
         </div>
 
-        <!-- Category & Status Filter Pills -->
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 pt-1">
+        <!-- Category, Status & Pack Filters -->
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 pt-1">
           <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
             <span class="text-[11px] font-mono uppercase text-stone-400 mr-1 shrink-0">Category:</span>
             <button data-lcat="All" onclick="setLibraryFilter('category', 'All')" class="lcat-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap min-h-[38px]">All</button>
@@ -1165,32 +1170,89 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
             <button data-lcat="Syntax" onclick="setLibraryFilter('category', 'Syntax')" class="lcat-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap min-h-[38px]">Syntax</button>
           </div>
 
-          <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
-            <span class="text-[11px] font-mono uppercase text-stone-400 mr-1 shrink-0">Status:</span>
-            <button data-lstatus="All" onclick="setLibraryFilter('status', 'All')" class="lstatus-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap min-h-[38px]">All</button>
-            <button data-lstatus="new" onclick="setLibraryFilter('status', 'new')" class="lstatus-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap min-h-[38px]">New</button>
-            <button data-lstatus="practicing" onclick="setLibraryFilter('status', 'practicing')" class="lstatus-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap min-h-[38px]">Practicing</button>
-            <button data-lstatus="mastered" onclick="setLibraryFilter('status', 'mastered')" class="lstatus-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap min-h-[38px]">Mastered</button>
+          <div class="flex flex-wrap items-center gap-3">
+            <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+              <span class="text-[11px] font-mono uppercase text-stone-400 mr-1 shrink-0">Status:</span>
+              <button data-lstatus="All" onclick="setLibraryFilter('status', 'All')" class="lstatus-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap min-h-[38px]">All</button>
+              <button data-lstatus="new" onclick="setLibraryFilter('status', 'new')" class="lstatus-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap min-h-[38px]">New</button>
+              <button data-lstatus="practicing" onclick="setLibraryFilter('status', 'practicing')" class="lstatus-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap min-h-[38px]">Practicing</button>
+              <button data-lstatus="mastered" onclick="setLibraryFilter('status', 'mastered')" class="lstatus-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap min-h-[38px]">Mastered</button>
+            </div>
+
+            <div class="flex items-center gap-1.5">
+              <label for="library-pack-filter" class="text-[11px] font-mono uppercase text-stone-400 shrink-0">Pack:</label>
+              <select id="library-pack-filter" onchange="setLibraryFilter('pack', this.value)" class="px-2.5 py-1.5 rounded-lg border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card text-xs font-mono text-paper-ink dark:text-charcoal-cream focus:outline-none focus:border-[#C46548] min-h-[38px]">
+                <option value="All">All packs</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- 2-Column Grid on Desktop, 1-Column on Mobile -->
       <div id="library-cards-list" class="grid grid-cols-1 md:grid-cols-2 gap-4 items-start"></div>
+      <div id="library-pagination" class="flex justify-center pt-2"></div>
     </section>
 
-    <!-- ==================== VIEW 4: BACKUP & EXPORT ==================== -->
+    <!-- ==================== VIEW 4: PACKS, BACKUP & EXPORT ==================== -->
     <section id="view-backup" class="space-y-6 max-w-3xl mx-auto">
       <div class="pb-5 border-b border-paper-border dark:border-charcoal-border">
         <p class="text-xs font-mono uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-1">
-          Portability &amp; Expansion
+          Sharded Database &amp; Portability
         </p>
         <h1 class="serif-display text-2xl sm:text-3xl font-medium">
-          Backup &amp; Portable App
+          Phrase Packs &amp; Backup
         </h1>
         <p class="text-xs sm:text-sm text-stone-500 dark:text-stone-400 mt-1">
-          Install Lexis on your iPhone Home Screen, download <span class="font-mono">index.html</span> for GitHub Pages, or back up your mastery progress.
+          Install sharded JSON phrase packs into IndexedDB, back up your mastery progress separately from pack data, or load custom packs built with the Python pipeline.
         </p>
+      </div>
+
+      <!-- Card 0: Sharded JSON Packs & IndexedDB Storage Manager -->
+      <div id="packs-manager-card" class="rounded-2xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card p-5 sm:p-7 space-y-5 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="space-y-1">
+            <div class="flex flex-wrap items-center gap-2">
+              <h2 class="serif-display text-xl font-medium">Phrase Packs &amp; IndexedDB Storage</h2>
+              <span id="storage-engine-badge" class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-500/25">IndexedDB Active</span>
+            </div>
+            <p class="text-xs sm:text-sm text-stone-500 dark:text-stone-400">
+              Packs are cached locally in IndexedDB while your <span class="font-mono text-xs">Practicing / Mastered</span> progress is stored in a separate store—updating or removing packs never erases progress.
+            </p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2 shrink-0">
+            <button onclick="refreshPackManifest(true)" class="px-3 py-2 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-subtle dark:bg-charcoal-subtle hover:border-[#C46548] text-xs font-medium transition-colors min-h-[40px]">
+              Refresh Catalog
+            </button>
+            <label class="px-3 py-2 rounded-xl bg-[#C46548] hover:bg-[#B05438] text-white text-xs font-medium transition-colors cursor-pointer min-h-[40px] flex items-center gap-1.5">
+              <span>Load Pack (.json)</span>
+              <input type="file" accept=".json,application/json" multiple onchange="loadLocalPackFiles(event)" class="hidden">
+            </label>
+          </div>
+        </div>
+
+        <!-- Storage Metrics Strip -->
+        <div id="storage-stats-strip" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+          <div class="rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-subtle/70 dark:bg-charcoal-subtle/70 p-3">
+            <p class="text-[10px] font-mono uppercase tracking-wider text-stone-400">Loaded Phrases</p>
+            <p id="stat-total-items" class="text-lg font-mono font-semibold mt-0.5">—</p>
+          </div>
+          <div class="rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-subtle/70 dark:bg-charcoal-subtle/70 p-3">
+            <p class="text-[10px] font-mono uppercase tracking-wider text-stone-400">Installed Packs</p>
+            <p id="stat-installed-packs" class="text-lg font-mono font-semibold mt-0.5">—</p>
+          </div>
+          <div class="rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-subtle/70 dark:bg-charcoal-subtle/70 p-3">
+            <p class="text-[10px] font-mono uppercase tracking-wider text-stone-400">Saved Progress</p>
+            <p id="stat-progress-count" class="text-lg font-mono font-semibold mt-0.5">—</p>
+          </div>
+          <div class="rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-subtle/70 dark:bg-charcoal-subtle/70 p-3">
+            <p class="text-[10px] font-mono uppercase tracking-wider text-stone-400">Storage Used</p>
+            <p id="stat-storage-usage" class="text-lg font-mono font-semibold mt-0.5">—</p>
+          </div>
+        </div>
+
+        <!-- Manifest Pack List -->
+        <div id="packs-catalog-list" class="space-y-2.5"></div>
       </div>
 
       <!-- Card 1: iOS Home Screen Icon Preview -->
@@ -1367,7 +1429,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
           <polyline points="17 8 12 3 7 8"></polyline>
           <line x1="12" y1="3" x2="12" y2="15"></line>
         </svg>
-        <span>Backup</span>
+        <span>Packs</span>
       </button>
     </div>
   </nav>
@@ -1375,10 +1437,13 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
   <!-- ==================== TOAST NOTIFICATION STACK ==================== -->
   <div id="toast-stack" class="fixed bottom-20 md:bottom-6 right-4 left-4 sm:left-auto z-50 pointer-events-none flex flex-col items-center sm:items-end gap-2"></div>
 
-  <!-- ==================== COMPLETE 36-ITEM DATASET & APPLICATION LOGIC ==================== -->
+  <!-- ==================== INDEXEDDB STORAGE ENGINE & SHARDED PACK ARCHITECTURE ==================== -->
   <script>
-    const STARTER_DATASET = [
-      // ==================== 16 EVERYDAY ENGLISH ITEMS ====================
+    const MANIFEST_URL = 'data/manifest.json';
+    const LIBRARY_PAGE_SIZE = 40;
+
+    // Minimal fallback used ONLY when IndexedDB is empty AND data/manifest.json cannot be fetched (e.g. file:// mode)
+    const EMERGENCY_FALLBACK_DATASET = [
       {
         id: 'ev-01',
         phrase: "for what it's worth",
@@ -1386,6 +1451,8 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
         speechText: "for what it's worth",
         category: 'Everyday',
         register: 'Casual',
+        cefr: 'B2-C1',
+        packId: 'fallback',
         flat: "Maybe my opinion is not very important, but I think you should take the job.",
         upgraded: "For what it's worth, I think you'd thrive in that role.",
         dialogues: [
@@ -1395,16 +1462,9 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
               { speaker: 'Maya', text: "I still can't decide if moving to Berlin for a one-year contract makes sense." },
               { speaker: 'Liam', text: "For what it's worth, everyone I know who took a leap like that came back with way better options." }
             ]
-          },
-          {
-            context: 'Text Message · Weekend Plans',
-            lines: [
-              { speaker: 'Sam', text: "Not sure whether to book the Friday night train or Saturday morning." },
-              { speaker: 'Alex', text: "For what it's worth, Friday trains are usually packed—Saturday at 8 is super chill." }
-            ]
           }
         ],
-        nuance: "A warm, low-ego softener used when offering unsolicited advice or a personal perspective without sounding pushy. Often abbreviated to 'FWIW' in Slack or texts, though spoken in full in conversation.",
+        nuance: "A warm, low-ego softener used when offering unsolicited advice or a personal perspective without sounding pushy.",
         polish: "jeśli ma to jakieś znaczenie / moim zdaniem (tak na marginesie)",
         clozeSentence: "For what it's ___, I actually preferred your first draft—it felt much more direct.",
         clozeAnswer: "worth",
@@ -1419,1915 +1479,381 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
         ],
         quizCorrectIndex: 0,
         quizExplanations: [
-          "Natural, warm, and unpretentious—the exact phrase native speakers reach for when sharing an opinion gently.",
-          "Awkward literal distortion that sounds self-deprecating in an unnatural way.",
-          "Far too stiff and theatrical for a casual chat about apartments.",
+          "Natural, warm, and unpretentious—the exact phrase native speakers reach for.",
+          "Awkward literal distortion.",
+          "Far too stiff for a casual chat.",
           "Confuses 'worth' with financial cost."
         ],
-        sandboxPrompt: "Offer a friend low-pressure advice about whether to buy a used car or lease a new one.",
+        sandboxPrompt: "Offer a friend low-pressure advice about a big decision.",
         sandboxSample: "For what it's worth, buying a two-year-old certified car saves you the worst of the depreciation hit.",
         sandboxRubric: [
-          "Register: Warm, non-pushy tone (offers perspective rather than lecturing).",
-          "Collocation: Exact wording 'for what it's worth' placed cleanly before or inside the main clause.",
-          "Cadence: Natural conversational rhythm without formal filler."
-        ],
-        status: 'new'
+          "Register: Warm, non-pushy tone.",
+          "Collocation: Exact wording 'for what it's worth'.",
+          "Cadence: Natural conversational rhythm."
+        ]
       },
       {
-        id: 'ev-02',
-        phrase: "that tracks",
-        ipa: '/ðæt træks/',
-        speechText: "that tracks",
-        category: 'Everyday',
-        register: 'Conversational',
-        flat: "Yes, that makes complete sense considering what I know about him.",
-        upgraded: "Honestly, that tracks—he's always been obsessed with punctual arrivals.",
-        dialogues: [
-          {
-            context: 'Lunch Break · Catching Up',
-            lines: [
-              { speaker: 'Elena', text: "Turns out Mark spent the entire flight organizing his photos into color-coded folders." },
-              { speaker: 'Noah', text: "Yeah, that tracks. His spice rack is literally alphabetized." }
-            ]
-          },
-          {
-            context: 'Neighborhood Chat',
-            lines: [
-              { speaker: 'Kira', text: "Apparently rent in that neighborhood jumped 18% after the new metro line opened." },
-              { speaker: 'Ben', text: "That tracks—commute time to the center dropped in half." }
-            ]
-          }
-        ],
-        nuance: "Very common modern conversational reaction meaning 'that aligns with everything else I know' or 'that's completely consistent with their character/the facts'. Much crisper than 'that is logical'.",
-        polish: "to ma sens / zgadza się / pasuje do niego (do całości)",
-        clozeSentence: "He forgot his passport until an hour before boarding? Honestly, that ___.",
-        clozeAnswer: "tracks",
-        clozeAccepted: ["tracks"],
-        clozeHint: "Verb meaning 'follows a consistent pattern' (3rd person singular).",
-        quizPrompt: "That makes total sense given how chaotic their schedule has been all month.",
-        quizOptions: [
-          "That tracks—their schedule has been all over the place all month.",
-          "That follows the railway—their schedule has been chaotic.",
-          "That correlates coherently with their monthly calendar turbulence.",
-          "That is tracking your monthly schedule."
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Effortless, modern native reaction showing immediate understanding.",
-          "Non-existent literal translation of the metaphor.",
-          "Sounds like an academic paper rather than a real human reacting.",
-          "Used in simple present ('that tracks'), not progressive."
-        ],
-        sandboxPrompt: "React naturally to a friend telling you that a notoriously disorganized colleague showed up to the wrong airport terminal.",
-        sandboxSample: "Honestly, that tracks—he once showed up to a Thursday meeting on a Tuesday.",
-        sandboxRubric: [
-          "Register: Quick, punchy conversational reaction.",
-          "Collocation: Used 'that tracks' in simple present (not 'it is tracking').",
-          "Cadence: Followed up with a natural supporting detail."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'ev-03',
-        phrase: "to play it by ear",
-        ipa: '/tuː pleɪ ɪt baɪ ɪə/',
-        speechText: "to play it by ear",
-        category: 'Everyday',
-        register: 'Casual',
-        flat: "We won't make a strict plan yet; we will decide what to do depending on how things go.",
-        upgraded: "Let's not over-schedule Saturday—let's just play it by ear.",
-        dialogues: [
-          {
-            context: 'Weekend Trip · Messages',
-            lines: [
-              { speaker: 'Chloe', text: "Should we book dinner for 8 or see how tired we are after the hike?" },
-              { speaker: 'Dan', text: "Let's play it by ear. There are plenty of walk-in spots near the harbor." }
-            ]
-          },
-          {
-            context: 'After Work · Drinks',
-            lines: [
-              { speaker: 'Tessa', text: "Are you staying for one drink or making a night of it?" },
-              { speaker: 'Omar', text: "Playing it by ear—depends on how wiped I feel after this espresso." }
-            ]
-          }
-        ],
-        nuance: "Originally a musical metaphor (playing without sheet music). Used constantly in both casual life and flexible work situations when avoiding rigid commitments before seeing how circumstances unfold.",
-        polish: "zobaczyć, jak wyjdzie / improwizować na bieżąco / decydować w trakcie",
-        clozeSentence: "The forecast looks unpredictable, so let's skip advance tickets and play it by ___.",
-        clozeAnswer: "ear",
-        clozeAccepted: ["ear"],
-        clozeHint: "Body part in the musical idiom 'play it by ___'.",
-        quizPrompt: "We don't need a fixed itinerary for Sunday afternoon; we'll decide as we go.",
-        quizOptions: [
-          "We don't need a rigid itinerary for Sunday—we'll just play it by ear.",
-          "We don't need a fixed itinerary for Sunday—we'll play it by eye.",
-          "We shall abstain from premature scheduling and improvise dynamically.",
-          "We don't need a plan—we'll play with our ears."
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Idiomatic, relaxed, and completely natural in both US and UK English.",
-          "Confuses 'play it by ear' with 'play it by eye' (which is not an idiom).",
-          "Overly formal and robotic for Sunday plans.",
-          "Grammatically broken distortion."
-        ],
-        sandboxPrompt: "Tell a friend you aren't sure what time you'll finish a family dinner tonight, so you'll decide later whether to meet up.",
-        sandboxSample: "Family dinners are hard to time, so let's play it by ear and text around nine.",
-        sandboxRubric: [
-          "Register: Relaxed, low-pressure social tone.",
-          "Collocation: Correct idiom 'play it by ear' (with 'it').",
-          "Cadence: Clear explanation of the flexible condition."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'ev-04',
-        phrase: "it slipped my mind",
-        ipa: '/ɪt slɪpt maɪ maɪnd/',
-        speechText: "it slipped my mind",
-        category: 'Everyday',
-        register: 'Conversational',
-        flat: "I am sorry, I completely forgot to send you that link yesterday.",
-        upgraded: "My bad—it totally slipped my mind with everything going on yesterday.",
-        dialogues: [
-          {
-            context: 'Casual Text · Follow-up',
-            lines: [
-              { speaker: 'Zoe', text: "Hey, did you ever get a chance to check the name of that physio?" },
-              { speaker: 'Max', text: "Oh, it completely slipped my mind! Sending you her contact right now." }
-            ]
-          },
-          {
-            context: 'Kitchen Chat',
-            lines: [
-              { speaker: 'Nadia', text: "Did we pick up oat milk?" },
-              { speaker: 'Leo', text: "Ah, it slipped my mind when I got distracted at the bakery counter." }
-            ]
-          }
-        ],
-        nuance: "Much softer and more natural than saying 'I forgot' (which can sometimes sound blunt). Avoid the Polish calque 'it fell out of my head'—English always uses 'slipped my mind'.",
-        polish: "wyleciało mi z głowy",
-        clozeSentence: "I meant to reply to your voice note last night, and then it completely ___ my mind.",
-        clozeAnswer: "slipped",
-        clozeAccepted: ["slipped"],
-        clozeHint: "Past tense verb meaning slid away unnoticed.",
-        quizPrompt: "I apologize, I forgot to bring the book you lent me.",
-        quizOptions: [
-          "Sorry about that—bringing your book completely slipped my mind.",
-          "Sorry about that—bringing your book fell out of my head.",
-          "I regret to inform you that your book escaped my cognitive retention.",
-          "Sorry—your book slipped from my brain."
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Warm, natural apology that sounds effortless and polite.",
-          "Direct Polish calque ('wypadło mi z głowy')—not used in English.",
-          "Hilariously stiff for forgetting a borrowed book.",
-          "Uses 'mind', not 'brain', and no preposition 'from'."
-        ],
-        sandboxPrompt: "Apologize casually to a friend for forgetting to send them a restaurant recommendation you promised earlier.",
-        sandboxSample: "So sorry—sending that spot completely slipped my mind! Here's the pin.",
-        sandboxRubric: [
-          "Register: Warm, natural apology without sounding overly formal.",
-          "Collocation: Used 'slipped my mind' accurately.",
-          "Cadence: Immediately follows up with the helpful action."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'ev-05',
-        phrase: "to take a rain check",
-        ipa: '/tuː teɪk ə reɪn tʃek/',
-        speechText: "to take a rain check",
-        category: 'Everyday',
-        register: 'Casual',
-        flat: "I cannot come tonight because I am exhausted, can we reschedule for another time?",
-        upgraded: "I'm completely wiped tonight—mind if I take a rain check and we do next week?",
-        dialogues: [
-          {
-            context: 'Thursday Evening · SMS',
-            lines: [
-              { speaker: 'Hannah', text: "Still up for ramen tonight around 7:30?" },
-              { speaker: 'Jules', text: "Any chance I can take a rain check? Just got stuck on a late call and I'm dead on my feet." }
-            ]
-          },
-          {
-            context: 'Office Hallway',
-            lines: [
-              { speaker: 'Ben', text: "Grabbing tacos downstairs if you want to join." },
-              { speaker: 'Priya', text: "I'll have to take a rain check today—got a noon deadline, but definitely Thursday!" }
-            ]
-          }
-        ],
-        nuance: "Originates from 19th-century US baseball tickets issued when rain canceled a game, now universal across US and UK English. Signals clearly that you genuinely want to hang out, just not right now.",
-        polish: "przełożyć na inny termin (z chęcią, ale innym razem)",
-        clozeSentence: "I'd love to join for drinks, but I'm swamped tonight—can I take a ___ check?",
-        clozeAnswer: "rain",
-        clozeAccepted: ["rain"],
-        clozeHint: "Weather noun in 'take a ___ check'.",
-        quizPrompt: "I have to decline dinner tonight because of a migraine, but I really want to reschedule.",
-        quizOptions: [
-          "I've got a brutal migraine tonight—mind if I take a rain check on dinner?",
-          "I have a migraine tonight—let us postpone our dining engagement indefinitely.",
-          "I have a migraine tonight—I will take a weather ticket for dinner.",
-          "I have a migraine—let's make a rain check."
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Warm, clear, and reassures your friend that you still want to meet soon.",
-          "Sounds cold and formal, as if canceling a business contract.",
-          "Literal distortion of the idiom.",
-          "Collocates with 'take', not 'make'."
-        ],
-        sandboxPrompt: "Politely turn down an invitation for coffee this afternoon because you're behind on errands, while keeping the door open for Friday.",
-        sandboxSample: "I'm way behind on errands today—can I take a rain check and catch up over coffee on Friday?",
-        sandboxRubric: [
-          "Register: Warm, appreciative decline that preserves closeness.",
-          "Collocation: Used 'take a rain check (on sth)' cleanly.",
-          "Cadence: Proposed a concrete alternative window."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'ev-06',
-        phrase: "not remotely",
-        ipa: '/nɒt rɪˈməʊtli/',
-        speechText: "not remotely",
-        category: 'Everyday',
-        register: 'Nuanced',
-        flat: "That explanation is not true at all; it doesn't even come close to what happened.",
-        upgraded: "That's not remotely what I meant—let me clarify.",
-        dialogues: [
-          {
-            context: 'Clarifying a Misunderstanding',
-            lines: [
-              { speaker: 'Chris', text: "So you're saying the whole design sprint was a waste of time?" },
-              { speaker: 'Laura', text: "Not remotely. The user interviews were gold; we just need to narrow the scope." }
-            ]
-          },
-          {
-            context: 'Movie Critique',
-            lines: [
-              { speaker: 'Dev', text: "Was the sequel as tense as the original?" },
-              { speaker: 'Sophie', text: "Not remotely—it felt like a watered-down TV pilot." }
-            ]
-          }
-        ],
-        nuance: "A crisp, educated intensifier that replaces 'not at all' or 'definitely not' when shutting down an inaccurate assumption cleanly without sounding overly emotional.",
-        polish: "ani trochę / w najmniejszym stopniu / zupełnie nie",
-        clozeSentence: "Honestly, I'm not ___ surprised that the flight got delayed in this fog.",
-        clozeAnswer: "remotely",
-        clozeAccepted: ["remotely"],
-        clozeHint: "Adverb derived from 'remote' meaning 'even slightly'.",
-        quizPrompt: "I am not even slightly interested in watching a three-hour political drama tonight.",
-        quizOptions: [
-          "I'm not remotely in the mood for a three-hour political drama tonight.",
-          "I am not distantly interested in viewing a lengthy political drama tonight.",
-          "I possess zero fractional interest in a three-hour political drama.",
-          "I am remotely not interested in watching a drama tonight."
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Natural, expressive, and idiomatic native phrasing.",
-          "'Distantly' does not collocate with 'not ... interested' in this sense.",
-          "Robotic and unnatural.",
-          "Incorrect adverb placement ('not remotely', not 'remotely not')."
-        ],
-        sandboxPrompt: "Calmly correct someone who misunderstood your comment as criticism of their work.",
-        sandboxSample: "That's not remotely what I was getting at—your research was solid, I only questioned the timeline.",
-        sandboxRubric: [
-          "Register: Calm, clarifying tone (firm without being defensive).",
-          "Collocation: Used 'not remotely' before an adjective, verb, or clause.",
-          "Cadence: Immediately follows with the intended meaning."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'ev-07',
-        phrase: "to wrap your head around [something]",
-        ipa: '/tuː ræp jɔː hed əˈraʊnd/',
-        speechText: "to wrap your head around",
-        category: 'Everyday',
-        register: 'Conversational',
-        flat: "I am still trying to fully understand how this new tax rule affects freelancers.",
-        upgraded: "I'm still trying to wrap my head around how the new tax brackets work.",
-        dialogues: [
-          {
-            context: 'Tech & AI Chat',
-            lines: [
-              { speaker: 'Victor', text: "Did you read how fast that new protein-folding model runs?" },
-              { speaker: 'Grace', text: "Yeah, I can barely wrap my head around the scale of it." }
-            ]
-          },
-          {
-            context: 'Life Milestone',
-            lines: [
-              { speaker: 'Mina', text: "Can you believe we're moving to Tokyo in three weeks?" },
-              { speaker: 'Alex', text: "Honestly, I haven't even wrapped my head around it yet." }
-            ]
-          }
-        ],
-        nuance: "In UK English you will also hear 'get your head round', while US English favors 'wrap your head around'. Both convey mentally absorbing something complex, surprising, or huge.",
-        polish: "ogarnąć to rozumem / pojąć / przetrawić jakąś informację",
-        clozeSentence: "Give me a minute to wrap my ___ around these numbers before we jump to conclusions.",
-        clozeAnswer: "head",
-        clozeAccepted: ["head", "mind"],
-        clozeHint: "4-letter noun in 'wrap my ___ around'.",
-        quizPrompt: "It is hard for me to fully comprehend that ten years have passed since graduation.",
-        quizOptions: [
-          "I still can't quite wrap my head around the fact that it's been ten years since graduation.",
-          "I still cannot fold my brain around ten years passing since graduation.",
-          "Comprehending the decadal passage since graduation remains cognitively elusive.",
-          "I still can't wrap my head over ten years passing."
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Completely natural way to express disbelief or mental processing.",
-          "Incorrect distortion of the idiom.",
-          "Way too academic for a nostalgic reflection.",
-          "Wrong preposition ('around' or UK 'round', not 'over')."
-        ],
-        sandboxPrompt: "Describe a surprising piece of news or complex concept you're still trying to process.",
-        sandboxSample: "I'm still trying to wrap my head around how much rent has jumped in just two years.",
-        sandboxRubric: [
-          "Register: Natural reflective tone.",
-          "Collocation: Used 'wrap [possessive] head around' accurately.",
-          "Cadence: Smooth, idiomatic flow."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'ev-08',
-        phrase: "off the top of my head",
-        ipa: '/ɒf ðə tɒp əv maɪ hed/',
-        speechText: "off the top of my head",
-        category: 'Everyday',
-        register: 'Conversational',
-        flat: "Without checking my notes right now, I think the flight costs around 300 euros.",
-        upgraded: "Off the top of my head, I'd say flights are around €300, though let me double-check.",
-        dialogues: [
-          {
-            context: 'Dinner Table · Recommendations',
-            lines: [
-              { speaker: 'Sam', text: "Do you remember the name of that ramen spot near the river?" },
-              { speaker: 'Maya', text: "Not off the top of my head, no—let me scroll through my maps." }
-            ]
-          },
-          {
-            context: 'Quick Call · Estimates',
-            lines: [
-              { speaker: 'Liam', text: "How many people RSVP'd so far?" },
-              { speaker: 'Claire', text: "Off the top of my head, roughly twenty-five, give or take." }
-            ]
-          }
-        ],
-        nuance: "Signals immediately that you are giving an unverified recall from memory rather than a guaranteed fact—protecting your credibility in both casual chats and quick work calls.",
-        polish: "z głowy / tak na szybko (bez sprawdzania)",
-        clozeSentence: "Off the ___ of my head, I can think of three places nearby that stay open past midnight.",
-        clozeAnswer: "top",
-        clozeAccepted: ["top"],
-        clozeHint: "3-letter noun in 'off the ___ of my head'.",
-        quizPrompt: "Without looking at my calendar, I believe we are free on the 14th.",
-        quizOptions: [
-          "Off the top of my head, I think we're free on the 14th, let me check.",
-          "From the roof of my head, I believe we are free on the 14th.",
-          "Speaking purely from unverified memory retrieval, the 14th appears open.",
-          "On the top of my head, I think we're free on the 14th."
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Idiomatic, natural, and sets clear expectations that you haven't checked yet.",
-          "Non-existent literal variation.",
-          "Unnecessarily bureaucratic.",
-          "Always 'off the top', never 'on the top'."
-        ],
-        sandboxPrompt: "Answer a friend's question about how much a weekend trip might cost when you haven't looked up exact prices yet.",
-        sandboxSample: "Off the top of my head, I'd budget around €400 each for trains and an Airbnb.",
-        sandboxRubric: [
-          "Register: Conversational, helpful estimate.",
-          "Collocation: Exact idiom 'off the top of my head'.",
-          "Cadence: Signals clearly that the number is approximate."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'ev-09',
-        phrase: "to be in two minds about [something]",
-        ipa: '/tuː biː ɪn tuː maɪndz əˈbaʊt/',
-        speechText: "to be in two minds about",
-        category: 'Everyday',
-        register: 'Conversational',
-        flat: "I still cannot decide whether I should adopt a dog right now or wait a year.",
-        upgraded: "I'm in two minds about adopting a dog right now—I'd love the company, though I travel a lot.",
-        dialogues: [
-          {
-            context: 'Coffee Catch-up',
-            lines: [
-              { speaker: 'Ella', text: "Are you signing up for the autumn half-marathon?" },
-              { speaker: 'Tom', text: "Honestly, I'm in two minds about it. My knees haven't loved pavement lately." }
-            ]
-          },
-          {
-            context: 'Shopping / Gear',
-            lines: [
-              { speaker: 'Rob', text: "Did you end up buying that standing desk?" },
-              { speaker: 'Nina', text: "Still in two minds—our living room is already pretty tight." }
-            ]
-          }
-        ],
-        nuance: "Dialect note: UK speakers most often say 'in two minds about', while US speakers frequently say 'of two minds about'. Both sound authentic and articulate when weighing two competing sides.",
-        polish: "wahać się / bić się z myślami",
-        clozeSentence: "I'm in two ___ about upgrading my laptop—this one still runs fine, just gets loud.",
-        clozeAnswer: "minds",
-        clozeAccepted: ["minds"],
-        clozeHint: "Plural noun in 'in two ___ about'.",
-        quizPrompt: "I haven't decided yet whether to sublet my place over the summer.",
-        quizOptions: [
-          "I'm in two minds about subletting my place over the summer.",
-          "I have two brains about subletting my place over the summer.",
-          "I remain bifurcated in my decision-making regarding a summer sublease.",
-          "I'm in two minds to sublet my place."
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Smooth, idiomatic phrasing used daily by native speakers.",
-          "Literal error—English uses 'minds', never 'brains'.",
-          "Way too stilted for everyday life.",
-          "Collocates with 'about + -ing/noun', not 'to + verb'."
-        ],
-        sandboxPrompt: "Explain to a friend why you're torn between taking a short weekend break now or saving your days off for autumn.",
-        sandboxSample: "I'm in two minds about taking Friday off—a long weekend sounds great, but saving the days for October is tempting.",
-        sandboxRubric: [
-          "Register: Balanced expression of two competing options.",
-          "Collocation: Used 'in two minds about' (or 'of two minds about') followed by -ing/noun.",
-          "Cadence: Natural, conversational flow."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'ev-10',
-        phrase: "it's a toss-up",
-        ipa: '/ɪts ə ˈtɒsʌp/',
-        speechText: "it's a toss-up",
-        category: 'Everyday',
-        register: 'Casual',
-        flat: "Both options are equally good, so it is basically a 50/50 choice.",
-        upgraded: "Honestly, it's a toss-up between Lisbon and Barcelona for October.",
-        dialogues: [
-          {
-            context: 'Choosing a Restaurant',
-            lines: [
-              { speaker: 'Mia', text: "Thai or Georgian tonight?" },
-              { speaker: 'Owen', text: "It's a toss-up for me—both places next door are amazing." }
-            ]
-          },
-          {
-            context: 'Sports / Predictions',
-            lines: [
-              { speaker: 'Jake', text: "Who do you think takes the final on Sunday?" },
-              { speaker: 'Leo', text: "Total toss-up. Either team could win on the day." }
-            ]
-          }
-        ],
-        nuance: "Comes from flipping a coin ('tossing up'). Unlike 'in two minds' (internal hesitation), 'it's a toss-up' means two external options are so evenly matched you'd happily pick either.",
-        polish: "rzut monetą / pół na pół / trudny wybór (obie opcje równie dobre)",
-        clozeSentence: "Between the window seat and the aisle on a short flight, it's a ___ for me.",
-        clozeAnswer: "toss-up",
-        clozeAccepted: ["toss-up", "tossup"],
-        clozeHint: "Hyphenated noun meaning a 50/50 coin-flip choice.",
-        quizPrompt: "I like both coffee shops equally, so choosing between them is basically 50/50.",
-        quizOptions: [
-          "Honestly, it's a toss-up between those two coffee shops—both are great.",
-          "Honestly, it's a coin throw between those two coffee shops.",
-          "The two cafés exhibit statistical parity in preference.",
-          "Honestly, it's a toss-down between those two places."
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Crisp, idiomatic, and captures effortless indifference between two good options.",
-          "Literal translation that misses the fixed English noun 'toss-up'.",
-          "Robotic.",
-          "Always 'toss-up', never 'toss-down'."
-        ],
-        sandboxPrompt: "Say that choosing between two weekend movies or two neighborhoods to stay in is completely 50/50 for you.",
-        sandboxSample: "Between staying near the old town or by the river, it's a toss-up—both neighborhoods are super walkable.",
-        sandboxRubric: [
-          "Register: Light, effortless tone.",
-          "Collocation: Used 'it's a toss-up (between X and Y)' accurately.",
-          "Cadence: Clear 50/50 framing."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'ev-11',
-        phrase: "to have a soft spot for [someone/something]",
-        ipa: '/tuː hæv ə sɒft spɒt fɔː/',
-        speechText: "to have a soft spot for",
-        category: 'Everyday',
-        register: 'Casual',
-        flat: "I have always liked old, slightly chaotic indie bookstores even if they aren't practical.",
-        upgraded: "I've always had a soft spot for cramped secondhand bookshops.",
-        dialogues: [
-          {
-            context: 'Music & Nostalgia',
-            lines: [
-              { speaker: 'Nora', text: "You're still listening to early-2000s pop-punk?" },
-              { speaker: 'Sam', text: "Guilty—I'll always have a soft spot for anything I listened to in high school." }
-            ]
-          },
-          {
-            context: 'Neighborhood Chat',
-            lines: [
-              { speaker: 'Tessa', text: "That diner hasn't changed its menu since 1995." },
-              { speaker: 'Dan', text: "That's why I have a soft spot for it. Zero pretension." }
-            ]
-          }
-        ],
-        nuance: "Expresses warm, slightly indulgent affection—often for something nostalgic, quirky, or imperfect that you wouldn't necessarily defend on purely rational grounds.",
-        polish: "mieć słabość do (czegoś/kogoś) / darzyć sentymentem",
-        clozeSentence: "Even though I usually drink black coffee, I have a soft ___ for overly sweet iced lattes in summer.",
-        clozeAnswer: "spot",
-        clozeAccepted: ["spot"],
-        clozeHint: "4-letter noun in 'have a soft ___ for'.",
-        quizPrompt: "I have always felt a warm fondness for cheesy 90s sci-fi movies.",
-        quizOptions: [
-          "I've always had a soft spot for cheesy 90s sci-fi movies.",
-          "I have a weak place in my heart for cheesy 90s sci-fi movies.",
-          "I harbor enduring sentimental affection toward 1990s science fiction cinema.",
-          "I have a soft point for cheesy 90s sci-fi movies."
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Warm, conversational, and self-aware.",
-          "Distorts the English idiom ('soft spot', not 'weak place').",
-          "Overly formal for talking about 90s sci-fi.",
-          "Uses 'spot', not 'point'."
-        ],
-        sandboxPrompt: "Share a food, place, movie genre, or habit you have an affectionate weakness for.",
-        sandboxSample: "I have a huge soft spot for rainy Sunday afternoons spent baking bread from scratch.",
-        sandboxRubric: [
-          "Register: Warm, personal, conversational voice.",
-          "Collocation: Used 'have a soft spot for + noun/-ing' cleanly.",
-          "Cadence: Specific, concrete detail."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'ev-12',
-        phrase: "I wouldn't put it past [someone]",
-        ipa: '/aɪ ˈwʊdnt pʊt ɪt pɑːst/',
-        speechText: "I wouldn't put it past him",
-        category: 'Everyday',
-        register: 'Conversational',
-        flat: "Knowing what he is like, it would not surprise me at all if he forgot to book the hotel.",
-        upgraded: "Honestly, I wouldn't put it past him to show up without a reservation.",
-        dialogues: [
-          {
-            context: 'Friend Group Banter',
-            lines: [
-              { speaker: 'Kira', text: "Wait—do you think Leo actually biked 40 kilometers in the rain just for that bakery?" },
-              { speaker: 'Max', text: "I wouldn't put it past him! That guy is relentless when it comes to sourdough." }
-            ]
-          },
-          {
-            context: 'Workplace Observation',
-            lines: [
-              { speaker: 'Ben', text: "Would the vendor really try to sneak a renewal clause into page 19?" },
-              { speaker: 'Claire', text: "I wouldn't put it past them—let's have legal read every line." }
-            ]
-          }
-        ],
-        nuance: "Can be used either playfully (about an eccentric friend's bold/chaotic antics) or cautiously (about someone sneaky or unreliable). Always implies 'that behavior fits their track record'.",
-        polish: "nie zdziwiłbym się, gdyby... / byłby do tego zdolny",
-        clozeSentence: "He's so competitive that I wouldn't put it ___ him to practice all weekend just for a board game.",
-        clozeAnswer: "past",
-        clozeAccepted: ["past"],
-        clozeHint: "4-letter preposition in 'put it ___ someone'.",
-        quizPrompt: "Knowing how impulsive she is, it wouldn't surprise me if she booked a flight tonight.",
-        quizOptions: [
-          "Honestly, I wouldn't put it past her to book a flight tonight.",
-          "Honestly, I wouldn't place it behind her to book a flight tonight.",
-          "Given her impulsive disposition, nocturnal flight booking is plausible.",
-          "I wouldn't put it over her to book a flight tonight."
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Punchy, idiomatic native phrasing with great conversational rhythm.",
-          "Incorrect preposition ('past', not 'behind').",
-          "Sounds like a clinical psychological profile.",
-          "Wrong preposition ('past', not 'over')."
-        ],
-        sandboxPrompt: "Say that you wouldn't be surprised if a notoriously resourceful or chaotic friend pulled off something unexpected.",
-        sandboxSample: "I wouldn't put it past Maya to talk her way into backstage passes without knowing anyone.",
-        sandboxRubric: [
-          "Register: Natural storytelling energy.",
-          "Collocation: Exact structure 'wouldn't put it past [person] to [verb]'.",
-          "Cadence: Clear link to the person's character."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'ev-13',
-        phrase: "to talk [someone] out of [doing something]",
-        ipa: '/tuː tɔːk ˈsʌmwʌn aʊt əv/',
-        speechText: "to talk someone out of something",
-        category: 'Everyday',
-        register: 'Conversational',
-        flat: "I tried to persuade him not to buy that overpriced sports car.",
-        upgraded: "I managed to talk him out of buying a car he'd barely drive.",
-        dialogues: [
-          {
-            context: 'Friend Advice',
-            lines: [
-              { speaker: 'Hannah', text: "Are you still thinking of cutting your own bangs tonight?" },
-              { speaker: 'Zoe', text: "Please talk me out of it before I reach for the kitchen scissors." }
-            ]
-          },
-          {
-            context: 'Travel Planning',
-            lines: [
-              { speaker: 'Alex', text: "I was going to pack three pairs of boots for a four-day trip." },
-              { speaker: 'Sam', text: "Glad I talked you out of that—we're taking regional trains." }
-            ]
-          }
-        ],
-        nuance: "Paired naturally with its opposite: 'talk someone into' (persuade to do) vs. 'talk someone out of' (persuade NOT to do). Always followed by a noun or -ing gerund, never an infinitive.",
-        polish: "wyperswadować komuś coś / odwieść kogoś od czegoś",
-        clozeSentence: "She was ready to quit on the spot, so we spent an hour talking her ___ of sending that email.",
-        clozeAnswer: "out",
-        clozeAccepted: ["out"],
-        clozeHint: "3-letter particle in 'talk someone ___ of doing sth'.",
-        quizPrompt: "My sister persuaded me not to sign up for a 6 a.m. winter boot camp.",
-        quizOptions: [
-          "My sister talked me out of signing up for a 6 a.m. winter boot camp.",
-          "My sister spoke me away from signing up for a 6 a.m. winter boot camp.",
-          "My sister dissuaded me from enrolling in an early-morning winter fitness regimen.",
-          "My sister talked me out to sign up for the boot camp."
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Clean, natural, and idiomatic.",
-          "Non-existent phrasal verb.",
-          "Overly formal for chatting about a workout class.",
-          "Requires 'of + -ing', not 'to + infinitive'."
-        ],
-        sandboxPrompt: "Describe a time you (or a friend) persuaded someone not to make an impulsive purchase or bad decision.",
-        sandboxSample: "I barely managed to talk my brother out of adopting a husky in a tiny studio apartment.",
-        sandboxRubric: [
-          "Register: Natural, relatable storytelling tone.",
-          "Collocation: Followed 'talk [person] out of' with a noun or -ing verb.",
-          "Cadence: Clear cause and outcome."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'ev-14',
-        phrase: "fair enough / to be fair",
-        ipa: '/feər ɪˈnʌf / tuː biː feə/',
-        speechText: "fair enough. to be fair",
-        category: 'Everyday',
-        register: 'Nuanced',
-        flat: "I understand your point and accept that it is reasonable, even if I initially thought differently.",
-        upgraded: "Fair enough—if you've got an early flight, skipping tonight makes total sense.",
-        dialogues: [
-          {
-            context: 'Friendly Debate',
-            lines: [
-              { speaker: 'Liam', text: "I just prefer reading physical books over Kindles, even when traveling." },
-              { speaker: 'Maya', text: "Fair enough, nothing beats paper on a long train ride." }
-            ]
-          },
-          {
-            context: 'Defending Someone Gently',
-            lines: [
-              { speaker: 'Ben', text: "The waiter took twenty minutes just to bring menus." },
-              { speaker: 'Nadia', text: "To be fair, he was covering the entire patio by himself." }
-            ]
-          }
-        ],
-        nuance: "Two essential conversational lubricants: 'Fair enough' concedes a point gracefully without losing face; 'To be fair' introduces a mitigating perspective that softens criticism of someone or something.",
-        polish: "racja / w sumie słusznie / gwoli sprawiedliwości (szczerze mówiąc)",
-        clozeSentence: "The app's interface looks a bit dated, though to be ___, it never crashes.",
-        clozeAnswer: "fair",
-        clozeAccepted: ["fair"],
-        clozeHint: "4-letter adjective in 'to be ___'.",
-        quizPrompt: "I accept your reasoning—if the train costs twice as much, driving is smarter.",
-        quizOptions: [
-          "Fair enough—if the train costs twice as much, driving is a no-brainer.",
-          "Sufficiently just—if the train costs twice as much, driving is optimal.",
-          "Your point possesses adequate fairness given the rail pricing.",
-          "Fairly enough—driving is smarter."
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Effortless, natural concession used constantly by native speakers.",
-          "Stiff literal translation.",
-          "Robotic.",
-          "Fixed phrase is 'Fair enough', never 'Fairly enough'."
-        ],
-        sandboxPrompt: "Acknowledge a friend's valid excuse or defend a slow service/product by pointing out a redeeming factor.",
-        sandboxSample: "The movie started slow, though to be fair, the last forty minutes completely redeemed it.",
-        sandboxRubric: [
-          "Register: Balanced, reasonable conversational tone.",
-          "Collocation: Used 'Fair enough' (concession) or 'To be fair' (mitigating counterpoint) accurately.",
-          "Cadence: Natural flow."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'ev-15',
-        phrase: "you beat me to it",
-        ipa: '/juː biːt miː tuː ɪt/',
-        speechText: "you beat me to it",
-        category: 'Everyday',
-        register: 'Casual',
-        flat: "You already did the exact thing that I was just about to do.",
-        upgraded: "Ha, you beat me to it—I was literally typing that exact message.",
-        dialogues: [
-          {
-            context: 'Slack / Group Chat',
-            lines: [
-              { speaker: 'Sam', text: "Just dropped the updated Figma link in the channel." },
-              { speaker: 'Kira', text: "You beat me to it! Was just about to paste it." }
-            ]
-          },
-          {
-            context: 'Office Kitchen',
-            lines: [
-              { speaker: 'Alex', text: "I put a fresh pot of coffee on." },
-              { speaker: 'Chloe', text: "You beat me to it—lifesaver!" }
-            ]
-          }
-        ],
-        nuance: "A warm, high-frequency reaction whenever someone shares a link, brings up a point, or completes a small task seconds before you were going to.",
-        polish: "wyprzedziłeś mnie / uprzedziłeś mnie",
-        clozeSentence: "I was just reaching for the check, and you ___ me to it!",
-        clozeAnswer: "beat",
-        clozeAccepted: ["beat"],
-        clozeHint: "4-letter verb (same form in present and past) in 'you ___ me to it'.",
-        quizPrompt: "You already asked the exact question I was planning to bring up.",
-        quizOptions: [
-          "You beat me to it—that was the exact question on my mind.",
-          "You defeated me toward it—that was my exact question.",
-          "You preempted my inquiry chronologically.",
-          "You beat me on it—that was my exact question."
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Natural, friendly, and immediate.",
-          "Literal distortion of 'beat'.",
-          "Unnaturally stiff.",
-          "Requires 'to it', not 'on it'."
-        ],
-        sandboxPrompt: "Reply to a colleague or friend who just shared an article or link you were about to send them.",
-        sandboxSample: "Haha, you beat me to it—I literally had that tab open to send you!",
-        sandboxRubric: [
-          "Register: Upbeat, conversational reaction.",
-          "Collocation: Exact phrasing 'you beat me to it'.",
-          "Cadence: Natural follow-up detail."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'ev-16',
-        phrase: "to cut a long story short",
-        ipa: '/tuː kʌt ə lɒŋ ˈstɔːri ʃɔːt/',
-        speechText: "to cut a long story short",
-        category: 'Everyday',
-        register: 'Conversational',
-        flat: "To skip all the unnecessary details and tell you the final outcome quickly, we missed the ferry.",
-        upgraded: "Anyway, to cut a long story short, we ended up taking a night bus instead.",
-        dialogues: [
-          {
-            context: 'Dinner Party · Anecdote',
-            lines: [
-              { speaker: 'Dan', text: "First the taxi got a flat, then the ticket machine froze, and to cut a long story short, we boarded with 30 seconds to spare." },
-              { speaker: 'Ella', text: "No way—I would have been sweating bullets!" }
-            ]
-          },
-          {
-            context: 'Catch-up Call',
-            lines: [
-              { speaker: 'Rob', text: "How did the apartment hunt go?" },
-              { speaker: 'Nina', text: "To cut a long story short, the first three fell through, but we just signed on a sunny place near the park." }
-            ]
-          }
-        ],
-        nuance: "Dialect note: UK English prefers 'to cut a long story short', while US English frequently says 'to make a long story short' (or simply 'long story short, ...'). All three are great pacing tools.",
-        polish: "krótko mówiąc / skracając długą historię",
-        clozeSentence: "We went back and forth with the airline for three days, and to ___ a long story short, they refunded the whole ticket.",
-        clozeAnswer: "cut",
-        clozeAccepted: ["cut", "make"],
-        clozeHint: "3-letter verb in 'to ___ a long story short' (UK) or 'make' (US).",
-        quizPrompt: "Skipping all the boring administrative steps, our visa was finally approved this morning.",
-        quizOptions: [
-          "To cut a long story short, our visa finally came through this morning.",
-          "To slice a lengthy narrative brief, our visa was approved.",
-          "Abbreviating the protracted bureaucratic sequence, approval occurred today.",
-          "To cut long story short, our visa came through."
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Smooth, natural storytelling transition.",
-          "Distorts the verb ('cut' or 'make', never 'slice').",
-          "Painfully academic.",
-          "Missing the indefinite article 'a' before 'long story'."
-        ],
-        sandboxPrompt: "Summarize a complicated travel delay or customer support hassle in one crisp punchline sentence.",
-        sandboxSample: "After two hours on hold and three transfers, to cut a long story short, they waived the entire fee.",
-        sandboxRubric: [
-          "Register: Engaging storytelling cadence.",
-          "Collocation: Used 'to cut/make a long story short' or 'long story short' cleanly.",
-          "Cadence: Lands on a clear, punchy outcome."
-        ],
-        status: 'new'
-      },
-
-      // ==================== 15 CONVERSATIONAL MODERN WORKPLACE ITEMS ====================
-      {
-        id: 'mw-01',
-        phrase: "to flag [something] early",
-        ipa: '/tuː flæɡ ˈsʌmθɪŋ ˈɜːli/',
-        speechText: "to flag something early",
+        id: 'wp-01',
+        phrase: "let's align on",
+        ipa: '/lets əˈlaɪn ɒn/',
+        speechText: "let's align on",
         category: 'Workplace',
         register: 'Workplace',
-        flat: "I want to inform you in advance about a potential problem with next week's deadline.",
-        upgraded: "Just flagging this early—the API integration might slip by a couple of days.",
+        cefr: 'B2-C1',
+        packId: 'fallback',
+        flat: "We should agree on the final goals before starting the work.",
+        upgraded: "Let's align on the core scope before we kick off sprint planning.",
         dialogues: [
           {
-            context: 'Slack · #launch-prep',
+            context: 'Slack · #product-sync',
             lines: [
-              { speaker: 'Dev', text: "Quick heads-up: flagging this early so nobody's surprised—vendor review is taking longer than expected." },
-              { speaker: 'PM', text: "Super helpful, thanks for the early heads-up. Let's adjust the buffer." }
-            ]
-          },
-          {
-            context: 'Weekly Standup',
-            lines: [
-              { speaker: 'Designer', text: "I wanted to flag a potential bottleneck on mobile assets before we lock scope." },
-              { speaker: 'Lead', text: "Glad you brought it up now while we still have wiggle room." }
+              { speaker: 'Alex', text: "Should we start building the export flow today?" },
+              { speaker: 'Marta', text: "Let's align on the schema first so we don't have to rework it next week." }
             ]
           }
         ],
-        nuance: "One of the highest-trust habits in modern tech and product teams. 'Flagging' sounds proactive and collaborative, whereas 'warning you' or 'reporting an issue' can sound stiff or alarmist.",
-        polish: "zasygnalizować coś zawczasu / dać wcześnie znać o potencjalnym temacie",
-        clozeSentence: "Wanted to ___ this early: if legal doesn't sign off by Thursday, we'll need to push the campaign.",
-        clozeAnswer: "flag",
-        clozeAccepted: ["flag"],
-        clozeHint: "4-letter verb meaning to raise a helpful early signal.",
-        quizPrompt: "I am writing to notify you prematurely regarding a possible schedule delay.",
+        nuance: "Clean, collaborative workplace verb for getting shared agreement without sounding controlling.",
+        polish: "uzgodnijmy wspólnie / ustalmy jedną wersję",
+        clozeSentence: "Before we loop in design, let's ___ on the user journey.",
+        clozeAnswer: "align",
+        clozeAccepted: ["align"],
+        clozeHint: "5-letter verb meaning to bring into agreement.",
+        quizPrompt: "We need to reach shared agreement on the launch criteria first.",
         quizOptions: [
-          "Just flagging this early so we have time to adjust—we might see a two-day slip.",
-          "I am submitting an early warning notification of temporal slippage.",
-          "I want to wave a red cloth early about the schedule.",
-          "I am flagging to you early about a delay."
+          "Let's align on the launch criteria before we assign tickets.",
+          "Let's harmonize our minds regarding launch criteria.",
+          "Let's align about the launch criteria before starting.",
+          "Let's make alignment to the launch criteria."
         ],
         quizCorrectIndex: 0,
         quizExplanations: [
-          "Calm, proactive, and sounds like a seasoned product/ops teammate.",
-          "Overly bureaucratic corporate speak.",
-          "Literal distortion of the metaphor.",
-          "'Flag' takes a direct object ('flag this', 'flag a risk'), not 'flag to someone'."
+          "Natural and crisp modern workplace phrasing.",
+          "Overly stiff and unnatural.",
+          "Wrong preposition ('align on', not 'align about').",
+          "Awkward verb-noun phrase."
         ],
-        sandboxPrompt: "Write a short Slack message letting your team know early that a client might ask for extra revisions next week.",
-        sandboxSample: "Just flagging this early—based on yesterday's sync, the client will likely ask for another round of copy tweaks next week.",
+        sandboxPrompt: "Suggest agreeing on priorities before starting a new project.",
+        sandboxSample: "Let's align on the top three blockers before we jump into implementation.",
         sandboxRubric: [
-          "Register: Calm, proactive, non-alarmist tone.",
-          "Collocation: Used 'flag [this/something] early' naturally.",
-          "Cadence: Concise Slack-ready phrasing."
-        ],
-        status: 'new'
+          "Register: Collaborative and concise.",
+          "Collocation: 'align on [noun]'.",
+          "Cadence: Direct and natural."
+        ]
       },
       {
-        id: 'mw-02',
-        phrase: "to push back on [something]",
-        ipa: '/tuː pʊʃ bæk ɒn/',
-        speechText: "to push back on",
-        category: 'Workplace',
-        register: 'Diplomatic',
-        flat: "We should politely disagree with their request to add three new features before Friday.",
-        upgraded: "I think we need to push back on adding new scope this close to launch.",
-        dialogues: [
-          {
-            context: 'Product Sync',
-            lines: [
-              { speaker: 'PM', text: "Sales wants custom reporting included in v1." },
-              { speaker: 'Eng Lead', text: "I'd gently push back on that—it'll delay the core release by two weeks." }
-            ]
-          },
-          {
-            context: '1:1 Coaching',
-            lines: [
-              { speaker: 'Manager', text: "You don't have to say yes to every last-minute deck request." },
-              { speaker: 'Analyst', text: "Fair point—I'll push back on timelines when I'm already at capacity." }
-            ]
-          }
-        ],
-        nuance: "Essential modern workplace phrasing for constructive disagreement or boundary-setting. Often softened with 'gently' ('I'd gently push back on...') so you sound collaborative rather than combative.",
-        polish: "postawić granicę / grzecznie zakwestionować / nie zgodzić się bezrefleksyjnie",
-        clozeSentence: "If the client asks for free weekend support, don't hesitate to push ___ on that.",
-        clozeAnswer: "back",
-        clozeAccepted: ["back"],
-        clozeHint: "4-letter particle in 'push ___ on [request]'.",
-        quizPrompt: "We must refuse their unrealistic deadline and propose a more sustainable timeline.",
-        quizOptions: [
-          "We should push back on that timeline and propose something realistic for the team.",
-          "We must combat their unrealistic deadline aggressively.",
-          "We need to push behind their deadline proposal.",
-          "We should push back their deadline."
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Constructive, firm, and standard across modern workplaces.",
-          "Too adversarial and hostile.",
-          "Wrong particle ('back', not 'behind').",
-          "Needs preposition 'on' ('push back on that timeline')."
-        ],
-        sandboxPrompt: "Suggest to a colleague that your team should diplomatically resist a stakeholder's last-minute request.",
-        sandboxSample: "I'd gently push back on squeezing another survey in before Friday—we won't have time to analyze the data properly.",
-        sandboxRubric: [
-          "Register: Constructive, firm, non-defensive tone.",
-          "Collocation: Used 'push back on + [noun/-ing]' accurately.",
-          "Cadence: Includes a brief, logical rationale."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'mw-03',
-        phrase: "let's sanity-check this",
-        ipa: '/lets ˈsænəti tʃek ðɪs/',
-        speechText: "let's sanity-check this",
-        category: 'Workplace',
-        register: 'Workplace',
-        flat: "Let's quickly review these numbers together to make sure we haven't made an obvious mistake.",
-        upgraded: "Before we send this to the client, let's sanity-check the pricing table.",
-        dialogues: [
-          {
-            context: 'Slack · Direct Message',
-            lines: [
-              { speaker: 'Liam', text: "Got two minutes to sanity-check my assumptions on the Q3 forecast?" },
-              { speaker: 'Maya', text: "Sure, drop the sheet link—happy to give it a quick look." }
-            ]
-          },
-          {
-            context: 'Design Review',
-            lines: [
-              { speaker: 'Kira', text: "Let's sanity-check this flow with two support agents before we build it." },
-              { speaker: 'PM', text: "Smart call—they'll spot edge cases right away." }
-            ]
-          }
-        ],
-        nuance: "Warm, collaborative phrasing that frames a review as a quick common-sense verification rather than a formal audit or interrogation.",
-        polish: "sprawdźmy to na zdrowy rozsądek / rzućmy okiem, czy to się trzyma kupy",
-        clozeSentence: "Can you sanity-___ this email draft for me? I want to make sure the tone lands right.",
-        clozeAnswer: "check",
-        clozeAccepted: ["check"],
-        clozeHint: "5-letter verb completing 'sanity-___'.",
-        quizPrompt: "Could you quickly verify my logic here to ensure it makes basic practical sense?",
-        quizOptions: [
-          "Mind sanity-checking my logic here for two minutes?",
-          "Could you verify my mental health regarding this logic?",
-          "Please conduct a preliminary rationality audit on my reasoning.",
-          "Could you sanity-test my mind on this?"
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Casual, collegial, and completely natural in modern offices.",
-          "Hilarious literal misreading of 'sanity-check'.",
-          "Way too stiff and robotic.",
-          "Fixed compound is 'sanity-check'."
-        ],
-        sandboxPrompt: "Ask a teammate on Slack to quickly look over a proposal or timeline before you share it wider.",
-        sandboxSample: "Hey! Got a sec to sanity-check this rollout timeline before I post it in #general?",
-        sandboxRubric: [
-          "Register: Friendly, low-friction collegial tone.",
-          "Collocation: Used 'sanity-check' as a verb or noun naturally.",
-          "Cadence: Short and action-oriented."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'mw-04',
-        phrase: "to loop [someone] in",
-        ipa: '/tuː luːp ˈsʌmwʌn ɪn/',
-        speechText: "to loop someone in",
-        category: 'Workplace',
-        register: 'Workplace',
-        flat: "We should include Sarah in this email thread so she stays informed about our decision.",
-        upgraded: "Let's loop Sarah in now so she's not caught off guard next week.",
-        dialogues: [
-          {
-            context: 'Email / Slack Thread',
-            lines: [
-              { speaker: 'Alex', text: "Looping in @Priya from Design so she has context on the new onboarding copy." },
-              { speaker: 'Priya', text: "Thanks for looping me in! Reviewing the doc now." }
-            ]
-          },
-          {
-            context: 'Project Kickoff',
-            lines: [
-              { speaker: 'Sam', text: "Who else needs to sign off on the vendor contract?" },
-              { speaker: 'Dan', text: "We should probably loop Finance in early before we negotiate payment terms." }
-            ]
-          }
-        ],
-        nuance: "Standard, friendly workplace verb for adding someone to a conversation, thread, or decision. Much smoother and warmer than 'include in the correspondence'.",
-        polish: "włączyć kogoś w temat / dodać do wątku / trzymać na bieżąco",
-        clozeSentence: "Once we narrow down the shortlist, let's loop the hiring manager ___.",
-        clozeAnswer: "in",
-        clozeAccepted: ["in"],
-        clozeHint: "2-letter particle in 'loop [someone] ___'.",
-        quizPrompt: "I am adding David to this conversation because he handles European logistics.",
-        quizOptions: [
-          "Looping David in here since he oversees European logistics.",
-          "Circling David inside this correspondence for European logistics.",
-          "Incorporating David into the communicative circuit.",
-          "Looping David on here for European logistics."
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Crisp, natural email/Slack phrasing used every single day.",
-          "Distorts the metaphor ('loop in', not 'circle inside').",
-          "Painfully stiff.",
-          "Requires particle 'in' ('looping David in')."
-        ],
-        sandboxPrompt: "Write a quick line adding a teammate from legal or design into an ongoing Slack or email thread.",
-        sandboxSample: "Looping @Marta in so she can weigh in on the privacy wording before we publish.",
-        sandboxRubric: [
-          "Register: Clear, collaborative async communication style.",
-          "Collocation: Used 'loop [person] in' (or 'loop in [person]') cleanly.",
-          "Cadence: States briefly why they're being added."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'mw-05',
-        phrase: "to have the bandwidth for [something]",
-        ipa: '/tuː hæv ðə ˈbændwɪdθ fɔː/',
-        speechText: "to have the bandwidth for",
-        category: 'Workplace',
-        register: 'Diplomatic',
-        flat: "I do not have enough time or mental energy to take on another project this week.",
-        upgraded: "I'd love to help, but I honestly don't have the bandwidth for another deck right now.",
-        dialogues: [
-          {
-            context: 'Workload Check-in',
-            lines: [
-              { speaker: 'Lead', text: "Any chance you could lead the Q2 workshop prep?" },
-              { speaker: 'Analyst', text: "I don't have the bandwidth this week with the audit, though I could pick it up next Wednesday." }
-            ]
-          },
-          {
-            context: 'Team Capacity Planning',
-            lines: [
-              { speaker: 'PM', text: "Does Design have bandwidth for a quick landing page refresh?" },
-              { speaker: 'Design Lead', text: "Pretty tight until Friday—next sprint is wide open." }
-            ]
-          }
-        ],
-        nuance: "A polite, professional way to say 'I'm maxed out' without sounding overwhelmed or complaining. Frames your time as a finite capacity rather than a personal refusal.",
-        polish: "mieć moce przerobowe / przestrzeń czasową na coś",
-        clozeSentence: "I'm swamped through Thursday, so I won't have the ___ to review the draft until Friday.",
-        clozeAnswer: "bandwidth",
-        clozeAccepted: ["bandwidth"],
-        clozeHint: "9-letter tech-derived noun meaning time and mental capacity.",
-        quizPrompt: "I am too busy with current deadlines to take on an extra side project this month.",
-        quizOptions: [
-          "I'm at full capacity right now and don't have the bandwidth for another side project.",
-          "My internet connection speed is insufficient for another side project.",
-          "I suffer from a severe deficit of temporal allocation capacity.",
-          "I don't have bandwidths for another project."
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Polite, professional boundary-setting used across modern workplaces.",
-          "Literal tech meaning rather than workplace capacity.",
-          "Overly theatrical corporate jargon.",
-          "'Bandwidth' is uncountable in this sense."
-        ],
-        sandboxPrompt: "Politely tell a teammate you can't take on an extra task today, while offering when you'll be free.",
-        sandboxSample: "I don't have the bandwidth to dig into this today, but I can block an hour for it tomorrow morning.",
-        sandboxRubric: [
-          "Register: Calm, professional boundary without sounding stressed.",
-          "Collocation: Used 'have the bandwidth for / to [verb]' accurately.",
-          "Cadence: Offers a realistic alternative time."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'mw-06',
-        phrase: "let's table this for now",
-        ipa: '/lets ˈteɪbəl ðɪs fɔː naʊ/',
-        speechText: "let's table this for now",
-        category: 'Workplace',
-        register: 'Diplomatic',
-        flat: "Let's pause this topic and come back to it later when we have more information.",
-        upgraded: "Let's table this for now and revisit it once we see the user survey results.",
-        dialogues: [
-          {
-            context: 'US Product Sync',
-            lines: [
-              { speaker: 'PM (NY)', text: "We've spent twenty minutes debating icon styles and still haven't covered launch risks." },
-              { speaker: 'Lead (SF)', text: "Agreed—let's table this for now and pick it up async in Figma." }
-            ]
-          },
-          {
-            context: 'Transatlantic Team Call',
-            lines: [
-              { speaker: 'London Lead', text: "Quick note: in UK English 'table a proposal' means bring it onto the table right now, whereas in the US it means postpone it!" },
-              { speaker: 'NY PM', text: "Good catch—saying 'let's table this for now and revisit Thursday' makes it 100% clear on both sides." }
-            ]
-          }
-        ],
-        nuance: "CRITICAL US vs. UK OPPOSITE: In US English, 'to table something' means to postpone/shelve it; in UK parliamentary & business English, 'to table something' means to put it on the agenda for immediate discussion! Always add 'for now' or 'until Thursday' on international calls to avoid complete misunderstanding.",
-        polish: "odłóżmy ten temat na później (US) / zgłosić pod obrady (tradycyjny UK)",
-        clozeSentence: "Since we're short on time, let's ___ this discussion until Thursday's sync.",
-        clozeAnswer: "table",
-        clozeAccepted: ["table", "park"],
-        clozeHint: "5-letter verb meaning postpone/shelve in US workplace English.",
-        quizPrompt: "You want to pause a side-debate in a meeting with both US and UK teammates without confusion.",
-        quizOptions: [
-          "Let's table this for now and revisit it on Thursday once we have the data.",
-          "Let's table this immediately so we discuss it next month.",
-          "Let us desk this conversational tangent until a subsequent assembly.",
-          "Let's put this on the table so we ignore it today."
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Adding 'for now' and 'revisit it on Thursday' makes the postponement crystal clear across both US and UK English.",
-          "Contradictory ('immediately' vs 'next month') and triggers the US/UK opposite-meaning trap.",
-          "Unnatural jargon.",
-          "Confuses the literal UK sense with postponement."
-        ],
-        sandboxPrompt: "Politely pause a topic during a meeting that's running over time so the group can finish the main agenda.",
-        sandboxSample: "That's a great point, though with five minutes left, let's table this for now and pick it up first thing Monday.",
-        sandboxRubric: [
-          "Register: Respectful, decisive meeting facilitation.",
-          "Collocation: Included a time cue ('for now', 'until Monday') to eliminate US/UK ambiguity.",
-          "Cadence: Concise and forward-moving."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'mw-07',
-        phrase: "to get aligned on [something]",
-        ipa: '/tuː ɡet əˈlaɪnd ɒn/',
-        speechText: "to get aligned on",
-        category: 'Workplace',
-        register: 'Workplace',
-        flat: "We need to have a short meeting so everyone agrees on the main goals before starting.",
-        upgraded: "Let's jump on a quick 15-minute call to get aligned on priorities before kickoff.",
-        dialogues: [
-          {
-            context: 'Slack · Project Start',
-            lines: [
-              { speaker: 'Maya', text: "Before Engineering starts scoping, let's make sure we're aligned on what 'done' looks like." },
-              { speaker: 'Liam', text: "100%—I'll drop a short bullet summary so we can get aligned fast." }
-            ]
-          },
-          {
-            context: 'Cross-Team Sync',
-            lines: [
-              { speaker: 'Marketing', text: "Are we aligned on the launch date?" },
-              { speaker: 'Product', text: "Yep, locked for the 18th." }
-            ]
-          }
-        ],
-        nuance: "Much lighter and more natural than 'reach consensus' or 'harmonize our objectives'. 'Get aligned on' focuses on shared practical clarity rather than forcing total agreement on every detail.",
-        polish: "uzgodnić wspólne stanowisko / zgrać się co do (celów, priorytetów)",
-        clozeSentence: "We don't need a huge deck—just a quick chat to get ___ on next steps.",
-        clozeAnswer: "aligned",
-        clozeAccepted: ["aligned"],
-        clozeHint: "7-letter adjective meaning in shared agreement/direction.",
-        quizPrompt: "Let's make sure Marketing and Sales agree on the messaging before we send the email.",
-        quizOptions: [
-          "Let's make sure Marketing and Sales are aligned on the messaging before it goes out.",
-          "Let's make sure Marketing and Sales are lined up straight on the messaging.",
-          "Let us achieve symmetrical ideological alignment prior to dispatch.",
-          "Let's get aligned with the messaging together."
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Clean, natural, and conversational modern workplace English.",
-          "Literal distortion ('lined up' means standing in a physical queue).",
-          "Overly stiff corporate speak.",
-          "Collocates with 'on' ('aligned on [topic]'), 'with' is used for people ('aligned with Sarah')."
-        ],
-        sandboxPrompt: "Suggest a brief check-in with a teammate so you both agree on priorities for the week.",
-        sandboxSample: "Got ten minutes after lunch to get aligned on our top three priorities for this sprint?",
-        sandboxRubric: [
-          "Register: Practical, collaborative tone.",
-          "Collocation: Used 'get/be aligned on + [noun]' accurately.",
-          "Cadence: Brief and action-focused."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'mw-08',
-        phrase: "what's the trade-off here?",
-        ipa: '/wɒts ðə ˈtreɪdɒf hɪə/',
-        speechText: "what's the trade-off here?",
-        category: 'Workplace',
-        register: 'Nuanced',
-        flat: "If we choose the faster option, what negative consequence or disadvantage will we have to accept?",
-        upgraded: "Shipping by Friday sounds great, but what's the trade-off here—are we skipping QA?",
-        dialogues: [
-          {
-            context: 'Architecture / Product Debate',
-            lines: [
-              { speaker: 'Tech Lead', text: "We can use the third-party widget and launch twice as fast." },
-              { speaker: 'PM', text: "Nice—what's the trade-off? Less customization down the road?" }
-            ]
-          },
-          {
-            context: 'Budget Decision',
-            lines: [
-              { speaker: 'Ops', text: "Switching to annual billing saves 20%." },
-              { speaker: 'Founder', text: "What's the trade-off—strict lock-in if our team size changes?" }
-            ]
-          }
-        ],
-        nuance: "One of the sharpest questions you can ask in any strategic or product conversation. Shows mature systems thinking—recognizing that every choice balances competing upside and downside.",
-        polish: "jaki jest tu kompromis / co poświęcamy w zamian?",
-        clozeSentence: "Lower upfront cost is tempting, so what's the ___—longer lead times?",
-        clozeAnswer: "trade-off",
-        clozeAccepted: ["trade-off", "tradeoff"],
-        clozeHint: "Hyphenated noun meaning a balance between two competing qualities.",
-        quizPrompt: "If we pick the cheaper supplier, what disadvantage do we accept in exchange?",
-        quizOptions: [
-          "If we go with the cheaper supplier, what's the trade-off—slower shipping or lower quality?",
-          "If we go with the cheaper supplier, what is the exchange punishment?",
-          "What negative counter-variables accompany this procurement selection?",
-          "What's the trade-in here with the cheaper supplier?"
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Sharp, pragmatic, and completely natural in everyday and business speech.",
-          "Non-idiomatic literal phrasing.",
-          "Painfully stiff jargon.",
-          "'Trade-in' refers to exchanging an old phone/car for credit, not strategic compromises."
-        ],
-        sandboxPrompt: "Ask a teammate what downside comes with choosing a faster or cheaper approach on a project.",
-        sandboxSample: "Building it in-house gives us full control, though what's the trade-off—two extra weeks of dev time?",
-        sandboxRubric: [
-          "Register: Analytical, curious, non-confrontational tone.",
-          "Collocation: Used 'trade-off' accurately.",
-          "Cadence: Connects two competing priorities clearly."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'mw-09',
-        phrase: "to boil down to [something]",
-        ipa: '/tuː bɔɪl daʊn tuː/',
-        speechText: "to boil down to",
-        category: 'Workplace',
-        register: 'Conversational',
-        flat: "When you simplify all the details, the core issue is really just a lack of clear ownership.",
-        upgraded: "At the end of the day, it really boils down to whether users trust the data.",
-        dialogues: [
-          {
-            context: 'Decision Wrap-up',
-            lines: [
-              { speaker: 'Sam', text: "We've been debating five different tools all afternoon." },
-              { speaker: 'Kira', text: "Honestly, it boils down to two things: price and how fast the team can learn it." }
-            ]
-          },
-          {
-            context: 'Customer Feedback',
-            lines: [
-              { speaker: 'Ben', text: "Why did they pick our competitor?" },
-              { speaker: 'Clara', text: "Boiled down to a single missing integration." }
-            ]
-          }
-        ],
-        nuance: "A vivid culinary metaphor (reducing a sauce to its essence) used effortlessly in both casual and executive conversations to cut through noise and name the core factor.",
-        polish: "sprowadzać się do (sedna)",
-        clozeSentence: "You can analyze ten metrics, but retention usually boils ___ to how good the first five minutes feel.",
-        clozeAnswer: "down",
-        clozeAccepted: ["down"],
-        clozeHint: "4-letter particle in 'boils ___ to'.",
-        quizPrompt: "In essence, the whole disagreement is simply about budget priority.",
-        quizOptions: [
-          "Basically, the whole disagreement boils down to budget priorities.",
-          "Basically, the whole disagreement cooks down to budget priorities.",
-          "Fundamentally, the dispute distills into fiscal prioritization.",
-          "The disagreement boils up to budget priorities."
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Idiomatic, clear, and conversational.",
-          "Wrong verb ('boils down to', never 'cooks down to').",
-          "Overly academic.",
-          "Wrong particle ('down to', not 'up to')."
-        ],
-        sandboxPrompt: "Summarize a complex choice or problem down to its single most important factor.",
-        sandboxSample: "For most remote teams, good async communication really boils down to writing clear updates.",
-        sandboxRubric: [
-          "Register: Clear, synthesizing voice.",
-          "Collocation: Used 'boils down to + noun/clause' accurately.",
-          "Cadence: Cuts through complexity cleanly."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'mw-10',
-        phrase: "I'm leaning toward...",
-        ipa: '/aɪm ˈliːnɪŋ təˈwɔːd/',
-        speechText: "I'm leaning toward",
-        category: 'Workplace',
-        register: 'Diplomatic',
-        flat: "I haven't made a final decision yet, but currently I prefer Option B.",
-        upgraded: "I'm leaning toward Option B, though I'm open to hearing if anyone sees a flaw.",
-        dialogues: [
-          {
-            context: 'Team Poll · Slack',
-            lines: [
-              { speaker: 'PM', text: "Thursday morning or Friday afternoon for the live demo?" },
-              { speaker: 'Designer', text: "I'm leaning toward Thursday morning while everyone's energy is fresh." }
-            ]
-          },
-          {
-            context: 'Hiring Debrief',
-            lines: [
-              { speaker: 'Lead', text: "Where are you landing on the two finalists?" },
-              { speaker: 'Engineer', text: "Leaning toward Maya—her systems thinking stood out." }
-            ]
-          }
-        ],
-        nuance: "Signals a clear preference while remaining collaborative and open to input—ideal when nudging a decision forward without shutting down discussion.",
-        polish: "skłaniam się ku...",
-        clozeSentence: "Between the two layouts, I'm leaning ___ the cleaner single-column version.",
-        clozeAnswer: "toward",
-        clozeAccepted: ["toward", "towards"],
-        clozeHint: "Preposition in 'leaning ___ [option]' (US: toward, UK: towards).",
-        quizPrompt: "My current preference is to keep the pricing simple, though I am open to other ideas.",
-        quizOptions: [
-          "I'm leaning toward keeping the pricing simple, though I'm open to other takes.",
-          "I am tilting physically in the direction of simple pricing.",
-          "My provisional inclination gravitates toward pricing simplicity.",
-          "I'm leaning to keep the pricing simple."
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Natural, collaborative, and balanced.",
-          "Literal distortion of the metaphor.",
-          "Stiff and unnatural.",
-          "Requires 'toward(s) + noun/-ing', not 'to + infinitive'."
-        ],
-        sandboxPrompt: "State which option you currently favor for a team decision while inviting feedback.",
-        sandboxSample: "I'm leaning toward launching with a small beta group first so we can iron out bugs quietly.",
-        sandboxRubric: [
-          "Register: Decisive yet open-minded tone.",
-          "Collocation: Used 'leaning toward(s) + noun/-ing' cleanly.",
-          "Cadence: Includes a brief reason or openness cue."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'mw-11',
-        phrase: "to iron out the details",
-        ipa: '/tuː ˈaɪən aʊt ðə ˈdiːteɪlz/',
-        speechText: "to iron out the details",
-        category: 'Workplace',
-        register: 'Workplace',
-        flat: "We agree on the main plan, and now we just need to resolve a few small remaining issues.",
-        upgraded: "The main terms look solid—we just need to iron out a few details on onboarding.",
-        dialogues: [
-          {
-            context: 'Partnership Wrap-up',
-            lines: [
-              { speaker: 'Alex', text: "How did the call with the Berlin partner go?" },
-              { speaker: 'Nadia', text: "Really well! We agreed on scope and just need to iron out the billing details tomorrow." }
-            ]
-          },
-          {
-            context: 'Event Planning',
-            lines: [
-              { speaker: 'Sam', text: "Is the venue locked in?" },
-              { speaker: 'Chloe', text: "Yep, just ironing out the final catering numbers with them." }
-            ]
-          }
-        ],
-        nuance: "Like smoothing wrinkles out of a shirt—used when the big picture is agreed upon and only minor practical wrinkles remain. Also works as 'iron out the kinks' (for early bugs/glitches).",
-        polish: "dograć szczegóły / wygładzić ostatnie kwestie",
-        clozeSentence: "Once we iron ___ the schedule with Legal, we'll be ready to announce the date.",
-        clozeAnswer: "out",
-        clozeAccepted: ["out"],
-        clozeHint: "3-letter particle in 'iron ___ the details'.",
-        quizPrompt: "The big picture is agreed upon; we only have to fix a few minor logistical points.",
-        quizOptions: [
-          "We're aligned on the big picture—just need to iron out a few logistical details.",
-          "We're aligned on the big picture—just need to press flat the logistics.",
-          "Macro-alignment is complete; minor logistical smoothing remains.",
-          "We just need to iron up a few details."
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Natural, optimistic, and standard workplace English.",
-          "Literal distortion of the metaphor.",
-          "Unreadable corporate jargon.",
-          "Always 'iron out', never 'iron up'."
-        ],
-        sandboxPrompt: "Tell a teammate that the main concept is approved and you just need a quick call to finalize small details.",
-        sandboxSample: "Great news—Leadership signed off on the concept, so let's hop on a call to iron out the launch details.",
-        sandboxRubric: [
-          "Register: Forward-looking, constructive tone.",
-          "Collocation: Used 'iron out [the details / a few kinks]' cleanly.",
-          "Cadence: Clear next step."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'mw-12',
-        phrase: "to take [something] offline",
-        ipa: '/tuː teɪk ˈsʌmθɪŋ ˌɒfˈlaɪn/',
-        speechText: "to take something offline",
-        category: 'Workplace',
-        register: 'Workplace',
-        flat: "Let's stop discussing this specific technical detail in the big group meeting and talk about it separately later.",
-        upgraded: "Since this only affects two teams, let's take it offline so we don't hold everyone up.",
-        dialogues: [
-          {
-            context: 'Group Video Call',
-            lines: [
-              { speaker: 'Engineer', text: "Should we dive into the database migration script right now?" },
-              { speaker: 'Tech Lead', text: "Let's take that offline right after this call so the rest of the group gets time back." }
-            ]
-          },
-          {
-            context: 'Public Slack Channel',
-            lines: [
-              { speaker: 'PM', text: "Good catch on that edge case—let's take it offline in a quick DM so we don't clutter this thread." },
-              { speaker: 'QA', text: "Sounds good, messaging you now." }
-            ]
-          }
-        ],
-        nuance: "In modern remote work, 'taking something offline' doesn't mean turning off Wi-Fi—it simply means moving a niche sub-discussion out of a large meeting or public channel into a smaller 1:1 chat.",
-        polish: "przegadać to osobno (poza głównym spotkaniem / na boku)",
-        clozeSentence: "That's a great deep-dive question—let's take it ___ after the all-hands so we stay on schedule.",
-        clozeAnswer: "offline",
-        clozeAccepted: ["offline"],
-        clozeHint: "7-letter compound word meaning outside the main group meeting.",
-        quizPrompt: "Let's discuss this niche billing edge case separately later instead of keeping twelve people on the call.",
-        quizOptions: [
-          "Let's take this billing edge case offline so we don't keep the whole group.",
-          "Let us disconnect from the internet to discuss this billing edge case.",
-          "We should sideline this billing anomaly to a non-networked venue.",
-          "Let's put this edge case offline from us."
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Respectful of everyone's time and completely natural in modern meetings.",
-          "Misunderstands the idiomatic workplace meaning.",
-          "Overly stiff jargon.",
-          "Collocates with 'take [something] offline'."
-        ],
-        sandboxPrompt: "Politely redirect a detailed technical back-and-forth during a group call so the meeting finishes on time.",
-        sandboxSample: "Let's take the API schema details offline right after this—Alex and I can sync for ten minutes and share the summary.",
-        sandboxRubric: [
-          "Register: Polite, time-conscious facilitation.",
-          "Collocation: Used 'take [topic] offline' accurately.",
-          "Cadence: Explains briefly why or who will follow up."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'mw-13',
-        phrase: "ballpark figure / rough sense",
-        ipa: '/ˈbɔːlpɑːk ˈfɪɡə / rʌf sens/',
-        speechText: "a ballpark figure. a rough sense",
-        category: 'Workplace',
-        register: 'Workplace',
-        flat: "I don't need an exact calculation yet, just an approximate estimate of the cost.",
-        upgraded: "I don't need exact quotes yet—just a ballpark figure so we know what we're dealing with.",
-        dialogues: [
-          {
-            context: 'Budget Scoping',
-            lines: [
-              { speaker: 'Founder', text: "Any rough sense of what localization for five languages will run us?" },
-              { speaker: 'Ops Lead', text: "Ballpark figure, probably around $12k–$15k, though I'll get firm quotes tomorrow." }
-            ]
-          },
-          {
-            context: 'Engineering Estimate',
-            lines: [
-              { speaker: 'PM', text: "Are we talking two days or two weeks for this refactor?" },
-              { speaker: 'Dev', text: "Just to give you a rough sense, probably closer to a week." }
-            ]
-          }
-        ],
-        nuance: "'Ballpark figure' (or 'in the ballpark') comes from baseball but is universally understood across US and UK business English. 'A rough sense' is slightly softer and works great for timelines, effort, or sentiment.",
-        polish: "szacunkowa kwota / orientacyjne pojęcie (mniej więcej)",
-        clozeSentence: "We're not locking budgets today—just looking for a ___ figure to see if it's feasible.",
-        clozeAnswer: "ballpark",
-        clozeAccepted: ["ballpark", "rough"],
-        clozeHint: "8-letter noun (or 5-letter adjective) meaning approximate estimate.",
-        quizPrompt: "Can you give me an approximate estimate of how many hours this redesign will take?",
-        quizOptions: [
-          "Can you give me a rough sense—or a ballpark figure—of the hours involved?",
-          "Can you give me a stadium number of the hours involved?",
-          "Please furnish an uncalibrated numerical approximation of labor hours.",
-          "Can you give me a ballpark of the hours?"
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Natural, low-pressure way to ask for an early estimate without demanding false precision.",
-          "Literal distortion ('ballpark', not 'stadium').",
-          "Painfully stiff.",
-          "Requires 'ballpark figure' or 'ballpark estimate'."
-        ],
-        sandboxPrompt: "Ask a teammate or contractor for an approximate cost or timeline estimate before doing detailed scoping.",
-        sandboxSample: "No need to build a full spreadsheet yet—just looking for a ballpark figure so we can plan Q3.",
-        sandboxRubric: [
-          "Register: Low-pressure, pragmatic framing.",
-          "Collocation: Used 'ballpark figure' or 'rough sense' naturally.",
-          "Cadence: Reassures the listener that exact precision isn't required yet."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'mw-14',
-        phrase: "to zoom in on [something]",
-        ipa: '/tuː zuːm ɪn ɒn/',
-        speechText: "to zoom in on",
-        category: 'Workplace',
-        register: 'Workplace',
-        flat: "Let's focus specifically on the onboarding drop-off rate rather than looking at all metrics at once.",
-        upgraded: "If we zoom in on mobile sign-ups, that's where almost all the drop-off happens.",
-        dialogues: [
-          {
-            context: 'Metrics Review',
-            lines: [
-              { speaker: 'Analyst', text: "Overall conversion looks flat, but when you zoom in on returning users, retention jumped 14%." },
-              { speaker: 'PM', text: "Whoa, that changes the whole story." }
-            ]
-          },
-          {
-            context: 'Strategy Workshop',
-            lines: [
-              { speaker: 'Lead', text: "Let's zoom out for a second on the yearly goal, then zoom in on what needs to happen this month." },
-              { speaker: 'Designer', text: "Love that framing." }
-            ]
-          }
-        ],
-        nuance: "Paired naturally with 'zoom out' (step back to see the big picture). Much more dynamic and visual than repeating 'focus on' or 'concentrate on'.",
-        polish: "przyjrzeć się z bliska / skupić się na konkretnym wycinku",
-        clozeSentence: "Let's zoom ___ on Q4 churn first, since that's our biggest lever right now.",
-        clozeAnswer: "in",
-        clozeAccepted: ["in"],
-        clozeHint: "2-letter particle in 'zoom ___ on'.",
-        quizPrompt: "Let's look closely at the specific segment where customer complaints increased.",
-        quizOptions: [
-          "Let's zoom in on the enterprise segment—that's where support tickets spiked.",
-          "Let's magnify our optical lens onto the enterprise segment.",
-          "Let us focus our analytical microscope exclusively upon said segment.",
-          "Let's zoom onto the enterprise segment."
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Crisp, visual, and completely natural in modern data/product discussions.",
-          "Overly literal and awkward.",
-          "Stiff and bloated.",
-          "Needs 'in on' ('zoom in on [topic]')."
-        ],
-        sandboxPrompt: "Direct your team's attention to one specific area of a project or dataset that matters most right now.",
-        sandboxSample: "Before we touch the homepage, let's zoom in on the checkout step where users are abandoning their carts.",
-        sandboxRubric: [
-          "Register: Sharp, analytical, visual phrasing.",
-          "Collocation: Used 'zoom in on + [noun]' accurately.",
-          "Cadence: Connects the specific focus to a clear insight."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'mw-15',
-        phrase: "a moot point",
-        ipa: '/ə muːt pɔɪnt/',
-        speechText: "a moot point",
-        category: 'Workplace',
-        register: 'Nuanced',
-        flat: "Debating which office chairs to buy no longer matters because we decided to stay fully remote.",
-        upgraded: "Honestly, it's a moot point now—the client already signed with another vendor.",
-        dialogues: [
-          {
-            context: 'US Product Sync',
-            lines: [
-              { speaker: 'Dev', text: "Should we still optimize the legacy checkout flow?" },
-              { speaker: 'PM', text: "It's a moot point—we're retiring that entire codebase next Friday." }
-            ]
-          },
-          {
-            context: 'UK vs. US Nuance Check',
-            lines: [
-              { speaker: 'UK Counsel', text: "In traditional UK English, 'a moot point' means a point still open to debate, though most international tech teams use it the US way ('no longer relevant')." },
-              { speaker: 'Lead', text: "Good to keep in mind on London calls!" }
-            ]
-          }
-        ],
-        nuance: "TWO KEY TRAPS: (1) Spelling: always 'm-o-o-t', NEVER 'mute point'. (2) US vs. UK nuance: in US and global tech English, 'a moot point' means 'irrelevant / purely academic because events already decided it'; in traditional UK English, it can still mean 'an unresolved point open to debate'.",
-        polish: "kwestia bezprzedmiotowa (US) / kwestia sporna, otwarta do dyskusji (tradycyjny UK)",
-        clozeSentence: "Since the event got canceled this morning, arguing about catering is a ___ point.",
-        clozeAnswer: "moot",
-        clozeAccepted: ["moot"],
-        clozeHint: "4-letter adjective (NOT 'mute') meaning irrelevant/academic.",
-        quizPrompt: "Whether we should have hired an external agency doesn't matter anymore because the campaign is over.",
-        quizOptions: [
-          "Debating whether to hire an agency is a moot point now—the campaign wrapped yesterday.",
-          "Debating whether to hire an agency is a mute point now.",
-          "Debating agency engagement is now temporally irrelevant.",
-          "Debating whether to hire an agency is a mood point now."
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Correct spelling ('moot') and crisp, natural workplace usage.",
-          "Classic spelling trap ('mute' means silent, not 'moot').",
-          "Unnaturally stiff.",
-          "Spelling confusion ('moot', not 'mood')."
-        ],
-        sandboxPrompt: "Point out calmly that a debate is no longer relevant because an outside decision already settled it.",
-        sandboxSample: "Whether we prefer Thursday or Friday is a moot point now—the speaker is only in town on Wednesday.",
-        sandboxRubric: [
-          "Register: Calm, matter-of-fact tone.",
-          "Collocation: Spelled 'moot' correctly.",
-          "Cadence: Briefly states the fact that made the debate irrelevant."
-        ],
-        status: 'new'
-      },
-
-      // ==================== 5 SYNTAX & FLOW PATTERNS ====================
-      {
-        id: 'sf-01',
-        phrase: 'Pseudo-cleft fronting ("What struck me most was...")',
-        ipa: '/wɒt strʌk miː məʊst wɒz/',
-        speechText: "What struck me most wasn't the price—it was how effortless the whole trip felt.",
+        id: 'sy-01',
+        phrase: "what matters most is...",
+        ipa: '/wɒt ˈmætəz məʊst ɪz/',
+        speechText: "what matters most is",
         category: 'Syntax',
         register: 'Nuanced',
-        flat: "The thing that impressed me most was how calm the team stayed during the outage.",
-        upgraded: "What struck me most was how calm everyone stayed throughout the entire migration.",
+        cefr: 'C1',
+        packId: 'fallback',
+        flat: "The most important thing is that the onboarding feels clear.",
+        upgraded: "What matters most is that new users understand the flow in thirty seconds.",
         dialogues: [
           {
-            context: 'Everyday Reflection',
+            context: 'Product Review',
             lines: [
-              { speaker: 'Maya', text: "What struck me most wasn't the price—it was how effortless the whole trip felt." },
-              { speaker: 'Liam', text: "Exactly, paying a tiny bit more for direct trains saved hours." }
-            ]
-          },
-          {
-            context: 'Product Scoping',
-            lines: [
-              { speaker: 'PM', text: "If we include SSO and custom roles, how much time does that add?" },
-              { speaker: 'Tech Lead', text: "What we're really looking at is an extra sprint, plus two days of security review." }
+              { speaker: 'Sam', text: "Should we worry about dark mode polish before launch?" },
+              { speaker: 'Nina', text: "What matters most is that search feels instant—we can refine visuals right after." }
             ]
           }
         ],
-        nuance: "Polish uses flexible word order to spotlight focus ('Tym, co najbardziej uderza, jest...'), whereas English has rigid Subject-Verb-Object order. Starting with 'What struck me most was...' or 'What we're really looking at is...' builds natural anticipation and spotlights your main takeaway.",
-        polish: "Tym, co najbardziej uderza, jest... / Tak naprawdę chodzi tu o...",
-        clozeSentence: "___ struck me most about their pitch wasn't the slides—it was how deeply they understood our users.",
-        clozeAnswer: "What",
-        clozeAccepted: ["what"],
-        clozeHint: "4-letter relative pronoun launching a pseudo-cleft clause.",
-        quizPrompt: "The thing that surprised me most was how quickly new hires got up to speed.",
+        nuance: "A clean wh-cleft that puts clear focus on the decisive priority.",
+        polish: "najważniejsze jest to, że...",
+        clozeSentence: "What ___ most is keeping the experience calm and uncluttered.",
+        clozeAnswer: "matters",
+        clozeAccepted: ["matters"],
+        clozeHint: "Verb meaning to be important.",
+        quizPrompt: "The most important point is that the data stays portable.",
         quizOptions: [
-          "What struck me most was how quickly new hires got up to speed.",
-          "That what struck me most was how quickly new hires got up to speed.",
-          "The primary element striking my observation constituted onboarding velocity.",
-          "What struck me most were how quickly new hires got up to speed."
+          "What matters most is keeping your progress completely portable.",
+          "That what is most important is portability.",
+          "What matters the most, it is portability.",
+          "Which matters most is keeping data portable."
         ],
         quizCorrectIndex: 0,
         quizExplanations: [
-          "Natural, articulate emphasis that flows effortlessly in both speech and writing.",
-          "Classic non-native error: English uses 'What...', never 'That what...'.",
-          "Painfully stiff.",
-          "Singular cleft clause ('What struck me most') takes singular 'was', not 'were'."
+          "Natural, clean wh-cleft.",
+          "Calque from Polish ('to, co...').",
+          "Redundant pronoun 'it' breaks the syntax.",
+          "Incorrect relative pronoun ('What', not 'Which')."
         ],
-        sandboxPrompt: "Use 'What struck me most was...' or 'What we're really looking at is...' to frame a core takeaway.",
-        sandboxSample: "What struck me most about Kyoto wasn't just the temples, but how peaceful the residential side streets felt.",
+        sandboxPrompt: "Frame the main priority for a team project using 'What matters most is...'.",
+        sandboxSample: "What matters most is shipping a reliable core rather than cramming in half-finished extras.",
         sandboxRubric: [
-          "Register: Clear, articulate framing.",
-          "Collocation: Starts cleanly with 'What...' (no 'That what...') and matches singular 'is/was'.",
-          "Cadence: Creates a memorable focal point."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'sf-02',
-        phrase: 'Softening with past continuous & "would" ("I was hoping we could..." / "I\'d argue that...")',
-        ipa: '/aɪ wɒz ˈhəʊpɪŋ wiː kʊd / aɪd ˈɑːɡjuː ðæt/',
-        speechText: "I was hoping we could push our sync back by fifteen minutes.",
-        category: 'Syntax',
-        register: 'Diplomatic',
-        flat: "Can we move our meeting 15 minutes later? Also, I think the simpler layout works better.",
-        upgraded: "I was hoping we could push our sync back fifteen minutes—and I'd argue the simpler layout works better anyway.",
-        dialogues: [
-          {
-            context: 'Slack · Schedule Request',
-            lines: [
-              { speaker: 'Clara', text: "Hey! I was hoping we could swap our Thursday slot for Friday morning?" },
-              { speaker: 'Ben', text: "Works great for me—just moved the invite." }
-            ]
-          },
-          {
-            context: 'Design Debate',
-            lines: [
-              { speaker: 'Sam', text: "Should we add three more filters to the dashboard?" },
-              { speaker: 'Partner', text: "I'd argue that keeping it focused on two core metrics makes it way easier to scan." }
-            ]
-          }
-        ],
-        nuance: "Why native speakers use the past tense ('I was hoping we could...') and conditional ('I'd argue that...') for present requests and opinions: shifting back in tense creates polite social distance, making a request or disagreement sound considerate rather than blunt—especially helpful for Slavic speakers who can inadvertently sound overly direct in English.",
-        polish: "Miałem/am nadzieję, że moglibyśmy... / Powiedziałbym, że... (uprzejme zmiękczenie)",
-        clozeSentence: "I was ___ we could hold off on sending the announcement until tomorrow morning.",
-        clozeAnswer: "hoping",
-        clozeAccepted: ["hoping", "wondering"],
-        clozeHint: "-ing verb in 'I was ___ we could...'",
-        quizPrompt: "You want to politely ask a busy colleague from another team to review a document today.",
-        quizOptions: [
-          "I was hoping we could get your eyes on this draft for ten minutes today?",
-          "You must review this document today if you have ten minutes.",
-          "I am hoping whether you will execute a review of this draft today.",
-          "I was hoping we could getting your eyes on this draft."
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Warm, polite, and respects the colleague's time without sounding submissive.",
-          "Way too blunt and demanding.",
-          "Unnaturally stiff.",
-          "Modal 'could' takes base verb 'get', not 'getting'."
-        ],
-        sandboxPrompt: "Politely ask a teammate to reschedule a call using 'I was hoping we could...' or share an opinion using 'I'd argue that...'.",
-        sandboxSample: "I was hoping we could push tomorrow's coffee back half an hour—my morning train gets in at 9:15.",
-        sandboxRubric: [
-          "Register: Warm, considerate, non-demanding register.",
-          "Collocation: Uses past continuous ('I was hoping we could...') or conditional ('I'd argue that...').",
-          "Cadence: Clear, specific request or point."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'sf-03',
-        phrase: 'Concessive "Much as..." ("Much as I appreciate the idea...")',
-        ipa: '/mʌtʃ æz aɪ əˈpriːʃieɪt ði aɪˈdɪə/',
-        speechText: "Much as I appreciate the idea, I think starting with a smaller pilot is safer.",
-        category: 'Syntax',
-        register: 'Diplomatic',
-        flat: "Even though I appreciate your idea, I think it will take too long right now.",
-        upgraded: "Much as I appreciate the idea, I think starting with a smaller pilot is safer.",
-        dialogues: [
-          {
-            context: 'Design Critique',
-            lines: [
-              { speaker: 'Lead', text: "Much as I appreciate the idea behind the custom animations, they're slowing down mobile load times." },
-              { speaker: 'Designer', text: "Fair point—let's keep them on desktop and streamline mobile." }
-            ]
-          },
-          {
-            context: 'Weekend Plans',
-            lines: [
-              { speaker: 'Alex', text: "Much as I'd love to stay for another round, I've got a 7 a.m. train." },
-              { speaker: 'Maya', text: "Totally get it—get home and get some sleep!" }
-            ]
-          }
-        ],
-        nuance: "A sleek, natural upgrade over repeating 'Even though...' or 'Although...'. Validates the other person's point or invitation right upfront before delivering a firm no or caveat—disarming defensiveness immediately.",
-        polish: "Choć bardzo doceniam ten pomysł... / Mimo że bardzo podoba mi się...",
-        clozeSentence: "Much ___ I appreciate the invite, I'm going to sit this weekend out and recharge.",
-        clozeAnswer: "as",
-        clozeAccepted: ["as"],
-        clozeHint: "2-letter conjunction in 'Much ___ I appreciate...'",
-        quizPrompt: "Even though I appreciate your enthusiasm, we don't have budget for a full rebrand this quarter.",
-        quizOptions: [
-          "Much as I appreciate the enthusiasm, we don't have the budget for a rebrand this quarter.",
-          "Much like I appreciate the enthusiasm, we don't have budget.",
-          "Notwithstanding my appreciation of your enthusiasm, fiscal allocation is absent.",
-          "Much as I appreciate the enthusiasm, but we don't have the budget."
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Graceful, diplomatic concession followed by a crisp counterpoint.",
-          "'Much like' means 'similar to', not 'even though'.",
-          "Painfully stiff jargon.",
-          "Never pair 'Much as...' with 'but' in the second clause."
-        ],
-        sandboxPrompt: "Validate a friend's or teammate's idea before politely explaining why you have to say no right now.",
-        sandboxSample: "Much as I appreciate the idea, I think keeping the launch scope lean is our best bet this month.",
-        sandboxRubric: [
-          "Register: Empathetic, validating opening clause.",
-          "Collocation: Used 'Much as + subject + verb' (without 'but' in the second clause).",
-          "Cadence: Clear, polite counterpoint."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'sf-04',
-        phrase: 'Clean participle clauses ("Having weighed both options,...")',
-        ipa: '/ˈhævɪŋ weɪd bəʊθ ˈɒpʃənz/',
-        speechText: "Having weighed both options, I'd lean toward starting small.",
-        category: 'Syntax',
-        register: 'Nuanced',
-        flat: "After we carefully compared both options, we decided to go with the local team.",
-        upgraded: "Having weighed both options, we're leaning toward the Warsaw team for faster support.",
-        dialogues: [
-          {
-            context: 'Project Recommendation',
-            lines: [
-              { speaker: 'Analyst', text: "Having weighed both options, I think cutting paid search won't hurt organic sign-ups." },
-              { speaker: 'Lead', text: "Makes sense—let's run a two-week test." }
-            ]
-          },
-          {
-            context: 'Personal Reflection',
-            lines: [
-              { speaker: 'Nina', text: "Having lived in both cities, which one felt easier to settle into?" },
-              { speaker: 'Tom', text: "Honestly, Lisbon—people were super welcoming right away." }
-            ]
-          }
-        ],
-        nuance: "AVOID THE DANGLING PARTICIPLE TRAP: The person/team right after the comma MUST be the one who performed the 'Having...' action! Say 'Having weighed both options, THE TEAM picked A'—never *'Having weighed both options, OPTION A was picked'*.",
-        polish: "Rozważywszy obie opcje... / Po przeanalizowaniu...",
-        clozeSentence: "Having ___ through all the user feedback, we noticed three clear themes.",
-        clozeAnswer: "gone",
-        clozeAccepted: ["gone", "read", "looked", "worked"],
-        clozeHint: "Past participle after 'Having' (e.g. gone / read / looked).",
-        quizPrompt: "Which sentence uses a participle clause cleanly without a dangling modifier?",
-        quizOptions: [
-          "Having weighed both options, the engineers recommended the lighter frame.",
-          "Having weighed both options, the lighter frame was recommended.",
-          "Having been weighing both options, recommendation occurred.",
-          "Having weigh both options, the engineers picked the lighter one."
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Spot on: 'the engineers' right after the comma are the ones who weighed both options.",
-          "Dangling participle: 'the lighter frame' cannot weigh options!",
-          "Grammatically broken and unnatural.",
-          "Requires past participle 'weighed' after 'Having'."
-        ],
-        sandboxPrompt: "Write one smooth recommendation starting with 'Having weighed both options,...' or 'Having tried...'.",
-        sandboxSample: "Having weighed both options, I'd pick the coworking space near the park—it's way quieter.",
-        sandboxRubric: [
-          "Register: Smooth, cohesive sentence flow without clunky 'After we...' repetition.",
-          "Collocation: Subject after the comma logically performed the 'Having + past participle' action.",
-          "Cadence: Natural, unpretentious vocabulary."
-        ],
-        status: 'new'
-      },
-      {
-        id: 'sf-05',
-        phrase: 'Subtle negative inversion ("Rarely do you see...", "Not only did it...")',
-        ipa: '/ˈreəli duː juː siː / nɒt ˈəʊnli dɪd ɪt/',
-        speechText: "Rarely do you see a team ship that cleanly under pressure.",
-        category: 'Syntax',
-        register: 'Nuanced',
-        flat: "You very rarely see a product launch go so smoothly, and it also saved us hours of support.",
-        upgraded: "Rarely do you see a migration go that smoothly—not only did it finish early, it cut latency in half.",
-        dialogues: [
-          {
-            context: 'Team Shoutout · Slack',
-            lines: [
-              { speaker: 'VP Eng', text: "Huge kudos to infra—rarely do you see a zero-downtime cutover handled that calmly." },
-              { speaker: 'Lead', text: "Appreciate it! The dry runs paid off." }
-            ]
-          },
-          {
-            context: 'Film / Book Chat',
-            lines: [
-              { speaker: 'Ella', text: "How was the documentary?" },
-              { speaker: 'Dan', text: "Phenomenal—not only did it keep me hooked for two hours, it completely changed my view." }
-            ]
-          }
-        ],
-        nuance: "Used sparingly in conversation or praise, fronting 'Rarely...' or 'Not only...' with auxiliary inversion ('do you see', 'did it finish') gives your sentence effortless rhythm and weight without sounding pompous.",
-        polish: "Rzadko kiedy widzi się... / Nie dość, że..., to jeszcze...",
-        clozeSentence: "Rarely ___ you find a neighborhood spot with great coffee, fast Wi-Fi, and zero noise.",
-        clozeAnswer: "do",
-        clozeAccepted: ["do"],
-        clozeHint: "2-letter auxiliary verb inverted after 'Rarely'.",
-        quizPrompt: "You rarely meet someone who explains complex topics so simply.",
-        quizOptions: [
-          "Rarely do you meet someone who breaks down complex topics so effortlessly.",
-          "Rarely you meet someone who explains complex topics so simply.",
-          "Rarely do one encounter such pedagogical simplicity.",
-          "Rarely do you meets someone who explains things simply."
-        ],
-        quizCorrectIndex: 0,
-        quizExplanations: [
-          "Clean auxiliary inversion ('do you meet') paired with natural modern vocabulary.",
-          "Missing auxiliary inversion after fronted 'Rarely'.",
-          "Overly stiff and awkward subject-verb agreement.",
-          "Main verb stays in base form ('meet') after auxiliary 'do'."
-        ],
-        sandboxPrompt: "Give genuine praise or share an observation starting with 'Rarely do you...' or 'Not only did...'.",
-        sandboxSample: "Rarely do you find a restaurant where every single dish on a small menu is a hit.",
-        sandboxRubric: [
-          "Register: Natural, earned emphasis (not over-dramatic).",
-          "Collocation: Auxiliary verb placed directly before the subject ('Rarely do you...', 'Not only did it...').",
-          "Cadence: Grounded, everyday or modern workplace context."
-        ],
-        status: 'new'
+          "Register: Calm and decisive.",
+          "Collocation: Clean wh-cleft without 'that what'.",
+          "Cadence: Smooth focus on the main priority."
+        ]
       }
     ];
+
+    function normalizePhraseItem(entry, packId = 'custom', idx = 0) {
+      if (!entry || typeof entry.phrase !== 'string' || !entry.phrase.trim()) return null;
+      const phrase = entry.phrase.trim();
+      const validCats = ['Everyday', 'Workplace', 'Syntax'];
+      const rawCat = entry.category === 'Syntax & Flow' ? 'Syntax' : entry.category;
+      const category = validCats.includes(rawCat) ? rawCat : 'Everyday';
+      const firstWord = phrase.split(/\s+/)[0] || phrase;
+
+      return {
+        id: String(entry.id || `${packId}-${Date.now()}-${idx}`),
+        phrase,
+        phraseLower: phrase.toLowerCase(),
+        ipa: entry.ipa || '/.../',
+        speechText: entry.speechText || phrase,
+        category,
+        register: entry.register || 'Conversational',
+        cefr: entry.cefr || 'B2-C1',
+        packId: entry.packId || packId,
+        flat: entry.flat || entry.flatVersion || 'Standard phrasing.',
+        upgraded: entry.upgraded || entry.naturalVersion || phrase,
+        dialogues: Array.isArray(entry.dialogues) && entry.dialogues.length > 0
+          ? entry.dialogues
+          : (Array.isArray(entry.examples) && entry.examples.length > 0 ? entry.examples : [
+              { context: 'In Context', lines: [{ speaker: 'Speaker', text: entry.upgraded || phrase }] }
+            ]),
+        nuance: entry.nuance || 'Pay close attention to conversational tone and collocations.',
+        polish: entry.polish || entry.polishEquivalent || '—',
+        clozeSentence: entry.clozeSentence || `${phrase} — ___`,
+        clozeAnswer: entry.clozeAnswer || firstWord,
+        clozeAccepted: Array.isArray(entry.clozeAccepted) && entry.clozeAccepted.length > 0
+          ? entry.clozeAccepted
+          : [entry.clozeAnswer || firstWord],
+        clozeHint: entry.clozeHint || 'Key word from the target phrase',
+        quizPrompt: entry.quizPrompt || entry.flat || phrase,
+        quizOptions: Array.isArray(entry.quizOptions) && entry.quizOptions.length >= 4
+          ? entry.quizOptions
+          : [
+              entry.upgraded || phrase,
+              entry.flat || 'Standard option',
+              'Overly stiff phrasing',
+              'Literal phrasing error'
+            ],
+        quizCorrectIndex: typeof entry.quizCorrectIndex === 'number' ? entry.quizCorrectIndex : 0,
+        quizExplanations: Array.isArray(entry.quizExplanations) && entry.quizExplanations.length >= 4
+          ? entry.quizExplanations
+          : ['Natural phrasing.', 'Too flat.', 'Too stiff.', 'Collocation error.'],
+        sandboxPrompt: entry.sandboxPrompt || `Write a natural sentence using "${phrase}".`,
+        sandboxSample: entry.sandboxSample || (Array.isArray(entry.sandboxSamples) ? entry.sandboxSamples[0] : (entry.upgraded || phrase)),
+        sandboxRubric: Array.isArray(entry.sandboxRubric) && entry.sandboxRubric.length > 0
+          ? entry.sandboxRubric
+          : [
+              'Register: Natural tone.',
+              'Collocation: Accurate word partners.',
+              'Cadence: Smooth flow.'
+            ]
+      };
+    }
+
+    function buildSearchText(item) {
+      return [
+        item.phrase,
+        item.flat,
+        item.upgraded,
+        item.nuance,
+        item.polish,
+        item.register,
+        item.cefr,
+        ...(item.dialogues || []).flatMap(e => (e.lines || []).map(l => l.text))
+      ].filter(Boolean).join(' ').toLowerCase();
+    }
+
+    // ==================== INDEXEDDB STORAGE ENGINE (LexisDB_v1) ====================
+    const LexisDB = (() => {
+      const DB_NAME = 'LexisDB_v1';
+      const DB_VERSION = 1;
+      let dbPromise = null;
+      let useMemoryFallback = false;
+      const mem = { items: new Map(), progress: new Map(), packs: new Map(), meta: new Map() };
+
+      function open() {
+        if (useMemoryFallback) return Promise.resolve(null);
+        if (dbPromise) return dbPromise;
+        if (typeof indexedDB === 'undefined') {
+          useMemoryFallback = true;
+          return Promise.resolve(null);
+        }
+        dbPromise = new Promise((resolve) => {
+          try {
+            const req = indexedDB.open(DB_NAME, DB_VERSION);
+            req.onupgradeneeded = (event) => {
+              const db = event.target.result;
+              if (!db.objectStoreNames.contains('items')) {
+                const store = db.createObjectStore('items', { keyPath: 'id' });
+                store.createIndex('by_category', 'category', { unique: false });
+                store.createIndex('by_pack', 'packId', { unique: false });
+                store.createIndex('by_phrase', 'phraseLower', { unique: false });
+              }
+              if (!db.objectStoreNames.contains('progress')) {
+                db.createObjectStore('progress', { keyPath: 'id' });
+              }
+              if (!db.objectStoreNames.contains('packs')) {
+                db.createObjectStore('packs', { keyPath: 'id' });
+              }
+              if (!db.objectStoreNames.contains('meta')) {
+                db.createObjectStore('meta', { keyPath: 'key' });
+              }
+            };
+            req.onsuccess = () => resolve(req.result);
+            req.onerror = () => {
+              console.warn('IndexedDB unavailable, falling back to memory store:', req.error);
+              useMemoryFallback = true;
+              resolve(null);
+            };
+          } catch (err) {
+            console.warn('IndexedDB init error, falling back to memory store:', err);
+            useMemoryFallback = true;
+            resolve(null);
+          }
+        });
+        return dbPromise;
+      }
+
+      async function getAll(storeName) {
+        const db = await open();
+        if (!db) return Array.from(mem[storeName].values());
+        return new Promise((resolve, reject) => {
+          const tx = db.transaction(storeName, 'readonly');
+          const req = tx.objectStore(storeName).getAll();
+          req.onsuccess = () => resolve(req.result || []);
+          req.onerror = () => reject(req.error);
+        });
+      }
+
+      async function putOne(storeName, record) {
+        const db = await open();
+        if (!db) {
+          const key = storeName === 'meta' ? record.key : record.id;
+          mem[storeName].set(key, record);
+          return;
+        }
+        return new Promise((resolve, reject) => {
+          const tx = db.transaction(storeName, 'readwrite');
+          tx.objectStore(storeName).put(record);
+          tx.oncomplete = () => resolve();
+          tx.onerror = () => reject(tx.error);
+        });
+      }
+
+      async function putMany(storeName, records) {
+        if (!records || records.length === 0) return;
+        const db = await open();
+        if (!db) {
+          records.forEach(r => {
+            const key = storeName === 'meta' ? r.key : r.id;
+            mem[storeName].set(key, r);
+          });
+          return;
+        }
+        return new Promise((resolve, reject) => {
+          const tx = db.transaction(storeName, 'readwrite');
+          const store = tx.objectStore(storeName);
+          for (let i = 0; i < records.length; i++) {
+            store.put(records[i]);
+          }
+          tx.oncomplete = () => resolve();
+          tx.onerror = () => reject(tx.error);
+        });
+      }
+
+      async function deleteOne(storeName, key) {
+        const db = await open();
+        if (!db) {
+          mem[storeName].delete(key);
+          return;
+        }
+        return new Promise((resolve, reject) => {
+          const tx = db.transaction(storeName, 'readwrite');
+          tx.objectStore(storeName).delete(key);
+          tx.oncomplete = () => resolve();
+          tx.onerror = () => reject(tx.error);
+        });
+      }
+
+      async function deleteItemsByPack(packId) {
+        const db = await open();
+        if (!db) {
+          for (const [k, v] of mem.items.entries()) {
+            if (v.packId === packId) mem.items.delete(k);
+          }
+          return;
+        }
+        return new Promise((resolve, reject) => {
+          const tx = db.transaction('items', 'readwrite');
+          const index = tx.objectStore('items').index('by_pack');
+          const range = IDBKeyRange.only(packId);
+          const cursorReq = index.openCursor(range);
+          cursorReq.onsuccess = (e) => {
+            const cursor = e.target.result;
+            if (cursor) {
+              cursor.delete();
+              cursor.continue();
+            }
+          };
+          tx.oncomplete = () => resolve();
+          tx.onerror = () => reject(tx.error);
+        });
+      }
+
+      async function getMeta(key) {
+        const db = await open();
+        if (!db) return mem.meta.get(key)?.value;
+        return new Promise((resolve, reject) => {
+          const tx = db.transaction('meta', 'readonly');
+          const req = tx.objectStore('meta').get(key);
+          req.onsuccess = () => resolve(req.result ? req.result.value : undefined);
+          req.onerror = () => reject(req.error);
+        });
+      }
+
+      async function setMeta(key, value) {
+        return putOne('meta', { key, value });
+      }
+
+      async function putProgress(id, status) {
+        return putOne('progress', { id, status, updatedAt: new Date().toISOString() });
+      }
+
+      async function getAllProgressMap() {
+        const rows = await getAll('progress');
+        const map = new Map();
+        rows.forEach(r => map.set(r.id, r));
+        return map;
+      }
+
+      async function estimateStorage() {
+        if (navigator.storage && typeof navigator.storage.estimate === 'function') {
+          try {
+            return await navigator.storage.estimate();
+          } catch (e) {
+            return null;
+          }
+        }
+        return null;
+      }
+
+      function isMemoryFallback() {
+        return useMemoryFallback;
+      }
+
+      return {
+        open,
+        getAll,
+        putOne,
+        putMany,
+        deleteOne,
+        deleteItemsByPack,
+        getMeta,
+        setMeta,
+        putProgress,
+        getAllProgressMap,
+        estimateStorage,
+        isMemoryFallback
+      };
+    })();
 
     // ==================== WEEKLY PACK GENERATOR PROMPT ====================
     const WEEKLY_PACK_PROMPT = `Generate 25 genuinely natural, high-frequency English expressions for a fluent Polish speaker aiming for effortless, idiomatic everyday and modern workplace fluency (avoid stiff, archaic, or overly formal corporate jargon):
@@ -3393,7 +1919,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
 
     // ==================== STORAGE KEYS & APPLICATION STATE ====================
     const STORAGE = {
-      ITEMS: 'lexis_pr_items_v4',
+      LEGACY_ITEMS: 'lexis_pr_items_v4',
       TODAY_IDS: 'lexis_pr_today_ids_v4',
       TODAY_DATE: 'lexis_pr_today_date_v4',
       TODAY_LAYOUT: 'lexis_pr_today_layout_v4',
@@ -3402,6 +1928,12 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
 
     const appState = {
       items: [],
+      itemsById: new Map(),
+      progressMap: new Map(), // id -> { id, status, updatedAt }
+      installedPacks: new Map(), // packId -> pack metadata
+      packManifest: null, // parsed data/manifest.json
+      manifestError: null,
+      busyPackIds: new Set(),
       todayIds: [],
       todayIndex: 0,
       todayLayout: 'focus', // 'focus' | 'grid'
@@ -3410,9 +1942,11 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       openNuanceIds: new Set(),
       openPolishIds: new Set(),
       expandedLibraryIds: new Set(),
+      libraryVisibleCount: LIBRARY_PAGE_SIZE,
       libraryFilters: {
         category: 'All',
-        status: 'All'
+        status: 'All',
+        pack: 'All'
       },
       practice: {
         mode: 'upgrade', // 'upgrade' | 'cloze' | 'sandbox'
@@ -3431,15 +1965,16 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     // ==================== INITIALIZATION ====================
     let latestRasterizedIconPng = null;
 
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
       hydrateGlassPrismIcons();
       rasterizeAppIconToPng();
       initTheme();
       initTodayLayout();
-      loadLibrary();
-      initTodayBatch();
       updateTodayDateLabel();
       setupKeyboardShortcuts();
+
+      await initStorageAndLibrary();
+      initTodayBatch();
       renderAll();
 
       if ('speechSynthesis' in window) {
@@ -3778,31 +2313,381 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       renderTodayView();
     }
 
-    // ==================== LIBRARY & DAILY BATCH PERSISTENCE ====================
-    function loadLibrary() {
+    // ==================== INDEXEDDB + SHARDED JSON PACK PERSISTENCE ====================
+    async function migrateLegacyLocalStorageIfNeeded() {
+      const migrated = await LexisDB.getMeta('migrated_v4_localStorage');
+      if (migrated) return;
+
       try {
-        const raw = localStorage.getItem(STORAGE.ITEMS);
+        const raw = localStorage.getItem(STORAGE.LEGACY_ITEMS);
         if (raw) {
           const parsed = JSON.parse(raw);
           if (Array.isArray(parsed) && parsed.length > 0) {
-            appState.items = parsed;
-            return;
+            const progressRows = [];
+            const customItems = [];
+            const now = new Date().toISOString();
+
+            parsed.forEach((entry, idx) => {
+              if (!entry || !entry.id) return;
+              if (entry.status && entry.status !== 'new') {
+                progressRows.push({ id: String(entry.id), status: entry.status, updatedAt: now });
+              }
+              const isStarterId = /^(ev|wp|sy)-\d+$/.test(String(entry.id));
+              if (!isStarterId) {
+                const norm = normalizePhraseItem(entry, 'custom', idx);
+                if (norm) customItems.push(norm);
+              }
+            });
+
+            if (progressRows.length > 0) await LexisDB.putMany('progress', progressRows);
+            if (customItems.length > 0) await LexisDB.putMany('items', customItems);
           }
         }
       } catch (err) {
-        console.error('Storage read error:', err);
+        console.warn('Legacy localStorage migration warning:', err);
       }
-      appState.items = JSON.parse(JSON.stringify(STARTER_DATASET));
-      saveLibrary();
+
+      await LexisDB.setMeta('migrated_v4_localStorage', true);
     }
 
-    function saveLibrary() {
+    async function refreshPackManifest(showFeedback = false) {
       try {
-        localStorage.setItem(STORAGE.ITEMS, JSON.stringify(appState.items));
+        const res = await fetch(MANIFEST_URL, { cache: 'no-cache' });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        if (!data || !Array.isArray(data.packs)) throw new Error('Invalid manifest format');
+        appState.packManifest = data;
+        appState.manifestError = null;
+        if (showFeedback) {
+          showToast(`Catalog refreshed (${data.packs.length} packs available)`);
+        }
       } catch (err) {
-        console.error('Storage write error:', err);
+        appState.manifestError = err.message || 'Could not fetch data/manifest.json';
+        if (showFeedback) {
+          showToast('Offline or file:// mode — load local pack .json files directly.');
+        }
       }
+      if (appState.currentView === 'backup') {
+        await renderPacksManager();
+      }
+    }
+
+    async function installPackRecord(packMeta, rawItems) {
+      const normalized = [];
+      (rawItems || []).forEach((entry, idx) => {
+        const item = normalizePhraseItem(entry, packMeta.id, idx);
+        if (item) {
+          item.packId = packMeta.id;
+          normalized.push(item);
+        }
+      });
+
+      if (normalized.length === 0) {
+        throw new Error(`Pack "${packMeta.name || packMeta.id}" contained no valid phrase items.`);
+      }
+
+      // Replace only items belonging to this pack; user progress store is completely untouched!
+      await LexisDB.deleteItemsByPack(packMeta.id);
+      await LexisDB.putMany('items', normalized);
+      await LexisDB.putOne('packs', {
+        id: packMeta.id,
+        name: packMeta.name || packMeta.id,
+        description: packMeta.description || '',
+        category: packMeta.category || 'Mixed',
+        cefr: packMeta.cefr || 'B2-C1',
+        version: packMeta.version || '1.0.0',
+        source: packMeta.source || 'Lexis Pack',
+        file: packMeta.file || null,
+        itemCount: normalized.length,
+        sizeBytes: packMeta.sizeBytes || 0,
+        sha256: packMeta.sha256 || null,
+        installedAt: new Date().toISOString()
+      });
+
+      return normalized.length;
+    }
+
+    async function installPackById(packId, silent = false) {
+      const manifestPack = appState.packManifest?.packs?.find(p => p.id === packId);
+      if (!manifestPack) {
+        if (!silent) showToast('Pack not found in catalog manifest.');
+        return 0;
+      }
+
+      appState.busyPackIds.add(packId);
+      if (appState.currentView === 'backup') renderPacksManager();
+
+      try {
+        const res = await fetch(manifestPack.file, { cache: 'no-cache' });
+        if (!res.ok) throw new Error(`Failed to fetch ${manifestPack.file} (HTTP ${res.status})`);
+        const payload = await res.json();
+        const items = Array.isArray(payload) ? payload : payload.items;
+        const count = await installPackRecord(manifestPack, items);
+        await hydrateStateFromDB();
+        if (!silent) {
+          showToast(`Installed "${manifestPack.name}" (${count} phrases)`);
+        }
+        return count;
+      } catch (err) {
+        console.error('Pack install error:', err);
+        if (!silent) showToast(`Pack install failed: ${err.message}`);
+        return 0;
+      } finally {
+        appState.busyPackIds.delete(packId);
+        renderAll();
+      }
+    }
+
+    async function uninstallPackById(packId) {
+      const pack = appState.installedPacks.get(packId);
+      if (!pack) return;
+
+      appState.busyPackIds.add(packId);
+      if (appState.currentView === 'backup') renderPacksManager();
+
+      try {
+        await LexisDB.deleteItemsByPack(packId);
+        await LexisDB.deleteOne('packs', packId);
+        await hydrateStateFromDB();
+
+        if (appState.libraryFilters.pack === packId) {
+          appState.libraryFilters.pack = 'All';
+        }
+        // Regenerate Today batch if too few valid cards remain
+        const validToday = appState.todayIds.filter(id => appState.itemsById.has(id));
+        if (validToday.length === 0 && appState.items.length > 0) {
+          generateTodayBatch();
+        } else {
+          appState.todayIds = validToday;
+        }
+
+        showToast(`Uninstalled "${pack.name}" (your mastery progress is preserved)`);
+      } catch (err) {
+        console.error('Pack uninstall error:', err);
+        showToast(`Uninstall failed: ${err.message}`);
+      } finally {
+        appState.busyPackIds.delete(packId);
+        renderAll();
+      }
+    }
+
+    async function loadLocalPackFiles(event) {
+      const files = Array.from(event.target.files || []);
+      if (files.length === 0) return;
+
+      let totalLoaded = 0;
+      let packCount = 0;
+
+      for (const file of files) {
+        try {
+          const text = await file.text();
+          const parsed = JSON.parse(text);
+          const rawItems = Array.isArray(parsed) ? parsed : parsed.items;
+          if (!Array.isArray(rawItems) || rawItems.length === 0) {
+            throw new Error('No items array found');
+          }
+          const slug = file.name.replace(/\.json$/i, '').replace(/[^a-z0-9-_]+/gi, '-').toLowerCase();
+          const meta = parsed.pack || {};
+          const packMeta = {
+            id: meta.id || `local-${slug}`,
+            name: meta.name || `Local · ${file.name}`,
+            description: meta.description || `Loaded from ${file.name}`,
+            category: meta.category || 'Mixed',
+            cefr: meta.cefr || 'B2-C1',
+            version: meta.version || '1.0.0',
+            source: meta.source || 'Local JSON Pack',
+            sizeBytes: file.size
+          };
+          const count = await installPackRecord(packMeta, rawItems);
+          totalLoaded += count;
+          packCount++;
+        } catch (err) {
+          showToast(`Failed to load ${file.name}: ${err.message}`);
+        }
+      }
+
+      event.target.value = '';
+      if (packCount > 0) {
+        await hydrateStateFromDB();
+        if (appState.todayIds.length < 6) generateTodayBatch();
+        renderAll();
+        showToast(`Loaded ${packCount} pack${packCount === 1 ? '' : 's'} (${totalLoaded} phrases) into IndexedDB`);
+      }
+    }
+
+    async function hydrateStateFromDB() {
+      const [rawItems, progressMap, packRows] = await Promise.all([
+        LexisDB.getAll('items'),
+        LexisDB.getAllProgressMap(),
+        LexisDB.getAll('packs')
+      ]);
+
+      appState.progressMap = progressMap;
+      appState.installedPacks = new Map(packRows.map(p => [p.id, p]));
+
+      const itemsById = new Map();
+      const hydrated = rawItems.map(item => {
+        const prog = progressMap.get(item.id);
+        const merged = {
+          ...item,
+          status: prog ? prog.status : 'new',
+          _searchText: buildSearchText(item)
+        };
+        itemsById.set(merged.id, merged);
+        return merged;
+      });
+
+      appState.items = hydrated;
+      appState.itemsById = itemsById;
+      syncLibraryPackDropdown();
       updateMasteredPill();
+    }
+
+    async function initStorageAndLibrary() {
+      await LexisDB.open();
+      await migrateLegacyLocalStorageIfNeeded();
+      await refreshPackManifest(false);
+
+      const existingPacks = await LexisDB.getAll('packs');
+      const existingItems = await LexisDB.getAll('items');
+
+      // First run: automatically install all default starter packs from data/manifest.json
+      if (existingPacks.length === 0 && appState.packManifest && Array.isArray(appState.packManifest.packs)) {
+        const defaultPacks = appState.packManifest.packs.filter(p => p.default);
+        await Promise.all(defaultPacks.map(p => installPackById(p.id, true)));
+      }
+
+      await hydrateStateFromDB();
+
+      // Offline / file:// safety fallback if DB is still empty
+      if (appState.items.length === 0 && existingItems.length === 0) {
+        const fallbackItems = EMERGENCY_FALLBACK_DATASET.map((item, idx) => normalizePhraseItem(item, 'fallback', idx)).filter(Boolean);
+        await LexisDB.putMany('items', fallbackItems);
+        await LexisDB.putOne('packs', {
+          id: 'fallback',
+          name: 'Offline Starter Fallback',
+          description: 'Minimal built-in fallback used when data/manifest.json is unreachable.',
+          category: 'Mixed',
+          cefr: 'B2-C1',
+          version: '1.0.0',
+          source: 'Built-in Fallback',
+          itemCount: fallbackItems.length,
+          sizeBytes: 0,
+          installedAt: new Date().toISOString()
+        });
+        await hydrateStateFromDB();
+      }
+    }
+
+    function formatBytes(bytes) {
+      if (!bytes || bytes <= 0) return '—';
+      if (bytes < 1024) return `${bytes} B`;
+      if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+      return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+    }
+
+    function syncLibraryPackDropdown() {
+      const select = document.getElementById('library-pack-filter');
+      if (!select) return;
+      const current = appState.libraryFilters.pack || 'All';
+
+      const packCounts = new Map();
+      appState.items.forEach(item => {
+        const pid = item.packId || 'custom';
+        packCounts.set(pid, (packCounts.get(pid) || 0) + 1);
+      });
+
+      const options = [`<option value="All">All packs (${appState.items.length})</option>`];
+      for (const [pid, count] of packCounts.entries()) {
+        const meta = appState.installedPacks.get(pid);
+        const label = meta ? meta.name : (pid === 'custom' ? 'Custom / Batch Imported' : pid);
+        options.push(`<option value="${escapeAttr(pid)}">${escapeHtml(label)} (${count})</option>`);
+      }
+
+      select.innerHTML = options.join('');
+      select.value = packCounts.has(current) ? current : 'All';
+      if (select.value !== current) appState.libraryFilters.pack = 'All';
+    }
+
+    async function renderPacksManager() {
+      const badge = document.getElementById('storage-engine-badge');
+      if (badge) {
+        badge.textContent = LexisDB.isMemoryFallback() ? 'Memory Fallback' : 'IndexedDB Active';
+      }
+
+      const totalEl = document.getElementById('stat-total-items');
+      const packsEl = document.getElementById('stat-installed-packs');
+      const progEl = document.getElementById('stat-progress-count');
+      const usageEl = document.getElementById('stat-storage-usage');
+
+      if (totalEl) totalEl.textContent = String(appState.items.length);
+      if (packsEl) packsEl.textContent = String(appState.installedPacks.size);
+      if (progEl) {
+        const activeProg = Array.from(appState.progressMap.values()).filter(p => p.status !== 'new').length;
+        progEl.textContent = String(activeProg);
+      }
+      if (usageEl) {
+        const est = await LexisDB.estimateStorage();
+        usageEl.textContent = est && typeof est.usage === 'number' ? formatBytes(est.usage) : 'Local';
+      }
+
+      const listEl = document.getElementById('packs-catalog-list');
+      if (!listEl) return;
+
+      const manifestPacks = appState.packManifest?.packs || [];
+      const manifestIds = new Set(manifestPacks.map(p => p.id));
+
+      // Also show local/custom packs installed in IndexedDB that aren't in manifest.json
+      const extraInstalled = Array.from(appState.installedPacks.values()).filter(p => !manifestIds.has(p.id));
+      const allCards = [...manifestPacks.map(p => ({ ...p, inManifest: true })), ...extraInstalled.map(p => ({ ...p, inManifest: false }))];
+
+      if (allCards.length === 0) {
+        listEl.innerHTML = `
+          <div class="rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-subtle/60 dark:bg-charcoal-subtle/60 p-4 text-xs text-stone-500 dark:text-stone-400">
+            ${appState.manifestError
+              ? `Could not load <span class="font-mono">data/manifest.json</span> (${escapeHtml(appState.manifestError)}). Serve over HTTP or click <strong>Load Pack (.json)</strong> above.`
+              : 'No packs found in manifest yet. Run <span class="font-mono">python3 pipeline/build_packs.py</span> to generate sharded packs.'}
+          </div>
+        `;
+        return;
+      }
+
+      listEl.innerHTML = allCards.map(pack => {
+        const installed = appState.installedPacks.get(pack.id);
+        const isBusy = appState.busyPackIds.has(pack.id);
+        const hasUpdate = Boolean(installed && pack.inManifest && pack.sha256 && installed.sha256 && installed.sha256 !== pack.sha256);
+
+        return `
+          <div class="rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-subtle/40 dark:bg-charcoal-subtle/40 p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="space-y-1 min-w-0">
+              <div class="flex flex-wrap items-center gap-1.5">
+                <span class="font-medium text-sm text-paper-ink dark:text-charcoal-cream">${escapeHtml(pack.name)}</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono border ${getCategoryPillClass(pack.category)}">${escapeHtml(pack.category || 'Mixed')}</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-stone-500/10 text-stone-600 dark:text-stone-300">${escapeHtml(pack.cefr || 'B2-C1')}</span>
+                ${installed ? `<span class="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-500/20">Installed</span>` : ''}
+                ${hasUpdate ? `<span class="px-2 py-0.5 rounded text-[10px] font-mono bg-amber-500/15 text-amber-700 dark:text-amber-300">Update available</span>` : ''}
+              </div>
+              <p class="text-xs text-stone-500 dark:text-stone-400 leading-relaxed">${escapeHtml(pack.description || '')}</p>
+              <p class="text-[11px] font-mono text-stone-400">
+                ${pack.itemCount || 0} phrases · ${formatBytes(pack.sizeBytes)} · v${escapeHtml(pack.version || '1.0.0')} · ${escapeHtml(pack.source || 'Lexis')}
+              </p>
+            </div>
+
+            <div class="flex items-center gap-2 shrink-0">
+              ${pack.inManifest && (!installed || hasUpdate) ? `
+                <button onclick="installPackById('${escapeAttr(pack.id)}')" ${isBusy ? 'disabled' : ''} class="px-3.5 py-2 rounded-xl bg-paper-ink dark:bg-charcoal-cream text-white dark:text-charcoal-bg text-xs font-medium hover:opacity-90 disabled:opacity-50 transition-opacity min-h-[38px]">
+                  ${isBusy ? 'Loading...' : (hasUpdate ? 'Update Pack' : 'Install Pack')}
+                </button>
+              ` : ''}
+              ${installed ? `
+                <button onclick="uninstallPackById('${escapeAttr(pack.id)}')" ${isBusy ? 'disabled' : ''} class="px-3 py-2 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card hover:border-rose-400 hover:text-rose-600 dark:hover:text-rose-400 text-xs font-medium disabled:opacity-50 transition-colors min-h-[38px]">
+                  Remove
+                </button>
+              ` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
     }
 
     function updateMasteredPill() {
@@ -3818,8 +2703,8 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       if (savedDate === todayKey) {
         try {
           const savedIds = JSON.parse(localStorage.getItem(STORAGE.TODAY_IDS) || '[]');
-          const valid = savedIds.filter(id => appState.items.some(item => item.id === id));
-          if (valid.length >= 6) {
+          const valid = savedIds.filter(id => appState.itemsById.has(id));
+          if (valid.length >= Math.min(6, appState.items.length)) {
             appState.todayIds = valid;
             return;
           }
@@ -3831,12 +2716,27 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       generateTodayBatch();
     }
 
+    function sampleItems(arr, count) {
+      const copy = arr.slice();
+      const n = Math.min(count, copy.length);
+      for (let i = 0; i < n; i++) {
+        const j = i + Math.floor(Math.random() * (copy.length - i));
+        const tmp = copy[i];
+        copy[i] = copy[j];
+        copy[j] = tmp;
+      }
+      return copy.slice(0, n);
+    }
+
     function generateTodayBatch() {
       const pickPrioritized = (pool, count) => {
         const unmastered = pool.filter(i => i.status !== 'mastered');
-        const mastered = pool.filter(i => i.status === 'mastered');
-        const shuffle = arr => [...arr].sort(() => Math.random() - 0.5);
-        return [...shuffle(unmastered), ...shuffle(mastered)].slice(0, count);
+        const picked = sampleItems(unmastered, count);
+        if (picked.length < count) {
+          const mastered = pool.filter(i => i.status === 'mastered');
+          picked.push(...sampleItems(mastered, count - picked.length));
+        }
+        return picked;
       };
 
       const everyday = pickPrioritized(appState.items.filter(i => i.category === 'Everyday'), 3);
@@ -3844,6 +2744,9 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       const syntax = pickPrioritized(appState.items.filter(i => i.category === 'Syntax'), 1);
 
       appState.todayIds = [...everyday, ...workplace, ...syntax].map(i => i.id);
+      if (appState.todayIds.length === 0 && appState.items.length > 0) {
+        appState.todayIds = sampleItems(appState.items, 7).map(i => i.id);
+      }
       appState.todayIndex = 0;
       localStorage.setItem(STORAGE.TODAY_IDS, JSON.stringify(appState.todayIds));
       localStorage.setItem(STORAGE.TODAY_DATE, getTodayDateKey());
@@ -3852,7 +2755,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     function shuffleTodayBatch() {
       generateTodayBatch();
       renderTodayView();
-      showToast('Generated a fresh 7-card batch');
+      showToast(`Generated a fresh ${appState.todayIds.length}-card batch`);
     }
 
     function stepTodayFocusCard(delta) {
@@ -3883,6 +2786,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       if (view === 'today') renderTodayView();
       if (view === 'practice') renderPracticeStudio();
       if (view === 'library') renderLibrary();
+      if (view === 'backup') renderPacksManager();
     }
 
     function renderAll() {
@@ -3897,7 +2801,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         return;
       }
 
-      const item = appState.items.find(i => i.id === itemId);
+      const item = appState.itemsById.get(itemId) || appState.items.find(i => i.id === itemId);
       const text = customText || (item ? (item.speechText || item.phrase.replace(/\[.*?\]/g, 'something')) : '');
       if (!text) return;
 
@@ -3944,7 +2848,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
 
     // ==================== CARD STATUS & DRAWER INTERACTIONS ====================
     function cycleItemStatus(itemId) {
-      const item = appState.items.find(i => i.id === itemId);
+      const item = appState.itemsById.get(itemId) || appState.items.find(i => i.id === itemId);
       if (!item) return;
       const order = ['new', 'practicing', 'mastered'];
       const next = order[(order.indexOf(item.status) + 1) % order.length];
@@ -3952,14 +2856,17 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     }
 
     function setItemStatus(itemId, status) {
-      const item = appState.items.find(i => i.id === itemId);
+      const item = appState.itemsById.get(itemId) || appState.items.find(i => i.id === itemId);
       if (!item) return;
       item.status = status;
-      saveLibrary();
+      appState.progressMap.set(itemId, { id: itemId, status, updatedAt: new Date().toISOString() });
+      updateMasteredPill();
+      LexisDB.putProgress(itemId, status).catch(err => console.error('Progress write error:', err));
 
       if (appState.currentView === 'today') renderTodayView();
       if (appState.currentView === 'practice') renderPracticeStudio();
       if (appState.currentView === 'library') renderLibrary();
+      if (appState.currentView === 'backup') renderPacksManager();
 
       const labelMap = { new: 'New', practicing: 'Practicing', mastered: 'Mastered' };
       showToast(`Status: ${labelMap[status]}`);
@@ -4622,9 +3529,25 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       renderPracticeStudio();
     }
 
-    // ==================== VIEW 3: LIBRARY RENDERER ====================
+    // ==================== VIEW 3: LIBRARY RENDERER (PAGINATED FOR LARGE DATABASES) ====================
+    let librarySearchDebounceTimer = null;
+
+    function debouncedRenderLibrary() {
+      clearTimeout(librarySearchDebounceTimer);
+      librarySearchDebounceTimer = setTimeout(() => {
+        appState.libraryVisibleCount = LIBRARY_PAGE_SIZE;
+        renderLibrary();
+      }, 120);
+    }
+
     function setLibraryFilter(key, val) {
       appState.libraryFilters[key] = val;
+      appState.libraryVisibleCount = LIBRARY_PAGE_SIZE;
+      renderLibrary();
+    }
+
+    function loadMoreLibraryCards() {
+      appState.libraryVisibleCount += LIBRARY_PAGE_SIZE;
       renderLibrary();
     }
 
@@ -4653,30 +3576,37 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       syncPillSet('.lcat-btn', 'data-lcat', appState.libraryFilters.category);
       syncPillSet('.lstatus-btn', 'data-lstatus', appState.libraryFilters.status);
 
+      const packSelect = document.getElementById('library-pack-filter');
+      if (packSelect && packSelect.value !== appState.libraryFilters.pack) {
+        packSelect.value = appState.libraryFilters.pack;
+      }
+
       const query = (document.getElementById('library-search-input')?.value || '').trim().toLowerCase();
 
       const filtered = appState.items.filter(item => {
         if (appState.libraryFilters.category !== 'All' && item.category !== appState.libraryFilters.category) return false;
         if (appState.libraryFilters.status !== 'All' && item.status !== appState.libraryFilters.status) return false;
+        if (appState.libraryFilters.pack !== 'All' && (item.packId || 'custom') !== appState.libraryFilters.pack) return false;
 
         if (query) {
-          const blob = [
-            item.phrase,
-            item.flat,
-            item.upgraded,
-            item.nuance,
-            item.polish,
-            ...(item.dialogues || []).flatMap(e => e.lines.map(l => l.text))
-          ].join(' ').toLowerCase();
-          return blob.includes(query);
+          const hay = item._searchText || buildSearchText(item);
+          return hay.includes(query);
         }
         return true;
       });
 
+      const visibleSlice = filtered.slice(0, appState.libraryVisibleCount);
+      const remaining = filtered.length - visibleSlice.length;
+
       const countEl = document.getElementById('library-count-label');
-      if (countEl) countEl.textContent = `Showing ${filtered.length} of ${appState.items.length} items`;
+      if (countEl) {
+        countEl.textContent = remaining > 0
+          ? `Showing ${visibleSlice.length} of ${filtered.length} matches (${appState.items.length} total)`
+          : `Showing ${filtered.length} of ${appState.items.length} items`;
+      }
 
       const container = document.getElementById('library-cards-list');
+      const paginationEl = document.getElementById('library-pagination');
       if (!container) return;
 
       if (filtered.length === 0) {
@@ -4688,10 +3618,11 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
             </button>
           </div>
         `;
+        if (paginationEl) paginationEl.innerHTML = '';
         return;
       }
 
-      container.innerHTML = filtered.map(item => {
+      container.innerHTML = visibleSlice.map(item => {
         const isExpanded = appState.expandedLibraryIds.has(item.id);
         const statusMeta = getStatusPillProps(item.status);
 
@@ -4699,7 +3630,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           return `
             <div class="md:col-span-2 space-y-2">
               <div class="flex justify-end">
-                <button onclick="toggleLibraryCardExpand('${item.id}')" class="text-xs font-mono text-stone-500 hover:text-paper-ink dark:hover:text-charcoal-cream px-2 py-1 min-h-[36px]">
+                <button onclick="toggleLibraryCardExpand('${escapeAttr(item.id)}')" class="text-xs font-mono text-stone-500 hover:text-paper-ink dark:hover:text-charcoal-cream px-2 py-1 min-h-[36px]">
                   − Collapse card
                 </button>
               </div>
@@ -4712,18 +3643,21 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           <div class="rounded-2xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card hover:border-[#C46548]/45 p-4 sm:p-5 transition-all flex flex-col justify-between gap-4">
             <div class="space-y-2">
               <div class="flex items-center justify-between gap-2">
-                <span class="px-2 py-0.5 rounded text-[11px] font-mono border ${getCategoryPillClass(item.category)}">
-                  ${escapeHtml(item.category)}
-                </span>
+                <div class="flex items-center gap-1.5">
+                  <span class="px-2 py-0.5 rounded text-[11px] font-mono border ${getCategoryPillClass(item.category)}">
+                    ${escapeHtml(item.category)}
+                  </span>
+                  ${item.cefr ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-mono bg-stone-500/10 text-stone-500 dark:text-stone-400">${escapeHtml(item.cefr)}</span>` : ''}
+                </div>
 
                 <div class="flex items-center gap-1.5">
-                  <button data-audio-key="${item.id}-US" onclick="speakItem('${item.id}', 'US')" class="px-2 py-1 rounded-lg border border-paper-border dark:border-charcoal-border bg-paper-subtle/70 dark:bg-charcoal-subtle/70 text-[11px] font-mono hover:border-[#C46548] min-h-[34px]">
+                  <button data-audio-key="${escapeAttr(item.id)}-US" onclick="speakItem('${escapeAttr(item.id)}', 'US')" class="px-2 py-1 rounded-lg border border-paper-border dark:border-charcoal-border bg-paper-subtle/70 dark:bg-charcoal-subtle/70 text-[11px] font-mono hover:border-[#C46548] min-h-[34px]">
                     US
                   </button>
-                  <button data-audio-key="${item.id}-UK" onclick="speakItem('${item.id}', 'UK')" class="px-2 py-1 rounded-lg border border-paper-border dark:border-charcoal-border bg-paper-subtle/70 dark:bg-charcoal-subtle/70 text-[11px] font-mono hover:border-[#C46548] min-h-[34px]">
+                  <button data-audio-key="${escapeAttr(item.id)}-UK" onclick="speakItem('${escapeAttr(item.id)}', 'UK')" class="px-2 py-1 rounded-lg border border-paper-border dark:border-charcoal-border bg-paper-subtle/70 dark:bg-charcoal-subtle/70 text-[11px] font-mono hover:border-[#C46548] min-h-[34px]">
                     UK
                   </button>
-                  <button onclick="cycleItemStatus('${item.id}')" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-[11px] font-mono min-h-[34px] ${statusMeta.style}">
+                  <button onclick="cycleItemStatus('${escapeAttr(item.id)}')" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-[11px] font-mono min-h-[34px] ${statusMeta.style}">
                     <span class="w-1.5 h-1.5 rounded-full ${statusMeta.dot}"></span>
                     <span>${statusMeta.label}</span>
                   </button>
@@ -4748,26 +3682,33 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
               <span class="text-[11px] font-mono text-stone-400">
                 ${escapeHtml(item.register || '')}
               </span>
-              <button onclick="toggleLibraryCardExpand('${item.id}')" class="text-xs font-mono text-[#B05438] dark:text-[#E58E73] hover:underline min-h-[34px]">
+              <button onclick="toggleLibraryCardExpand('${escapeAttr(item.id)}')" class="text-xs font-mono text-[#B05438] dark:text-[#E58E73] hover:underline min-h-[34px]">
                 Expand card →
               </button>
             </div>
           </div>
         `;
       }).join('');
+
+      if (paginationEl) {
+        paginationEl.innerHTML = remaining > 0
+          ? `<button onclick="loadMoreLibraryCards()" class="px-5 py-2.5 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card hover:border-[#C46548] text-xs font-mono font-medium transition-colors min-h-[42px]">Load ${Math.min(LIBRARY_PAGE_SIZE, remaining)} more (${remaining} remaining)</button>`
+          : '';
+      }
     }
 
     function resetLibraryFilters() {
       const search = document.getElementById('library-search-input');
       if (search) search.value = '';
-      appState.libraryFilters = { category: 'All', status: 'All' };
+      appState.libraryFilters = { category: 'All', status: 'All', pack: 'All' };
+      appState.libraryVisibleCount = LIBRARY_PAGE_SIZE;
       renderLibrary();
     }
 
     // ==================== VIEW 4: BACKUP & PORTABLE APP ====================
     function downloadStandaloneHtml() {
       const clone = document.documentElement.cloneNode(true);
-      const clearIds = ['today-workspace', 'practice-workspace', 'library-cards-list', 'toast-stack', 'header-app-icon', 'backup-icon-preview'];
+      const clearIds = ['today-workspace', 'practice-workspace', 'library-cards-list', 'library-pagination', 'packs-catalog-list', 'toast-stack', 'header-app-icon', 'backup-icon-preview'];
       clearIds.forEach(id => {
         const el = clone.querySelector(`#${id}`);
         if (el) el.innerHTML = '';
@@ -4785,14 +3726,28 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-      showToast('Downloaded standalone index.html');
+      showToast('Downloaded index.html');
     }
 
     function buildBackupPayloadString() {
+      const progress = {};
+      appState.progressMap.forEach((row, id) => {
+        if (row && row.status && row.status !== 'new') {
+          progress[id] = { status: row.status, updatedAt: row.updatedAt || new Date().toISOString() };
+        }
+      });
+
+      const customItems = appState.items
+        .filter(item => (item.packId || 'custom') === 'custom')
+        .map(({ status, _searchText, ...clean }) => clean);
+
       return JSON.stringify({
         app: 'Lexis — Precision & Register',
+        schemaVersion: 5,
         exportedAt: new Date().toISOString(),
-        items: appState.items
+        installedPackIds: Array.from(appState.installedPacks.keys()),
+        progress,
+        customItems
       }, null, 2);
     }
 
@@ -4806,33 +3761,85 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-      showToast('Exported JSON backup file');
+      showToast('Exported compact v5 progress JSON backup');
     }
 
     function copyProgressJsonToClipboard() {
       copyToClipboard(buildBackupPayloadString(), 'Copied progress JSON backup to clipboard');
     }
 
-    function applyRestoredItems(rawJsonText) {
+    async function applyRestoredItems(rawJsonText) {
       const parsed = JSON.parse(rawJsonText);
-      const restoredItems = Array.isArray(parsed) ? parsed : parsed.items;
+      const now = new Date().toISOString();
+
+      // v5 compact backup format: { schemaVersion: 5, progress: { id: { status } }, customItems: [...] }
+      if (parsed && !Array.isArray(parsed) && (parsed.schemaVersion >= 5 || parsed.progress)) {
+        const progressRows = Object.entries(parsed.progress || {}).map(([id, val]) => ({
+          id: String(id),
+          status: typeof val === 'string' ? val : (val?.status || 'new'),
+          updatedAt: (typeof val === 'object' && val?.updatedAt) ? val.updatedAt : now
+        }));
+
+        const customItems = (Array.isArray(parsed.customItems) ? parsed.customItems : [])
+          .map((entry, idx) => normalizePhraseItem(entry, 'custom', idx))
+          .filter(Boolean);
+
+        if (progressRows.length > 0) await LexisDB.putMany('progress', progressRows);
+        if (customItems.length > 0) await LexisDB.putMany('items', customItems);
+
+        // Install any referenced manifest packs that aren't installed yet
+        if (Array.isArray(parsed.installedPackIds) && appState.packManifest?.packs) {
+          for (const pid of parsed.installedPackIds) {
+            if (!appState.installedPacks.has(pid) && appState.packManifest.packs.some(p => p.id === pid)) {
+              await installPackById(pid, true);
+            }
+          }
+        }
+
+        await hydrateStateFromDB();
+        generateTodayBatch();
+        renderAll();
+        showToast(`Restored ${progressRows.length} mastery states & ${customItems.length} custom phrases`);
+        return;
+      }
+
+      // Legacy v4 backup format: { items: [...] } or [...]
+      const restoredItems = Array.isArray(parsed) ? parsed : parsed?.items;
       if (!Array.isArray(restoredItems) || restoredItems.length === 0) {
         throw new Error('Invalid backup structure.');
       }
-      appState.items = restoredItems;
-      saveLibrary();
+
+      const progressRows = [];
+      const customItems = [];
+
+      restoredItems.forEach((entry, idx) => {
+        if (!entry || !entry.phrase) return;
+        const id = String(entry.id || `restored-${Date.now()}-${idx}`);
+        if (entry.status && entry.status !== 'new') {
+          progressRows.push({ id, status: entry.status, updatedAt: now });
+        }
+        if (!appState.itemsById.has(id)) {
+          const norm = normalizePhraseItem({ ...entry, id }, 'custom', idx);
+          if (norm) customItems.push(norm);
+        }
+      });
+
+      if (progressRows.length > 0) await LexisDB.putMany('progress', progressRows);
+      if (customItems.length > 0) await LexisDB.putMany('items', customItems);
+
+      await hydrateStateFromDB();
       generateTodayBatch();
       renderAll();
-      showToast(`Restored ${restoredItems.length} items and mastery states`);
+      showToast(`Restored ${progressRows.length} mastery states (${customItems.length} custom items added)`);
     }
 
     function restoreJsonBackupFile(event) {
       const file = event.target.files?.[0];
       if (!file) return;
       const reader = new FileReader();
-      reader.onload = (e) => {
+      reader.onload = async (e) => {
         try {
-          applyRestoredItems(e.target.result || '');
+          await applyRestoredItems(e.target.result || '');
         } catch (err) {
           showToast(`Restore failed: ${err.message}`);
         }
@@ -4841,7 +3848,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       event.target.value = '';
     }
 
-    function restoreJsonFromText() {
+    async function restoreJsonFromText() {
       const input = document.getElementById('restore-clipboard-textarea');
       const raw = (input?.value || '').trim();
       if (!raw) {
@@ -4849,7 +3856,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         return;
       }
       try {
-        applyRestoredItems(raw);
+        await applyRestoredItems(raw);
         input.value = '';
       } catch (err) {
         showToast(`Restore failed: ${err.message}`);
@@ -4860,7 +3867,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       copyToClipboard(WEEKLY_PACK_PROMPT, 'Copied generator prompt to clipboard');
     }
 
-    function handleBatchImport() {
+    async function handleBatchImport() {
       const textarea = document.getElementById('batch-import-textarea');
       const statusEl = document.getElementById('batch-import-status');
       const raw = (textarea?.value || '').trim();
@@ -4874,79 +3881,39 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
 
       try {
         const parsed = JSON.parse(raw);
-        if (!Array.isArray(parsed)) {
-          throw new Error('Expected a JSON array [ ... ].');
+        const rawList = Array.isArray(parsed) ? parsed : parsed?.items;
+        if (!Array.isArray(rawList)) {
+          throw new Error('Expected a JSON array [ ... ] or pack object { items: [...] }.');
         }
 
         const existingSet = new Set(appState.items.map(i => i.phrase.toLowerCase().trim()));
-        let added = 0;
+        const toInsert = [];
 
-        parsed.forEach((entry, idx) => {
+        rawList.forEach((entry, idx) => {
           if (!entry || typeof entry.phrase !== 'string' || !entry.phrase.trim()) return;
-          const norm = entry.phrase.toLowerCase().trim();
-          if (existingSet.has(norm)) return;
+          const normPhrase = entry.phrase.toLowerCase().trim();
+          if (existingSet.has(normPhrase)) return;
 
-          const validCats = ['Everyday', 'Workplace', 'Syntax'];
-          const rawCat = entry.category === 'Syntax & Flow' ? 'Syntax' : entry.category;
-
-          const normalizedItem = {
-            id: `imp-${Date.now()}-${idx}`,
-            phrase: entry.phrase.trim(),
-            ipa: entry.ipa || '/.../',
-            speechText: entry.speechText || entry.phrase.trim(),
-            category: validCats.includes(rawCat) ? rawCat : 'Everyday',
-            register: entry.register || 'Conversational',
-            flat: entry.flat || entry.flatVersion || 'Standard phrasing.',
-            upgraded: entry.upgraded || entry.naturalVersion || entry.phrase.trim(),
-            dialogues: Array.isArray(entry.dialogues) && entry.dialogues.length > 0
-              ? entry.dialogues
-              : (Array.isArray(entry.examples) && entry.examples.length > 0 ? entry.examples : [
-                  { context: 'In Context', lines: [{ speaker: 'Speaker', text: entry.upgraded || entry.phrase }] }
-                ]),
-            nuance: entry.nuance || 'Pay close attention to conversational tone and collocations.',
-            polish: entry.polish || entry.polishEquivalent || '—',
-            clozeSentence: entry.clozeSentence || `${entry.phrase.trim()} — ___`,
-            clozeAnswer: entry.clozeAnswer || entry.phrase.trim().split(' ')[0],
-            clozeAccepted: entry.clozeAccepted || [entry.clozeAnswer || entry.phrase.trim().split(' ')[0]],
-            clozeHint: entry.clozeHint || 'Key word from the target phrase',
-            quizPrompt: entry.quizPrompt || entry.flat || entry.phrase,
-            quizOptions: Array.isArray(entry.quizOptions) && entry.quizOptions.length >= 4
-              ? entry.quizOptions
-              : [
-                  entry.upgraded || entry.phrase,
-                  entry.flat || 'Standard option',
-                  'Overly stiff phrasing',
-                  'Literal phrasing error'
-                ],
-            quizCorrectIndex: typeof entry.quizCorrectIndex === 'number' ? entry.quizCorrectIndex : 0,
-            quizExplanations: Array.isArray(entry.quizExplanations) && entry.quizExplanations.length >= 4
-              ? entry.quizExplanations
-              : ['Natural phrasing.', 'Too flat.', 'Too stiff.', 'Collocation error.'],
-            sandboxPrompt: entry.sandboxPrompt || `Write a natural sentence using "${entry.phrase}".`,
-            sandboxSample: entry.sandboxSample || (Array.isArray(entry.sandboxSamples) ? entry.sandboxSamples[0] : (entry.upgraded || entry.phrase)),
-            sandboxRubric: entry.sandboxRubric || [
-              'Register: Natural tone.',
-              'Collocation: Accurate word partners.',
-              'Cadence: Smooth flow.'
-            ],
-            status: 'new'
-          };
-
-          appState.items.unshift(normalizedItem);
-          existingSet.add(norm);
-          added++;
+          const normalized = normalizePhraseItem({ ...entry, id: entry.id || `imp-${Date.now()}-${idx}` }, 'custom', idx);
+          if (normalized) {
+            toInsert.push(normalized);
+            existingSet.add(normPhrase);
+          }
         });
 
-        if (added === 0) {
+        if (toInsert.length === 0) {
           throw new Error('No new unique phrases were found in that JSON.');
         }
 
-        saveLibrary();
+        await LexisDB.putMany('items', toInsert);
+        await hydrateStateFromDB();
+        renderAll();
+
         textarea.value = '';
-        statusEl.textContent = `Imported ${added} new expression${added === 1 ? '' : 's'} into your library.`;
+        statusEl.textContent = `Imported ${toInsert.length} new expression${toInsert.length === 1 ? '' : 's'} into IndexedDB.`;
         statusEl.className = 'text-xs font-medium text-emerald-600 dark:text-emerald-400';
         statusEl.classList.remove('hidden');
-        showToast(`Imported ${added} new item${added === 1 ? '' : 's'}`);
+        showToast(`Imported ${toInsert.length} new item${toInsert.length === 1 ? '' : 's'}`);
       } catch (err) {
         statusEl.textContent = `Import failed: ${err.message}`;
         statusEl.className = 'text-xs font-medium text-rose-500';

@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": 1,
+  "pack": {
+    "id": "starter-everyday",
+    "name": "Starter · Everyday English",
+    "description": "16 high-frequency conversational softeners, reactions, and natural everyday phrasing.",
+    "category": "Everyday",
+    "cefr": "B2–C1",
+    "version": "1.0.0",
+    "source": "Lexis Curated Starter"
+  },
+  "items": [
+    {
+      "id": "ev-01",
+      "phrase": "for what it's worth",
+      "ipa": "/fɔː wɒt ɪts wɜːθ/",
+      "speechText": "for what it's worth",
+      "category": "Everyday",
+      "register": "Casual",
+      "flat": "Maybe my opinion is not very important, but I think you should take the job.",
+      "upgraded": "For what it's worth, I think you'd thrive in that role.",
+      "dialogues": [
+        {
+          "context": "Coffee Chat · Career Move",
+          "lines": [
+            {
+              "speaker": "Maya",
+              "text": "I still can't decide if moving to Berlin for a one-year contract makes sense."
+            },
+            {
+              "speaker": "Liam",
+              "text": "For what it's worth, everyone I know who took a leap like that came back with way better options."
+            }
+          ]
+        },
+        {
+          "context": "Text Message · Weekend Plans",
+          "lines": [
+            {
+              "speaker": "Sam",
+              "text": "Not sure whether to book the Friday night train or Saturday morning."
+            },
+            {
+              "speaker": "Alex",
+              "text": "For what it's worth, Friday trains are usually packed—Saturday at 8 is super chill."
+            }
+          ]
+        }
+      ],
+      "nuance": "A warm, low-ego softener used when offering unsolicited advice or a personal perspective without sounding pushy. Often abbreviated to 'FWIW' in Slack or texts, though spoken in full in conversation.",
+      "polish": "jeśli ma to jakieś znaczenie / moim zdaniem (tak na marginesie)",
+      "clozeSentence": "For what it's ___, I actually preferred your first draft—it felt much more direct.",
+      "clozeAnswer": "worth",
+      "clozeAccepted": [
+        "worth"
+      ],
+      "clozeHint": "5-letter noun meaning value.",
+      "quizPrompt": "Maybe my opinion doesn't matter much, but I think the second apartment has better light.",
+      "quizOptions": [
+        "For what it's worth, I think the second apartment has way better light.",
+        "Regardless of my low value, I think the second apartment is brighter.",
+        "With due humility regarding my perspective, the second apartment is preferable.",
+        "For what it costs, I think the second apartment is brighter."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Natural, warm, and unpretentious—the exact phrase native speakers reach for when sharing an opinion gently.",
+        "Awkward literal distortion that sounds self-deprecating in an unnatural way.",
+        "Far too stiff and theatrical for a casual chat about apartments.",
+        "Confuses 'worth' with financial cost."
+      ],
+      "sandboxPrompt": "Offer a friend low-pressure advice about whether to buy a used car or lease a new one.",
+      "sandboxSample": "For what it's worth, buying a two-year-old certified car saves you the worst of the depreciation hit.",
+      "sandboxRubric": [
+        "Register: Warm, non-pushy tone (offers perspective rather than lecturing).",
+        "Collocation: Exact wording 'for what it's worth' placed cleanly before or inside the main clause.",
+        "Cadence: Natural conversational rhythm without formal filler."
+      ],
+      "cefr": "B2-C1",
+      "packId": "starter-everyday"
+    },
+    {
+      "id": "ev-02",
+      "phrase": "that tracks",
+      "ipa": "/ðæt træks/",
+      "speechText": "that tracks",
+      "category": "Everyday",
+      "register": "Conversational",
+      "flat": "Yes, that makes complete sense considering what I know about him.",
+      "upgraded": "Honestly, that tracks—he's always been obsessed with punctual arrivals.",
+      "dialogues": [
+        {
+          "context": "Lunch Break · Catching Up",
+          "lines": [
+            {
+              "speaker": "Elena",
+              "text": "Turns out Mark spent the entire flight organizing his photos into color-coded folders."
+            },
+            {
+              "speaker": "Noah",
+              "text": "Yeah, that tracks. His spice rack is literally alphabetized."
+            }
+          ]
+        },
+        {
+          "context": "Neighborhood Chat",
+          "lines": [
+            {
+              "speaker": "Kira",
+              "text": "Apparently rent in that neighborhood jumped 18% after the new metro line opened."
+            },
+            {
+              "speaker": "Ben",
+              "text": "That tracks—commute time to the center dropped in half."
+            }
+          ]
+        }
+      ],
+      "nuance": "Very common modern conversational reaction meaning 'that aligns with everything else I know' or 'that's completely consistent with their character/the facts'. Much crisper than 'that is logical'.",
+      "polish": "to ma sens / zgadza się / pasuje do niego (do całości)",
+      "clozeSentence": "He forgot his passport until an hour before boarding? Honestly, that ___.",
+      "clozeAnswer": "tracks",
+      "clozeAccepted": [
+        "tracks"
+      ],
+      "clozeHint": "Verb meaning 'follows a consistent pattern' (3rd person singular).",
+      "quizPrompt": "That makes total sense given how chaotic their schedule has been all month.",
+      "quizOptions": [
+        "That tracks—their schedule has been all over the place all month.",
+        "That follows the railway—their schedule has been chaotic.",
+        "That correlates coherently with their monthly calendar turbulence.",
+        "That is tracking your monthly schedule."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Effortless, modern native reaction showing immediate understanding.",
+        "Non-existent literal translation of the metaphor.",
+        "Sounds like an academic paper rather than a real human reacting.",
+        "Used in simple present ('that tracks'), not progressive."
+      ],
+      "sandboxPrompt": "React naturally to a friend telling you that a notoriously disorganized colleague showed up to the wrong airport terminal.",
+      "sandboxSample": "Honestly, that tracks—he once showed up to a Thursday meeting on a Tuesday.",
+      "sandboxRubric": [
+        "Register: Quick, punchy conversational reaction.",
+        "Collocation: Used 'that tracks' in simple present (not 'it is tracking').",
+        "Cadence: Followed up with a natural supporting detail."
+      ],
+      "cefr": "B2-C1",
+      "packId": "starter-everyday"
+    },
+    {
+      "id": "ev-03",
+      "phrase": "to play it by ear",
+      "ipa": "/tuː pleɪ ɪt baɪ ɪə/",
+      "speechText": "to play it by ear",
+      "category": "Everyday",
+      "register": "Casual",
+      "flat": "We won't make a strict plan yet; we will decide what to do depending on how things go.",
+      "upgraded": "Let's not over-schedule Saturday—let's just play it by ear.",
+      "dialogues": [
+        {
+          "context": "Weekend Trip · Messages",
+          "lines": [
+            {
+              "speaker": "Chloe",
+              "text": "Should we book dinner for 8 or see how tired we are after the hike?"
+            },
+            {
+              "speaker": "Dan",
+              "text": "Let's play it by ear. There are plenty of walk-in spots near the harbor."
+            }
+          ]
+        },
+        {
+          "context": "After Work · Drinks",
+          "lines": [
+            {
+              "speaker": "Tessa",
+              "text": "Are you staying for one drink or making a night of it?"
+            },
+            {
+              "speaker": "Omar",
+              "text": "Playing it by ear—depends on how wiped I feel after this espresso."
+            }
+          ]
+        }
+      ],
+      "nuance": "Originally a musical metaphor (playing without sheet music). Used constantly in both casual life and flexible work situations when avoiding rigid commitments before seeing how circumstances unfold.",
+      "polish": "zobaczyć, jak wyjdzie / improwizować na bieżąco / decydować w trakcie",
+      "clozeSentence": "The forecast looks unpredictable, so let's skip advance tickets and play it by ___.",
+      "clozeAnswer": "ear",
+      "clozeAccepted": [
+        "ear"
+      ],
+      "clozeHint": "Body part in the musical idiom 'play it by ___'.",
+      "quizPrompt": "We don't need a fixed itinerary for Sunday afternoon; we'll decide as we go.",
+      "quizOptions": [
+        "We don't need a rigid itinerary for Sunday—we'll just play it by ear.",
+        "We don't need a fixed itinerary for Sunday—we'll play it by eye.",
+        "We shall abstain from premature scheduling and improvise dynamically.",
+        "We don't need a plan—we'll play with our ears."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Idiomatic, relaxed, and completely natural in both US and UK English.",
+        "Confuses 'play it by ear' with 'play it by eye' (which is not an idiom).",
+        "Overly formal and robotic for Sunday plans.",
+        "Grammatically broken distortion."
+      ],
+      "sandboxPrompt": "Tell a friend you aren't sure what time you'll finish a family dinner tonight, so you'll decide later whether to meet up.",
+      "sandboxSample": "Family dinners are hard to time, so let's play it by ear and text around nine.",
+      "sandboxRubric": [
+        "Register: Relaxed, low-pressure social tone.",
+        "Collocation: Correct idiom 'play it by ear' (with 'it').",
+        "Cadence: Clear explanation of the flexible condition."
+      ],
+      "cefr": "B2-C1",
+      "packId": "starter-everyday"
+    },
+    {
+      "id": "ev-04",
+      "phrase": "it slipped my mind",
+      "ipa": "/ɪt slɪpt maɪ maɪnd/",
+      "speechText": "it slipped my mind",
+      "category": "Everyday",
+      "register": "Conversational",
+      "flat": "I am sorry, I completely forgot to send you that link yesterday.",
+      "upgraded": "My bad—it totally slipped my mind with everything going on yesterday.",
+      "dialogues": [
+        {
+          "context": "Casual Text · Follow-up",
+          "lines": [
+            {
+              "speaker": "Zoe",
+              "text": "Hey, did you ever get a chance to check the name of that physio?"
+            },
+            {
+              "speaker": "Max",
+              "text": "Oh, it completely slipped my mind! Sending you her contact right now."
+            }
+          ]
+        },
+        {
+          "context": "Kitchen Chat",
+          "lines": [
+            {
+              "speaker": "Nadia",
+              "text": "Did we pick up oat milk?"
+            },
+            {
+              "speaker": "Leo",
+              "text": "Ah, it slipped my mind when I got distracted at the bakery counter."
+            }
+          ]
+        }
+      ],
+      "nuance": "Much softer and more natural than saying 'I forgot' (which can sometimes sound blunt). Avoid the Polish calque 'it fell out of my head'—English always uses 'slipped my mind'.",
+      "polish": "wyleciało mi z głowy",
+      "clozeSentence": "I meant to reply to your voice note last night, and then it completely ___ my mind.",
+      "clozeAnswer": "slipped",
+      "clozeAccepted": [
+        "slipped"
+      ],
+      "clozeHint": "Past tense verb meaning slid away unnoticed.",
+      "quizPrompt": "I apologize, I forgot to bring the book you lent me.",
+      "quizOptions": [
+        "Sorry about that—bringing your book completely slipped my mind.",
+        "Sorry about that—bringing your book fell out of my head.",
+        "I regret to inform you that your book escaped my cognitive retention.",
+        "Sorry—your book slipped from my brain."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Warm, natural apology that sounds effortless and polite.",
+        "Direct Polish calque ('wypadło mi z głowy')—not used in English.",
+        "Hilariously stiff for forgetting a borrowed book.",
+        "Uses 'mind', not 'brain', and no preposition 'from'."
+      ],
+      "sandboxPrompt": "Apologize casually to a friend for forgetting to send them a restaurant recommendation you promised earlier.",
+      "sandboxSample": "So sorry—sending that spot completely slipped my mind! Here's the pin.",
+      "sandboxRubric": [
+        "Register: Warm, natural apology without sounding overly formal.",
+        "Collocation: Used 'slipped my mind' accurately.",
+        "Cadence: Immediately follows up with the helpful action."
+      ],
+      "cefr": "B2-C1",
+      "packId": "starter-everyday"
+    },
+    {
+      "id": "ev-05",
+      "phrase": "to take a rain check",
+      "ipa": "/tuː teɪk ə reɪn tʃek/",
+      "speechText": "to take a rain check",
+      "category": "Everyday",
+      "register": "Casual",
+      "flat": "I cannot come tonight because I am exhausted, can we reschedule for another time?",
+      "upgraded": "I'm completely wiped tonight—mind if I take a rain check and we do next week?",
+      "dialogues": [
+        {
+          "context": "Thursday Evening · SMS",
+          "lines": [
+            {
+              "speaker": "Hannah",
+              "text": "Still up for ramen tonight around 7:30?"
+            },
+            {
+              "speaker": "Jules",
+              "text": "Any chance I can take a rain check? Just got stuck on a late call and I'm dead on my feet."
+            }
+          ]
+        },
+        {
+          "context": "Office Hallway",
+          "lines": [
+            {
+              "speaker": "Ben",
+              "text": "Grabbing tacos downstairs if you want to join."
+            },
+            {
+              "speaker": "Priya",
+              "text": "I'll have to take a rain check today—got a noon deadline, but definitely Thursday!"
+            }
+          ]
+        }
+      ],
+      "nuance": "Originates from 19th-century US baseball tickets issued when rain canceled a game, now universal across US and UK English. Signals clearly that you genuinely want to hang out, just not right now.",
+      "polish": "przełożyć na inny termin (z chęcią, ale innym razem)",
+      "clozeSentence": "I'd love to join for drinks, but I'm swamped tonight—can I take a ___ check?",
+      "clozeAnswer": "rain",
+      "clozeAccepted": [
+        "rain"
+      ],
+      "clozeHint": "Weather noun in 'take a ___ check'.",
+      "quizPrompt": "I have to decline dinner tonight because of a migraine, but I really want to reschedule.",
+      "quizOptions": [
+        "I've got a brutal migraine tonight—mind if I take a rain check on dinner?",
+        "I have a migraine tonight—let us postpone our dining engagement indefinitely.",
+        "I have a migraine tonight—I will take a weather ticket for dinner.",
+        "I have a migraine—let's make a rain check."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Warm, clear, and reassures your friend that you still want to meet soon.",
+        "Sounds cold and formal, as if canceling a business contract.",
+        "Literal distortion of the idiom.",
+        "Collocates with 'take', not 'make'."
+      ],
+      "sandboxPrompt": "Politely turn down an invitation for coffee this afternoon because you're behind on errands, while keeping the door open for Friday.",
+      "sandboxSample": "I'm way behind on errands today—can I take a rain check and catch up over coffee on Friday?",
+      "sandboxRubric": [
+        "Register: Warm, appreciative decline that preserves closeness.",
+        "Collocation: Used 'take a rain check (on sth)' cleanly.",
+        "Cadence: Proposed a concrete alternative window."
+      ],
+      "cefr": "B2-C1",
+      "packId": "starter-everyday"
+    },
+    {
+      "id": "ev-06",
+      "phrase": "not remotely",
+      "ipa": "/nɒt rɪˈməʊtli/",
+      "speechText": "not remotely",
+      "category": "Everyday",
+      "register": "Nuanced",
+      "flat": "That explanation is not true at all; it doesn't even come close to what happened.",
+      "upgraded": "That's not remotely what I meant—let me clarify.",
+      "dialogues": [
+        {
+          "context": "Clarifying a Misunderstanding",
+          "lines": [
+            {
+              "speaker": "Chris",
+              "text": "So you're saying the whole design sprint was a waste of time?"
+            },
+            {
+              "speaker": "Laura",
+              "text": "Not remotely. The user interviews were gold; we just need to narrow the scope."
+            }
+          ]
+        },
+        {
+          "context": "Movie Critique",
+          "lines": [
+            {
+              "speaker": "Dev",
+              "text": "Was the sequel as tense as the original?"
+            },
+            {
+              "speaker": "Sophie",
+              "text": "Not remotely—it felt like a watered-down TV pilot."
+            }
+          ]
+        }
+      ],
+      "nuance": "A crisp, educated intensifier that replaces 'not at all' or 'definitely not' when shutting down an inaccurate assumption cleanly without sounding overly emotional.",
+      "polish": "ani trochę / w najmniejszym stopniu / zupełnie nie",
+      "clozeSentence": "Honestly, I'm not ___ surprised that the flight got delayed in this fog.",
+      "clozeAnswer": "remotely",
+      "clozeAccepted": [
+        "remotely"
+      ],
+      "clozeHint": "Adverb derived from 'remote' meaning 'even slightly'.",
+      "quizPrompt": "I am not even slightly interested in watching a three-hour political drama tonight.",
+      "quizOptions": [
+        "I'm not remotely in the mood for a three-hour political drama tonight.",
+        "I am not distantly interested in viewing a lengthy political drama tonight.",
+        "I possess zero fractional interest in a three-hour political drama.",
+        "I am remotely not interested in watching a drama tonight."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Natural, expressive, and idiomatic native phrasing.",
+        "'Distantly' does not collocate with 'not ... interested' in this sense.",
+        "Robotic and unnatural.",
+        "Incorrect adverb placement ('not remotely', not 'remotely not')."
+      ],
+      "sandboxPrompt": "Calmly correct someone who misunderstood your comment as criticism of their work.",
+      "sandboxSample": "That's not remotely what I was getting at—your research was solid, I only questioned the timeline.",
+      "sandboxRubric": [
+        "Register: Calm, clarifying tone (firm without being defensive).",
+        "Collocation: Used 'not remotely' before an adjective, verb, or clause.",
+        "Cadence: Immediately follows with the intended meaning."
+      ],
+      "cefr": "B2-C1",
+      "packId": "starter-everyday"
+    },
+    {
+      "id": "ev-07",
+      "phrase": "to wrap your head around [something]",
+      "ipa": "/tuː ræp jɔː hed əˈraʊnd/",
+      "speechText": "to wrap your head around",
+      "category": "Everyday",
+      "register": "Conversational",
+      "flat": "I am still trying to fully understand how this new tax rule affects freelancers.",
+      "upgraded": "I'm still trying to wrap my head around how the new tax brackets work.",
+      "dialogues": [
+        {
+          "context": "Tech & AI Chat",
+          "lines": [
+            {
+              "speaker": "Victor",
+              "text": "Did you read how fast that new protein-folding model runs?"
+            },
+            {
+              "speaker": "Grace",
+              "text": "Yeah, I can barely wrap my head around the scale of it."
+            }
+          ]
+        },
+        {
+          "context": "Life Milestone",
+          "lines": [
+            {
+              "speaker": "Mina",
+              "text": "Can you believe we're moving to Tokyo in three weeks?"
+            },
+            {
+              "speaker": "Alex",
+              "text": "Honestly, I haven't even wrapped my head around it yet."
+            }
+          ]
+        }
+      ],
+      "nuance": "In UK English you will also hear 'get your head round', while US English favors 'wrap your head around'. Both convey mentally absorbing something complex, surprising, or huge.",
+      "polish": "ogarnąć to rozumem / pojąć / przetrawić jakąś informację",
+      "clozeSentence": "Give me a minute to wrap my ___ around these numbers before we jump to conclusions.",
+      "clozeAnswer": "head",
+      "clozeAccepted": [
+        "head",
+        "mind"
+      ],
+      "clozeHint": "4-letter noun in 'wrap my ___ around'.",
+      "quizPrompt": "It is hard for me to fully comprehend that ten years have passed since graduation.",
+      "quizOptions": [
+        "I still can't quite wrap my head around the fact that it's been ten years since graduation.",
+        "I still cannot fold my brain around ten years passing since graduation.",
+        "Comprehending the decadal passage since graduation remains cognitively elusive.",
+        "I still can't wrap my head over ten years passing."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Completely natural way to express disbelief or mental processing.",
+        "Incorrect distortion of the idiom.",
+        "Way too academic for a nostalgic reflection.",
+        "Wrong preposition ('around' or UK 'round', not 'over')."
+      ],
+      "sandboxPrompt": "Describe a surprising piece of news or complex concept you're still trying to process.",
+      "sandboxSample": "I'm still trying to wrap my head around how much rent has jumped in just two years.",
+      "sandboxRubric": [
+        "Register: Natural reflective tone.",
+        "Collocation: Used 'wrap [possessive] head around' accurately.",
+        "Cadence: Smooth, idiomatic flow."
+      ],
+      "cefr": "B2-C1",
+      "packId": "starter-everyday"
+    },
+    {
+      "id": "ev-08",
+      "phrase": "off the top of my head",
+      "ipa": "/ɒf ðə tɒp əv maɪ hed/",
+      "speechText": "off the top of my head",
+      "category": "Everyday",
+      "register": "Conversational",
+      "flat": "Without checking my notes right now, I think the flight costs around 300 euros.",
+      "upgraded": "Off the top of my head, I'd say flights are around €300, though let me double-check.",
+      "dialogues": [
+        {
+          "context": "Dinner Table · Recommendations",
+          "lines": [
+            {
+              "speaker": "Sam",
+              "text": "Do you remember the name of that ramen spot near the river?"
+            },
+            {
+              "speaker": "Maya",
+              "text": "Not off the top of my head, no—let me scroll through my maps."
+            }
+          ]
+        },
+        {
+          "context": "Quick Call · Estimates",
+          "lines": [
+            {
+              "speaker": "Liam",
+              "text": "How many people RSVP'd so far?"
+            },
+            {
+              "speaker": "Claire",
+              "text": "Off the top of my head, roughly twenty-five, give or take."
+            }
+          ]
+        }
+      ],
+      "nuance": "Signals immediately that you are giving an unverified recall from memory rather than a guaranteed fact—protecting your credibility in both casual chats and quick work calls.",
+      "polish": "z głowy / tak na szybko (bez sprawdzania)",
+      "clozeSentence": "Off the ___ of my head, I can think of three places nearby that stay open past midnight.",
+      "clozeAnswer": "top",
+      "clozeAccepted": [
+        "top"
+      ],
+      "clozeHint": "3-letter noun in 'off the ___ of my head'.",
+      "quizPrompt": "Without looking at my calendar, I believe we are free on the 14th.",
+      "quizOptions": [
+        "Off the top of my head, I think we're free on the 14th, let me check.",
+        "From the roof of my head, I believe we are free on the 14th.",
+        "Speaking purely from unverified memory retrieval, the 14th appears open.",
+        "On the top of my head, I think we're free on the 14th."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Idiomatic, natural, and sets clear expectations that you haven't checked yet.",
+        "Non-existent literal variation.",
+        "Unnecessarily bureaucratic.",
+        "Always 'off the top', never 'on the top'."
+      ],
+      "sandboxPrompt": "Answer a friend's question about how much a weekend trip might cost when you haven't looked up exact prices yet.",
+      "sandboxSample": "Off the top of my head, I'd budget around €400 each for trains and an Airbnb.",
+      "sandboxRubric": [
+        "Register: Conversational, helpful estimate.",
+        "Collocation: Exact idiom 'off the top of my head'.",
+        "Cadence: Signals clearly that the number is approximate."
+      ],
+      "cefr": "B2-C1",
+      "packId": "starter-everyday"
+    },
+    {
+      "id": "ev-09",
+      "phrase": "to be in two minds about [something]",
+      "ipa": "/tuː biː ɪn tuː maɪndz əˈbaʊt/",
+      "speechText": "to be in two minds about",
+      "category": "Everyday",
+      "register": "Conversational",
+      "flat": "I still cannot decide whether I should adopt a dog right now or wait a year.",
+      "upgraded": "I'm in two minds about adopting a dog right now—I'd love the company, though I travel a lot.",
+      "dialogues": [
+        {
+          "context": "Coffee Catch-up",
+          "lines": [
+            {
+              "speaker": "Ella",
+              "text": "Are you signing up for the autumn half-marathon?"
+            },
+            {
+              "speaker": "Tom",
+              "text": "Honestly, I'm in two minds about it. My knees haven't loved pavement lately."
+            }
+          ]
+        },
+        {
+          "context": "Shopping / Gear",
+          "lines": [
+            {
+              "speaker": "Rob",
+              "text": "Did you end up buying that standing desk?"
+            },
+            {
+              "speaker": "Nina",
+              "text": "Still in two minds—our living room is already pretty tight."
+            }
+          ]
+        }
+      ],
+      "nuance": "Dialect note: UK speakers most often say 'in two minds about', while US speakers frequently say 'of two minds about'. Both sound authentic and articulate when weighing two competing sides.",
+      "polish": "wahać się / bić się z myślami",
+      "clozeSentence": "I'm in two ___ about upgrading my laptop—this one still runs fine, just gets loud.",
+      "clozeAnswer": "minds",
+      "clozeAccepted": [
+        "minds"
+      ],
+      "clozeHint": "Plural noun in 'in two ___ about'.",
+      "quizPrompt": "I haven't decided yet whether to sublet my place over the summer.",
+      "quizOptions": [
+        "I'm in two minds about subletting my place over the summer.",
+        "I have two brains about subletting my place over the summer.",
+        "I remain bifurcated in my decision-making regarding a summer sublease.",
+        "I'm in two minds to sublet my place."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Smooth, idiomatic phrasing used daily by native speakers.",
+        "Literal error—English uses 'minds', never 'brains'.",
+        "Way too stilted for everyday life.",
+        "Collocates with 'about + -ing/noun', not 'to + verb'."
+      ],
+      "sandboxPrompt": "Explain to a friend why you're torn between taking a short weekend break now or saving your days off for autumn.",
+      "sandboxSample": "I'm in two minds about taking Friday off—a long weekend sounds great, but saving the days for October is tempting.",
+      "sandboxRubric": [
+        "Register: Balanced expression of two competing options.",
+        "Collocation: Used 'in two minds about' (or 'of two minds about') followed by -ing/noun.",
+        "Cadence: Natural, conversational flow."
+      ],
+      "cefr": "B2-C1",
+      "packId": "starter-everyday"
+    },
+    {
+      "id": "ev-10",
+      "phrase": "it's a toss-up",
+      "ipa": "/ɪts ə ˈtɒsʌp/",
+      "speechText": "it's a toss-up",
+      "category": "Everyday",
+      "register": "Casual",
+      "flat": "Both options are equally good, so it is basically a 50/50 choice.",
+      "upgraded": "Honestly, it's a toss-up between Lisbon and Barcelona for October.",
+      "dialogues": [
+        {
+          "context": "Choosing a Restaurant",
+          "lines": [
+            {
+              "speaker": "Mia",
+              "text": "Thai or Georgian tonight?"
+            },
+            {
+              "speaker": "Owen",
+              "text": "It's a toss-up for me—both places next door are amazing."
+            }
+          ]
+        },
+        {
+          "context": "Sports / Predictions",
+          "lines": [
+            {
+              "speaker": "Jake",
+              "text": "Who do you think takes the final on Sunday?"
+            },
+            {
+              "speaker": "Leo",
+              "text": "Total toss-up. Either team could win on the day."
+            }
+          ]
+        }
+      ],
+      "nuance": "Comes from flipping a coin ('tossing up'). Unlike 'in two minds' (internal hesitation), 'it's a toss-up' means two external options are so evenly matched you'd happily pick either.",
+      "polish": "rzut monetą / pół na pół / trudny wybór (obie opcje równie dobre)",
+      "clozeSentence": "Between the window seat and the aisle on a short flight, it's a ___ for me.",
+      "clozeAnswer": "toss-up",
+      "clozeAccepted": [
+        "toss-up",
+        "tossup"
+      ],
+      "clozeHint": "Hyphenated noun meaning a 50/50 coin-flip choice.",
+      "quizPrompt": "I like both coffee shops equally, so choosing between them is basically 50/50.",
+      "quizOptions": [
+        "Honestly, it's a toss-up between those two coffee shops—both are great.",
+        "Honestly, it's a coin throw between those two coffee shops.",
+        "The two cafés exhibit statistical parity in preference.",
+        "Honestly, it's a toss-down between those two places."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Crisp, idiomatic, and captures effortless indifference between two good options.",
+        "Literal translation that misses the fixed English noun 'toss-up'.",
+        "Robotic.",
+        "Always 'toss-up', never 'toss-down'."
+      ],
+      "sandboxPrompt": "Say that choosing between two weekend movies or two neighborhoods to stay in is completely 50/50 for you.",
+      "sandboxSample": "Between staying near the old town or by the river, it's a toss-up—both neighborhoods are super walkable.",
+      "sandboxRubric": [
+        "Register: Light, effortless tone.",
+        "Collocation: Used 'it's a toss-up (between X and Y)' accurately.",
+        "Cadence: Clear 50/50 framing."
+      ],
+      "cefr": "B2-C1",
+      "packId": "starter-everyday"
+    },
+    {
+      "id": "ev-11",
+      "phrase": "to have a soft spot for [someone/something]",
+      "ipa": "/tuː hæv ə sɒft spɒt fɔː/",
+      "speechText": "to have a soft spot for",
+      "category": "Everyday",
+      "register": "Casual",
+      "flat": "I have always liked old, slightly chaotic indie bookstores even if they aren't practical.",
+      "upgraded": "I've always had a soft spot for cramped secondhand bookshops.",
+      "dialogues": [
+        {
+          "context": "Music & Nostalgia",
+          "lines": [
+            {
+              "speaker": "Nora",
+              "text": "You're still listening to early-2000s pop-punk?"
+            },
+            {
+              "speaker": "Sam",
+              "text": "Guilty—I'll always have a soft spot for anything I listened to in high school."
+            }
+          ]
+        },
+        {
+          "context": "Neighborhood Chat",
+          "lines": [
+            {
+              "speaker": "Tessa",
+              "text": "That diner hasn't changed its menu since 1995."
+            },
+            {
+              "speaker": "Dan",
+              "text": "That's why I have a soft spot for it. Zero pretension."
+            }
+          ]
+        }
+      ],
+      "nuance": "Expresses warm, slightly indulgent affection—often for something nostalgic, quirky, or imperfect that you wouldn't necessarily defend on purely rational grounds.",
+      "polish": "mieć słabość do (czegoś/kogoś) / darzyć sentymentem",
+      "clozeSentence": "Even though I usually drink black coffee, I have a soft ___ for overly sweet iced lattes in summer.",
+      "clozeAnswer": "spot",
+      "clozeAccepted": [
+        "spot"
+      ],
+      "clozeHint": "4-letter noun in 'have a soft ___ for'.",
+      "quizPrompt": "I have always felt a warm fondness for cheesy 90s sci-fi movies.",
+      "quizOptions": [
+        "I've always had a soft spot for cheesy 90s sci-fi movies.",
+        "I have a weak place in my heart for cheesy 90s sci-fi movies.",
+        "I harbor enduring sentimental affection toward 1990s science fiction cinema.",
+        "I have a soft point for cheesy 90s sci-fi movies."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Warm, conversational, and self-aware.",
+        "Distorts the English idiom ('soft spot', not 'weak place').",
+        "Overly formal for talking about 90s sci-fi.",
+        "Uses 'spot', not 'point'."
+      ],
+      "sandboxPrompt": "Share a food, place, movie genre, or habit you have an affectionate weakness for.",
+      "sandboxSample": "I have a huge soft spot for rainy Sunday afternoons spent baking bread from scratch.",
+      "sandboxRubric": [
+        "Register: Warm, personal, conversational voice.",
+        "Collocation: Used 'have a soft spot for + noun/-ing' cleanly.",
+        "Cadence: Specific, concrete detail."
+      ],
+      "cefr": "B2-C1",
+      "packId": "starter-everyday"
+    },
+    {
+      "id": "ev-12",
+      "phrase": "I wouldn't put it past [someone]",
+      "ipa": "/aɪ ˈwʊdnt pʊt ɪt pɑːst/",
+      "speechText": "I wouldn't put it past him",
+      "category": "Everyday",
+      "register": "Conversational",
+      "flat": "Knowing what he is like, it would not surprise me at all if he forgot to book the hotel.",
+      "upgraded": "Honestly, I wouldn't put it past him to show up without a reservation.",
+      "dialogues": [
+        {
+          "context": "Friend Group Banter",
+          "lines": [
+            {
+              "speaker": "Kira",
+              "text": "Wait—do you think Leo actually biked 40 kilometers in the rain just for that bakery?"
+            },
+            {
+              "speaker": "Max",
+              "text": "I wouldn't put it past him! That guy is relentless when it comes to sourdough."
+            }
+          ]
+        },
+        {
+          "context": "Workplace Observation",
+          "lines": [
+            {
+              "speaker": "Ben",
+              "text": "Would the vendor really try to sneak a renewal clause into page 19?"
+            },
+            {
+              "speaker": "Claire",
+              "text": "I wouldn't put it past them—let's have legal read every line."
+            }
+          ]
+        }
+      ],
+      "nuance": "Can be used either playfully (about an eccentric friend's bold/chaotic antics) or cautiously (about someone sneaky or unreliable). Always implies 'that behavior fits their track record'.",
+      "polish": "nie zdziwiłbym się, gdyby... / byłby do tego zdolny",
+      "clozeSentence": "He's so competitive that I wouldn't put it ___ him to practice all weekend just for a board game.",
+      "clozeAnswer": "past",
+      "clozeAccepted": [
+        "past"
+      ],
+      "clozeHint": "4-letter preposition in 'put it ___ someone'.",
+      "quizPrompt": "Knowing how impulsive she is, it wouldn't surprise me if she booked a flight tonight.",
+      "quizOptions": [
+        "Honestly, I wouldn't put it past her to book a flight tonight.",
+        "Honestly, I wouldn't place it behind her to book a flight tonight.",
+        "Given her impulsive disposition, nocturnal flight booking is plausible.",
+        "I wouldn't put it over her to book a flight tonight."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Punchy, idiomatic native phrasing with great conversational rhythm.",
+        "Incorrect preposition ('past', not 'behind').",
+        "Sounds like a clinical psychological profile.",
+        "Wrong preposition ('past', not 'over')."
+      ],
+      "sandboxPrompt": "Say that you wouldn't be surprised if a notoriously resourceful or chaotic friend pulled off something unexpected.",
+      "sandboxSample": "I wouldn't put it past Maya to talk her way into backstage passes without knowing anyone.",
+      "sandboxRubric": [
+        "Register: Natural storytelling energy.",
+        "Collocation: Exact structure 'wouldn't put it past [person] to [verb]'.",
+        "Cadence: Clear link to the person's character."
+      ],
+      "cefr": "B2-C1",
+      "packId": "starter-everyday"
+    },
+    {
+      "id": "ev-13",
+      "phrase": "to talk [someone] out of [doing something]",
+      "ipa": "/tuː tɔːk ˈsʌmwʌn aʊt əv/",
+      "speechText": "to talk someone out of something",
+      "category": "Everyday",
+      "register": "Conversational",
+      "flat": "I tried to persuade him not to buy that overpriced sports car.",
+      "upgraded": "I managed to talk him out of buying a car he'd barely drive.",
+      "dialogues": [
+        {
+          "context": "Friend Advice",
+          "lines": [
+            {
+              "speaker": "Hannah",
+              "text": "Are you still thinking of cutting your own bangs tonight?"
+            },
+            {
+              "speaker": "Zoe",
+              "text": "Please talk me out of it before I reach for the kitchen scissors."
+            }
+          ]
+        },
+        {
+          "context": "Travel Planning",
+          "lines": [
+            {
+              "speaker": "Alex",
+              "text": "I was going to pack three pairs of boots for a four-day trip."
+            },
+            {
+              "speaker": "Sam",
+              "text": "Glad I talked you out of that—we're taking regional trains."
+            }
+          ]
+        }
+      ],
+      "nuance": "Paired naturally with its opposite: 'talk someone into' (persuade to do) vs. 'talk someone out of' (persuade NOT to do). Always followed by a noun or -ing gerund, never an infinitive.",
+      "polish": "wyperswadować komuś coś / odwieść kogoś od czegoś",
+      "clozeSentence": "She was ready to quit on the spot, so we spent an hour talking her ___ of sending that email.",
+      "clozeAnswer": "out",
+      "clozeAccepted": [
+        "out"
+      ],
+      "clozeHint": "3-letter particle in 'talk someone ___ of doing sth'.",
+      "quizPrompt": "My sister persuaded me not to sign up for a 6 a.m. winter boot camp.",
+      "quizOptions": [
+        "My sister talked me out of signing up for a 6 a.m. winter boot camp.",
+        "My sister spoke me away from signing up for a 6 a.m. winter boot camp.",
+        "My sister dissuaded me from enrolling in an early-morning winter fitness regimen.",
+        "My sister talked me out to sign up for the boot camp."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Clean, natural, and idiomatic.",
+        "Non-existent phrasal verb.",
+        "Overly formal for chatting about a workout class.",
+        "Requires 'of + -ing', not 'to + infinitive'."
+      ],
+      "sandboxPrompt": "Describe a time you (or a friend) persuaded someone not to make an impulsive purchase or bad decision.",
+      "sandboxSample": "I barely managed to talk my brother out of adopting a husky in a tiny studio apartment.",
+      "sandboxRubric": [
+        "Register: Natural, relatable storytelling tone.",
+        "Collocation: Followed 'talk [person] out of' with a noun or -ing verb.",
+        "Cadence: Clear cause and outcome."
+      ],
+      "cefr": "B2-C1",
+      "packId": "starter-everyday"
+    },
+    {
+      "id": "ev-14",
+      "phrase": "fair enough / to be fair",
+      "ipa": "/feər ɪˈnʌf / tuː biː feə/",
+      "speechText": "fair enough. to be fair",
+      "category": "Everyday",
+      "register": "Nuanced",
+      "flat": "I understand your point and accept that it is reasonable, even if I initially thought differently.",
+      "upgraded": "Fair enough—if you've got an early flight, skipping tonight makes total sense.",
+      "dialogues": [
+        {
+          "context": "Friendly Debate",
+          "lines": [
+            {
+              "speaker": "Liam",
+              "text": "I just prefer reading physical books over Kindles, even when traveling."
+            },
+            {
+              "speaker": "Maya",
+              "text": "Fair enough, nothing beats paper on a long train ride."
+            }
+          ]
+        },
+        {
+          "context": "Defending Someone Gently",
+          "lines": [
+            {
+              "speaker": "Ben",
+              "text": "The waiter took twenty minutes just to bring menus."
+            },
+            {
+              "speaker": "Nadia",
+              "text": "To be fair, he was covering the entire patio by himself."
+            }
+          ]
+        }
+      ],
+      "nuance": "Two essential conversational lubricants: 'Fair enough' concedes a point gracefully without losing face; 'To be fair' introduces a mitigating perspective that softens criticism of someone or something.",
+      "polish": "racja / w sumie słusznie / gwoli sprawiedliwości (szczerze mówiąc)",
+      "clozeSentence": "The app's interface looks a bit dated, though to be ___, it never crashes.",
+      "clozeAnswer": "fair",
+      "clozeAccepted": [
+        "fair"
+      ],
+      "clozeHint": "4-letter adjective in 'to be ___'.",
+      "quizPrompt": "I accept your reasoning—if the train costs twice as much, driving is smarter.",
+      "quizOptions": [
+        "Fair enough—if the train costs twice as much, driving is a no-brainer.",
+        "Sufficiently just—if the train costs twice as much, driving is optimal.",
+        "Your point possesses adequate fairness given the rail pricing.",
+        "Fairly enough—driving is smarter."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Effortless, natural concession used constantly by native speakers.",
+        "Stiff literal translation.",
+        "Robotic.",
+        "Fixed phrase is 'Fair enough', never 'Fairly enough'."
+      ],
+      "sandboxPrompt": "Acknowledge a friend's valid excuse or defend a slow service/product by pointing out a redeeming factor.",
+      "sandboxSample": "The movie started slow, though to be fair, the last forty minutes completely redeemed it.",
+      "sandboxRubric": [
+        "Register: Balanced, reasonable conversational tone.",
+        "Collocation: Used 'Fair enough' (concession) or 'To be fair' (mitigating counterpoint) accurately.",
+        "Cadence: Natural flow."
+      ],
+      "cefr": "B2-C1",
+      "packId": "starter-everyday"
+    },
+    {
+      "id": "ev-15",
+      "phrase": "you beat me to it",
+      "ipa": "/juː biːt miː tuː ɪt/",
+      "speechText": "you beat me to it",
+      "category": "Everyday",
+      "register": "Casual",
+      "flat": "You already did the exact thing that I was just about to do.",
+      "upgraded": "Ha, you beat me to it—I was literally typing that exact message.",
+      "dialogues": [
+        {
+          "context": "Slack / Group Chat",
+          "lines": [
+            {
+              "speaker": "Sam",
+              "text": "Just dropped the updated Figma link in the channel."
+            },
+            {
+              "speaker": "Kira",
+              "text": "You beat me to it! Was just about to paste it."
+            }
+          ]
+        },
+        {
+          "context": "Office Kitchen",
+          "lines": [
+            {
+              "speaker": "Alex",
+              "text": "I put a fresh pot of coffee on."
+            },
+            {
+              "speaker": "Chloe",
+              "text": "You beat me to it—lifesaver!"
+            }
+          ]
+        }
+      ],
+      "nuance": "A warm, high-frequency reaction whenever someone shares a link, brings up a point, or completes a small task seconds before you were going to.",
+      "polish": "wyprzedziłeś mnie / uprzedziłeś mnie",
+      "clozeSentence": "I was just reaching for the check, and you ___ me to it!",
+      "clozeAnswer": "beat",
+      "clozeAccepted": [
+        "beat"
+      ],
+      "clozeHint": "4-letter verb (same form in present and past) in 'you ___ me to it'.",
+      "quizPrompt": "You already asked the exact question I was planning to bring up.",
+      "quizOptions": [
+        "You beat me to it—that was the exact question on my mind.",
+        "You defeated me toward it—that was my exact question.",
+        "You preempted my inquiry chronologically.",
+        "You beat me on it—that was my exact question."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Natural, friendly, and immediate.",
+        "Literal distortion of 'beat'.",
+        "Unnaturally stiff.",
+        "Requires 'to it', not 'on it'."
+      ],
+      "sandboxPrompt": "Reply to a colleague or friend who just shared an article or link you were about to send them.",
+      "sandboxSample": "Haha, you beat me to it—I literally had that tab open to send you!",
+      "sandboxRubric": [
+        "Register: Upbeat, conversational reaction.",
+        "Collocation: Exact phrasing 'you beat me to it'.",
+        "Cadence: Natural follow-up detail."
+      ],
+      "cefr": "B2-C1",
+      "packId": "starter-everyday"
+    },
+    {
+      "id": "ev-16",
+      "phrase": "to cut a long story short",
+      "ipa": "/tuː kʌt ə lɒŋ ˈstɔːri ʃɔːt/",
+      "speechText": "to cut a long story short",
+      "category": "Everyday",
+      "register": "Conversational",
+      "flat": "To skip all the unnecessary details and tell you the final outcome quickly, we missed the ferry.",
+      "upgraded": "Anyway, to cut a long story short, we ended up taking a night bus instead.",
+      "dialogues": [
+        {
+          "context": "Dinner Party · Anecdote",
+          "lines": [
+            {
+              "speaker": "Dan",
+              "text": "First the taxi got a flat, then the ticket machine froze, and to cut a long story short, we boarded with 30 seconds to spare."
+            },
+            {
+              "speaker": "Ella",
+              "text": "No way—I would have been sweating bullets!"
+            }
+          ]
+        },
+        {
+          "context": "Catch-up Call",
+          "lines": [
+            {
+              "speaker": "Rob",
+              "text": "How did the apartment hunt go?"
+            },
+            {
+              "speaker": "Nina",
+              "text": "To cut a long story short, the first three fell through, but we just signed on a sunny place near the park."
+            }
+          ]
+        }
+      ],
+      "nuance": "Dialect note: UK English prefers 'to cut a long story short', while US English frequently says 'to make a long story short' (or simply 'long story short, ...'). All three are great pacing tools.",
+      "polish": "krótko mówiąc / skracając długą historię",
+      "clozeSentence": "We went back and forth with the airline for three days, and to ___ a long story short, they refunded the whole ticket.",
+      "clozeAnswer": "cut",
+      "clozeAccepted": [
+        "cut",
+        "make"
+      ],
+      "clozeHint": "3-letter verb in 'to ___ a long story short' (UK) or 'make' (US).",
+      "quizPrompt": "Skipping all the boring administrative steps, our visa was finally approved this morning.",
+      "quizOptions": [
+        "To cut a long story short, our visa finally came through this morning.",
+        "To slice a lengthy narrative brief, our visa was approved.",
+        "Abbreviating the protracted bureaucratic sequence, approval occurred today.",
+        "To cut long story short, our visa came through."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Smooth, natural storytelling transition.",
+        "Distorts the verb ('cut' or 'make', never 'slice').",
+        "Painfully academic.",
+        "Missing the indefinite article 'a' before 'long story'."
+      ],
+      "sandboxPrompt": "Summarize a complicated travel delay or customer support hassle in one crisp punchline sentence.",
+      "sandboxSample": "After two hours on hold and three transfers, to cut a long story short, they waived the entire fee.",
+      "sandboxRubric": [
+        "Register: Engaging storytelling cadence.",
+        "Collocation: Used 'to cut/make a long story short' or 'long story short' cleanly.",
+        "Cadence: Lands on a clear, punchy outcome."
+      ],
+      "cefr": "B2-C1",
+      "packId": "starter-everyday"
+    }
+  ]
+}
