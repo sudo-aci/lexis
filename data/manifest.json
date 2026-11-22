@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-22T17:15:47Z",
+  "totalItems": 48,
+  "packs": [
+    {
+      "id": "starter-everyday",
+      "name": "Starter · Everyday English",
+      "description": "16 high-frequency conversational softeners, reactions, and natural everyday phrasing.",
+      "category": "Everyday",
+      "cefr": "B2–C1",
+      "version": "1.0.0",
+      "source": "Lexis Curated Starter",
+      "file": "data/packs/starter-everyday.json",
+      "itemCount": 16,
+      "sizeBytes": 48938,
+      "sha256": "b483aa651c19fab8",
+      "default": true
+    },
+    {
+      "id": "starter-workplace",
+      "name": "Starter · Modern Workplace",
+      "description": "15 diplomatic Slack, meeting, and alignment phrases without stiff corporate jargon.",
+      "category": "Workplace",
+      "cefr": "B2–C1",
+      "version": "1.0.0",
+      "source": "Lexis Curated Starter",
+      "file": "data/packs/starter-workplace.json",
+      "itemCount": 15,
+      "sizeBytes": 46775,
+      "sha256": "831fc7380d81d453",
+      "default": true
+    },
+    {
+      "id": "starter-syntax",
+      "name": "Starter · Syntax & Flow",
+      "description": "5 native-sounding sentence structures, clefts, and discourse pivots.",
+      "category": "Syntax",
+      "cefr": "C1",
+      "version": "1.0.0",
+      "source": "Lexis Curated Starter",
+      "file": "data/packs/starter-syntax.json",
+      "itemCount": 5,
+      "sizeBytes": 17175,
+      "sha256": "0624ad9a19e22c74",
+      "default": true
+    },
+    {
+      "id": "expansion-precision-c1",
+      "name": "Expansion · Precision & Pushback (C1)",
+      "description": "12 high-leverage idioms, soft pushback phrases, and natural discourse patterns for fluent English.",
+      "category": "Mixed",
+      "cefr": "C1",
+      "version": "1.0.0",
+      "source": "Lexis Expansion Pack",
+      "file": "data/packs/expansion-precision-c1.json",
+      "itemCount": 12,
+      "sizeBytes": 34371,
+      "sha256": "b669a5dd05d3a6ff",
+      "default": false
+    }
+  ]
+}
