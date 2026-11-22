@@ -1160,17 +1160,27 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
           <input id="library-search-input" type="text" oninput="debouncedRenderLibrary()" placeholder="Search phrases, textbook baselines, dialogues, nuances, or Polish equivalents... (Press /)" class="w-full pl-10 pr-4 py-3 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card text-sm placeholder-stone-400 dark:placeholder-stone-500 focus:outline-none focus:border-[#C46548] dark:focus:border-[#E08568] transition-colors min-h-[44px]">
         </div>
 
-        <!-- Category, Status & Pack Filters -->
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 pt-1">
-          <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
-            <span class="text-[11px] font-mono uppercase text-stone-400 mr-1 shrink-0">Category:</span>
-            <button data-lcat="All" onclick="setLibraryFilter('category', 'All')" class="lcat-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap min-h-[38px]">All</button>
-            <button data-lcat="Everyday" onclick="setLibraryFilter('category', 'Everyday')" class="lcat-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap min-h-[38px]">Everyday</button>
-            <button data-lcat="Workplace" onclick="setLibraryFilter('category', 'Workplace')" class="lcat-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap min-h-[38px]">Workplace</button>
-            <button data-lcat="Syntax" onclick="setLibraryFilter('category', 'Syntax')" class="lcat-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap min-h-[38px]">Syntax</button>
+        <!-- Category, Level, Status & Pack Filters -->
+        <div class="flex flex-col gap-3 pt-1">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+            <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+              <span class="text-[11px] font-mono uppercase text-stone-400 mr-1 shrink-0">Category:</span>
+              <button data-lcat="All" onclick="setLibraryFilter('category', 'All')" class="lcat-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap min-h-[38px]">All</button>
+              <button data-lcat="Everyday" onclick="setLibraryFilter('category', 'Everyday')" class="lcat-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap min-h-[38px]">Everyday</button>
+              <button data-lcat="Workplace" onclick="setLibraryFilter('category', 'Workplace')" class="lcat-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap min-h-[38px]">Workplace</button>
+              <button data-lcat="Syntax" onclick="setLibraryFilter('category', 'Syntax')" class="lcat-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap min-h-[38px]">Syntax</button>
+            </div>
+
+            <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+              <span class="text-[11px] font-mono uppercase text-stone-400 mr-1 shrink-0">Level:</span>
+              <button data-lcefr="All" onclick="setLibraryFilter('cefr', 'All')" class="lcefr-btn px-3 py-1.5 rounded-lg text-xs font-mono font-medium whitespace-nowrap min-h-[38px]">All</button>
+              <button data-lcefr="B2-C1" onclick="setLibraryFilter('cefr', 'B2-C1')" class="lcefr-btn px-3 py-1.5 rounded-lg text-xs font-mono font-medium whitespace-nowrap min-h-[38px]">B2–C1</button>
+              <button data-lcefr="C1" onclick="setLibraryFilter('cefr', 'C1')" class="lcefr-btn px-3 py-1.5 rounded-lg text-xs font-mono font-medium whitespace-nowrap min-h-[38px]">C1</button>
+              <button data-lcefr="C2" onclick="setLibraryFilter('cefr', 'C2')" class="lcefr-btn px-3 py-1.5 rounded-lg text-xs font-mono font-medium whitespace-nowrap min-h-[38px]">C2</button>
+            </div>
           </div>
 
-          <div class="flex flex-wrap items-center gap-3">
+          <div class="flex flex-wrap items-center justify-between gap-3">
             <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
               <span class="text-[11px] font-mono uppercase text-stone-400 mr-1 shrink-0">Status:</span>
               <button data-lstatus="All" onclick="setLibraryFilter('status', 'All')" class="lstatus-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap min-h-[38px]">All</button>
@@ -1869,6 +1879,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     "speechText": "clean spoken text for text-to-speech",
     "category": "Everyday" | "Workplace" | "Syntax",
     "register": "Casual" | "Conversational" | "Workplace" | "Diplomatic" | "Nuanced",
+    "cefr": "B2-C1" | "C1" | "C2",
     "flat": "functional/textbook sentence a non-native might default to",
     "upgraded": "natural, idiomatic native phrasing of that exact thought",
     "dialogues": [
@@ -1945,6 +1956,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       libraryVisibleCount: LIBRARY_PAGE_SIZE,
       libraryFilters: {
         category: 'All',
+        cefr: 'All',
         status: 'All',
         pack: 'All'
       },
@@ -2663,7 +2675,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
               <div class="flex flex-wrap items-center gap-1.5">
                 <span class="font-medium text-sm text-paper-ink dark:text-charcoal-cream">${escapeHtml(pack.name)}</span>
                 <span class="px-2 py-0.5 rounded text-[10px] font-mono border ${getCategoryPillClass(pack.category)}">${escapeHtml(pack.category || 'Mixed')}</span>
-                <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-stone-500/10 text-stone-600 dark:text-stone-300">${escapeHtml(pack.cefr || 'B2-C1')}</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono border ${getCefrPillClass(pack.cefr || 'B2-C1')}">${escapeHtml(pack.cefr || 'B2-C1')}</span>
                 ${installed ? `<span class="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-500/20">Installed</span>` : ''}
                 ${hasUpdate ? `<span class="px-2 py-0.5 rounded text-[10px] font-mono bg-amber-500/15 text-amber-700 dark:text-amber-300">Update available</span>` : ''}
               </div>
@@ -2882,6 +2894,21 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     }
 
     // ==================== SHARED PHRASE CARD COMPONENT ====================
+    function normalizeCefrTag(cefr) {
+      return String(cefr || 'B2-C1').trim().toUpperCase().replace(/[–—]/g, '-');
+    }
+
+    function getCefrPillClass(cefr) {
+      const tag = normalizeCefrTag(cefr);
+      if (tag.includes('C2')) {
+        return 'bg-[#C46548]/12 text-[#A84B30] dark:text-[#E58E73] border-[#C46548]/30';
+      }
+      if (tag === 'C1') {
+        return 'bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border-indigo-500/25';
+      }
+      return 'bg-stone-500/10 text-stone-600 dark:text-stone-300 border-stone-500/20';
+    }
+
     function getCategoryPillClass(cat) {
       if (cat === 'Everyday') return 'bg-sky-500/10 text-sky-700 dark:text-sky-300 border-sky-500/20';
       if (cat === 'Workplace') return 'bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-500/20';
@@ -2939,12 +2966,13 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       return `
         <article class="rounded-2xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card p-5 sm:p-7 transition-all shadow-sm flex flex-col justify-between">
           <div>
-            <!-- Top Row: Category + Register + US/UK Audio Buttons + 3-State Mastery Button -->
+            <!-- Top Row: Category + CEFR + Register + US/UK Audio Buttons + 3-State Mastery Button -->
             <div class="flex flex-wrap items-center justify-between gap-2.5 pb-4 border-b border-paper-border dark:border-charcoal-border">
               <div class="flex items-center gap-2 flex-wrap">
                 <span class="px-2.5 py-1 rounded-md text-[11px] font-mono font-medium border ${getCategoryPillClass(item.category)}">
                   ${escapeHtml(item.category)}
                 </span>
+                ${item.cefr ? `<span class="px-2 py-1 rounded-md text-[11px] font-mono font-medium border ${getCefrPillClass(item.cefr)}">${escapeHtml(item.cefr)}</span>` : ''}
                 <span class="px-2.5 py-1 rounded-md text-[11px] font-mono border border-paper-border dark:border-charcoal-border bg-paper-subtle/70 dark:bg-charcoal-subtle/70 text-stone-600 dark:text-stone-300">
                   ${escapeHtml(item.register || 'Conversational')}
                 </span>
@@ -3574,6 +3602,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       };
 
       syncPillSet('.lcat-btn', 'data-lcat', appState.libraryFilters.category);
+      syncPillSet('.lcefr-btn', 'data-lcefr', appState.libraryFilters.cefr);
       syncPillSet('.lstatus-btn', 'data-lstatus', appState.libraryFilters.status);
 
       const packSelect = document.getElementById('library-pack-filter');
@@ -3585,6 +3614,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
 
       const filtered = appState.items.filter(item => {
         if (appState.libraryFilters.category !== 'All' && item.category !== appState.libraryFilters.category) return false;
+        if (appState.libraryFilters.cefr !== 'All' && normalizeCefrTag(item.cefr) !== normalizeCefrTag(appState.libraryFilters.cefr)) return false;
         if (appState.libraryFilters.status !== 'All' && item.status !== appState.libraryFilters.status) return false;
         if (appState.libraryFilters.pack !== 'All' && (item.packId || 'custom') !== appState.libraryFilters.pack) return false;
 
@@ -3647,7 +3677,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
                   <span class="px-2 py-0.5 rounded text-[11px] font-mono border ${getCategoryPillClass(item.category)}">
                     ${escapeHtml(item.category)}
                   </span>
-                  ${item.cefr ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-mono bg-stone-500/10 text-stone-500 dark:text-stone-400">${escapeHtml(item.cefr)}</span>` : ''}
+                  ${item.cefr ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-mono border ${getCefrPillClass(item.cefr)}">${escapeHtml(item.cefr)}</span>` : ''}
                 </div>
 
                 <div class="flex items-center gap-1.5">
@@ -3700,7 +3730,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     function resetLibraryFilters() {
       const search = document.getElementById('library-search-input');
       if (search) search.value = '';
-      appState.libraryFilters = { category: 'All', status: 'All', pack: 'All' };
+      appState.libraryFilters = { category: 'All', cefr: 'All', status: 'All', pack: 'All' };
       appState.libraryVisibleCount = LIBRARY_PAGE_SIZE;
       renderLibrary();
     }

@@ -8,13 +8,20 @@ from typing import Any, Iterable
 
 VALID_CATEGORIES = ("Everyday", "Workplace", "Syntax")
 VALID_REGISTERS = ("Casual", "Conversational", "Workplace", "Diplomatic", "Nuanced")
-VALID_CEFR = ("A1", "A2", "B1", "B2", "B2-C1", "C1", "C2")
+VALID_CEFR = ("A1", "A2", "B1", "B2", "B2-C1", "C1", "C1-C2", "C2")
 
 STOPWORDS = {
     "a", "an", "the", "to", "of", "in", "on", "at", "for", "with", "it", "its",
     "it's", "is", "are", "be", "my", "your", "our", "their", "this", "that",
     "someone", "something", "one's", "i", "you", "we", "they", "me", "him", "her",
 }
+
+
+def normalize_cefr(raw_cefr: Any, default: str = "B2-C1") -> str:
+    if not isinstance(raw_cefr, str) or not raw_cefr.strip():
+        return default
+    cleaned = re.sub(r"[–—\s]+", "-", raw_cefr.strip().upper())
+    return cleaned if cleaned in VALID_CEFR else cleaned
 
 
 def make_stable_id(prefix: str, phrase: str) -> str:
@@ -131,7 +138,7 @@ def normalize_item(
     item_id = str(raw.get("id") or make_stable_id(id_prefix, phrase)).strip()
     category = normalize_category(raw.get("category"), default=default_category)
     register = normalize_register(raw.get("register"), default="Workplace" if category == "Workplace" else "Conversational")
-    cefr = str(raw.get("cefr") or "B2-C1").strip()
+    cefr = normalize_cefr(raw.get("cefr"), default="B2-C1")
 
     ipa_raw = str(raw.get("ipa") or "").strip()
     if ipa_raw and not (ipa_raw.startswith("/") or ipa_raw.startswith("[")):

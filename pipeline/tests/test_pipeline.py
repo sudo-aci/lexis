@@ -198,6 +198,17 @@ class TestRepoPacksIntegrity(unittest.TestCase):
 
         self.assertEqual(total, manifest["totalItems"])
 
+    def test_c2_pack_present_and_balanced(self) -> None:
+        c2_file = REPO_ROOT / "data" / "packs" / "expansion-mastery-c2.json"
+        self.assertTrue(c2_file.exists(), "C2 mastery pack must exist")
+        doc = json.loads(c2_file.read_text(encoding="utf-8"))
+        self.assertEqual(doc["pack"]["cefr"], "C2")
+        items = doc["items"]
+        self.assertEqual(len(items), 18)
+        self.assertTrue(all(i.get("cefr") == "C2" for i in items))
+        cats = {i["category"] for i in items}
+        self.assertEqual(cats, {"Everyday", "Workplace", "Syntax"})
+
 
 if __name__ == "__main__":
     unittest.main()

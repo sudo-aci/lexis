@@ -1,0 +1,1004 @@
+{
+  "schemaVersion": 1,
+  "pack": {
+    "id": "expansion-mastery-c2",
+    "name": "Mastery · C2 Precision & Discourse",
+    "description": "18 natural C2 idioms, executive framing phrases, and inverted/concessive syntax patterns for effortless near-native fluency.",
+    "category": "Mixed",
+    "cefr": "C2",
+    "version": "1.0.0",
+    "source": "Lexis C2 Mastery Pack"
+  },
+  "items": [
+    {
+      "id": "c2-ev-01",
+      "phrase": "not by a long shot",
+      "ipa": "/nɒt baɪ ə lɒŋ ʃɒt/",
+      "speechText": "not by a long shot",
+      "category": "Everyday",
+      "register": "Conversational",
+      "cefr": "C2",
+      "packId": "expansion-mastery-c2",
+      "flat": "No, we are nowhere near finished with the renovation yet.",
+      "upgraded": "Are we done with the kitchen? Not by a long shot—we haven't even tiled the backsplash.",
+      "dialogues": [
+        {
+          "context": "Coffee Chat · Marathon Training",
+          "lines": [
+            { "speaker": "Marek", "text": "Was that the hardest trail run you've ever done?" },
+            { "speaker": "Chloe", "text": "Not by a long shot—wait until you see the ridge climb in Zakopane." }
+          ]
+        },
+        {
+          "context": "Post-Launch Debrief",
+          "lines": [
+            { "speaker": "Devon", "text": "So is the migration completely behind us now?" },
+            { "speaker": "Kasia", "text": "Not by a long shot, though the scariest part is over." }
+          ]
+        }
+      ],
+      "nuance": "Punchy, idiomatic way to reject an assumption emphatically ('nowhere close'). Works both as a standalone reply ('Not by a long shot.') and tacked onto the end of a negative clause ('It's not the worst film I've seen, not by a long shot.').",
+      "polish": "ani trochę / daleko do tego / w żadnym wypadku",
+      "clozeSentence": "The deal isn't over yet—not by a long ___.",
+      "clozeAnswer": "shot",
+      "clozeAccepted": ["shot"],
+      "clozeHint": "4-letter noun completing the idiom meaning 'nowhere near'.",
+      "quizPrompt": "This isn't even close to the biggest challenge we'll face this year.",
+      "quizOptions": [
+        "This isn't our biggest challenge this year—not by a long shot.",
+        "This isn't our biggest challenge this year—not by a far throw.",
+        "By no extended distance is this our primary difficulty of the year.",
+        "This isn't our biggest challenge, not for a long shot."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Sharp, natural, and idiomatic emphatic negation.",
+        "Broken idiom ('long shot', never 'far throw').",
+        "Overly theatrical and unnatural.",
+        "Wrong preposition ('by', not 'for')."
+      ],
+      "sandboxPrompt": "Tell a friend that learning a second language is nowhere near as simple as a 30-day app promises.",
+      "sandboxSample": "You're not going to reach fluency in thirty days—not by a long shot—but you can build a real habit.",
+      "sandboxRubric": [
+        "Register: Confident, conversational emphasis.",
+        "Collocation: Exact wording 'not by a long shot'.",
+        "Cadence: Clean contrast or follow-up qualification."
+      ]
+    },
+    {
+      "id": "c2-ev-02",
+      "phrase": "a moot point",
+      "ipa": "/ə muːt pɔɪnt/",
+      "speechText": "a moot point",
+      "category": "Everyday",
+      "register": "Nuanced",
+      "cefr": "C2",
+      "packId": "expansion-mastery-c2",
+      "flat": "Debating which restaurant to pick doesn't matter anymore because both are closed.",
+      "upgraded": "Whether we take the highway or the coastal road is a moot point now—the ferry's already sold out.",
+      "dialogues": [
+        {
+          "context": "Apartment Hunting",
+          "lines": [
+            { "speaker": "Ola", "text": "I'm still wondering if the balcony was too small on the Elm Street place." },
+            { "speaker": "Sam", "text": "Honestly it's a moot point—the agent texted that someone signed this morning." }
+          ]
+        },
+        {
+          "context": "Tech Discussion",
+          "lines": [
+            { "speaker": "Piotr", "text": "Should we worry about supporting Internet Explorer?" },
+            { "speaker": "Hannah", "text": "That's a moot point—our analytics show literally zero sessions." }
+          ]
+        }
+      ],
+      "nuance": "In modern US and international English, 'a moot point' almost always means 'practically irrelevant because events have overtaken it' (though in older UK usage it can also mean 'open to debate'). Never spell or pronounce it 'mute point'!",
+      "polish": "kwestia bezprzedmiotowa / nie ma już o czym mówić",
+      "clozeSentence": "Since the client already canceled the event, the seating chart is a ___ point.",
+      "clozeAnswer": "moot",
+      "clozeAccepted": ["moot"],
+      "clozeHint": "4-letter adjective (rhymes with 'boot', not 'mute').",
+      "quizPrompt": "Arguing about who should drive is pointless now that the trip is canceled.",
+      "quizOptions": [
+        "Who drives is a moot point now that the trip's off.",
+        "Who drives is a mute point now that the trip is canceled.",
+        "The question of driving has become an unsubjected issue.",
+        "Who drives is a dead point since we aren't going."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Precise, idiomatic C2 phrasing.",
+        "Classic eggcorn error: 'mute' means silent, not 'moot'.",
+        "Calque from Polish 'bezprzedmiotowy'.",
+        "Incorrect adjective collocation ('moot point', not 'dead point')."
+      ],
+      "sandboxPrompt": "Point out that a debate over pricing tiers doesn't matter anymore because the feature is going to be free.",
+      "sandboxSample": "Which tier it belongs in is a moot point now—we decided to include offline search for every user.",
+      "sandboxRubric": [
+        "Register: Crisp, clear, non-dismissive.",
+        "Collocation: Exact spelling 'a moot point' (never 'mute').",
+        "Cadence: Briefly states why the question no longer applies."
+      ]
+    },
+    {
+      "id": "c2-ev-03",
+      "phrase": "take it in stride",
+      "ipa": "/teɪk ɪt ɪn straɪd/",
+      "speechText": "take it in stride",
+      "category": "Everyday",
+      "register": "Conversational",
+      "cefr": "C2",
+      "packId": "expansion-mastery-c2",
+      "flat": "She stayed calm and handled the unexpected setback without letting it upset her.",
+      "upgraded": "The airline lost her luggage before the keynote, and she just took it in stride.",
+      "dialogues": [
+        {
+          "context": "Dinner · Catching Up",
+          "lines": [
+            { "speaker": "Maya", "text": "How did Tomasz handle having his flight rerouted through Frankfurt?" },
+            { "speaker": "Liam", "text": "Took it completely in stride—grabbed a pretzel, opened his laptop, and finished his slides." }
+          ]
+        },
+        {
+          "context": "Feedback Conversation",
+          "lines": [
+            { "speaker": "Elena", "text": "I was nervous giving such blunt edits on her first draft." },
+            { "speaker": "Noah", "text": "Don't be—she takes tough feedback in stride better than anyone I know." }
+          ]
+        }
+      ],
+      "nuance": "A vivid running metaphor: absorbing a bump or surprise without breaking pace. In British English you'll frequently hear 'take it in one's stride' ('she took it in her stride'); US English prefers 'take it in stride'.",
+      "polish": "przyjąć coś ze spokojem / nie wybić się z rytmu",
+      "clozeSentence": "Even when the demo crashed live on stage, she took the whole thing in ___.",
+      "clozeAnswer": "stride",
+      "clozeAccepted": ["stride"],
+      "clozeHint": "6-letter noun meaning a long steady step.",
+      "quizPrompt": "He dealt with the sudden schedule change calmly and without losing composure.",
+      "quizOptions": [
+        "He took the last-minute schedule change completely in stride.",
+        "He took the sudden schedule change in his walk.",
+        "He absorbed the schedule perturbation with unruffled equanimity.",
+        "He took the schedule change on stride without complaining."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Idiomatic, vivid, and completely natural.",
+        "Wrong noun ('stride', not 'walk').",
+        "Way too pompous for everyday speech.",
+        "Wrong preposition ('in stride', never 'on stride')."
+      ],
+      "sandboxPrompt": "Describe someone calmly handling an unexpected rainstorm during an outdoor party.",
+      "sandboxSample": "When the downpour hit mid-dinner, the hosts took it in stride and turned the hallway into a candlelit picnic.",
+      "sandboxRubric": [
+        "Register: Warm, admiring, vivid.",
+        "Collocation: 'take [something] in (one's) stride'.",
+        "Cadence: Shows concrete calm composure."
+      ]
+    },
+    {
+      "id": "c2-ev-04",
+      "phrase": "for all intents and purposes",
+      "ipa": "/fɔːr ɔːl ɪnˈtents ænd ˈpɜːpəsɪz/",
+      "speechText": "for all intents and purposes",
+      "category": "Everyday",
+      "register": "Nuanced",
+      "cefr": "C2",
+      "packId": "expansion-mastery-c2",
+      "flat": "Even though it isn't official on paper yet, in practice the project is already finished.",
+      "upgraded": "The contract isn't notarized until Monday, but for all intents and purposes, the studio is ours.",
+      "dialogues": [
+        {
+          "context": "City Walk · Neighborhood Change",
+          "lines": [
+            { "speaker": "Zosia", "text": "Is the old cinema still technically open?" },
+            { "speaker": "Ben", "text": "Only one screen runs on Sundays, so for all intents and purposes it's shut." }
+          ]
+        },
+        {
+          "context": "Product Sync",
+          "lines": [
+            { "speaker": "Chris", "text": "Does v1 still have active traffic?" },
+            { "speaker": "Nina", "text": "Under ten requests a day—for all intents and purposes, it's sunset." }
+          ]
+        }
+      ],
+      "nuance": "Bridges the gap between technicality and practical reality ('in every practical sense'). Watch the exact wording—a notoriously common native slip is writing 'for all intensive purposes', which is incorrect.",
+      "polish": "w praktyce / właściwie rzecz biorąc / pod każdym praktycznym względem",
+      "clozeSentence": "He still holds an advisory title, but for all ___ and purposes he's retired.",
+      "clozeAnswer": "intents",
+      "clozeAccepted": ["intents"],
+      "clozeHint": "7-letter plural noun meaning aims or intentions (not 'intensive').",
+      "quizPrompt": "Technically the legacy server is still running, yet in every practical way it's dead.",
+      "quizOptions": [
+        "For all intents and purposes, the legacy server is already decommissioned.",
+        "For all intensive purposes, the legacy server is already gone.",
+        "To every practical intention and aim, the server has ceased functioning.",
+        "In all intents and purposes, the old server is dead."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Exact fixed expression used with crisp precision.",
+        "Famous eggcorn error ('intents and purposes', never 'intensive purposes').",
+        "Wordy literal paraphrase.",
+        "Wrong opening preposition ('for', not 'in')."
+      ],
+      "sandboxPrompt": "Explain that a neighborhood café has effectively become your remote office.",
+      "sandboxSample": "I'm there four mornings a week, so for all intents and purposes the corner roastery is my office.",
+      "sandboxRubric": [
+        "Register: Articulate, mildly dry/observational.",
+        "Collocation: Exact fixed phrase 'for all intents and purposes'.",
+        "Cadence: Smooth transition from technical truth to practical reality."
+      ]
+    },
+    {
+      "id": "c2-ev-05",
+      "phrase": "second nature",
+      "ipa": "/ˌsekənd ˈneɪtʃə/",
+      "speechText": "second nature",
+      "category": "Everyday",
+      "register": "Conversational",
+      "cefr": "C2",
+      "packId": "expansion-mastery-c2",
+      "flat": "After a few months of practice, keyboard shortcuts became completely automatic for me.",
+      "upgraded": "Switching registers felt awkward at first, but after a year in London it became second nature.",
+      "dialogues": [
+        {
+          "context": "Climbing Gym",
+          "lines": [
+            { "speaker": "Kuba", "text": "How do you tie that figure-eight knot without even looking?" },
+            { "speaker": "Sara", "text": "Do it five hundred times and it becomes second nature." }
+          ]
+        },
+        {
+          "context": "Language Learning",
+          "lines": [
+            { "speaker": "Ewa", "text": "Do you still mentally translate prepositions from Polish?" },
+            { "speaker": "Tomek", "text": "Not with everyday phrases anymore—those are pretty much second nature now." }
+          ]
+        }
+      ],
+      "nuance": "Used with 'be' or 'become' (no article 'a'! Say 'becomes second nature', not 'becomes a second nature'). Often followed by 'to [someone]': 'Checking edge cases is second nature to her.'",
+      "polish": "druga natura / wejść w krew / robić coś odruchowo",
+      "clozeSentence": "After six months of driving a manual car, shifting gears became ___ nature to him.",
+      "clozeAnswer": "second",
+      "clozeAccepted": ["second"],
+      "clozeHint": "Ordinal number completing the idiom.",
+      "quizPrompt": "With enough repetition, phrasing things diplomatically will feel completely effortless.",
+      "quizOptions": [
+        "With enough repetition, diplomatic phrasing becomes second nature.",
+        "With enough repetition, diplomatic phrasing becomes a second nature.",
+        "After practice, diplomatic phrasing enters into your blood.",
+        "Diplomatic phrasing turns into secondary nature over time."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Clean, idiomatic, and omits the article correctly.",
+        "Adding 'a' sounds subtly non-native here.",
+        "Direct Polish calque ('wejść w krew').",
+        "'Secondary' breaks the fixed idiom ('second nature')."
+      ],
+      "sandboxPrompt": "Describe a skill that felt intimidating at first but now happens automatically.",
+      "sandboxSample": "Reading architectural blueprints looked like noise in my first job, and now it's second nature.",
+      "sandboxRubric": [
+        "Register: Natural, reflective.",
+        "Collocation: 'be/become second nature (to someone)' with zero article.",
+        "Cadence: Crisp contrast between early effort and current ease."
+      ]
+    },
+    {
+      "id": "c2-ev-06",
+      "phrase": "on a whim",
+      "ipa": "/ɒn ə wɪm/",
+      "speechText": "on a whim",
+      "category": "Everyday",
+      "register": "Casual",
+      "cefr": "C2",
+      "packId": "expansion-mastery-c2",
+      "flat": "I bought the train ticket suddenly without planning it ahead of time.",
+      "upgraded": "We booked a Friday-night ferry to Gdańsk purely on a whim, and it ended up being our favorite trip.",
+      "dialogues": [
+        {
+          "context": "Housewarming",
+          "lines": [
+            { "speaker": "Anna", "text": "Where on earth did you find that vintage espresso machine?" },
+            { "speaker": "Luke", "text": "Wandered into a flea market on a whim last Sunday." }
+          ]
+        },
+        {
+          "context": "Career Story",
+          "lines": [
+            { "speaker": "Dan", "text": "Did you plan on moving into product design?" },
+            { "speaker": "Maja", "text": "Not really—I took a weekend workshop on a whim and got hooked." }
+          ]
+        }
+      ],
+      "nuance": "Captures lighthearted spontaneity without implying recklessness. Notice the preposition: always 'on a whim' (never 'by a whim' or 'from a whim').",
+      "polish": "pod wpływem impulsu / z czystego kaprysu / ot tak, spontanicznie",
+      "clozeSentence": "She signed up for a pottery class ___ a whim and ended up making half her dinnerware.",
+      "clozeAnswer": "on",
+      "clozeAccepted": ["on"],
+      "clozeHint": "2-letter preposition pairing with 'a whim'.",
+      "quizPrompt": "I impulsively decided to try an unfamiliar sourdough recipe at midnight.",
+      "quizOptions": [
+        "I tried a new sourdough recipe at midnight purely on a whim.",
+        "I tried a new sourdough recipe at midnight out of a caprice.",
+        "I decided to bake sourdough by a sudden whim.",
+        "I baked sourdough under the impulse of a whim."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Effortless, natural, and idiomatic.",
+        "Literal calque from Polish 'z kaprysu' ('caprice' feels archaic).",
+        "Wrong preposition ('on a whim', not 'by a whim').",
+        "Wordy and influenced by 'pod wpływem impulsu'."
+      ],
+      "sandboxPrompt": "Share something fun you bought, visited, or tried spontaneously.",
+      "sandboxSample": "I picked up a cheap film camera on a whim before our Lisbon trip, and those photos turned out better than my phone shots.",
+      "sandboxRubric": [
+        "Register: Light, storytelling-friendly.",
+        "Collocation: Exact preposition 'on a whim'.",
+        "Cadence: Pairs the spontaneous act with a quick payoff."
+      ]
+    },
+    {
+      "id": "c2-wp-01",
+      "phrase": "by the same token",
+      "ipa": "/baɪ ðə seɪm ˈtəʊkən/",
+      "speechText": "by the same token",
+      "category": "Workplace",
+      "register": "Diplomatic",
+      "cefr": "C2",
+      "packId": "expansion-mastery-c2",
+      "flat": "For the exact same reason, we also need to keep the mobile layout clean.",
+      "upgraded": "We shouldn't over-engineer v1; by the same token, we can't cut corners on data integrity.",
+      "dialogues": [
+        {
+          "context": "Architecture Review",
+          "lines": [
+            { "speaker": "Staff Eng", "text": "Caching packs locally makes search instant." },
+            { "speaker": "Tech Lead", "text": "Agreed—and by the same token, we need a clean cache-invalidation story when packs update." }
+          ]
+        },
+        {
+          "context": "Hiring Debrief",
+          "lines": [
+            { "speaker": "VP", "text": "Strong ownership is non-negotiable for this role." },
+            { "speaker": "Director", "text": "Yes, and by the same token, we have to give them real autonomy once they join." }
+          ]
+        }
+      ],
+      "nuance": "One of the sharpest C2 discourse connectors for showing logical symmetry—especially when balancing a principle with its logical counterpart. Much smoother than repeating 'for the same reason'.",
+      "polish": "na tej samej zasadzie / z tego samego powodu / analogicznie",
+      "clozeSentence": "You can't demand faster turnaround times and, by the same ___, add three extra approval gates.",
+      "clozeAnswer": "token",
+      "clozeAccepted": ["token"],
+      "clozeHint": "5-letter noun completing the symmetry connector.",
+      "quizPrompt": "Using the exact same logic, if we expect transparency from teammates we should share our own roadmap early.",
+      "quizOptions": [
+        "If we expect candor from the team, by the same token we need to share our roadmap early.",
+        "If we expect candor from the team, on the same principle we should share early.",
+        "By the identical sign, we must disclose our roadmap early.",
+        "With the same token, we have to share our roadmap early."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Authoritative, balanced, and genuinely C2.",
+        "Slightly calqued from Polish 'na tej samej zasadzie'.",
+        "Literal distortion of the fixed idiom.",
+        "Wrong preposition ('by', never 'with')."
+      ],
+      "sandboxPrompt": "Balance two halves of a remote-work policy using 'by the same token'.",
+      "sandboxSample": "Async work gives everyone deep focus hours; by the same token, it requires writing clearer status updates.",
+      "sandboxRubric": [
+        "Register: Measured, analytical, executive-ready.",
+        "Collocation: Exact connector 'by the same token'.",
+        "Cadence: Clearly links two symmetrical sides of an argument."
+      ]
+    },
+    {
+      "id": "c2-wp-02",
+      "phrase": "a case in point",
+      "ipa": "/ə keɪs ɪn pɔɪnt/",
+      "speechText": "a case in point",
+      "category": "Workplace",
+      "register": "Workplace",
+      "cefr": "C2",
+      "packId": "expansion-mastery-c2",
+      "flat": "A very clear example that proves what I just said is our Q4 onboarding redesign.",
+      "upgraded": "Small friction points kill retention—case in point: removing two checkout fields lifted conversion by 14%.",
+      "dialogues": [
+        {
+          "context": "Strategy Meeting",
+          "lines": [
+            { "speaker": "PM", "text": "Offline speed is becoming a genuine differentiator for study tools." },
+            { "speaker": "Designer", "text": "Case in point: three interviewees specifically mentioned using the app on the subway." }
+          ]
+        },
+        {
+          "context": "Editorial Review",
+          "lines": [
+            { "speaker": "Editor", "text": "Clearer copy often outperforms new UI components." },
+            { "speaker": "Writer", "text": "Our pricing FAQ is a classic case in point—support tickets dropped by a third." }
+          ]
+        }
+      ],
+      "nuance": "Introduces a concrete, clinching illustration of a general claim. Can be used as a full noun phrase ('X is a classic case in point') or as a crisp spoken pivot ('Case in point: ...').",
+      "polish": "dobitny przykład / świetnym przykładem jest...",
+      "clozeSentence": "Simple tools often outlast bloated suites; a classic ___ in point is plain-text Markdown.",
+      "clozeAnswer": "case",
+      "clozeAccepted": ["case"],
+      "clozeHint": "4-letter noun meaning an instance or example.",
+      "quizPrompt": "Our latest mobile release is a perfect concrete example of why early user testing pays off.",
+      "quizOptions": [
+        "Our mobile release is a classic case in point for why early testing pays off.",
+        "Our mobile release is a point in case for early testing.",
+        "Our mobile release represents an exemplary instance in the matter.",
+        "Our mobile release is a case on point for testing early."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Crisp, idiomatic, and persuasive.",
+        "Swapped word order ('case in point', never 'point in case').",
+        "Stiff and wordy.",
+        "Wrong preposition ('in point', not 'on point' here)."
+      ],
+      "sandboxPrompt": "Make a brief claim about software design and back it up immediately with 'Case in point: ...'.",
+      "sandboxSample": "Good defaults beat endless settings menus—case in point: auto-installing starter packs cut time-to-first-card to two seconds.",
+      "sandboxRubric": [
+        "Register: Sharp, persuasive, concise.",
+        "Collocation: Exact order '(a) case in point'.",
+        "Cadence: General claim followed immediately by a specific proof."
+      ]
+    },
+    {
+      "id": "c2-wp-03",
+      "phrase": "in the interest of",
+      "ipa": "/ɪn ðə ˈɪntrəst əv/",
+      "speechText": "in the interest of",
+      "category": "Workplace",
+      "register": "Diplomatic",
+      "cefr": "C2",
+      "packId": "expansion-mastery-c2",
+      "flat": "Because we want to save time, let's move the detailed debate to Slack.",
+      "upgraded": "In the interest of time, let's take the schema naming debate async and finalize the launch date now.",
+      "dialogues": [
+        {
+          "context": "Executive Meeting",
+          "lines": [
+            { "speaker": "Host", "text": "We have ten minutes left and two big decisions still open." },
+            { "speaker": "Lead", "text": "In the interest of keeping us on track, let's lock Q2 priorities and handle staffing in Slack." }
+          ]
+        },
+        {
+          "context": "Client Email",
+          "lines": [
+            { "speaker": "Consultant", "text": "In the interest of full transparency, two vendor deliverables slipped by 48 hours." },
+            { "speaker": "Client", "text": "Thanks for flagging it upfront—we can absorb two days easily." }
+          ]
+        }
+      ],
+      "nuance": "Frames a redirect, cut, or tough disclosure around a shared value ('in the interest of time / clarity / fairness / transparency') so nobody feels brushed off. In UK English you'll also see the plural 'in the interests of'.",
+      "polish": "w trosce o / ze względu na (np. czas, przejrzystość)",
+      "clozeSentence": "In the ___ of clarity, let's put the exact numbers in the top summary.",
+      "clozeAnswer": "interest",
+      "clozeAccepted": ["interest", "interests"],
+      "clozeHint": "8-letter noun meaning benefit or sake.",
+      "quizPrompt": "To avoid wasting everyone's time, let's skip the background slides and jump to recommendations.",
+      "quizOptions": [
+        "In the interest of time, let's jump straight to the recommendations.",
+        "For the interest of time, let's skip the background slides.",
+        "In the care of our schedule, let us omit the initial slides.",
+        "With interest of time, let's go straight to the proposal."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Polished, courteous, and standard in high-level meetings.",
+        "Wrong opening preposition ('in the interest of', not 'for').",
+        "Calque from Polish 'w trosce o'.",
+        "Wrong preposition ('in', not 'with')."
+      ],
+      "sandboxPrompt": "Politely move a detailed side discussion to a follow-up doc during a meeting.",
+      "sandboxSample": "In the interest of keeping this meeting to thirty minutes, let's capture the edge cases in the RFC and review async.",
+      "sandboxRubric": [
+        "Register: Diplomatic, respectful of everyone's time.",
+        "Collocation: 'in the interest(s) of [time/clarity/transparency/gerund]'.",
+        "Cadence: Ties the shared goal straight to a clear action."
+      ]
+    },
+    {
+      "id": "c2-wp-04",
+      "phrase": "the jury's still out",
+      "ipa": "/ðə ˈdʒʊəriz stɪl aʊt/",
+      "speechText": "the jury's still out",
+      "category": "Workplace",
+      "register": "Workplace",
+      "cefr": "C2",
+      "packId": "expansion-mastery-c2",
+      "flat": "We do not have enough evidence yet to know whether the new pricing works.",
+      "upgraded": "The jury's still out on whether annual-only billing helps retention—we need another month of cohorts.",
+      "dialogues": [
+        {
+          "context": "Product Sync",
+          "lines": [
+            { "speaker": "Founder", "text": "Did the redesigned onboarding boost day-7 retention?" },
+            { "speaker": "Analyst", "text": "The jury's still out—day-1 is up 8%, but week-one data lands Friday." }
+          ]
+        },
+        {
+          "context": "Coffee Chat · Tech Trend",
+          "lines": [
+            { "speaker": "Bartek", "text": "Is the new framework actually faster in production?" },
+            { "speaker": "Rachel", "text": "Honestly, the jury's still out; benchmarks look great, real apps less clear." }
+          ]
+        }
+      ],
+      "nuance": "Courtroom metaphor (the jury hasn't returned with a verdict yet). Conveys intellectual honesty and calm rigor—far more natural than 'the results are currently inconclusive'. Always takes 'on' ('the jury's still out on X').",
+      "polish": "jeszcze za wcześnie na werdykt / sprawa pozostaje otwarta",
+      "clozeSentence": "The ___'s still out on whether the four-day workweek lifts long-term output.",
+      "clozeAnswer": "jury",
+      "clozeAccepted": ["jury"],
+      "clozeHint": "4-letter courtroom noun for the panel deciding a verdict.",
+      "quizPrompt": "It's still too early to conclude whether the new search algorithm improved relevance.",
+      "quizOptions": [
+        "The jury's still out on whether the new ranking improved search relevance.",
+        "The court is still outside about the new search ranking.",
+        "The verdict remains pending adjudication regarding search relevance.",
+        "The jury is still out about whether the ranking worked."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Exact idiom with the natural preposition 'on'.",
+        "Broken metaphor ('jury', not 'court').",
+        "Comically legalistic for a product update.",
+        "Slightly off preposition ('on' is strongly preferred over 'about')."
+      ],
+      "sandboxPrompt": "Tell a teammate it's too early to judge whether a new marketing channel is worth scaling.",
+      "sandboxSample": "The jury's still out on podcast sponsorships—clicks look decent, but we haven't seen full-funnel payback yet.",
+      "sandboxRubric": [
+        "Register: Objective, grounded, analytical.",
+        "Collocation: 'the jury's still out on [noun/whether-clause]'.",
+        "Cadence: Names what evidence is still needed."
+      ]
+    },
+    {
+      "id": "c2-wp-05",
+      "phrase": "with the caveat that",
+      "ipa": "/wɪð ðə ˈkæviæt ðæt/",
+      "speechText": "with the caveat that",
+      "category": "Workplace",
+      "register": "Diplomatic",
+      "cefr": "C2",
+      "packId": "expansion-mastery-c2",
+      "flat": "I agree with the plan, except there is one important condition we need to keep in mind.",
+      "upgraded": "I'm happy to sign off on the rollout, with the caveat that we keep a one-click rollback ready.",
+      "dialogues": [
+        {
+          "context": "Design Review",
+          "lines": [
+            { "speaker": "PM", "text": "Are we good to ship the IndexedDB pack manager this week?" },
+            { "speaker": "Engineer", "text": "Yes, with the caveat that we keep the v4 backup importer working for existing users." }
+          ]
+        },
+        {
+          "context": "Budget Approval",
+          "lines": [
+            { "speaker": "CFO", "text": "We can approve the contractor budget, with the caveat that we revisit utilization in six weeks." },
+            { "speaker": "Lead", "text": "Totally fair—I'll put a checkpoint on the calendar." }
+          ]
+        }
+      ],
+      "nuance": "Lets you say 'yes' while cleanly attaching a critical condition or limitation—much more collaborative than starting with 'No, unless...' or 'Yes, but...'. Pronounced /ˈkæv.i.æt/ (US) or /ˈkeɪ.vi.æt/ (UK).",
+      "polish": "z tym zastrzeżeniem, że",
+      "clozeSentence": "We can open-source the dataset today, with the ___ that we include clear CC BY-SA attribution.",
+      "clozeAnswer": "caveat",
+      "clozeAccepted": ["caveat"],
+      "clozeHint": "6-letter Latin-origin noun meaning a warning or condition.",
+      "quizPrompt": "I support publishing the numbers, provided we clearly note that Q1 is still preliminary.",
+      "quizOptions": [
+        "I'm fine sharing the numbers, with the caveat that we label Q1 as preliminary.",
+        "I'm fine sharing the numbers, with the reservation of fact that Q1 is preliminary.",
+        "I endorse disclosing the figures subject to an admonitory stipulation.",
+        "I'm fine sharing the numbers, under the caveat that Q1 is preliminary."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Clean, diplomatic, and executive-ready.",
+        "Calqued from Polish 'z zastrzeżeniem'.",
+        "Overly archaic legal jargon.",
+        "Wrong preposition ('with the caveat that', not 'under')."
+      ],
+      "sandboxPrompt": "Approve a teammate's proposal while adding one clear condition about performance or testing.",
+      "sandboxSample": "I'm on board with switching to client-side search, with the caveat that we benchmark it with 20,000 items first.",
+      "sandboxRubric": [
+        "Register: Constructive approval paired with a crisp safeguard.",
+        "Collocation: 'with the caveat that [clause]'.",
+        "Cadence: Keeps momentum positive while setting a firm boundary."
+      ]
+    },
+    {
+      "id": "c2-wp-06",
+      "phrase": "at odds with",
+      "ipa": "/æt ɒdz wɪð/",
+      "speechText": "at odds with",
+      "category": "Workplace",
+      "register": "Nuanced",
+      "cefr": "C2",
+      "packId": "expansion-mastery-c2",
+      "flat": "This feature conflicts directly with our goal of keeping the app calm and simple.",
+      "upgraded": "Adding daily streak pop-ups feels fundamentally at odds with our calm, zero-guilt design ethos.",
+      "dialogues": [
+        {
+          "context": "Product Critique",
+          "lines": [
+            { "speaker": "Designer", "text": "Why did we drop the aggressive reminder notifications?" },
+            { "speaker": "Founder", "text": "They were completely at odds with the quiet editorial feel we're aiming for." }
+          ]
+        },
+        {
+          "context": "Data Review",
+          "lines": [
+            { "speaker": "Analyst", "text": "Survey responses are oddly at odds with actual click behavior on this page." },
+            { "speaker": "PM", "text": "Interesting—let's watch five session replays before changing anything." }
+          ]
+        }
+      ],
+      "nuance": "Pinpoints tension or contradiction between ideas, data, values, or people without sounding combative. Far sleeker than 'in contradiction with' or 'contradicts with' (note: 'contradict' never takes 'with', whereas 'at odds' always takes 'with').",
+      "polish": "w sprzeczności z / gryźć się z czymś / nie iść w parze z",
+      "clozeSentence": "His public optimism seemed strangely at ___ with the cautious numbers in the quarterly report.",
+      "clozeAnswer": "odds",
+      "clozeAccepted": ["odds"],
+      "clozeHint": "4-letter plural noun completing the conflict expression.",
+      "quizPrompt": "The new ad banners directly clash with our promise of a distraction-free workspace.",
+      "quizOptions": [
+        "Autoplay banners are squarely at odds with our promise of a calm workspace.",
+        "Autoplay banners contradict with our promise of a calm workspace.",
+        "Autoplay banners are in odds against our calm workspace.",
+        "Autoplay banners stand in discordance toward our workspace."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Sharp, idiomatic, and diplomatically direct.",
+        "Grammar error: 'contradict' is transitive (never 'contradict with').",
+        "Wrong prepositions ('at odds with', not 'in odds against').",
+        "Stiff and overly academic."
+      ],
+      "sandboxPrompt": "Point out a mismatch between what a company claims to value and how it actually operates.",
+      "sandboxSample": "Requiring five status meetings a week is completely at odds with calling yourself an async-first team.",
+      "sandboxRubric": [
+        "Register: Analytical, sharp without sounding personal.",
+        "Collocation: 'be at odds with [noun/gerund]'.",
+        "Cadence: Highlights the core tension cleanly."
+      ]
+    },
+    {
+      "id": "c2-sy-01",
+      "phrase": "much as I'd like to...",
+      "ipa": "/mʌtʃ æz aɪd laɪk tuː/",
+      "speechText": "much as I'd like to",
+      "category": "Syntax",
+      "register": "Diplomatic",
+      "cefr": "C2",
+      "packId": "expansion-mastery-c2",
+      "flat": "Even though I really want to join you on Friday, I have to finish this release first.",
+      "upgraded": "Much as I'd like to squeeze that feature into v1, it would push QA into next week.",
+      "dialogues": [
+        {
+          "context": "Invitation · Weekend",
+          "lines": [
+            { "speaker": "Kamil", "text": "Any chance you can join us for the mountain cabin trip?" },
+            { "speaker": "Nora", "text": "Much as I'd love to, I'm on call all weekend—count me in for the next one." }
+          ]
+        },
+        {
+          "context": "Code Review",
+          "lines": [
+            { "speaker": "Reviewer", "text": "Could we also rewrite the audio module in this PR?" },
+            { "speaker": "Author", "text": "Much as I'd like to clean it up now, let's keep this PR focused on storage." }
+          ]
+        }
+      ],
+      "nuance": "Fronted concessive clause ('Much as + subject + verb')—a hallmark of natural C2 English. Warmer and more graceful than 'Although I want to...' when saying no. Notice there is NO 'as' before 'Much' ('Much as I admire...', not 'As much as I admire...' in formal/crisp style, though 'As much as...' is also common in casual US speech).",
+      "polish": "choć bardzo bym chciał(a)... / jakkolwiek chętnie bym...",
+      "clozeSentence": "___ as I admire the ambition of that roadmap, we only have two engineers on it.",
+      "clozeAnswer": "Much",
+      "clozeAccepted": ["Much", "much"],
+      "clozeHint": "4-letter fronted adverb starting the concessive clause.",
+      "quizPrompt": "Even though I really admire their visual polish, the app still feels too slow to use daily.",
+      "quizOptions": [
+        "Much as I admire their visual polish, the app still feels too sluggish for daily use.",
+        "Very much as I admire their polish, the app is too slow.",
+        "Although how much I admire their polish, the app feels slow.",
+        "Much that I admire their visual polish, the app is sluggish."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Effortless, balanced C2 concessive structure.",
+        "'Very' breaks the fixed fronted pattern ('Much as...').",
+        "Ungrammatical blend of 'although' and 'how much'.",
+        "Wrong subordinator ('as', never 'that')."
+      ],
+      "sandboxPrompt": "Politely decline an extra task or invitation using 'Much as I'd like to...' or 'Much as I appreciate...'.",
+      "sandboxSample": "Much as I'd love to take on the redesign this sprint, I need to ship the data pipeline cleanly first.",
+      "sandboxRubric": [
+        "Register: Gracious, warm refusal without over-apologizing.",
+        "Collocation: Clean fronted 'Much as + subject + verb, ...'.",
+        "Cadence: Smooth balance between concession and firm boundary."
+      ]
+    },
+    {
+      "id": "c2-sy-02",
+      "phrase": "were it not for...",
+      "ipa": "/wɜːr ɪt nɒt fɔː/",
+      "speechText": "were it not for",
+      "category": "Syntax",
+      "register": "Nuanced",
+      "cefr": "C2",
+      "packId": "expansion-mastery-c2",
+      "flat": "If it weren't for the offline cache, the app wouldn't work on the train.",
+      "upgraded": "Were it not for IndexedDB caching, loading ten thousand phrases on mobile data would crawl.",
+      "dialogues": [
+        {
+          "context": "Retrospective",
+          "lines": [
+            { "speaker": "Lead", "text": "That release went surprisingly smoothly." },
+            { "speaker": "Eng", "text": "Were it not for Maja catching that migration edge case yesterday, we'd have been scrambling." }
+          ]
+        },
+        {
+          "context": "Travel Story",
+          "lines": [
+            { "speaker": "Alex", "text": "Would you move back to Warsaw?" },
+            { "speaker": "Gosia", "text": "Honestly, were it not for the grey winters, I'd move back in a heartbeat." }
+          ]
+        }
+      ],
+      "nuance": "Inverted second conditional replacing 'If it were not for...'. For past counterfactuals, use 'Had it not been for...' ('Had it not been for her help, we would have missed the train.'). Dropping 'if' and inverting verb-subject creates sleek, concise elegance without sounding archaic.",
+      "polish": "gdyby nie... (wyższy, zgrabny rejestr)",
+      "clozeSentence": "___ it not for the automated test suite, that subtle regression would have shipped to production.",
+      "clozeAnswer": "Were",
+      "clozeAccepted": ["Were", "were"],
+      "clozeHint": "4-letter subjunctive verb starting the inverted conditional.",
+      "quizPrompt": "If it weren't for the strict deadlines, I'd genuinely enjoy working on that client account.",
+      "quizOptions": [
+        "Were it not for the brutal deadlines, I'd genuinely enjoy that client account.",
+        "Was it not for the brutal deadlines, I'd enjoy that account.",
+        "Were not it for the deadlines, I would enjoy working on it.",
+        "If were it not for the deadlines, I'd love that account."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Flawless inverted conditional—concise and refined.",
+        "Inversion requires subjunctive 'Were', never 'Was'.",
+        "Incorrect word order ('Were it not for', never 'Were not it for').",
+        "Never combine 'If' with inverted 'Were it...'."
+      ],
+      "sandboxPrompt": "Credit a person, tool, or circumstance that prevented a problem using 'Were it not for...'.",
+      "sandboxSample": "Were it not for the weekly backups, losing my laptop in Vienna would have wiped out two months of writing.",
+      "sandboxRubric": [
+        "Register: Polished, articulate, natural.",
+        "Collocation: Exact inversion 'Were it not for [noun/gerund], [would + verb]'.",
+        "Cadence: Clean cause-and-effect contrast."
+      ]
+    },
+    {
+      "id": "c2-sy-03",
+      "phrase": "be that as it may",
+      "ipa": "/biː ðæt æz ɪt meɪ/",
+      "speechText": "be that as it may",
+      "category": "Syntax",
+      "register": "Diplomatic",
+      "cefr": "C2",
+      "packId": "expansion-mastery-c2",
+      "flat": "Even if what you say is true, we still have to fix the underlying problem.",
+      "upgraded": "The delay wasn't entirely on our side; be that as it may, the customer still missed their launch window.",
+      "dialogues": [
+        {
+          "context": "Incident Postmortem",
+          "lines": [
+            { "speaker": "Dev", "text": "To be fair, the upstream API changed their response format without notice." },
+            { "speaker": "Manager", "text": "Be that as it may, our parser shouldn't crash the whole page when a field is missing." }
+          ]
+        },
+        {
+          "context": "Debate · Urban Policy",
+          "lines": [
+            { "speaker": "Tomasz", "text": "Car traffic dipped slightly on that avenue last quarter." },
+            { "speaker": "Julia", "text": "Be that as it may, cycling infrastructure still ends abruptly at the bridge." }
+          ]
+        }
+      ],
+      "nuance": "A poised concessive pivot that grants the other speaker's point without getting sidetracked—then calmly returns to the main responsibility or argument. Best used sparingly when you want calm authority.",
+      "polish": "jakkolwiek by było / mniejsza o to, niemniej jednak...",
+      "clozeSentence": "The budget was tighter than expected; be that as it ___, we still need to deliver a reliable core.",
+      "clozeAnswer": "may",
+      "clozeAccepted": ["may"],
+      "clozeHint": "3-letter modal verb completing the fixed concessive clause.",
+      "quizPrompt": "Even granting that the vendor caused the holdup, we still own the user experience.",
+      "quizOptions": [
+        "The vendor caused the holdup—be that as it may, we still own the user experience.",
+        "The vendor caused the holdup—be it as that might, we own the experience.",
+        "However it might be that, we still are responsible for users.",
+        "Be that like it may, we still own the user experience."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Exact fixed expression with calm, authoritative cadence.",
+        "Scrambled wording ('be that as it may').",
+        "Awkward literal transfer.",
+        "Wrong conjunction ('as', never 'like')."
+      ],
+      "sandboxPrompt": "Acknowledge an excuse or mitigating factor, then pivot cleanly back to the core priority using 'be that as it may'.",
+      "sandboxSample": "Yes, the legacy schema was inherited from an earlier team; be that as it may, we need a clean migration path before adding new packs.",
+      "sandboxRubric": [
+        "Register: Calm, fair, decisive.",
+        "Collocation: Exact fixed clause 'be that as it may'.",
+        "Cadence: Smoothly acknowledges point A before refocusing on point B."
+      ]
+    },
+    {
+      "id": "c2-sy-04",
+      "phrase": "far from [gerund/adj]...",
+      "ipa": "/fɑː frɒm/",
+      "speechText": "far from",
+      "category": "Syntax",
+      "register": "Nuanced",
+      "cefr": "C2",
+      "packId": "expansion-mastery-c2",
+      "flat": "Instead of making the workflow simpler, the extra wizard actually slowed everyone down.",
+      "upgraded": "Far from simplifying onboarding, the five-step wizard actually doubled drop-off.",
+      "dialogues": [
+        {
+          "context": "Design Critique",
+          "lines": [
+            { "speaker": "PM", "text": "Did splitting the settings into six tabs make things easier to find?" },
+            { "speaker": "Researcher", "text": "Far from helping users locate controls, it hid the two toggles people use most." }
+          ]
+        },
+        {
+          "context": "Book Discussion",
+          "lines": [
+            { "speaker": "Ian", "text": "I worried the second half would feel dry." },
+            { "speaker": "Gosia", "text": "Far from being dry, it's actually the funniest section in the book." }
+          ]
+        }
+      ],
+      "nuance": "A razor-sharp rhetorical structure for overturning an expectation: 'Far from + -ing / adjective, [opposite outcome]'. Notice that when followed by a verb, it MUST be a gerund ('Far from solving...', never 'Far from solve...').",
+      "polish": "daleko od tego, by... / nie tylko nie..., lecz wręcz przeciwnie",
+      "clozeSentence": "___ from slowing the app down, moving to IndexedDB cut load times in half.",
+      "clozeAnswer": "Far",
+      "clozeAccepted": ["Far", "far"],
+      "clozeHint": "3-letter adverb opening the contrast.",
+      "quizPrompt": "Instead of boring the audience, the live code walkthrough kept everyone completely engaged.",
+      "quizOptions": [
+        "Far from boring the audience, the live walkthrough kept everyone riveted.",
+        "Far from to bore the audience, the walkthrough engaged everyone.",
+        "Distantly from boring listeners, the walkthrough was engaging.",
+        "Far of boring the audience, the demo kept everyone hooked."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Tight, vivid C2 contrast using the gerund cleanly.",
+        "Infinitive error ('Far from + -ing', never 'to + verb').",
+        "Broken fixed construction.",
+        "Wrong preposition ('from', never 'of')."
+      ],
+      "sandboxPrompt": "Overturn a common assumption about a habit, tool, or policy using 'Far from [gerund]...'.",
+      "sandboxSample": "Far from wasting time, writing a five-line spec beforehand saved us two days of rework.",
+      "sandboxRubric": [
+        "Register: Crisp, incisive, persuasive.",
+        "Collocation: 'Far from + gerund/adjective, [contrasting result]'.",
+        "Cadence: Tight rhetorical reversal."
+      ]
+    },
+    {
+      "id": "c2-sy-05",
+      "phrase": "little did [subject] know...",
+      "ipa": "/ˈlɪtl dɪd ... nəʊ/",
+      "speechText": "little did we know",
+      "category": "Syntax",
+      "register": "Conversational",
+      "cefr": "C2",
+      "packId": "expansion-mastery-c2",
+      "flat": "At the time, we had no idea that our small side script would turn into the main product.",
+      "upgraded": "We threw together a weekend prototype; little did we know it would still be running three years later.",
+      "dialogues": [
+        {
+          "context": "Dinner · Story",
+          "lines": [
+            { "speaker": "Sam", "text": "How did you end up living in Amsterdam?" },
+            { "speaker": "Ola", "text": "I flew over for a four-day conference—little did I know I'd sign a lease a month later." }
+          ]
+        },
+        {
+          "context": "Engineering War Story",
+          "lines": [
+            { "speaker": "Chris", "text": "Why did we pick localStorage originally?" },
+            { "speaker": "Piotr", "text": "We thought it'd hold fifty phrases—little did we know we'd be loading Wiktionary dumps." }
+          ]
+        }
+      ],
+      "nuance": "Negative-adverbial fronting triggers subject-auxiliary inversion ('little did I know', never 'little I knew'). Brings effortless wry humor or cinematic timing to everyday storytelling—keep the tone light so it feels natural, not melodramatic.",
+      "polish": "nie mieliśmy pojęcia, że... / któż by pomyślał, że...",
+      "clozeSentence": "We thought the hike would take two hours—little ___ we realize the trail looped another nine kilometers.",
+      "clozeAnswer": "did",
+      "clozeAccepted": ["did"],
+      "clozeHint": "3-letter past auxiliary required for negative inversion.",
+      "quizPrompt": "Back then, I had zero idea that a casual coffee chat would lead to my favorite job.",
+      "quizOptions": [
+        "Little did I know that a casual coffee chat would lead to my favorite job.",
+        "Little I knew that a casual coffee chat would lead to my favorite job.",
+        "Small did I know that coffee chat would become my job.",
+        "Little did I knew that a casual coffee would lead to that role."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Spot-on negative inversion ('Little + did + subject + bare infinitive').",
+        "Missing inversion—ungrammatical after fronted 'Little'.",
+        "Wrong fronted adverb ('Little', never 'Small').",
+        "Double past tense error ('did I know', never 'did I knew')."
+      ],
+      "sandboxPrompt": "Tell a one-sentence personal or work twist using 'Little did I/we know...'.",
+      "sandboxSample": "I downloaded the language app to pass ten minutes on a flight; little did I know I'd still be practicing every morning a year later.",
+      "sandboxRubric": [
+        "Register: Engaging, understated storytelling tone.",
+        "Collocation: Exact inversion 'little did [subject] know/realize/suspect'.",
+        "Cadence: Clean setup followed by the unexpected twist."
+      ]
+    },
+    {
+      "id": "c2-sy-06",
+      "phrase": "all the more [adj] for...",
+      "ipa": "/ɔːl ðə mɔː ... fɔː/",
+      "speechText": "all the more impressive for",
+      "category": "Syntax",
+      "register": "Nuanced",
+      "cefr": "C2",
+      "packId": "expansion-mastery-c2",
+      "flat": "The achievement is even more impressive because they built it with zero external funding.",
+      "upgraded": "The redesign is all the more impressive for having been shipped by a two-person team.",
+      "dialogues": [
+        {
+          "context": "Film Chat",
+          "lines": [
+            { "speaker": "Maya", "text": "Did you like the documentary?" },
+            { "speaker": "Liam", "text": "Loved it—it's all the more moving for never telling you how to feel." }
+          ]
+        },
+        {
+          "context": "Architecture Review",
+          "lines": [
+            { "speaker": "Lead", "text": "The whole Python pipeline uses only the standard library." },
+            { "speaker": "Reviewer", "text": "Nice—that makes it all the more maintainable for anyone cloning the repo." }
+          ]
+        }
+      ],
+      "nuance": "Refined way to heighten an adjective or comparative by attaching the exact reason ('all the more + adjective + for + noun/gerund' or 'all the better for...'). Elevates praise or analysis without relying on empty intensifiers like 'very' or 'super'.",
+      "polish": "tym bardziej [jakiś] ze względu na / z uwagi na to, że...",
+      "clozeSentence": "Her keynote was all the ___ compelling for relying on three real stories instead of fifty slides.",
+      "clozeAnswer": "more",
+      "clozeAccepted": ["more"],
+      "clozeHint": "4-letter comparative completing 'all the ___ [adj] for'.",
+      "quizPrompt": "The quiet victory felt even sweeter because nobody expected them to qualify.",
+      "quizOptions": [
+        "The win felt all the sweeter for having come out of nowhere.",
+        "The win felt all the more sweeter because nobody expected it.",
+        "The win felt the more sweet for coming unexpectedly.",
+        "The win felt all more sweet for being unexpected."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Natural C2 comparative ('all the sweeter for...' — no double comparative!).",
+        "Double comparative error ('more sweeter').",
+        "Missing 'all' breaks the idiom.",
+        "Missing definite article 'the' ('all the more...')."
+      ],
+      "sandboxPrompt": "Praise a book, product, or achievement by explaining what makes it even better using 'all the more [adj] for...'.",
+      "sandboxSample": "The tool is all the more useful for working completely offline once you install a pack.",
+      "sandboxRubric": [
+        "Register: Articulated, understated sophistication.",
+        "Collocation: 'all the more [adj] for [gerund/noun]' or 'all the [adj-er] for...'.",
+        "Cadence: Connects the evaluation smoothly to its exact cause."
+      ]
+    }
+  ]
+}
