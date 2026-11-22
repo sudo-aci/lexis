@@ -1,8 +1,64 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-22T17:40:04Z",
-  "totalItems": 66,
+  "generatedAt": "2026-11-22T18:53:59Z",
+  "totalItems": 81,
   "packs": [
+    {
+      "id": "expansion-mastery-c2",
+      "name": "Mastery · C2 Precision & Discourse",
+      "description": "18 natural C2 idioms, executive framing phrases, and inverted/concessive syntax patterns for effortless near-native fluency.",
+      "category": "Mixed",
+      "cefr": "C2",
+      "version": "1.0.0",
+      "source": "Lexis C2 Mastery Pack",
+      "file": "data/packs/expansion-mastery-c2.json",
+      "itemCount": 18,
+      "sizeBytes": 53366,
+      "sha256": "809513f23a2c6556",
+      "default": true
+    },
+    {
+      "id": "mastery-c2-slang-casual",
+      "name": "Mastery · C2 Slang, Casual & Modern Work",
+      "description": "15 natural C2 slang, casual everyday, and modern office expressions—real spoken English without textbook stiffness.",
+      "category": "Mixed",
+      "cefr": "C2",
+      "version": "1.0.0",
+      "source": "Lexis C2 Slang & Casual Pack",
+      "file": "data/packs/mastery-c2-slang-casual.json",
+      "itemCount": 15,
+      "sizeBytes": 44221,
+      "sha256": "c3ede573ac920d1f",
+      "default": true
+    },
+    {
+      "id": "expansion-precision-c1",
+      "name": "Expansion · Precision & Pushback (C1)",
+      "description": "12 high-leverage idioms, soft pushback phrases, and natural discourse patterns for fluent English.",
+      "category": "Mixed",
+      "cefr": "C1",
+      "version": "1.0.0",
+      "source": "Lexis Expansion Pack",
+      "file": "data/packs/expansion-precision-c1.json",
+      "itemCount": 12,
+      "sizeBytes": 34371,
+      "sha256": "b669a5dd05d3a6ff",
+      "default": true
+    },
+    {
+      "id": "starter-syntax",
+      "name": "Starter · Syntax & Flow",
+      "description": "5 native-sounding sentence structures, clefts, and discourse pivots.",
+      "category": "Syntax",
+      "cefr": "C1",
+      "version": "1.0.0",
+      "source": "Lexis Curated Starter",
+      "file": "data/packs/starter-syntax.json",
+      "itemCount": 5,
+      "sizeBytes": 17175,
+      "sha256": "0624ad9a19e22c74",
+      "default": true
+    },
     {
       "id": "starter-everyday",
       "name": "Starter · Everyday English",
@@ -30,48 +86,6 @@
       "sizeBytes": 46775,
       "sha256": "831fc7380d81d453",
       "default": true
-    },
-    {
-      "id": "starter-syntax",
-      "name": "Starter · Syntax & Flow",
-      "description": "5 native-sounding sentence structures, clefts, and discourse pivots.",
-      "category": "Syntax",
-      "cefr": "C1",
-      "version": "1.0.0",
-      "source": "Lexis Curated Starter",
-      "file": "data/packs/starter-syntax.json",
-      "itemCount": 5,
-      "sizeBytes": 17175,
-      "sha256": "0624ad9a19e22c74",
-      "default": true
-    },
-    {
-      "id": "expansion-precision-c1",
-      "name": "Expansion · Precision & Pushback (C1)",
-      "description": "12 high-leverage idioms, soft pushback phrases, and natural discourse patterns for fluent English.",
-      "category": "Mixed",
-      "cefr": "C1",
-      "version": "1.0.0",
-      "source": "Lexis Expansion Pack",
-      "file": "data/packs/expansion-precision-c1.json",
-      "itemCount": 12,
-      "sizeBytes": 34371,
-      "sha256": "b669a5dd05d3a6ff",
-      "default": false
-    },
-    {
-      "id": "expansion-mastery-c2",
-      "name": "Mastery · C2 Precision & Discourse",
-      "description": "18 natural C2 idioms, executive framing phrases, and inverted/concessive syntax patterns for effortless near-native fluency.",
-      "category": "Mixed",
-      "cefr": "C2",
-      "version": "1.0.0",
-      "source": "Lexis C2 Mastery Pack",
-      "file": "data/packs/expansion-mastery-c2.json",
-      "itemCount": 18,
-      "sizeBytes": 53366,
-      "sha256": "809513f23a2c6556",
-      "default": false
     }
   ]
 }

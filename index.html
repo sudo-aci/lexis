@@ -1064,7 +1064,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
             Natural Phrasing &amp; Nuance
           </h1>
           <p class="text-xs sm:text-sm text-stone-500 dark:text-stone-400">
-            3 Everyday · 3 Workplace · 1 Syntax &amp; Flow
+            3 Everyday · 3 Workplace · 1 Syntax &amp; Flow · <span class="text-[#A84B30] dark:text-[#E58E73] font-medium">C1/C2 Focus</span> (Casual · Slang · Work)
           </p>
         </div>
 
@@ -1189,11 +1189,26 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
               <button data-lstatus="mastered" onclick="setLibraryFilter('status', 'mastered')" class="lstatus-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap min-h-[38px]">Mastered</button>
             </div>
 
-            <div class="flex items-center gap-1.5">
-              <label for="library-pack-filter" class="text-[11px] font-mono uppercase text-stone-400 shrink-0">Pack:</label>
-              <select id="library-pack-filter" onchange="setLibraryFilter('pack', this.value)" class="px-2.5 py-1.5 rounded-lg border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card text-xs font-mono text-paper-ink dark:text-charcoal-cream focus:outline-none focus:border-[#C46548] min-h-[38px]">
-                <option value="All">All packs</option>
-              </select>
+            <div class="flex flex-wrap items-center gap-2.5">
+              <div class="flex items-center gap-1.5">
+                <label for="library-register-filter" class="text-[11px] font-mono uppercase text-stone-400 shrink-0">Type:</label>
+                <select id="library-register-filter" onchange="setLibraryFilter('register', this.value)" class="px-2.5 py-1.5 rounded-lg border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card text-xs font-mono text-paper-ink dark:text-charcoal-cream focus:outline-none focus:border-[#C46548] min-h-[38px]">
+                  <option value="All">All types</option>
+                  <option value="Slang">Slang</option>
+                  <option value="Casual">Casual</option>
+                  <option value="Conversational">Conversational</option>
+                  <option value="Workplace">Workplace</option>
+                  <option value="Diplomatic">Diplomatic</option>
+                  <option value="Nuanced">Nuanced</option>
+                </select>
+              </div>
+
+              <div class="flex items-center gap-1.5">
+                <label for="library-pack-filter" class="text-[11px] font-mono uppercase text-stone-400 shrink-0">Pack:</label>
+                <select id="library-pack-filter" onchange="setLibraryFilter('pack', this.value)" class="px-2.5 py-1.5 rounded-lg border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card text-xs font-mono text-paper-ink dark:text-charcoal-cream focus:outline-none focus:border-[#C46548] min-h-[38px]">
+                  <option value="All">All packs</option>
+                </select>
+              </div>
             </div>
           </div>
         </div>
@@ -1866,10 +1881,10 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
     })();
 
     // ==================== WEEKLY PACK GENERATOR PROMPT ====================
-    const WEEKLY_PACK_PROMPT = `Generate 25 genuinely natural, high-frequency English expressions for a fluent Polish speaker aiming for effortless, idiomatic everyday and modern workplace fluency (avoid stiff, archaic, or overly formal corporate jargon):
-- 12 Everyday English expressions (conversational reactions, low-key storytelling, casual pushback, social nuance)
-- 10 Workplace expressions (conversational Slack/email phrasing, diplomatic pushback, framing trade-offs, alignment)
-- 3 Syntax patterns (natural sentence structures like pseudo-clefts, softeners, participle clauses, or subtle inversion)
+    const WEEKLY_PACK_PROMPT = `Generate 25 genuinely natural, high-frequency C1/C2 English expressions (focus heavily on C1 and C2; include B2-C1 only rarely) for a fluent Polish speaker aiming for effortless, idiomatic everyday, slang, and modern workplace fluency:
+- 11 Everyday English expressions (mix of Casual, modern Slang, and Conversational reactions, low-key storytelling, social nuance)
+- 10 Workplace expressions (conversational Slack/email phrasing, modern office slang, diplomatic pushback, executive framing)
+- 4 C2 Syntax & Discourse patterns (fronted concessives, subtle inversion, wh-clefts, crisp rhetorical contrast)
 
 Output ONLY a valid JSON array matching this exact schema (no markdown outside the JSON):
 [
@@ -1878,8 +1893,8 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     "ipa": "/accurate IPA transcription/",
     "speechText": "clean spoken text for text-to-speech",
     "category": "Everyday" | "Workplace" | "Syntax",
-    "register": "Casual" | "Conversational" | "Workplace" | "Diplomatic" | "Nuanced",
-    "cefr": "B2-C1" | "C1" | "C2",
+    "register": "Casual" | "Slang" | "Conversational" | "Workplace" | "Diplomatic" | "Nuanced",
+    "cefr": "C2" | "C1" | "B2-C1",
     "flat": "functional/textbook sentence a non-native might default to",
     "upgraded": "natural, idiomatic native phrasing of that exact thought",
     "dialogues": [
@@ -1931,8 +1946,8 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     // ==================== STORAGE KEYS & APPLICATION STATE ====================
     const STORAGE = {
       LEGACY_ITEMS: 'lexis_pr_items_v4',
-      TODAY_IDS: 'lexis_pr_today_ids_v4',
-      TODAY_DATE: 'lexis_pr_today_date_v4',
+      TODAY_IDS: 'lexis_pr_today_ids_v5',
+      TODAY_DATE: 'lexis_pr_today_date_v5',
       TODAY_LAYOUT: 'lexis_pr_today_layout_v4',
       THEME: 'lexis_pr_theme_v4'
     };
@@ -1940,6 +1955,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     const appState = {
       items: [],
       itemsById: new Map(),
+      practiceOrder: [], // C1/C2-focused practice queue (B2-C1 interleaved rarely)
       progressMap: new Map(), // id -> { id, status, updatedAt }
       installedPacks: new Map(), // packId -> pack metadata
       packManifest: null, // parsed data/manifest.json
@@ -1957,6 +1973,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       libraryFilters: {
         category: 'All',
         cefr: 'All',
+        register: 'All',
         status: 'All',
         pack: 'All'
       },
@@ -2280,7 +2297,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         return cards[appState.todayIndex % Math.max(1, cards.length)] || null;
       }
       if (appState.currentView === 'practice') {
-        return appState.items[appState.practice.index % Math.max(1, appState.items.length)] || null;
+        return getCurrentPracticeItem();
       }
       return null;
     }
@@ -2419,6 +2436,15 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       return normalized.length;
     }
 
+    async function getRemovedPackIds() {
+      const stored = await LexisDB.getMeta('removedPackIds');
+      return new Set(Array.isArray(stored) ? stored : []);
+    }
+
+    async function setRemovedPackIds(idSet) {
+      await LexisDB.setMeta('removedPackIds', Array.from(idSet));
+    }
+
     async function installPackById(packId, silent = false) {
       const manifestPack = appState.packManifest?.packs?.find(p => p.id === packId);
       if (!manifestPack) {
@@ -2435,6 +2461,13 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         const payload = await res.json();
         const items = Array.isArray(payload) ? payload : payload.items;
         const count = await installPackRecord(manifestPack, items);
+
+        // Clear from explicit removal list if the user re-installed it
+        const removed = await getRemovedPackIds();
+        if (removed.delete(packId)) {
+          await setRemovedPackIds(removed);
+        }
+
         await hydrateStateFromDB();
         if (!silent) {
           showToast(`Installed "${manifestPack.name}" (${count} phrases)`);
@@ -2460,6 +2493,12 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       try {
         await LexisDB.deleteItemsByPack(packId);
         await LexisDB.deleteOne('packs', packId);
+
+        // Remember explicit removal so default packs aren't auto-reinstalled on next reload
+        const removed = await getRemovedPackIds();
+        removed.add(packId);
+        await setRemovedPackIds(removed);
+
         await hydrateStateFromDB();
 
         if (appState.libraryFilters.pack === packId) {
@@ -2527,6 +2566,54 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       }
     }
 
+    function getCefrRank(cefr) {
+      const tag = normalizeCefrTag(cefr);
+      if (tag.includes('C2')) return 3;
+      if (tag === 'C1') return 2;
+      return 1; // B2-C1 or lower
+    }
+
+    function getCefrWeight(cefr) {
+      const rank = getCefrRank(cefr);
+      if (rank === 3) return 6.0;  // Strong C2 priority
+      if (rank === 2) return 4.5;  // Strong C1 priority
+      return 0.35;                 // Suggest B2-C1 rarely
+    }
+
+    function buildPracticeOrder(items) {
+      // Focus Practice Studio heavily on C1/C2 (interleaving 1 B2-C1 refresher every 8 cards)
+      const isHighTier = (item) => getCefrRank(item.cefr) >= 2;
+      const sortTier = (a, b) => {
+        const statusScore = s => (s === 'mastered' ? 1 : 0);
+        const sDiff = statusScore(a.status) - statusScore(b.status);
+        if (sDiff !== 0) return sDiff;
+        const rDiff = getCefrRank(b.cefr) - getCefrRank(a.cefr);
+        if (rDiff !== 0) return rDiff;
+        return String(a.id).localeCompare(String(b.id));
+      };
+
+      const high = items.filter(isHighTier).sort(sortTier);
+      const lower = items.filter(i => !isHighTier(i)).sort(sortTier);
+      if (high.length === 0) return lower;
+      if (lower.length === 0) return high;
+
+      const queue = [];
+      let hi = 0;
+      let lo = 0;
+      while (hi < high.length) {
+        for (let k = 0; k < 7 && hi < high.length; k++) {
+          queue.push(high[hi++]);
+        }
+        if (lo < lower.length) {
+          queue.push(lower[lo++]);
+        }
+      }
+      while (lo < lower.length) {
+        queue.push(lower[lo++]);
+      }
+      return queue;
+    }
+
     async function hydrateStateFromDB() {
       const [rawItems, progressMap, packRows] = await Promise.all([
         LexisDB.getAll('items'),
@@ -2549,8 +2636,16 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         return merged;
       });
 
+      // Surface C2 & C1 phrases first in Library by default
+      hydrated.sort((a, b) => {
+        const rDiff = getCefrRank(b.cefr) - getCefrRank(a.cefr);
+        if (rDiff !== 0) return rDiff;
+        return String(a.id).localeCompare(String(b.id));
+      });
+
       appState.items = hydrated;
       appState.itemsById = itemsById;
+      appState.practiceOrder = buildPracticeOrder(hydrated);
       syncLibraryPackDropdown();
       updateMasteredPill();
     }
@@ -2561,12 +2656,18 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       await refreshPackManifest(false);
 
       const existingPacks = await LexisDB.getAll('packs');
+      const existingPackIds = new Set(existingPacks.map(p => p.id));
       const existingItems = await LexisDB.getAll('items');
+      const removedPackIds = await getRemovedPackIds();
 
-      // First run: automatically install all default starter packs from data/manifest.json
-      if (existingPacks.length === 0 && appState.packManifest && Array.isArray(appState.packManifest.packs)) {
-        const defaultPacks = appState.packManifest.packs.filter(p => p.default);
-        await Promise.all(defaultPacks.map(p => installPackById(p.id, true)));
+      // Auto-install any default packs (including newly shipped C1/C2 packs) unless explicitly removed by the user
+      if (appState.packManifest && Array.isArray(appState.packManifest.packs)) {
+        const missingDefaults = appState.packManifest.packs.filter(
+          p => p.default && !existingPackIds.has(p.id) && !removedPackIds.has(p.id)
+        );
+        if (missingDefaults.length > 0) {
+          await Promise.all(missingDefaults.map(p => installPackById(p.id, true)));
+        }
       }
 
       await hydrateStateFromDB();
@@ -2728,25 +2829,64 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       generateTodayBatch();
     }
 
-    function sampleItems(arr, count) {
-      const copy = arr.slice();
-      const n = Math.min(count, copy.length);
-      for (let i = 0; i < n; i++) {
-        const j = i + Math.floor(Math.random() * (copy.length - i));
-        const tmp = copy[i];
-        copy[i] = copy[j];
-        copy[j] = tmp;
+    function weightedSampleItems(arr, count, weightFn) {
+      const pool = arr.slice();
+      const picked = [];
+      const n = Math.min(count, pool.length);
+      for (let step = 0; step < n; step++) {
+        let totalWeight = 0;
+        const weights = pool.map(item => {
+          const w = Math.max(0.01, weightFn(item));
+          totalWeight += w;
+          return w;
+        });
+        let r = Math.random() * totalWeight;
+        let chosenIdx = pool.length - 1;
+        for (let i = 0; i < pool.length; i++) {
+          r -= weights[i];
+          if (r <= 0) {
+            chosenIdx = i;
+            break;
+          }
+        }
+        picked.push(pool[chosenIdx]);
+        pool.splice(chosenIdx, 1);
       }
-      return copy.slice(0, n);
+      return picked;
     }
 
     function generateTodayBatch() {
+      // Focus heavily on C1 & C2 across registers (Casual, Slang, Workplace, Diplomatic, Nuanced)
+      // and allow at most 1 rare B2-C1 refresher across the entire 7-card batch when C1/C2 cards exist.
+      let lowerTierBudget = 1;
+
       const pickPrioritized = (pool, count) => {
+        const picked = [];
+        const usedIds = new Set();
+
+        const pickFromSubset = (subset, needed) => {
+          for (let slot = 0; slot < needed && picked.length < count; slot++) {
+            const candidates = subset.filter(i => !usedIds.has(i.id));
+            if (candidates.length === 0) break;
+
+            const highTier = candidates.filter(i => getCefrRank(i.cefr) >= 2);
+            // Respect rare B2-C1 cap strictly per card when high-tier items are available
+            const eligible = (lowerTierBudget <= 0 && highTier.length > 0) ? highTier : candidates;
+
+            const [chosen] = weightedSampleItems(eligible, 1, item => getCefrWeight(item.cefr));
+            if (chosen) {
+              picked.push(chosen);
+              usedIds.add(chosen.id);
+              if (getCefrRank(chosen.cefr) < 2) lowerTierBudget--;
+            }
+          }
+        };
+
         const unmastered = pool.filter(i => i.status !== 'mastered');
-        const picked = sampleItems(unmastered, count);
+        pickFromSubset(unmastered, count);
         if (picked.length < count) {
           const mastered = pool.filter(i => i.status === 'mastered');
-          picked.push(...sampleItems(mastered, count - picked.length));
+          pickFromSubset(mastered, count - picked.length);
         }
         return picked;
       };
@@ -2757,7 +2897,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
 
       appState.todayIds = [...everyday, ...workplace, ...syntax].map(i => i.id);
       if (appState.todayIds.length === 0 && appState.items.length > 0) {
-        appState.todayIds = sampleItems(appState.items, 7).map(i => i.id);
+        appState.todayIds = weightedSampleItems(appState.items, 7, item => getCefrWeight(item.cefr)).map(i => i.id);
       }
       appState.todayIndex = 0;
       localStorage.setItem(STORAGE.TODAY_IDS, JSON.stringify(appState.todayIds));
@@ -2909,6 +3049,16 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       return 'bg-stone-500/10 text-stone-600 dark:text-stone-300 border-stone-500/20';
     }
 
+    function getRegisterPillClass(reg) {
+      const r = String(reg || '').trim().toLowerCase();
+      if (r === 'slang') return 'bg-fuchsia-500/10 text-fuchsia-700 dark:text-fuchsia-300 border-fuchsia-500/25';
+      if (r === 'casual') return 'bg-teal-500/10 text-teal-700 dark:text-teal-300 border-teal-500/25';
+      if (r === 'workplace') return 'bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-500/25';
+      if (r === 'diplomatic') return 'bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-500/25';
+      if (r === 'nuanced') return 'bg-violet-500/10 text-violet-700 dark:text-violet-300 border-violet-500/25';
+      return 'border-paper-border dark:border-charcoal-border bg-paper-subtle/70 dark:bg-charcoal-subtle/70 text-stone-600 dark:text-stone-300';
+    }
+
     function getCategoryPillClass(cat) {
       if (cat === 'Everyday') return 'bg-sky-500/10 text-sky-700 dark:text-sky-300 border-sky-500/20';
       if (cat === 'Workplace') return 'bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-500/20';
@@ -2973,7 +3123,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
                   ${escapeHtml(item.category)}
                 </span>
                 ${item.cefr ? `<span class="px-2 py-1 rounded-md text-[11px] font-mono font-medium border ${getCefrPillClass(item.cefr)}">${escapeHtml(item.cefr)}</span>` : ''}
-                <span class="px-2.5 py-1 rounded-md text-[11px] font-mono border border-paper-border dark:border-charcoal-border bg-paper-subtle/70 dark:bg-charcoal-subtle/70 text-stone-600 dark:text-stone-300">
+                <span class="px-2.5 py-1 rounded-md text-[11px] font-mono border ${getRegisterPillClass(item.register)}">
                   ${escapeHtml(item.register || 'Conversational')}
                 </span>
               </div>
@@ -3185,8 +3335,19 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       appState.practice.sandboxRevealed = false;
     }
 
+    function getPracticePool() {
+      return appState.practiceOrder.length > 0 ? appState.practiceOrder : appState.items;
+    }
+
+    function getCurrentPracticeItem() {
+      const pool = getPracticePool();
+      if (pool.length === 0) return null;
+      return pool[appState.practice.index % pool.length] || null;
+    }
+
     function stepPracticeItem(delta) {
-      const len = appState.items.length || 1;
+      const pool = getPracticePool();
+      const len = pool.length || 1;
       appState.practice.index = (appState.practice.index + delta + len) % len;
       resetPracticeStep();
       renderPracticeStudio();
@@ -3219,17 +3380,18 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       });
 
       const workspace = document.getElementById('practice-workspace');
-      if (!workspace || appState.items.length === 0) return;
+      const pool = getPracticePool();
+      if (!workspace || pool.length === 0) return;
 
-      const idx = appState.practice.index % appState.items.length;
-      const item = appState.items[idx];
+      const idx = appState.practice.index % pool.length;
+      const item = pool[idx];
 
       if (appState.practice.mode === 'upgrade') {
-        renderPrecisionUpgradeDrill(workspace, item, idx, appState.items.length);
+        renderPrecisionUpgradeDrill(workspace, item, idx, pool.length);
       } else if (appState.practice.mode === 'cloze') {
-        renderContextualClozeDrill(workspace, item, idx, appState.items.length);
+        renderContextualClozeDrill(workspace, item, idx, pool.length);
       } else {
-        renderActiveSandboxDrill(workspace, item, idx, appState.items.length);
+        renderActiveSandboxDrill(workspace, item, idx, pool.length);
       }
     }
 
@@ -3249,11 +3411,14 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       container.innerHTML = `
         <div class="rounded-2xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card p-5 sm:p-8 space-y-6 shadow-sm">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 flex-wrap">
               <span class="px-2.5 py-1 rounded-md text-[11px] font-mono border ${getCategoryPillClass(item.category)}">
                 ${escapeHtml(item.category)}
               </span>
-              <span class="text-xs font-mono text-stone-400">${escapeHtml(item.register || '')}</span>
+              ${item.cefr ? `<span class="px-2 py-1 rounded-md text-[11px] font-mono border ${getCefrPillClass(item.cefr)}">${escapeHtml(item.cefr)}</span>` : ''}
+              <span class="px-2 py-1 rounded-md text-[11px] font-mono border ${getRegisterPillClass(item.register)}">
+                ${escapeHtml(item.register || 'Conversational')}
+              </span>
             </div>
             <span class="text-xs font-mono text-stone-400">Item ${idx + 1} / ${total}</span>
           </div>
@@ -3343,7 +3508,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     }
 
     function selectUpgradeOption(oIdx) {
-      const item = appState.items[appState.practice.index % appState.items.length];
+      const item = getCurrentPracticeItem();
       if (!item || appState.practice.quizSelected !== null) return;
       const options = item.quizOptions || [];
       if (oIdx < 0 || oIdx >= options.length) return;
@@ -3367,10 +3532,16 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
 
       container.innerHTML = `
         <div class="rounded-2xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card p-5 sm:p-8 space-y-6 shadow-sm">
-          <div class="flex items-center justify-between gap-2">
-            <span class="px-2.5 py-1 rounded-md text-[11px] font-mono border ${getCategoryPillClass(item.category)}">
-              ${escapeHtml(item.category)} · Contextual Cloze
-            </span>
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="px-2.5 py-1 rounded-md text-[11px] font-mono border ${getCategoryPillClass(item.category)}">
+                ${escapeHtml(item.category)} · Contextual Cloze
+              </span>
+              ${item.cefr ? `<span class="px-2 py-1 rounded-md text-[11px] font-mono border ${getCefrPillClass(item.cefr)}">${escapeHtml(item.cefr)}</span>` : ''}
+              <span class="px-2 py-1 rounded-md text-[11px] font-mono border ${getRegisterPillClass(item.register)}">
+                ${escapeHtml(item.register || 'Conversational')}
+              </span>
+            </div>
             <span class="text-xs font-mono text-stone-400">Item ${idx + 1} / ${total}</span>
           </div>
 
@@ -3442,7 +3613,8 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         showToast('Type your answer in the blank first.');
         return;
       }
-      const item = appState.items[appState.practice.index % appState.items.length];
+      const item = getCurrentPracticeItem();
+      if (!item) return;
       const accepted = (item.clozeAccepted || [item.clozeAnswer]).map(a => a.toLowerCase().trim());
 
       appState.practice.clozeSubmitted = true;
@@ -3610,11 +3782,17 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         packSelect.value = appState.libraryFilters.pack;
       }
 
+      const regSelect = document.getElementById('library-register-filter');
+      if (regSelect && regSelect.value !== appState.libraryFilters.register) {
+        regSelect.value = appState.libraryFilters.register;
+      }
+
       const query = (document.getElementById('library-search-input')?.value || '').trim().toLowerCase();
 
       const filtered = appState.items.filter(item => {
         if (appState.libraryFilters.category !== 'All' && item.category !== appState.libraryFilters.category) return false;
         if (appState.libraryFilters.cefr !== 'All' && normalizeCefrTag(item.cefr) !== normalizeCefrTag(appState.libraryFilters.cefr)) return false;
+        if (appState.libraryFilters.register !== 'All' && String(item.register || '').toLowerCase() !== appState.libraryFilters.register.toLowerCase()) return false;
         if (appState.libraryFilters.status !== 'All' && item.status !== appState.libraryFilters.status) return false;
         if (appState.libraryFilters.pack !== 'All' && (item.packId || 'custom') !== appState.libraryFilters.pack) return false;
 
@@ -3709,8 +3887,8 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
             </div>
 
             <div class="pt-3 border-t border-paper-border dark:border-charcoal-border flex items-center justify-between">
-              <span class="text-[11px] font-mono text-stone-400">
-                ${escapeHtml(item.register || '')}
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono border ${getRegisterPillClass(item.register)}">
+                ${escapeHtml(item.register || 'Conversational')}
               </span>
               <button onclick="toggleLibraryCardExpand('${escapeAttr(item.id)}')" class="text-xs font-mono text-[#B05438] dark:text-[#E58E73] hover:underline min-h-[34px]">
                 Expand card →
@@ -3730,7 +3908,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     function resetLibraryFilters() {
       const search = document.getElementById('library-search-input');
       if (search) search.value = '';
-      appState.libraryFilters = { category: 'All', cefr: 'All', status: 'All', pack: 'All' };
+      appState.libraryFilters = { category: 'All', cefr: 'All', register: 'All', status: 'All', pack: 'All' };
       appState.libraryVisibleCount = LIBRARY_PAGE_SIZE;
       renderLibrary();
     }

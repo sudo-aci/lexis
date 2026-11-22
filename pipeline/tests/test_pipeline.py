@@ -209,6 +209,23 @@ class TestRepoPacksIntegrity(unittest.TestCase):
         cats = {i["category"] for i in items}
         self.assertEqual(cats, {"Everyday", "Workplace", "Syntax"})
 
+    def test_c2_slang_casual_pack_and_defaults(self) -> None:
+        slang_file = REPO_ROOT / "data" / "packs" / "mastery-c2-slang-casual.json"
+        self.assertTrue(slang_file.exists(), "C2 slang/casual pack must exist")
+        doc = json.loads(slang_file.read_text(encoding="utf-8"))
+        self.assertEqual(doc["pack"]["cefr"], "C2")
+        items = doc["items"]
+        self.assertEqual(len(items), 15)
+        self.assertTrue(all(i.get("cefr") == "C2" for i in items))
+        registers = {i["register"] for i in items}
+        self.assertTrue({"Slang", "Casual", "Workplace"}.issubset(registers))
+
+        manifest = json.loads((REPO_ROOT / "data" / "manifest.json").read_text(encoding="utf-8"))
+        by_id = {p["id"]: p for p in manifest["packs"]}
+        self.assertTrue(by_id["expansion-mastery-c2"]["default"])
+        self.assertTrue(by_id["mastery-c2-slang-casual"]["default"])
+        self.assertTrue(by_id["expansion-precision-c1"]["default"])
+
 
 if __name__ == "__main__":
     unittest.main()

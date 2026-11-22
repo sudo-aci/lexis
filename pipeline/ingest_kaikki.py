@@ -36,7 +36,7 @@ WORKPLACE_KEYWORDS = {
 SYNTAX_POS = {"conj", "prep", "particle"}
 
 REGISTER_TAG_MAP = {
-    "slang": "Casual",
+    "slang": "Slang",
     "informal": "Casual",
     "colloquial": "Conversational",
     "idiomatic": "Conversational",

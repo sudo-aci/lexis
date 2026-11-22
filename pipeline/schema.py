@@ -7,7 +7,7 @@ import re
 from typing import Any, Iterable
 
 VALID_CATEGORIES = ("Everyday", "Workplace", "Syntax")
-VALID_REGISTERS = ("Casual", "Conversational", "Workplace", "Diplomatic", "Nuanced")
+VALID_REGISTERS = ("Casual", "Slang", "Conversational", "Workplace", "Diplomatic", "Nuanced")
 VALID_CEFR = ("A1", "A2", "B1", "B2", "B2-C1", "C1", "C1-C2", "C2")
 
 STOPWORDS = {
@@ -76,7 +76,7 @@ def normalize_register(raw_reg: Any, default: str = "Conversational") -> str:
             return valid
     mapping = {
         "informal": "Casual",
-        "slang": "Casual",
+        "slang": "Slang",
         "colloquial": "Conversational",
         "idiomatic": "Conversational",
         "business": "Workplace",
