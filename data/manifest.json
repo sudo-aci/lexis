@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-22T17:15:47Z",
-  "totalItems": 48,
+  "generatedAt": "2026-11-22T17:40:04Z",
+  "totalItems": 66,
   "packs": [
     {
       "id": "starter-everyday",
@@ -57,6 +57,20 @@
       "itemCount": 12,
       "sizeBytes": 34371,
       "sha256": "b669a5dd05d3a6ff",
+      "default": false
+    },
+    {
+      "id": "expansion-mastery-c2",
+      "name": "Mastery · C2 Precision & Discourse",
+      "description": "18 natural C2 idioms, executive framing phrases, and inverted/concessive syntax patterns for effortless near-native fluency.",
+      "category": "Mixed",
+      "cefr": "C2",
+      "version": "1.0.0",
+      "source": "Lexis C2 Mastery Pack",
+      "file": "data/packs/expansion-mastery-c2.json",
+      "itemCount": 18,
+      "sizeBytes": 53366,
+      "sha256": "809513f23a2c6556",
       "default": false
     }
   ]
