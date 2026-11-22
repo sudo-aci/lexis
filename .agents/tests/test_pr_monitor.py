@@ -2,10 +2,13 @@
 
 from __future__ import annotations
 
+import argparse
 import importlib.util
+import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest import mock
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -378,6 +381,203 @@ class TestEvaluatePR(unittest.TestCase):
         result = pr_monitor.evaluate_pr(pr)
         self.assertEqual(result["status"], "CLEAN")
 
+    def test_classify_checks_deduplicates_out_of_order_by_timestamp_and_type(self) -> None:
+        rollup = {
+            "contexts": {
+                "nodes": [
+                    {
+                        "__typename": "CheckRun",
+                        "name": "Verify Lexis",
+                        "status": "COMPLETED",
+                        "conclusion": "SUCCESS",
+                        "completedAt": "2026-11-22T18:10:00Z",
+                        "startedAt": "2026-11-22T18:09:00Z",
+                        "detailsUrl": "https://example.com/newer-pass",
+                    },
+                    {
+                        "__typename": "CheckRun",
+                        "name": "Verify Lexis",
+                        "status": "COMPLETED",
+                        "conclusion": "FAILURE",
+                        "completedAt": "2026-11-22T18:05:00Z",
+                        "startedAt": "2026-11-22T18:04:00Z",
+                        "detailsUrl": "https://example.com/older-fail",
+                    },
+                    {
+                        "__typename": "StatusContext",
+                        "context": "Verify Lexis",
+                        "state": "FAILURE",
+                        "createdAt": "2026-11-22T18:08:00Z",
+                        "targetUrl": "https://example.com/status-fail",
+                    },
+                    {
+                        "__typename": "StatusContext",
+                        "context": "Verify Lexis",
+                        "state": "SUCCESS",
+                        "createdAt": "2026-11-22T18:02:00Z",
+                        "targetUrl": "https://example.com/status-older-pass",
+                    },
+                ]
+            }
+        }
+        checks = pr_monitor.classify_checks(rollup)
+        # CheckRun and StatusContext with identical names do not clobber each other.
+        self.assertEqual(checks["total"], 2)
+        self.assertEqual(len(checks["passed"]), 1)
+        self.assertEqual(checks["passed"][0]["type"], "CheckRun")
+        self.assertEqual(checks["passed"][0]["url"], "https://example.com/newer-pass")
+        self.assertEqual(len(checks["failed"]), 1)
+        self.assertEqual(checks["failed"][0]["type"], "StatusContext")
+        self.assertEqual(checks["failed"][0]["url"], "https://example.com/status-fail")
+
+    def test_human_approval_clears_earlier_changes_requested_same_reviewer(self) -> None:
+        pr = _make_pr(
+            head_sha=self.SHA_A,
+            committed_at="2026-11-22T18:00:00Z",
+            reviews=[
+                {
+                    "id": "r_auto",
+                    "author": {"login": "sudo-aci"},
+                    "state": "COMMENTED",
+                    "body": f"<!-- auto-pr-review:sha={self.SHA_A} verdict=APPROVE round=1 -->",
+                    "submittedAt": "2026-11-22T18:01:00Z",
+                },
+                {
+                    "id": "r_req",
+                    "author": {"login": "alice"},
+                    "state": "CHANGES_REQUESTED",
+                    "body": "Wait, double check this.",
+                    "submittedAt": "2026-11-22T18:02:00Z",
+                },
+                {
+                    "id": "r_ok",
+                    "author": {"login": "alice"},
+                    "state": "APPROVED",
+                    "body": "Never mind, looks good!",
+                    "submittedAt": "2026-11-22T18:05:00Z",
+                },
+            ],
+        )
+        result = pr_monitor.evaluate_pr(pr)
+        self.assertEqual(result["status"], "CLEAN")
+        self.assertEqual(result["reasons"], [])
+        self.assertEqual(result["new_feedback"], [])
+
+        # A second reviewer requesting changes still triggers NEEDS_FIX.
+        pr_second_reviewer = {
+            **pr,
+            "reviews": {
+                "nodes": pr["reviews"]["nodes"]
+                + [
+                    {
+                        "id": "r_bob",
+                        "author": {"login": "bob"},
+                        "state": "CHANGES_REQUESTED",
+                        "body": "Found a separate issue.",
+                        "submittedAt": "2026-11-22T18:06:00Z",
+                    }
+                ]
+            },
+        }
+        result_bob = pr_monitor.evaluate_pr(pr_second_reviewer)
+        self.assertEqual(result_bob["status"], "NEEDS_FIX")
+        self.assertIn("HUMAN_CHANGES_REQUESTED", result_bob["reasons"])
+
+    def test_unresolved_thread_exposes_comment_database_ids(self) -> None:
+        pr = _make_pr(
+            head_sha=self.SHA_A,
+            comments=[
+                {
+                    "id": "c1",
+                    "author": {"login": "sudo-aci"},
+                    "body": f"<!-- auto-pr-review:sha={self.SHA_A} verdict=APPROVE round=1 -->",
+                    "createdAt": "2026-11-22T18:02:00Z",
+                }
+            ],
+            threads=[
+                {
+                    "id": "t1",
+                    "isResolved": False,
+                    "isOutdated": False,
+                    "path": "AGENTS.md",
+                    "line": 10,
+                    "comments": {
+                        "nodes": [
+                            {
+                                "id": "tc1",
+                                "databaseId": 9001,
+                                "author": {"login": "alice"},
+                                "body": "Initial note",
+                                "createdAt": "2026-11-22T18:03:00Z",
+                            },
+                            {
+                                "id": "tc2",
+                                "databaseId": 9002,
+                                "author": {"login": "alice"},
+                                "body": "Follow-up note",
+                                "createdAt": "2026-11-22T18:04:00Z",
+                            },
+                        ]
+                    },
+                }
+            ],
+        )
+        result = pr_monitor.evaluate_pr(pr)
+        self.assertEqual(result["unresolved_threads"][0]["root_comment_database_id"], 9001)
+        self.assertEqual(result["unresolved_threads"][0]["last_comment_database_id"], 9002)
+
+    def test_fetch_prs_uses_string_flags_for_owner_and_name(self) -> None:
+        fake_response = json.dumps(
+            {"data": {"repository": {"pullRequests": {"nodes": []}}}}
+        )
+        with mock.patch.object(pr_monitor, "run_gh_command", return_value=fake_response) as m:
+            pr_monitor.fetch_prs("12345", "true", limit=5)
+            called_args = m.call_args[0][0]
+            self.assertEqual(called_args[2:8], ["-f", "owner=12345", "-f", "name=true", "-F", "limit=5"])
+
+        fake_single = json.dumps(
+            {"data": {"repository": {"pullRequest": {"state": "CLOSED"}}}}
+        )
+        with mock.patch.object(pr_monitor, "run_gh_command", return_value=fake_single) as m:
+            pr_monitor.fetch_prs("owner", "@not-a-file", pr_number=4)
+            called_args = m.call_args[0][0]
+            self.assertEqual(called_args[2:8], ["-f", "owner=owner", "-f", "name=@not-a-file", "-F", "number=4"])
+
+    def test_cmd_watch_validates_interval_and_retries_transient_errors(self) -> None:
+        bad_args = argparse.Namespace(
+            repo="o/r",
+            pr=None,
+            include_drafts=False,
+            limit=10,
+            json=True,
+            interval=0,
+            max_wait=10,
+            wait_clean=False,
+            grace_seconds=0,
+        )
+        with self.assertRaises(RuntimeError):
+            pr_monitor.cmd_watch(bad_args)
+
+        retry_args = argparse.Namespace(
+            repo="o/r",
+            pr=4,
+            include_drafts=False,
+            limit=10,
+            json=True,
+            interval=0.01,
+            max_wait=5,
+            wait_clean=True,
+            grace_seconds=0,
+        )
+        pr_unreviewed = _make_pr(number=4, head_sha=self.SHA_A)
+        with mock.patch.object(
+            pr_monitor,
+            "fetch_prs",
+            side_effect=[RuntimeError("network blip"), [pr_unreviewed]],
+        ), mock.patch.object(pr_monitor, "print_report"):
+            code = pr_monitor.cmd_watch(retry_args)
+            self.assertEqual(code, 2)
+
 
 class TestVerifyRepo(unittest.TestCase):
     def test_inline_script_extractor_filters_non_js_and_external(self) -> None:
@@ -409,6 +609,13 @@ class TestVerifyRepo(unittest.TestCase):
             errors = verify_repo.check_index_html_js(root)
             self.assertEqual(len(errors), 1)
             self.assertIn("failed node --check", errors[0])
+
+    def test_check_json_files_accumulates_all_missing_files(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            errors = verify_repo.check_json_files(Path(tmp))
+            self.assertEqual(len(errors), 2)
+            self.assertIn(".agents/environment.json", errors[0])
+            self.assertIn("data/manifest.json", errors[1])
 
 
 if __name__ == "__main__":

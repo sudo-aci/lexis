@@ -108,7 +108,7 @@ PR_FIELDS_FRAGMENT = """
       commit { oid }
     }
   }
-  reviewThreads(first: 50) {
+  reviewThreads(last: 50) {
     nodes {
       id
       isResolved
@@ -227,15 +227,16 @@ def classify_checks(status_rollup: dict[str, Any] | None) -> dict[str, Any]:
         return {"passed": passed, "failed": failed, "pending": pending, "total": 0}
 
     raw_nodes = (status_rollup.get("contexts") or {}).get("nodes") or []
-    # Keep the latest status per unique check name/context.
-    by_name: dict[str, dict[str, Any]] = {}
+    # Keep the newest status per unique (typename, name) based on timestamps.
+    by_key: dict[tuple[str, str], tuple[datetime | None, dict[str, Any]]] = {}
     for node in raw_nodes:
         if not isinstance(node, dict):
             continue
         typename = node.get("__typename")
         if typename == "CheckRun":
             name = node.get("name") or "unnamed-check"
-            by_name[name] = {
+            ts = parse_iso_timestamp(node.get("completedAt") or node.get("startedAt"))
+            entry = {
                 "type": "CheckRun",
                 "name": name,
                 "status": (node.get("status") or "").upper(),
@@ -244,15 +245,28 @@ def classify_checks(status_rollup: dict[str, Any] | None) -> dict[str, Any]:
             }
         elif typename == "StatusContext":
             name = node.get("context") or "unnamed-status"
-            by_name[name] = {
+            ts = parse_iso_timestamp(node.get("createdAt"))
+            entry = {
                 "type": "StatusContext",
                 "name": name,
                 "status": (node.get("state") or "").upper(),
                 "conclusion": (node.get("state") or "").upper() or None,
                 "url": node.get("targetUrl"),
             }
+        else:
+            continue
 
-    for item in by_name.values():
+        key = (typename, name)
+        prev = by_key.get(key)
+        if prev is None:
+            by_key[key] = (ts, entry)
+        else:
+            prev_ts, _ = prev
+            # Replace when new entry is newer/equal, or when previous lacked a timestamp.
+            if prev_ts is None or (ts is not None and ts >= prev_ts):
+                by_key[key] = (ts, entry)
+
+    for _, item in by_key.values():
         if item["type"] == "CheckRun":
             if item["status"] != "COMPLETED":
                 pending.append(item)
@@ -276,7 +290,7 @@ def classify_checks(status_rollup: dict[str, Any] | None) -> dict[str, Any]:
         "passed": passed,
         "failed": failed,
         "pending": pending,
-        "total": len(by_name),
+        "total": len(by_key),
     }
 
 
@@ -371,6 +385,8 @@ def evaluate_pr(pr_data: dict[str, Any]) -> dict[str, Any]:
                 "id": thread.get("id"),
                 "path": thread.get("path"),
                 "line": thread.get("line"),
+                "root_comment_database_id": t_comments[0].get("databaseId"),
+                "last_comment_database_id": last_t_comment.get("databaseId"),
                 "last_author": ((last_t_comment.get("author") or {}).get("login")) or "unknown",
                 "last_created_at": last_t_comment.get("createdAt"),
                 "excerpt": (last_t_comment.get("body") or "").strip()[:280],
@@ -398,37 +414,56 @@ def evaluate_pr(pr_data: dict[str, Any]) -> dict[str, Any]:
                 }
             )
 
-    for rev in reviews:
+    # Sort human reviews chronologically so a later APPROVED/DISMISSED review
+    # from the same reviewer supersedes an earlier CHANGES_REQUESTED review.
+    indexed_reviews = []
+    for idx, rev in enumerate(reviews):
         body = (rev.get("body") or "").strip()
-        state = (rev.get("state") or "").upper()
         if extract_review_markers(body) or extract_fix_markers(body):
             continue
         rev_dt = parse_iso_timestamp(rev.get("submittedAt"))
+        indexed_reviews.append((rev_dt, idx, rev, body))
+    indexed_reviews.sort(
+        key=lambda item: (
+            item[0] or datetime.min.replace(tzinfo=timezone.utc),
+            item[1],
+        )
+    )
+
+    # Latest decisive review state per reviewer after feedback_cutoff.
+    latest_decisive_by_reviewer: dict[str, dict[str, Any]] = {}
+    for rev_dt, idx, rev, body in indexed_reviews:
         is_after_cutoff = feedback_cutoff is None or (
             rev_dt is not None and rev_dt > feedback_cutoff
         )
-        if state == "CHANGES_REQUESTED" and is_after_cutoff:
-            human_changes_requested = True
+        if not is_after_cutoff:
+            continue
+        state = (rev.get("state") or "").upper()
+        login = (rev.get("author") or {}).get("login")
+        reviewer_key = login or f"__unknown_{idx}"
+        if state in {"CHANGES_REQUESTED", "APPROVED", "DISMISSED"}:
+            latest_decisive_by_reviewer[reviewer_key] = {
+                "source": "review",
+                "state": state,
+                "author": login or "unknown",
+                "created_at": rev.get("submittedAt"),
+                "excerpt": body[:280],
+            }
+        elif state == "COMMENTED" and body:
             new_feedback_comments.append(
                 {
                     "source": "review",
                     "state": state,
-                    "author": ((rev.get("author") or {}).get("login")) or "unknown",
+                    "author": login or "unknown",
                     "created_at": rev.get("submittedAt"),
                     "excerpt": body[:280],
                 }
             )
-        elif body and is_after_cutoff and state in {"COMMENTED", "APPROVED"}:
-            if state == "COMMENTED":
-                new_feedback_comments.append(
-                    {
-                        "source": "review",
-                        "state": state,
-                        "author": ((rev.get("author") or {}).get("login")) or "unknown",
-                        "created_at": rev.get("submittedAt"),
-                        "excerpt": body[:280],
-                    }
-                )
+
+    for entry in latest_decisive_by_reviewer.values():
+        if entry["state"] == "CHANGES_REQUESTED":
+            human_changes_requested = True
+            new_feedback_comments.append(entry)
 
     # 7. Assemble reasons and overall status.
     fix_reasons: list[str] = []
@@ -534,9 +569,9 @@ def fetch_prs(
             [
                 "api",
                 "graphql",
-                "-F",
+                "-f",
                 f"owner={owner}",
-                "-F",
+                "-f",
                 f"name={name}",
                 "-F",
                 f"number={pr_number}",
@@ -545,6 +580,8 @@ def fetch_prs(
             ]
         )
         payload = json.loads(stdout)
+        if payload.get("errors"):
+            raise RuntimeError(f"GraphQL error fetching PR #{pr_number}: {payload['errors']}")
         pr_node = ((payload.get("data") or {}).get("repository") or {}).get("pullRequest")
         if pr_node is None:
             raise RuntimeError(f"PR #{pr_number} not found in {owner}/{name}.")
@@ -556,9 +593,9 @@ def fetch_prs(
         [
             "api",
             "graphql",
-            "-F",
+            "-f",
             f"owner={owner}",
-            "-F",
+            "-f",
             f"name={name}",
             "-F",
             f"limit={limit}",
@@ -567,6 +604,8 @@ def fetch_prs(
         ]
     )
     payload = json.loads(stdout)
+    if payload.get("errors"):
+        raise RuntimeError(f"GraphQL error listing PRs: {payload['errors']}")
     nodes = (
         ((payload.get("data") or {}).get("repository") or {})
         .get("pullRequests", {})
@@ -638,18 +677,41 @@ def cmd_check(args: argparse.Namespace) -> int:
 
 
 def cmd_watch(args: argparse.Namespace) -> int:
+    if args.interval <= 0:
+        raise RuntimeError("--interval must be greater than 0.")
+    if args.max_wait < 0:
+        raise RuntimeError("--max-wait must be non-negative.")
+
     owner, name = resolve_repo(args.repo)
     start = time.monotonic()
     grace = args.grace_seconds if args.grace_seconds is not None else (15 if args.wait_clean else 0)
+    consecutive_errors = 0
+    max_consecutive_errors = 3
 
     while True:
-        raw_prs = fetch_prs(
-            owner,
-            name,
-            pr_number=args.pr,
-            include_drafts=args.include_drafts,
-            limit=args.limit,
-        )
+        try:
+            raw_prs = fetch_prs(
+                owner,
+                name,
+                pr_number=args.pr,
+                include_drafts=args.include_drafts,
+                limit=args.limit,
+            )
+            consecutive_errors = 0
+        except RuntimeError as exc:
+            consecutive_errors += 1
+            elapsed = time.monotonic() - start
+            if consecutive_errors >= max_consecutive_errors or elapsed >= args.max_wait:
+                raise
+            print(
+                f"WARN: transient fetch error ({consecutive_errors}/{max_consecutive_errors}): {exc}",
+                file=sys.stderr,
+            )
+            sleep_for = min(args.interval, max(0.0, args.max_wait - elapsed))
+            if sleep_for > 0:
+                time.sleep(sleep_for)
+            continue
+
         reports = [evaluate_pr(p) for p in raw_prs]
         summary = summarize_reports(reports)
 
@@ -674,8 +736,9 @@ def cmd_watch(args: argparse.Namespace) -> int:
             print_report(summary, as_json=args.json)
             return 4
 
-        sleep_for = min(args.interval, max(1.0, args.max_wait - elapsed))
-        time.sleep(sleep_for)
+        sleep_for = min(args.interval, max(0.0, args.max_wait - elapsed))
+        if sleep_for > 0:
+            time.sleep(sleep_for)
 
 
 def cmd_format_marker(args: argparse.Namespace) -> int:

@@ -91,12 +91,15 @@ def check_index_html_js(repo_root: Path) -> list[str]:
         ) as tmp:
             tmp.write(code)
             tmp.flush()
-            proc = subprocess.run(
-                ["node", "--check", tmp.name],
-                capture_output=True,
-                text=True,
-                check=False,
-            )
+            try:
+                proc = subprocess.run(
+                    ["node", "--check", tmp.name],
+                    capture_output=True,
+                    text=True,
+                    check=False,
+                )
+            except FileNotFoundError:
+                return ["Required binary `node` was not found on PATH."]
         if proc.returncode != 0:
             detail = (proc.stderr or proc.stdout).strip()
             errors.append(
@@ -111,18 +114,18 @@ def check_index_html_js(repo_root: Path) -> list[str]:
 def check_json_files(repo_root: Path) -> list[str]:
     """Validate JSON syntax of repository config and data files."""
     targets: list[Path] = []
+    errors: list[str] = []
     for rel in (".agents/environment.json", "data/manifest.json"):
         path = repo_root / rel
         if path.exists():
             targets.append(path)
         else:
-            return [f"Missing expected JSON file: {rel}"]
+            errors.append(f"Missing expected JSON file: {rel}")
 
     packs_dir = repo_root / "data" / "packs"
     if packs_dir.is_dir():
         targets.extend(sorted(packs_dir.glob("*.json")))
 
-    errors: list[str] = []
     for path in targets:
         try:
             json.loads(path.read_text(encoding="utf-8"))
