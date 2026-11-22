@@ -1,0 +1,3 @@
+{
+  "install": "test -f index.html && node --version && python3 --version"
+}
