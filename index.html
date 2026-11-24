@@ -3434,7 +3434,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
             <span class="eq-bar w-0.5 h-full bg-[#C46548] rounded-full"></span>
             <span class="eq-bar w-0.5 h-full bg-[#C46548] rounded-full"></span>
           </span>
-          <span>${accent}</span>
+          <span>${escapeHtml(accent)}</span>
           ${showShortcut && accent === 'US' ? `<kbd class="hidden md:inline-block border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card text-stone-400">A</kbd>` : ''}
         </button>
       `;
@@ -3886,6 +3886,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         options: shuffled,
         correctIdx,
         selectedIdx: null,
+        xpAwarded: 0,
         checked: false,
         isCorrect: false,
         isReview: false
@@ -3939,6 +3940,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         useKeyboard: false,
         showHint: false,
         hadTypo: false,
+        xpAwarded: 0,
         checked: false,
         isCorrect: false,
         isReview: false
@@ -3989,6 +3991,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         solutionChunks,
         bank,
         selectedIndices: [], // indices into `bank`
+        xpAwarded: 0,
         checked: false,
         isCorrect: false,
         isReview: false
@@ -4156,8 +4159,8 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
 
           if (kind === 'match') {
             const batch = [];
-            for (let k = 0; k < Math.min(4, orderedPool.length); k++) {
-              batch.push(pickItem(itemCursor + k));
+            for (let k = 0; k < Math.min(4, uniqueMatchPool.length); k++) {
+              batch.push(uniqueMatchPool[(itemCursor + k) % uniqueMatchPool.length]);
             }
             const matchStep = buildMatchStep(batch);
             if (matchStep.left.length >= 2) {
@@ -4221,6 +4224,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
 
     function exitPracticeLesson() {
       if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      appState.speakingKey = null;
       appState.practice.stage = 'hub';
       appState.practice.session = null;
       renderPracticeStudio();
@@ -4415,7 +4419,10 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     function practiceInsertSandboxStarter() {
       const step = getCurrentPracticeStep();
       if (!step || step.type !== 'sandbox' || step.checked) return;
-      const starter = getCleanPhraseLabel(step.item).split('/')[0].replace(/\.\.\.$/, '').trim();
+      const rawPhrase = (step.item.phrase || '').trim();
+      const firstQuoted = rawPhrase.match(/\([^)]*?["“]([^"”]+)["”]/);
+      const basePhrase = (firstQuoted && firstQuoted[1]) ? firstQuoted[1] : rawPhrase;
+      const starter = basePhrase.split(/\s*\/\s*(?![^\[]*\])/)[0].replace(/\.\.\.$/, '').trim();
       const ta = document.getElementById('sandbox-draft-input');
       const nextVal = step.draft.trim() ? `${step.draft.trim()} ${starter} ` : `${starter.charAt(0).toUpperCase() + starter.slice(1)} `;
       step.draft = nextVal;
@@ -4562,6 +4569,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       // Audio "Can't listen now" skips cleanly without penalty
       if (step.type === 'listen') {
         if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+        appState.speakingKey = null;
         if (!step.isReview && session.initialStepCount > 0) {
           session.initialStepCount -= 1;
         }
@@ -4581,6 +4589,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       const session = appState.practice.session;
       if (!session) return;
       if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      appState.speakingKey = null;
 
       if (session.currentIndex + 1 < session.steps.length) {
         session.currentIndex += 1;
