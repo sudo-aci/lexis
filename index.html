@@ -810,7 +810,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
 })();</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Lexis — Precision &amp; Register</title>
+  <title>Lexis</title>
 
   <!-- iOS & macOS Safari Standalone PWA Meta Tags -->
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -843,21 +843,21 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
             paper: {
               bg: '#FAF8F5',
               card: '#FFFFFF',
-              subtle: '#F2EFE9',
-              border: '#E6E1D8',
+              subtle: '#F3F0EA',
+              border: '#ECE8E0',
               ink: '#191816',
             },
             charcoal: {
               bg: '#161514',
               card: '#1F1E1C',
-              subtle: '#282623',
-              border: '#33302C',
+              subtle: '#262421',
+              border: '#2B2926',
               cream: '#F3F0EA',
             },
             terracotta: {
               DEFAULT: '#C46548',
               hover: '#B05438',
-              soft: '#D97B5E',
+              soft: '#E2876B',
             }
           }
         }
@@ -914,18 +914,40 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
       padding-top: env(safe-area-inset-top);
     }
 
-    html:not(.dark) body {
-      background-image:
-        radial-gradient(circle at 10% 0%, rgba(196, 101, 72, 0.045), transparent 40%),
-        radial-gradient(circle at 90% 100%, rgba(25, 24, 22, 0.025), transparent 45%);
-      background-attachment: fixed;
-    }
-
     .brand-squircle {
-      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      transition: transform 0.2s ease;
     }
     .brand-squircle:hover {
       transform: translateY(-1px);
+    }
+
+    .nav-desktop-active {
+      color: #191816;
+      font-weight: 500;
+    }
+    .dark .nav-desktop-active {
+      color: #F3F0EA;
+    }
+    .nav-desktop-active::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 1.5px;
+      background-color: #C46548;
+      border-radius: 2px;
+    }
+    .dark .nav-desktop-active::after {
+      background-color: #E2876B;
+    }
+
+    html.dark {
+      color-scheme: dark;
+    }
+    html.dark select option {
+      background-color: #1F1E1C;
+      color: #F3F0EA;
     }
 
     /* ==================== PRACTICE STUDIO (MODERN DUOLINGO-INSPIRED UX) ==================== */
@@ -1239,57 +1261,46 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
       border-bottom-width: 1.5px;
     }
   </style>
-<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:Inter, -apple-system, BlinkMacSystemFont, sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:JetBrains Mono, ui-monospace, monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.pointer-events-none{pointer-events:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.inset-x-0{left:0px;right:0px}.bottom-0{bottom:0px}.bottom-20{bottom:5rem}.left-3\.5{left:0.875rem}.left-4{left:1rem}.right-4{right:1rem}.top-0{top:0px}.top-1\/2{top:50%}.z-40{z-index:40}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.my-3{margin-top:0.75rem;margin-bottom:0.75rem}.my-5{margin-top:1.25rem;margin-bottom:1.25rem}.mb-1{margin-bottom:0.25rem}.mr-1{margin-right:0.25rem}.mt-1{margin-top:0.25rem}.mb-1\.5{margin-bottom:0.375rem}.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-14{height:3.5rem}.h-16{height:4rem}.h-2{height:0.5rem}.h-24{height:6rem}.h-3\.5{height:0.875rem}.h-4{height:1rem}.h-5{height:1.25rem}.h-9{height:2.25rem}.h-1\.5{height:0.375rem}.h-3{height:0.75rem}.h-full{height:100%}.min-h-\[36px\]{min-height:36px}.min-h-\[38px\]{min-height:38px}.min-h-\[40px\]{min-height:40px}.min-h-\[44px\]{min-height:44px}.min-h-\[48px\]{min-height:48px}.min-h-screen{min-height:100vh}.w-2{width:0.5rem}.w-24{width:6rem}.w-3\.5{width:0.875rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-9{width:2.25rem}.w-full{width:100%}.w-0\.5{width:0.125rem}.min-w-\[38px\]{min-width:38px}.max-w-3xl{max-width:48rem}.max-w-5xl{max-width:64rem}.max-w-full{max-width:100%}.max-w-md{max-width:28rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.-translate-y-1\/2{--tw-translate-y:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.cursor-pointer{cursor:pointer}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-end{align-items:flex-end}.items-center{align-items:center}.items-baseline{align-items:baseline}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-1\.5{gap:0.375rem}.gap-2{gap:0.5rem}.gap-2\.5{gap:0.625rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-5{gap:1.25rem}.gap-0\.5{gap:0.125rem}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-2\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.625rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.625rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.space-y-1\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.375rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.375rem * var(--tw-space-y-reverse))}.space-y-5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.25rem * var(--tw-space-y-reverse))}.self-start{align-self:flex-start}.self-center{align-self:center}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.whitespace-nowrap{white-space:nowrap}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-\[10px\]{border-radius:10px}.rounded-\[22px\]{border-radius:22px}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.rounded-md{border-radius:0.375rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-emerald-500\/25{border-color:rgb(16 185 129 / 0.25)}.border-paper-border{--tw-border-opacity:1;border-color:rgb(230 225 216 / var(--tw-border-opacity, 1))}.border-\[\#C46548\]\/30{border-color:rgb(196 101 72 / 0.3)}.border-sky-500\/20{border-color:rgb(14 165 233 / 0.2)}.border-white\/20{border-color:rgb(255 255 255 / 0.2)}.bg-\[\#C46548\]{--tw-bg-opacity:1;background-color:rgb(196 101 72 / var(--tw-bg-opacity, 1))}.bg-black\/45{background-color:rgb(0 0 0 / 0.45)}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.bg-emerald-500\/10{background-color:rgb(16 185 129 / 0.1)}.bg-paper-bg{--tw-bg-opacity:1;background-color:rgb(250 248 245 / var(--tw-bg-opacity, 1))}.bg-paper-bg\/90{background-color:rgb(250 248 245 / 0.9)}.bg-paper-bg\/95{background-color:rgb(250 248 245 / 0.95)}.bg-paper-card{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-paper-ink{--tw-bg-opacity:1;background-color:rgb(25 24 22 / var(--tw-bg-opacity, 1))}.bg-paper-subtle{--tw-bg-opacity:1;background-color:rgb(242 239 233 / var(--tw-bg-opacity, 1))}.bg-\[\#C46548\]\/10{background-color:rgb(196 101 72 / 0.1)}.bg-\[\#C46548\]\/\[0\.04\]{background-color:rgb(196 101 72 / 0.04)}.bg-paper-bg\/70{background-color:rgb(250 248 245 / 0.7)}.bg-paper-subtle\/45{background-color:rgb(242 239 233 / 0.45)}.bg-paper-subtle\/55{background-color:rgb(242 239 233 / 0.55)}.bg-paper-subtle\/70{background-color:rgb(242 239 233 / 0.7)}.bg-paper-subtle\/80{background-color:rgb(242 239 233 / 0.8)}.bg-sky-500\/10{background-color:rgb(14 165 233 / 0.1)}.bg-stone-300{--tw-bg-opacity:1;background-color:rgb(214 211 209 / var(--tw-bg-opacity, 1))}.bg-stone-400{--tw-bg-opacity:1;background-color:rgb(168 162 158 / var(--tw-bg-opacity, 1))}.p-1{padding:0.25rem}.p-2{padding:0.5rem}.p-3\.5{padding:0.875rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.px-1{padding-left:0.25rem;padding-right:0.25rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-3\.5{padding-left:0.875rem;padding-right:0.875rem}.px-4{padding-left:1rem;padding-right:1rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.px-1\.5{padding-left:0.375rem;padding-right:0.375rem}.pb-28{padding-bottom:7rem}.pb-3{padding-bottom:0.75rem}.pb-5{padding-bottom:1.25rem}.pl-10{padding-left:2.5rem}.pr-4{padding-right:1rem}.pt-1{padding-top:0.25rem}.pt-2{padding-top:0.5rem}.pt-3{padding-top:0.75rem}.pt-6{padding-top:1.5rem}.pb-1{padding-bottom:0.25rem}.pb-4{padding-bottom:1rem}.pt-5{padding-top:1.25rem}.text-left{text-align:left}.font-mono{font-family:JetBrains Mono, ui-monospace, monospace}.text-2xl{font-size:1.5rem;line-height:2rem}.text-\[11px\]{font-size:11px}.text-base{font-size:1rem;line-height:1.5rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-relaxed{line-height:1.625}.leading-snug{line-height:1.375}.tracking-tight{letter-spacing:-0.025em}.tracking-wide{letter-spacing:0.025em}.tracking-wider{letter-spacing:0.05em}.text-\[\#C46548\]{--tw-text-opacity:1;color:rgb(196 101 72 / var(--tw-text-opacity, 1))}.text-emerald-700{--tw-text-opacity:1;color:rgb(4 120 87 / var(--tw-text-opacity, 1))}.text-paper-ink{--tw-text-opacity:1;color:rgb(25 24 22 / var(--tw-text-opacity, 1))}.text-stone-400{--tw-text-opacity:1;color:rgb(168 162 158 / var(--tw-text-opacity, 1))}.text-stone-500{--tw-text-opacity:1;color:rgb(120 113 108 / var(--tw-text-opacity, 1))}.text-stone-600{--tw-text-opacity:1;color:rgb(87 83 78 / var(--tw-text-opacity, 1))}.text-stone-700{--tw-text-opacity:1;color:rgb(68 64 60 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-\[\#B05438\]{--tw-text-opacity:1;color:rgb(176 84 56 / var(--tw-text-opacity, 1))}.text-amber-700{--tw-text-opacity:1;color:rgb(180 83 9 / var(--tw-text-opacity, 1))}.text-sky-700{--tw-text-opacity:1;color:rgb(3 105 161 / var(--tw-text-opacity, 1))}.text-stone-800{--tw-text-opacity:1;color:rgb(41 37 36 / var(--tw-text-opacity, 1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.placeholder-stone-400::placeholder{--tw-placeholder-opacity:1;color:rgb(168 162 158 / var(--tw-placeholder-opacity, 1))}.opacity-75{opacity:0.75}.opacity-80{opacity:0.8}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.ring-1{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.ring-\[\#191816\]\/15{--tw-ring-color:rgb(25 24 22 / 0.15)}.ring-black\/15{--tw-ring-color:rgb(0 0 0 / 0.15)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.selection\:bg-\[\#C46548\]\/15 *::selection{background-color:rgb(196 101 72 / 0.15)}.selection\:text-\[\#A84B30\] *::selection{--tw-text-opacity:1;color:rgb(168 75 48 / var(--tw-text-opacity, 1))}.selection\:bg-\[\#C46548\]\/15::selection{background-color:rgb(196 101 72 / 0.15)}.selection\:text-\[\#A84B30\]::selection{--tw-text-opacity:1;color:rgb(168 75 48 / var(--tw-text-opacity, 1))}.hover\:border-\[\#C46548\]:hover{--tw-border-opacity:1;border-color:rgb(196 101 72 / var(--tw-border-opacity, 1))}.hover\:bg-\[\#B05438\]:hover{--tw-bg-opacity:1;background-color:rgb(176 84 56 / var(--tw-bg-opacity, 1))}.hover\:bg-paper-subtle:hover{--tw-bg-opacity:1;background-color:rgb(242 239 233 / var(--tw-bg-opacity, 1))}.hover\:bg-stone-400:hover{--tw-bg-opacity:1;background-color:rgb(168 162 158 / var(--tw-bg-opacity, 1))}.hover\:text-paper-ink:hover{--tw-text-opacity:1;color:rgb(25 24 22 / var(--tw-text-opacity, 1))}.hover\:opacity-90:hover{opacity:0.9}.focus\:border-\[\#C46548\]:focus{--tw-border-opacity:1;border-color:rgb(196 101 72 / var(--tw-border-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.dark\:block:is(.dark *){display:block}.dark\:hidden:is(.dark *){display:none}.dark\:border-charcoal-border:is(.dark *){--tw-border-opacity:1;border-color:rgb(51 48 44 / var(--tw-border-opacity, 1))}.dark\:border-\[\#D97B5E\]\/25:is(.dark *){border-color:rgb(217 123 94 / 0.25)}.dark\:border-black\/20:is(.dark *){border-color:rgb(0 0 0 / 0.2)}.dark\:bg-charcoal-bg:is(.dark *){--tw-bg-opacity:1;background-color:rgb(22 21 20 / var(--tw-bg-opacity, 1))}.dark\:bg-charcoal-bg\/90:is(.dark *){background-color:rgb(22 21 20 / 0.9)}.dark\:bg-charcoal-bg\/95:is(.dark *){background-color:rgb(22 21 20 / 0.95)}.dark\:bg-charcoal-card:is(.dark *){--tw-bg-opacity:1;background-color:rgb(31 30 28 / var(--tw-bg-opacity, 1))}.dark\:bg-charcoal-cream:is(.dark *){--tw-bg-opacity:1;background-color:rgb(243 240 234 / var(--tw-bg-opacity, 1))}.dark\:bg-charcoal-subtle:is(.dark *){--tw-bg-opacity:1;background-color:rgb(40 38 35 / var(--tw-bg-opacity, 1))}.dark\:bg-\[\#D97B5E\]\/\[0\.05\]:is(.dark *){background-color:rgb(217 123 94 / 0.05)}.dark\:bg-charcoal-bg\/70:is(.dark *){background-color:rgb(22 21 20 / 0.7)}.dark\:bg-charcoal-subtle\/45:is(.dark *){background-color:rgb(40 38 35 / 0.45)}.dark\:bg-charcoal-subtle\/70:is(.dark *){background-color:rgb(40 38 35 / 0.7)}.dark\:bg-charcoal-subtle\/80:is(.dark *){background-color:rgb(40 38 35 / 0.8)}.dark\:bg-stone-700:is(.dark *){--tw-bg-opacity:1;background-color:rgb(68 64 60 / var(--tw-bg-opacity, 1))}.dark\:text-charcoal-bg:is(.dark *){--tw-text-opacity:1;color:rgb(22 21 20 / var(--tw-text-opacity, 1))}.dark\:text-charcoal-cream:is(.dark *){--tw-text-opacity:1;color:rgb(243 240 234 / var(--tw-text-opacity, 1))}.dark\:text-emerald-300:is(.dark *){--tw-text-opacity:1;color:rgb(110 231 183 / var(--tw-text-opacity, 1))}.dark\:text-stone-300:is(.dark *){--tw-text-opacity:1;color:rgb(214 211 209 / var(--tw-text-opacity, 1))}.dark\:text-stone-400:is(.dark *){--tw-text-opacity:1;color:rgb(168 162 158 / var(--tw-text-opacity, 1))}.dark\:text-\[\#E58E73\]:is(.dark *){--tw-text-opacity:1;color:rgb(229 142 115 / var(--tw-text-opacity, 1))}.dark\:text-amber-400:is(.dark *){--tw-text-opacity:1;color:rgb(251 191 36 / var(--tw-text-opacity, 1))}.dark\:text-sky-300:is(.dark *){--tw-text-opacity:1;color:rgb(125 211 252 / var(--tw-text-opacity, 1))}.dark\:text-stone-200:is(.dark *){--tw-text-opacity:1;color:rgb(231 229 228 / var(--tw-text-opacity, 1))}.dark\:text-stone-500:is(.dark *){--tw-text-opacity:1;color:rgb(120 113 108 / var(--tw-text-opacity, 1))}.dark\:placeholder-stone-500:is(.dark *)::placeholder{--tw-placeholder-opacity:1;color:rgb(120 113 108 / var(--tw-placeholder-opacity, 1))}.dark\:ring-white\/15:is(.dark *){--tw-ring-color:rgb(255 255 255 / 0.15)}.dark\:selection\:text-\[\#E58E73\] *:is(.dark *)::selection{--tw-text-opacity:1;color:rgb(229 142 115 / var(--tw-text-opacity, 1))}.dark\:selection\:text-\[\#E58E73\]:is(.dark *)::selection{--tw-text-opacity:1;color:rgb(229 142 115 / var(--tw-text-opacity, 1))}.dark\:hover\:bg-charcoal-subtle:hover:is(.dark *){--tw-bg-opacity:1;background-color:rgb(40 38 35 / var(--tw-bg-opacity, 1))}.dark\:hover\:text-charcoal-cream:hover:is(.dark *){--tw-text-opacity:1;color:rgb(243 240 234 / var(--tw-text-opacity, 1))}.dark\:focus\:border-\[\#E08568\]:focus:is(.dark *){--tw-border-opacity:1;border-color:rgb(224 133 104 / var(--tw-border-opacity, 1))}@media (min-width: 640px){.sm\:left-auto{left:auto}.sm\:flex{display:flex}.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:flex-row{flex-direction:row}.sm\:items-end{align-items:flex-end}.sm\:items-center{align-items:center}.sm\:gap-3{gap:0.75rem}.sm\:gap-6{gap:1.5rem}.sm\:self-auto{align-self:auto}.sm\:p-7{padding:1.75rem}.sm\:p-4{padding:1rem}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:pt-8{padding-top:2rem}.sm\:text-2xl{font-size:1.5rem;line-height:2rem}.sm\:text-3xl{font-size:1.875rem;line-height:2.25rem}.sm\:text-sm{font-size:0.875rem;line-height:1.25rem}.sm\:text-xs{font-size:0.75rem;line-height:1rem}}@media (min-width: 768px){.md\:bottom-6{bottom:1.5rem}.md\:inline-block{display:inline-block}.md\:flex{display:flex}.md\:hidden{display:none}.md\:h-16{height:4rem}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:items-center{align-items:center}.md\:pb-16{padding-bottom:4rem}}@media (min-width: 1024px){.lg\:inline-block{display:inline-block}.lg\:flex-row{flex-direction:row}.lg\:items-end{align-items:flex-end}}</style></head>
+</head>
 <body class="bg-paper-bg text-paper-ink dark:bg-charcoal-bg dark:text-charcoal-cream min-h-screen flex flex-col antialiased selection:bg-[#C46548]/15 selection:text-[#A84B30] dark:selection:text-[#E58E73]">
 
   <!-- ==================== STICKY TOP HEADER (DESKTOP & MOBILE) ==================== -->
   <header class="sticky top-0 z-40 pt-safe border-b border-paper-border dark:border-charcoal-border bg-paper-bg/90 dark:bg-charcoal-bg/90 backdrop-blur-md">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 md:h-16 flex items-center justify-between gap-3">
-      <!-- Left: Bespoke Smoked/Frosted Glass Prism Monogram + Brand Title -->
-      <div class="flex items-center gap-2.5 sm:gap-3 shrink-0">
-        <button onclick="switchView('today')" aria-label="Lexis Home" class="group flex items-center gap-2.5 sm:gap-3 focus:outline-none">
-          <span id="header-app-icon" class="brand-squircle w-9 h-9 rounded-[10px] overflow-hidden shadow-sm ring-1 ring-[#191816]/15 dark:ring-white/15 shrink-0 block"></span>
-          <span class="flex items-baseline gap-2">
-            <span class="serif-display text-xl sm:text-2xl font-semibold tracking-tight text-paper-ink dark:text-charcoal-cream">
-              Lexis
-            </span>
-            <span class="text-[11px] sm:text-xs font-mono tracking-wide text-stone-500 dark:text-stone-400">
-              — Precision &amp; Register
-            </span>
+    <div class="max-w-4xl mx-auto px-5 sm:px-8 h-14 flex items-center justify-between gap-4">
+      <!-- Left: Monogram + Brand Title -->
+      <div class="flex items-center shrink-0">
+        <button onclick="switchView('today')" aria-label="Lexis Home" class="group flex items-center gap-2.5 focus:outline-none">
+          <span id="header-app-icon" class="brand-squircle w-7 h-7 rounded-[8px] overflow-hidden shadow-sm ring-1 ring-[#191816]/10 dark:ring-white/10 shrink-0 block"></span>
+          <span class="serif-display text-xl font-semibold tracking-tight text-paper-ink dark:text-charcoal-cream">
+            Lexis
           </span>
         </button>
       </div>
 
       <!-- Center: Desktop Horizontal Tab Navigation (Hidden on Mobile) -->
-      <nav class="hidden md:flex items-center gap-1" aria-label="Primary Desktop Navigation">
-        <button data-nav="today" onclick="switchView('today')" class="nav-btn px-3 py-1.5 rounded-lg text-sm font-medium transition-colors min-h-[38px] flex items-center gap-2 text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream">
+      <nav class="hidden md:flex items-center gap-6 h-full" aria-label="Primary Desktop Navigation">
+        <button data-nav="today" onclick="switchView('today')" class="nav-btn nav-desktop relative h-full text-sm transition-colors flex items-center text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream">
           <span>Today</span>
-          <kbd class="hidden lg:inline-block border border-paper-border dark:border-charcoal-border bg-paper-subtle dark:bg-charcoal-subtle text-stone-500 dark:text-stone-400">1</kbd>
         </button>
-        <button data-nav="practice" onclick="switchView('practice')" class="nav-btn px-3 py-1.5 rounded-lg text-sm font-medium transition-colors min-h-[38px] flex items-center gap-2 text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream">
+        <button data-nav="practice" onclick="switchView('practice')" class="nav-btn nav-desktop relative h-full text-sm transition-colors flex items-center text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream">
           <span>Practice</span>
-          <kbd class="hidden lg:inline-block border border-paper-border dark:border-charcoal-border bg-paper-subtle dark:bg-charcoal-subtle text-stone-500 dark:text-stone-400">2</kbd>
         </button>
-        <button data-nav="library" onclick="switchView('library')" class="nav-btn px-3 py-1.5 rounded-lg text-sm font-medium transition-colors min-h-[38px] flex items-center gap-2 text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream">
+        <button data-nav="library" onclick="switchView('library')" class="nav-btn nav-desktop relative h-full text-sm transition-colors flex items-center text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream">
           <span>Library</span>
-          <kbd class="hidden lg:inline-block border border-paper-border dark:border-charcoal-border bg-paper-subtle dark:bg-charcoal-subtle text-stone-500 dark:text-stone-400">3</kbd>
         </button>
-        <button data-nav="backup" onclick="switchView('backup')" class="nav-btn px-3 py-1.5 rounded-lg text-sm font-medium transition-colors min-h-[38px] flex items-center gap-2 text-[#B05438] dark:text-[#E58E73] bg-[#C46548]/10">
-          <span>Packs &amp; Backup</span>
-          <kbd class="hidden lg:inline-block border border-paper-border dark:border-charcoal-border bg-paper-subtle dark:bg-charcoal-subtle text-stone-500 dark:text-stone-400">4</kbd>
+        <button data-nav="backup" onclick="switchView('backup')" class="nav-btn nav-desktop relative h-full text-sm transition-colors flex items-center text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream">
+          <span>Packs</span>
         </button>
       </nav>
 
-      <!-- Right: Mastered Counter + Light/Dark Theme Toggle + Desktop Shortcuts (?) -->
-      <div class="flex items-center gap-2 relative">
-        <!-- Mastered Progress Pill -->
-        <div class="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card text-xs font-mono" title="Mastered items">
-          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-          <span id="header-mastered-count" class="font-medium">0 / 36</span>
+      <!-- Right: Quiet Mastered Counter + Theme Toggle + Shortcuts -->
+      <div class="flex items-center gap-2.5 relative">
+        <div class="hidden sm:flex items-center gap-1.5 text-xs font-mono text-stone-500 dark:text-stone-400 mr-1" title="Mastered items">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+          <span id="header-mastered-count">0/36</span>
         </div>
 
-        <!-- Light / Dark Theme Toggle -->
-        <button onclick="toggleTheme()" aria-label="Toggle Light or Dark Theme" class="p-2 rounded-lg border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card text-stone-600 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream transition-colors min-h-[38px] min-w-[38px] flex items-center justify-center">
+        <button onclick="toggleTheme()" aria-label="Toggle Light or Dark Theme" class="p-2 rounded-lg text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream hover:bg-paper-subtle/70 dark:hover:bg-charcoal-subtle/70 transition-colors flex items-center justify-center">
           <svg class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="4"></circle>
             <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
@@ -1299,8 +1310,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
           </svg>
         </button>
 
-        <!-- Desktop Shortcuts (?) Button -->
-        <button id="btn-shortcuts-toggle" onclick="toggleShortcutsModal()" aria-label="Keyboard Shortcuts" class="hidden md:flex items-center justify-center w-9 h-9 rounded-lg border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card text-stone-600 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream font-mono text-xs font-medium transition-colors" title="Keyboard shortcuts (?)">
+        <button id="btn-shortcuts-toggle" onclick="toggleShortcutsModal()" aria-label="Keyboard Shortcuts" class="hidden md:flex items-center justify-center w-8 h-8 rounded-lg text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream hover:bg-paper-subtle/70 dark:hover:bg-charcoal-subtle/70 font-mono text-xs transition-colors" title="Keyboard shortcuts (?)">
           ?
         </button>
       </div>
@@ -1371,38 +1381,30 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
   </div>
 
   <!-- ==================== MAIN WORKSPACE ==================== -->
-  <main class="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 pt-6 sm:pt-8 pb-28 md:pb-16">
+  <main class="flex-1 max-w-4xl w-full mx-auto px-5 sm:px-8 pt-7 sm:pt-10 pb-28 md:pb-16">
 
     <!-- ==================== VIEW 1: TODAY ==================== -->
     <section id="view-today" class="space-y-6 hidden">
-      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 pb-5 border-b border-paper-border dark:border-charcoal-border">
-        <div class="space-y-1">
-          <p id="today-date-label" class="text-xs font-mono uppercase tracking-wider text-stone-500 dark:text-stone-400">Daily Calibration · Saturday, Nov 21</p>
-          <h1 class="serif-display text-2xl sm:text-3xl font-medium text-paper-ink dark:text-charcoal-cream">
-            Natural Phrasing &amp; Nuance
+      <div id="today-header-bar" class="max-w-2xl mx-auto flex items-baseline justify-between gap-4">
+        <div class="flex items-baseline gap-2.5">
+          <h1 class="serif-display text-2xl font-medium text-paper-ink dark:text-charcoal-cream">
+            Today
           </h1>
-          <p class="text-xs sm:text-sm text-stone-500 dark:text-stone-400">
-            3 Everyday · 3 Workplace · 1 Syntax &amp; Flow · <span class="text-[#A84B30] dark:text-[#E58E73] font-medium">C1/C2 Focus</span> (Casual · Slang · Work)
-          </p>
+          <span id="today-date-label" class="text-xs text-stone-500 dark:text-stone-400">Sun, Nov 22</span>
         </div>
 
-        <div class="flex flex-wrap items-center gap-2.5">
-          <!-- Focus Deck vs. All Today (Grid) Toggle -->
-          <div class="inline-flex rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-subtle dark:bg-charcoal-subtle p-1" role="group" aria-label="Today Layout Mode">
-            <button id="btn-today-focus" onclick="setTodayLayout('focus')" class="px-3 py-1.5 rounded-lg text-xs font-medium transition-all min-h-[36px] bg-paper-card dark:bg-charcoal-card text-paper-ink dark:text-charcoal-cream shadow-sm">
-              Focus Deck
+        <div class="flex items-center gap-3.5 text-xs">
+          <div class="inline-flex items-center gap-3" role="group" aria-label="Today Layout Mode">
+            <button id="btn-today-focus" onclick="setTodayLayout('focus')" class="transition-colors font-medium text-paper-ink dark:text-charcoal-cream">
+              Focus
             </button>
-            <button id="btn-today-grid" onclick="setTodayLayout('grid')" class="px-3 py-1.5 rounded-lg text-xs font-medium transition-all min-h-[36px] text-stone-500 dark:text-stone-400">
-              All Today (Grid)
+            <button id="btn-today-grid" onclick="setTodayLayout('grid')" class="transition-colors text-stone-400 dark:text-stone-500 hover:text-paper-ink dark:hover:text-charcoal-cream">
+              Grid
             </button>
           </div>
-
-          <!-- New Batch / Shuffle Button -->
-          <button onclick="shuffleTodayBatch()" class="px-3.5 py-2 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card hover:bg-paper-subtle dark:hover:bg-charcoal-subtle text-xs font-medium transition-colors flex items-center gap-1.5 min-h-[44px]">
-            <svg class="w-3.5 h-3.5 text-stone-400" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
-              <path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"></path>
-            </svg>
-            <span>New Batch</span>
+          <span class="text-paper-border dark:text-charcoal-border select-none">|</span>
+          <button onclick="shuffleTodayBatch()" class="text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream transition-colors">
+            New batch
           </button>
         </div>
       </div>
@@ -1417,106 +1419,85 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
     </section>
 
     <!-- ==================== VIEW 3: LIBRARY ==================== -->
-    <section id="view-library" class="hidden space-y-6">
-      <div class="space-y-4 pb-5 border-b border-paper-border dark:border-charcoal-border">
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
-          <div>
-            <p class="text-xs font-mono uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-1">
-              Searchable Reference Index · IndexedDB
-            </p>
-            <h1 class="serif-display text-2xl sm:text-3xl font-medium">
-              Phrase &amp; Structure Library
+    <section id="view-library" class="hidden max-w-3xl mx-auto space-y-6">
+      <div class="space-y-4">
+        <div class="flex items-baseline justify-between gap-3">
+          <div class="flex items-baseline gap-2.5">
+            <h1 class="serif-display text-2xl font-medium text-paper-ink dark:text-charcoal-cream">
+              Library
             </h1>
-          </div>
-          <div class="flex items-center gap-3 self-start sm:self-auto">
-            <span id="library-count-label" class="text-xs font-mono text-stone-500 dark:text-stone-400">
-              Loading library...
+            <span id="library-count-label" class="text-xs font-mono text-stone-400 dark:text-stone-500">
+              Loading...
             </span>
-            <button onclick="switchView('backup')" class="px-2.5 py-1.5 rounded-lg border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card hover:border-[#C46548] text-[11px] font-mono text-[#B05438] dark:text-[#E58E73] transition-colors min-h-[34px]">
-              Manage Packs →
-            </button>
           </div>
+          <button onclick="switchView('backup')" class="text-xs text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream transition-colors">
+            Manage packs →
+          </button>
         </div>
 
         <!-- Real-time Search Bar -->
         <div class="relative">
-          <svg class="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+          <svg class="w-4 h-4 text-stone-400 dark:text-stone-500 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
             <circle cx="11" cy="11" r="8"></circle>
             <path d="M21 21l-4.35-4.35"></path>
           </svg>
-          <input id="library-search-input" type="text" oninput="debouncedRenderLibrary()" placeholder="Search phrases, textbook baselines, dialogues, nuances, or Polish equivalents... (Press /)" class="w-full pl-10 pr-4 py-3 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card text-sm placeholder-stone-400 dark:placeholder-stone-500 focus:outline-none focus:border-[#C46548] dark:focus:border-[#E08568] transition-colors min-h-[44px]">
+          <input id="library-search-input" type="text" oninput="debouncedRenderLibrary()" placeholder="Search phrases, examples, nuances, or Polish... (/)" class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card text-sm placeholder-stone-400 dark:placeholder-stone-500 focus:outline-none focus:border-[#C46548] dark:focus:border-[#E2876B] transition-colors min-h-[42px]">
         </div>
 
-        <!-- Category, Level, Status & Pack Filters -->
-        <div class="flex flex-col gap-3 pt-1">
-          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
-            <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
-              <span class="text-[11px] font-mono uppercase text-stone-400 mr-1 shrink-0">Category:</span>
-              <button data-lcat="All" onclick="setLibraryFilter('category', 'All')" class="lcat-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap min-h-[38px]">All</button>
-              <button data-lcat="Everyday" onclick="setLibraryFilter('category', 'Everyday')" class="lcat-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap min-h-[38px]">Everyday</button>
-              <button data-lcat="Workplace" onclick="setLibraryFilter('category', 'Workplace')" class="lcat-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap min-h-[38px]">Workplace</button>
-              <button data-lcat="Syntax" onclick="setLibraryFilter('category', 'Syntax')" class="lcat-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap min-h-[38px]">Syntax</button>
-            </div>
-
-            <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
-              <span class="text-[11px] font-mono uppercase text-stone-400 mr-1 shrink-0">Level:</span>
-              <button data-lcefr="All" onclick="setLibraryFilter('cefr', 'All')" class="lcefr-btn px-3 py-1.5 rounded-lg text-xs font-mono font-medium whitespace-nowrap min-h-[38px]">All</button>
-              <button data-lcefr="B2-C1" onclick="setLibraryFilter('cefr', 'B2-C1')" class="lcefr-btn px-3 py-1.5 rounded-lg text-xs font-mono font-medium whitespace-nowrap min-h-[38px]">B2–C1</button>
-              <button data-lcefr="C1" onclick="setLibraryFilter('cefr', 'C1')" class="lcefr-btn px-3 py-1.5 rounded-lg text-xs font-mono font-medium whitespace-nowrap min-h-[38px]">C1</button>
-              <button data-lcefr="C2" onclick="setLibraryFilter('cefr', 'C2')" class="lcefr-btn px-3 py-1.5 rounded-lg text-xs font-mono font-medium whitespace-nowrap min-h-[38px]">C2</button>
-            </div>
+        <!-- Streamlined Single Filter Strip -->
+        <div class="flex flex-wrap items-center justify-between gap-3 text-xs pt-0.5">
+          <div class="flex items-center gap-4 overflow-x-auto no-scrollbar">
+            <button data-lcat="All" onclick="setLibraryFilter('category', 'All')" class="lcat-btn pb-1 border-b-[1.5px] border-transparent whitespace-nowrap transition-colors">All</button>
+            <button data-lcat="Everyday" onclick="setLibraryFilter('category', 'Everyday')" class="lcat-btn pb-1 border-b-[1.5px] border-transparent whitespace-nowrap transition-colors">Everyday</button>
+            <button data-lcat="Workplace" onclick="setLibraryFilter('category', 'Workplace')" class="lcat-btn pb-1 border-b-[1.5px] border-transparent whitespace-nowrap transition-colors">Workplace</button>
+            <button data-lcat="Syntax" onclick="setLibraryFilter('category', 'Syntax')" class="lcat-btn pb-1 border-b-[1.5px] border-transparent whitespace-nowrap transition-colors">Syntax</button>
           </div>
 
-          <div class="flex flex-wrap items-center justify-between gap-3">
-            <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
-              <span class="text-[11px] font-mono uppercase text-stone-400 mr-1 shrink-0">Status:</span>
-              <button data-lstatus="All" onclick="setLibraryFilter('status', 'All')" class="lstatus-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap min-h-[38px]">All</button>
-              <button data-lstatus="new" onclick="setLibraryFilter('status', 'new')" class="lstatus-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap min-h-[38px]">New</button>
-              <button data-lstatus="practicing" onclick="setLibraryFilter('status', 'practicing')" class="lstatus-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap min-h-[38px]">Practicing</button>
-              <button data-lstatus="mastered" onclick="setLibraryFilter('status', 'mastered')" class="lstatus-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap min-h-[38px]">Mastered</button>
-            </div>
+          <div class="flex flex-wrap items-center gap-3 text-stone-500 dark:text-stone-400">
+            <select id="library-cefr-filter" aria-label="Filter by CEFR level" onchange="setLibraryFilter('cefr', this.value)" class="bg-transparent text-xs text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream focus:outline-none cursor-pointer py-1">
+              <option value="All">Level: All</option>
+              <option value="B2-C1">Level: B2–C1</option>
+              <option value="C1">Level: C1</option>
+              <option value="C2">Level: C2</option>
+            </select>
 
-            <div class="flex flex-wrap items-center gap-2.5">
-              <div class="flex items-center gap-1.5">
-                <label for="library-register-filter" class="text-[11px] font-mono uppercase text-stone-400 shrink-0">Type:</label>
-                <select id="library-register-filter" onchange="setLibraryFilter('register', this.value)" class="px-2.5 py-1.5 rounded-lg border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card text-xs font-mono text-paper-ink dark:text-charcoal-cream focus:outline-none focus:border-[#C46548] min-h-[38px]">
-                  <option value="All">All types</option>
-                  <option value="Slang">Slang</option>
-                  <option value="Casual">Casual</option>
-                  <option value="Conversational">Conversational</option>
-                  <option value="Workplace">Workplace</option>
-                  <option value="Diplomatic">Diplomatic</option>
-                  <option value="Nuanced">Nuanced</option>
-                </select>
-              </div>
+            <select id="library-register-filter" aria-label="Filter by register type" onchange="setLibraryFilter('register', this.value)" class="bg-transparent text-xs text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream focus:outline-none cursor-pointer py-1">
+              <option value="All">Type: All</option>
+              <option value="Slang">Type: Slang</option>
+              <option value="Casual">Type: Casual</option>
+              <option value="Conversational">Type: Conversational</option>
+              <option value="Workplace">Type: Workplace</option>
+              <option value="Diplomatic">Type: Diplomatic</option>
+              <option value="Nuanced">Type: Nuanced</option>
+            </select>
 
-              <div class="flex items-center gap-1.5">
-                <label for="library-pack-filter" class="text-[11px] font-mono uppercase text-stone-400 shrink-0">Pack:</label>
-                <select id="library-pack-filter" onchange="setLibraryFilter('pack', this.value)" class="px-2.5 py-1.5 rounded-lg border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card text-xs font-mono text-paper-ink dark:text-charcoal-cream focus:outline-none focus:border-[#C46548] min-h-[38px]">
-                  <option value="All">All packs</option>
-                </select>
-              </div>
-            </div>
+            <select id="library-status-filter" aria-label="Filter by mastery status" onchange="setLibraryFilter('status', this.value)" class="bg-transparent text-xs text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream focus:outline-none cursor-pointer py-1">
+              <option value="All">Status: All</option>
+              <option value="new">Status: New</option>
+              <option value="practicing">Status: Practicing</option>
+              <option value="mastered">Status: Mastered</option>
+            </select>
+
+            <select id="library-pack-filter" aria-label="Filter by pack" onchange="setLibraryFilter('pack', this.value)" class="bg-transparent text-xs text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream focus:outline-none cursor-pointer py-1 max-w-[160px]">
+              <option value="All">Pack: All</option>
+            </select>
           </div>
         </div>
       </div>
 
-      <!-- 2-Column Grid on Desktop, 1-Column on Mobile -->
-      <div id="library-cards-list" class="grid grid-cols-1 md:grid-cols-2 gap-4 items-start"></div>
+      <!-- Clean Editorial List -->
+      <div id="library-cards-list"></div>
       <div id="library-pagination" class="flex justify-center pt-2"></div>
     </section>
 
     <!-- ==================== VIEW 4: PACKS, BACKUP & EXPORT ==================== -->
-    <section id="view-backup" class="space-y-6 max-w-3xl mx-auto">
-      <div class="pb-5 border-b border-paper-border dark:border-charcoal-border">
-        <p class="text-xs font-mono uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-1">
-          Sharded Database &amp; Portability
-        </p>
-        <h1 class="serif-display text-2xl sm:text-3xl font-medium">
-          Phrase Packs &amp; Backup
+    <section id="view-backup" class="hidden space-y-6 max-w-2xl mx-auto">
+      <div class="space-y-1">
+        <h1 class="serif-display text-2xl font-medium text-paper-ink dark:text-charcoal-cream">
+          Packs &amp; Backup
         </h1>
-        <p class="text-xs sm:text-sm text-stone-500 dark:text-stone-400 mt-1">
-          Install sharded JSON phrase packs into IndexedDB, back up your mastery progress separately from pack data, or load custom packs built with the Python pipeline.
+        <p class="text-sm text-stone-500 dark:text-stone-400">
+          Manage local phrase packs, back up your progress, or import custom JSON collections.
         </p>
       </div>
 
@@ -1735,7 +1716,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
         <span>Library</span>
       </button>
 
-      <button data-nav="backup" onclick="switchView('backup')" class="nav-btn flex flex-col items-center justify-center gap-1 rounded-xl text-[11px] font-medium transition-colors min-h-[48px] text-[#B05438] dark:text-[#E58E73] bg-[#C46548]/10">
+      <button data-nav="backup" onclick="switchView('backup')" class="nav-btn flex flex-col items-center justify-center gap-1 rounded-xl text-[11px] font-medium transition-colors min-h-[48px] text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
           <polyline points="17 8 12 3 7 8"></polyline>
@@ -2480,11 +2461,11 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       const el = document.getElementById('today-date-label');
       if (!el) return;
       const formatted = new Date().toLocaleDateString('en-US', {
-        weekday: 'long',
+        weekday: 'short',
         month: 'short',
         day: 'numeric'
       });
-      el.textContent = `Daily Calibration · ${formatted}`;
+      el.textContent = formatted;
     }
 
     // ==================== DESKTOP KEYBOARD SHORTCUTS ====================
@@ -3043,11 +3024,11 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         packCounts.set(pid, (packCounts.get(pid) || 0) + 1);
       });
 
-      const options = [`<option value="All">All packs (${appState.items.length})</option>`];
+      const options = [`<option value="All">Pack: All (${appState.items.length})</option>`];
       for (const [pid, count] of packCounts.entries()) {
         const meta = appState.installedPacks.get(pid);
         const label = meta ? meta.name : (pid === 'custom' ? 'Custom / Batch Imported' : pid);
-        options.push(`<option value="${escapeAttr(pid)}">${escapeHtml(label)} (${count})</option>`);
+        options.push(`<option value="${escapeHtml(pid)}">${escapeHtml(label)} (${count})</option>`);
       }
 
       select.innerHTML = options.join('');
@@ -3139,7 +3120,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     function updateMasteredPill() {
       const masteredCount = appState.items.filter(i => i.status === 'mastered').length;
       const pill = document.getElementById('header-mastered-count');
-      if (pill) pill.textContent = `${masteredCount} / ${appState.items.length}`;
+      if (pill) pill.textContent = `${masteredCount}/${appState.items.length}`;
     }
 
     function initTodayBatch() {
@@ -3259,12 +3240,16 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
 
       document.querySelectorAll('.nav-btn').forEach(btn => {
         const isActive = btn.getAttribute('data-nav') === view;
-        if (isActive) {
-          btn.classList.add('text-[#B05438]', 'dark:text-[#E58E73]', 'bg-[#C46548]/10');
-          btn.classList.remove('text-stone-500', 'dark:text-stone-400', 'hover:text-paper-ink', 'dark:hover:text-charcoal-cream');
+        if (btn.classList.contains('nav-desktop')) {
+          btn.classList.toggle('nav-desktop-active', isActive);
+          btn.classList.toggle('text-stone-500', !isActive);
+          btn.classList.toggle('dark:text-stone-400', !isActive);
         } else {
-          btn.classList.remove('text-[#B05438]', 'dark:text-[#E58E73]', 'bg-[#C46548]/10');
-          btn.classList.add('text-stone-500', 'dark:text-stone-400', 'hover:text-paper-ink', 'dark:hover:text-charcoal-cream');
+          btn.classList.toggle('text-[#C46548]', isActive);
+          btn.classList.toggle('dark:text-[#E2876B]', isActive);
+          btn.classList.toggle('text-stone-500', !isActive);
+          btn.classList.toggle('dark:text-stone-400', !isActive);
+          btn.classList.remove('bg-[#C46548]/10', 'text-[#B05438]', 'dark:text-[#E58E73]');
         }
       });
 
@@ -3323,8 +3308,8 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         const isSpeaking = btn.getAttribute('data-audio-key') === appState.speakingKey;
         const icon = btn.querySelector('.icon-speaker');
         const eq = btn.querySelector('.icon-eq');
-        if (icon && eq) {
-          icon.classList.toggle('hidden', isSpeaking);
+        if (icon) icon.classList.toggle('hidden', isSpeaking);
+        if (eq) {
           eq.classList.toggle('hidden', !isSpeaking);
           eq.classList.toggle('flex', isSpeaking);
         }
@@ -3420,151 +3405,177 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       };
     }
 
-    function renderAudioButton(itemId, accent, showShortcut = false) {
+    function highlightPhraseInText(text, phrase) {
+      const rawText = String(text || '');
+      const clean = String(phrase || '')
+        .replace(/\[.*?\]/g, '')
+        .replace(/\.\.\.$/, '')
+        .trim();
+      if (!clean || clean.length < 3) return escapeHtml(rawText);
+      const regexBody = clean.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      try {
+        const re = new RegExp(regexBody, 'ig');
+        let result = '';
+        let lastIndex = 0;
+        let match;
+        while ((match = re.exec(rawText)) !== null) {
+          if (match.index > lastIndex) {
+            result += escapeHtml(rawText.slice(lastIndex, match.index));
+          }
+          result += `<span class="text-[#C46548] dark:text-[#E2876B] font-medium">${escapeHtml(match[0])}</span>`;
+          lastIndex = match.index + match[0].length;
+          if (match[0].length === 0) break;
+        }
+        if (lastIndex < rawText.length) {
+          result += escapeHtml(rawText.slice(lastIndex));
+        }
+        return result;
+      } catch (e) {
+        return escapeHtml(rawText);
+      }
+    }
+
+    function renderAudioButton(itemId, accent, showIcon = true) {
       const key = `${itemId}-${accent}`;
       const isSpeaking = appState.speakingKey === key;
       return `
-        <button data-audio-key="${key}" onclick="speakItem('${itemId}', '${accent}')" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-paper-border dark:border-charcoal-border bg-paper-subtle/80 dark:bg-charcoal-subtle/80 hover:border-[#C46548] text-xs font-mono font-medium transition-colors min-h-[36px]" title="Listen (${accent})">
-          <svg class="icon-speaker ${isSpeaking ? 'hidden' : ''} w-3.5 h-3.5 text-[#C46548]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-          </svg>
-          <span class="icon-eq ${isSpeaking ? 'flex' : 'hidden'} items-end gap-0.5 h-3 w-3.5 justify-center">
-            <span class="eq-bar w-0.5 h-full bg-[#C46548] rounded-full"></span>
-            <span class="eq-bar w-0.5 h-full bg-[#C46548] rounded-full"></span>
-            <span class="eq-bar w-0.5 h-full bg-[#C46548] rounded-full"></span>
-          </span>
+        <button data-audio-key="${escapeHtml(key)}" onclick="speakItem('${escapeAttr(itemId)}', '${accent}')" class="inline-flex items-center gap-1 px-1.5 py-1 rounded-md text-xs text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream hover:bg-paper-subtle/70 dark:hover:bg-charcoal-subtle/70 transition-colors" title="Listen (${accent})">
+          ${showIcon ? `
+            <svg class="icon-speaker ${isSpeaking ? 'hidden' : ''} w-3.5 h-3.5 text-[#C46548] dark:text-[#E2876B]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+            <span class="icon-eq ${isSpeaking ? 'flex' : 'hidden'} items-end gap-0.5 h-3 w-3.5 justify-center">
+              <span class="eq-bar w-0.5 h-full bg-[#C46548] dark:bg-[#E2876B] rounded-full"></span>
+              <span class="eq-bar w-0.5 h-full bg-[#C46548] dark:bg-[#E2876B] rounded-full"></span>
+              <span class="eq-bar w-0.5 h-full bg-[#C46548] dark:bg-[#E2876B] rounded-full"></span>
+            </span>
+          ` : `
+            <span class="icon-eq ${isSpeaking ? 'flex' : 'hidden'} items-end gap-0.5 h-2.5 w-3 justify-center">
+              <span class="eq-bar w-0.5 h-full bg-[#C46548] dark:bg-[#E2876B] rounded-full"></span>
+              <span class="eq-bar w-0.5 h-full bg-[#C46548] dark:bg-[#E2876B] rounded-full"></span>
+            </span>
+          `}
           <span>${accent}</span>
-          ${showShortcut && accent === 'US' ? `<kbd class="hidden md:inline-block border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card text-stone-400">A</kbd>` : ''}
         </button>
       `;
     }
 
-    function renderFullPhraseCard(item, showShortcutHints = false) {
+    function renderFullPhraseCard(item) {
       const isNuanceOpen = appState.openNuanceIds.has(item.id);
       const isPolishOpen = appState.openPolishIds.has(item.id);
       const statusMeta = getStatusPillProps(item.status);
       const dialogues = item.dialogues || [];
+      const metaParts = [
+        item.category ? { text: item.category, mono: false } : null,
+        item.cefr ? { text: item.cefr, mono: true } : null,
+        { text: item.register || 'Conversational', mono: false }
+      ].filter(Boolean);
 
       return `
-        <article class="rounded-2xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card p-5 sm:p-7 transition-all shadow-sm flex flex-col justify-between">
-          <div>
-            <!-- Top Row: Category + CEFR + Register + US/UK Audio Buttons + 3-State Mastery Button -->
-            <div class="flex flex-wrap items-center justify-between gap-2.5 pb-4 border-b border-paper-border dark:border-charcoal-border">
-              <div class="flex items-center gap-2 flex-wrap">
-                <span class="px-2.5 py-1 rounded-md text-[11px] font-mono font-medium border ${getCategoryPillClass(item.category)}">
-                  ${escapeHtml(item.category)}
-                </span>
-                ${item.cefr ? `<span class="px-2 py-1 rounded-md text-[11px] font-mono font-medium border ${getCefrPillClass(item.cefr)}">${escapeHtml(item.cefr)}</span>` : ''}
-                <span class="px-2.5 py-1 rounded-md text-[11px] font-mono border ${getRegisterPillClass(item.register)}">
-                  ${escapeHtml(item.register || 'Conversational')}
-                </span>
+        <article class="rounded-2xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card px-6 sm:px-9 py-7 sm:py-9 transition-all flex flex-col justify-between">
+          <div class="space-y-7">
+            <!-- Quiet Metadata + Minimal Controls -->
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <div class="flex items-center gap-2 text-xs text-stone-500 dark:text-stone-400 flex-wrap">
+                ${metaParts.map((part, idx) => `
+                  ${idx > 0 ? '<span class="text-stone-300 dark:text-stone-600">·</span>' : ''}
+                  <span class="${part.mono ? 'font-mono' : ''}">${escapeHtml(part.text)}</span>
+                `).join('')}
               </div>
 
-              <div class="flex items-center gap-1.5 flex-wrap">
-                ${renderAudioButton(item.id, 'US', showShortcutHints)}
+              <div class="flex items-center gap-2 text-xs">
+                ${renderAudioButton(item.id, 'US', true)}
                 ${renderAudioButton(item.id, 'UK', false)}
-
-                <button onclick="cycleItemStatus('${item.id}')" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-mono font-medium transition-colors min-h-[36px] ${statusMeta.style}" title="Cycle status (New → Practicing → Mastered)">
+                <span class="text-paper-border dark:text-charcoal-border select-none">·</span>
+                <button onclick="cycleItemStatus('${escapeAttr(item.id)}')" class="inline-flex items-center gap-1.5 px-1.5 py-1 rounded-md text-xs text-paper-ink dark:text-charcoal-cream hover:bg-paper-subtle/70 dark:hover:bg-charcoal-subtle/70 transition-colors" title="Cycle status (New → Practicing → Mastered)">
                   <span class="w-2 h-2 rounded-full ${statusMeta.dot}"></span>
                   <span>${statusMeta.label}</span>
-                  ${showShortcutHints ? `<kbd class="hidden md:inline-block border border-current/20 opacity-75">M</kbd>` : ''}
                 </button>
               </div>
             </div>
 
-            <!-- Phrase Headline + IPA -->
-            <div class="pt-5 pb-4 space-y-1.5">
-              <h2 class="serif-display text-2xl sm:text-3xl font-medium text-paper-ink dark:text-charcoal-cream leading-snug">
+            <!-- Hero Phrase + IPA -->
+            <div class="space-y-1.5">
+              <h2 class="serif-display text-3xl sm:text-4xl font-medium text-paper-ink dark:text-charcoal-cream leading-tight">
                 ${escapeHtml(item.phrase)}
               </h2>
-              <p class="font-mono text-xs sm:text-sm text-stone-500 dark:text-stone-400">
-                ${escapeHtml(item.ipa)}
-              </p>
-            </div>
-
-            <!-- Side-by-Side Flat vs. Natural Comparison -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-3">
-              <div class="p-3.5 sm:p-4 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-subtle/55 dark:bg-charcoal-subtle/45">
-                <span class="block text-[11px] font-mono uppercase tracking-wider text-stone-400 dark:text-stone-500 mb-1.5">
-                  Standard / Textbook
-                </span>
-                <p class="text-xs sm:text-sm text-stone-500 dark:text-stone-400 leading-relaxed">
-                  “${escapeHtml(item.flat)}”
+              ${item.ipa ? `
+                <p class="font-mono text-sm text-stone-500 dark:text-stone-400">
+                  ${escapeHtml(item.ipa)}
                 </p>
-              </div>
-
-              <div class="p-3.5 sm:p-4 rounded-xl border border-[#C46548]/30 dark:border-[#D97B5E]/25 bg-[#C46548]/[0.04] dark:bg-[#D97B5E]/[0.05]">
-                <div class="flex items-center justify-between mb-1.5">
-                  <span class="text-[11px] font-mono uppercase tracking-wider text-[#B05438] dark:text-[#E58E73] font-semibold">
-                    Natural Native
-                  </span>
-                  <button onclick="copyToClipboard('${escapeAttr(item.upgraded)}', 'Copied natural phrasing')" class="text-[11px] font-mono text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream transition-colors px-1.5 py-0.5">
-                    Copy
-                  </button>
-                </div>
-                <p class="text-xs sm:text-sm font-medium text-paper-ink dark:text-charcoal-cream leading-relaxed">
-                  “${escapeHtml(item.upgraded)}”
-                </p>
-              </div>
-            </div>
-
-            <!-- 2 Realistic Dialogues -->
-            <div class="space-y-2.5 my-5">
-              <span class="block text-[11px] font-mono uppercase tracking-wider text-stone-400 dark:text-stone-500">
-                In Context
-              </span>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                ${dialogues.map(ex => `
-                  <div class="p-3.5 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-bg/70 dark:bg-charcoal-bg/70 space-y-2">
-                    <div class="text-[11px] font-mono text-stone-400 dark:text-stone-500 pb-1 border-b border-paper-border dark:border-charcoal-border">
-                      ${escapeHtml(ex.context)}
-                    </div>
-                    <div class="space-y-1.5 text-xs sm:text-sm leading-relaxed">
-                      ${ex.lines.map(line => `
-                        <div>
-                          <span class="font-mono text-[11px] font-semibold text-stone-500 dark:text-stone-400">${escapeHtml(line.speaker)}:</span>
-                          <span class="text-stone-800 dark:text-stone-200"> ${escapeHtml(line.text)}</span>
-                        </div>
-                      `).join('')}
-                    </div>
-                  </div>
-                `).join('')}
-              </div>
-            </div>
-          </div>
-
-          <!-- Collapsible Drawers: Nuance & Pitfalls + Polish Equivalent -->
-          <div class="pt-3 border-t border-paper-border dark:border-charcoal-border space-y-2">
-            <div class="rounded-xl border border-paper-border dark:border-charcoal-border overflow-hidden">
-              <button onclick="toggleDrawer('nuance', '${item.id}')" class="w-full px-3.5 py-2.5 flex items-center justify-between text-left bg-paper-subtle/45 dark:bg-charcoal-subtle/45 hover:bg-paper-subtle dark:hover:bg-charcoal-subtle transition-colors min-h-[44px]">
-                <span class="text-xs font-mono font-medium text-amber-700 dark:text-amber-400">
-                  Nuance &amp; Pitfalls
-                </span>
-                <svg class="w-4 h-4 text-stone-400 transition-transform ${isNuanceOpen ? 'rotate-180' : ''}" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </button>
-              ${isNuanceOpen ? `
-                <div class="px-4 py-3 text-xs sm:text-sm text-stone-700 dark:text-stone-300 leading-relaxed bg-amber-500/[0.03] border-t border-paper-border dark:border-charcoal-border">
-                  ${escapeHtml(item.nuance)}
-                </div>
               ` : ''}
             </div>
 
-            <div class="rounded-xl border border-paper-border dark:border-charcoal-border overflow-hidden">
-              <button onclick="toggleDrawer('polish', '${item.id}')" class="w-full px-3.5 py-2.5 flex items-center justify-between text-left bg-paper-subtle/45 dark:bg-charcoal-subtle/45 hover:bg-paper-subtle dark:hover:bg-charcoal-subtle transition-colors min-h-[44px]">
-                <span class="text-xs font-mono text-stone-600 dark:text-stone-400">
-                  Polish Equivalent
+            <!-- Editorial Comparison: Natural Phrasing Elevated, Textbook Baseline Quietly Contrasted -->
+            <div class="space-y-4">
+              <div class="pl-4 border-l-2 border-[#C46548] dark:border-[#E2876B] flex items-start justify-between gap-3">
+                <p class="text-[17px] sm:text-[18px] leading-relaxed text-paper-ink dark:text-charcoal-cream">
+                  “${escapeHtml(item.upgraded)}”
+                </p>
+                <button onclick="copyToClipboard('${escapeAttr(item.upgraded)}', 'Copied phrasing')" class="shrink-0 text-xs text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream transition-colors pt-1" title="Copy natural phrasing">
+                  Copy
+                </button>
+              </div>
+
+              <p class="pl-4 text-sm text-stone-500 dark:text-stone-400 leading-relaxed">
+                <span class="text-xs uppercase tracking-wider text-stone-500 dark:text-stone-400 mr-1.5">Instead of</span>
+                “${escapeHtml(item.flat)}”
+              </p>
+            </div>
+
+            <!-- In Context Dialogues (Borderless Editorial Flow) -->
+            ${dialogues.length > 0 ? `
+              <div class="pt-6 border-t border-paper-border dark:border-charcoal-border space-y-4">
+                <span class="block text-xs font-medium uppercase tracking-wider text-stone-500 dark:text-stone-400">
+                  In context
                 </span>
-                <svg class="w-4 h-4 text-stone-400 transition-transform ${isPolishOpen ? 'rotate-180' : ''}" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
+                <div class="space-y-5">
+                  ${dialogues.map(ex => `
+                    <div class="space-y-2">
+                      ${ex.context ? `<div class="text-xs text-stone-500 dark:text-stone-400">${escapeHtml(ex.context)}</div>` : ''}
+                      <div class="space-y-1.5 text-[15px] leading-relaxed">
+                        ${(ex.lines || []).map(line => `
+                          <p class="text-stone-700 dark:text-stone-300">
+                            <span class="font-medium text-paper-ink dark:text-charcoal-cream mr-1.5">${escapeHtml(line.speaker)}</span>
+                            ${highlightPhraseInText(line.text, item.phrase)}
+                          </p>
+                        `).join('')}
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            ` : ''}
+          </div>
+
+          <!-- Quiet Hairline Disclosures: Nuance + Polish -->
+          <div class="mt-7 pt-2 border-t border-paper-border dark:border-charcoal-border">
+            <div>
+              <button onclick="toggleDrawer('nuance', '${escapeAttr(item.id)}')" class="w-full py-3 flex items-center justify-between text-left text-sm transition-colors">
+                <span class="font-medium ${isNuanceOpen ? 'text-paper-ink dark:text-charcoal-cream' : 'text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream'}">
+                  Nuance &amp; pitfalls
+                </span>
+                <span class="text-xs text-stone-500 dark:text-stone-400">${isNuanceOpen ? 'Hide' : 'Show'}</span>
+              </button>
+              ${isNuanceOpen ? `
+                <p class="pb-4 text-[15px] text-stone-700 dark:text-stone-300 leading-relaxed">
+                  ${escapeHtml(item.nuance)}
+                </p>
+              ` : ''}
+            </div>
+
+            <div class="border-t border-paper-border dark:border-charcoal-border">
+              <button onclick="toggleDrawer('polish', '${escapeAttr(item.id)}')" class="w-full py-3 flex items-center justify-between text-left text-sm transition-colors">
+                <span class="font-medium ${isPolishOpen ? 'text-paper-ink dark:text-charcoal-cream' : 'text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream'}">
+                  Polish equivalent
+                </span>
+                <span class="text-xs text-stone-500 dark:text-stone-400">${isPolishOpen ? 'Hide' : 'Show'}</span>
               </button>
               ${isPolishOpen ? `
-                <div class="px-4 py-3 text-xs sm:text-sm font-medium text-paper-ink dark:text-charcoal-cream bg-paper-bg/50 dark:bg-charcoal-bg/50 border-t border-paper-border dark:border-charcoal-border">
-                  PL: ${escapeHtml(item.polish)}
-                </div>
+                <p class="pb-3 text-[15px] text-paper-ink dark:text-charcoal-cream leading-relaxed">
+                  ${escapeHtml(item.polish)}
+                </p>
               ` : ''}
             </div>
           </div>
@@ -3576,19 +3587,28 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     function renderTodayView() {
       const focusBtn = document.getElementById('btn-today-focus');
       const gridBtn = document.getElementById('btn-today-grid');
-      const activeClasses = ['bg-paper-card', 'dark:bg-charcoal-card', 'text-paper-ink', 'dark:text-charcoal-cream', 'shadow-sm'];
-      const inactiveClasses = ['text-stone-500', 'dark:text-stone-400'];
+      const headerBar = document.getElementById('today-header-bar');
+      const activeClasses = ['font-medium', 'text-paper-ink', 'dark:text-charcoal-cream'];
+      const inactiveClasses = ['text-stone-500', 'dark:text-stone-400', 'hover:text-paper-ink', 'dark:hover:text-charcoal-cream'];
 
       if (appState.todayLayout === 'focus') {
         focusBtn.classList.add(...activeClasses);
         focusBtn.classList.remove(...inactiveClasses);
         gridBtn.classList.remove(...activeClasses);
         gridBtn.classList.add(...inactiveClasses);
+        if (headerBar) {
+          headerBar.classList.add('max-w-2xl');
+          headerBar.classList.remove('max-w-4xl');
+        }
       } else {
         gridBtn.classList.add(...activeClasses);
         gridBtn.classList.remove(...inactiveClasses);
         focusBtn.classList.remove(...activeClasses);
         focusBtn.classList.add(...inactiveClasses);
+        if (headerBar) {
+          headerBar.classList.remove('max-w-2xl');
+          headerBar.classList.add('max-w-4xl');
+        }
       }
 
       const workspace = document.getElementById('today-workspace');
@@ -3599,14 +3619,14 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         .filter(Boolean);
 
       if (cards.length === 0) {
-        workspace.innerHTML = `<p class="text-sm text-stone-500">No items loaded. Click New Batch above.</p>`;
+        workspace.innerHTML = `<p class="max-w-2xl mx-auto text-sm text-stone-500">No items loaded. Click New batch above.</p>`;
         return;
       }
 
       if (appState.todayLayout === 'grid') {
         workspace.innerHTML = `
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-stretch">
-            ${cards.map(item => renderFullPhraseCard(item, false)).join('')}
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+            ${cards.map(item => renderFullPhraseCard(item)).join('')}
           </div>
         `;
         return;
@@ -3614,38 +3634,31 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
 
       const idx = appState.todayIndex % cards.length;
       const currentItem = cards[idx];
-      const pct = Math.round(((idx + 1) / cards.length) * 100);
 
       workspace.innerHTML = `
-        <div class="max-w-3xl mx-auto space-y-5">
-          <!-- Deck Progress Bar & Position Dots -->
-          <div class="flex items-center justify-between gap-4 px-1">
-            <div class="flex-1 h-1.5 rounded-full bg-paper-subtle dark:bg-charcoal-subtle overflow-hidden">
-              <div class="h-full bg-[#C46548] transition-all duration-300" style="width: ${pct}%"></div>
-            </div>
-            <div class="flex items-center gap-1.5 shrink-0">
-              ${cards.map((c, cIdx) => `
-                <button onclick="appState.todayIndex = ${cIdx}; renderTodayView();" aria-label="Go to card ${cIdx + 1}" class="h-2 rounded-full transition-all ${cIdx === idx ? 'w-5 bg-[#C46548]' : 'w-2 bg-stone-300 dark:bg-stone-700 hover:bg-stone-400'}"></button>
-              `).join('')}
-            </div>
-            <span class="text-xs font-mono text-stone-500 dark:text-stone-400 shrink-0">
-              Card ${idx + 1} of ${cards.length}
-            </span>
-          </div>
-
+        <div class="max-w-2xl mx-auto space-y-6">
           <!-- Active Focus Card -->
-          ${renderFullPhraseCard(currentItem, true)}
+          ${renderFullPhraseCard(currentItem)}
 
-          <!-- Previous / Next Navigation -->
+          <!-- Quiet Pagination Footer -->
           <div class="flex items-center justify-between gap-3 pt-1">
-            <button onclick="stepTodayFocusCard(-1)" class="px-4 py-2.5 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card hover:bg-paper-subtle dark:hover:bg-charcoal-subtle text-xs sm:text-sm font-medium transition-colors flex items-center gap-2 min-h-[44px]">
-              <span>← Previous</span>
-              <kbd class="hidden md:inline-block border border-paper-border dark:border-charcoal-border bg-paper-subtle dark:bg-charcoal-subtle text-stone-400">← / K</kbd>
+            <button onclick="stepTodayFocusCard(-1)" class="text-sm text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream py-2 px-1 transition-colors">
+              ← Previous
             </button>
 
-            <button onclick="stepTodayFocusCard(1)" class="px-4 py-2.5 rounded-xl bg-paper-ink dark:bg-charcoal-cream text-white dark:text-charcoal-bg text-xs sm:text-sm font-medium hover:opacity-90 transition-opacity flex items-center gap-2 min-h-[44px]">
-              <span>Next Card →</span>
-              <kbd class="hidden md:inline-block border border-white/20 dark:border-black/20 opacity-80">→ / J</kbd>
+            <div class="flex items-center gap-3">
+              <div class="flex items-center gap-1.5">
+                ${cards.map((c, cIdx) => `
+                  <button onclick="appState.todayIndex = ${cIdx}; renderTodayView();" aria-label="Go to card ${cIdx + 1}" class="h-1.5 rounded-full transition-all ${cIdx === idx ? 'w-5 bg-[#C46548] dark:bg-[#E2876B]' : 'w-1.5 bg-paper-border dark:bg-charcoal-border hover:bg-stone-400'}"></button>
+                `).join('')}
+              </div>
+              <span class="text-xs font-mono text-stone-400 dark:text-stone-500">
+                ${idx + 1} / ${cards.length}
+              </span>
+            </div>
+
+            <button onclick="stepTodayFocusCard(1)" class="px-4 py-2 rounded-xl bg-paper-ink dark:bg-charcoal-cream text-paper-bg dark:text-charcoal-bg text-sm font-medium hover:opacity-90 transition-opacity">
+              Next →
             </button>
           </div>
         </div>
@@ -5306,7 +5319,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
             <span class="text-xs font-mono text-stone-400">Free Production</span>
           </div>
           <div class="flex items-center gap-1.5">
-            ${renderAudioButton(item.id, 'US', false)}
+            ${renderAudioButton(item.id, 'US', true)}
             ${renderAudioButton(item.id, 'UK', false)}
           </div>
         </div>
@@ -5344,8 +5357,8 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           <div class="duo-drawer-enter space-y-4 pt-1">
             <div class="p-4 rounded-xl border border-[#C46548]/30 bg-[#C46548]/[0.05] space-y-2">
               <div class="flex items-center justify-between gap-2">
-                <span class="text-[11px] font-mono uppercase tracking-wider text-[#B05438] dark:text-[#E58E73] font-semibold">
-                  Model Native Answer
+                <span class="text-xs uppercase tracking-wider text-stone-400 dark:text-stone-500">
+                  Model answer
                 </span>
                 <button onclick="practicePlaySandboxModel()" class="inline-flex items-center gap-1.5 text-xs font-mono text-[#B05438] dark:text-[#E58E73] hover:underline">
                   <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
@@ -5484,7 +5497,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
             ${item && step.type !== 'match' ? `
               <div class="flex flex-wrap items-center justify-between gap-2 pt-2.5 border-t border-emerald-500/20">
                 <div class="flex items-center gap-1.5">
-                  ${renderAudioButton(item.id, 'US', false)}
+                  ${renderAudioButton(item.id, 'US', true)}
                   ${renderAudioButton(item.id, 'UK', false)}
                 </div>
                 <button onclick="cycleItemStatus('${escapeAttr(item.id)}')" class="px-3 py-1.5 rounded-lg border text-xs font-mono min-h-[36px] flex items-center gap-1.5 ${statusMeta.style}">
@@ -5534,7 +5547,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           ${item && step.type !== 'match' ? `
             <div class="flex flex-wrap items-center justify-between gap-2 pt-2.5 border-t border-rose-500/20">
               <div class="flex items-center gap-1.5">
-                ${renderAudioButton(item.id, 'US', false)}
+                ${renderAudioButton(item.id, 'US', true)}
                 ${renderAudioButton(item.id, 'UK', false)}
               </div>
               <span class="text-xs text-stone-500 dark:text-stone-400">PL: ${escapeHtml(item.polish || '—')}</span>
@@ -5641,7 +5654,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
                         <p class="text-xs text-stone-500 dark:text-stone-400 pl-5 truncate">${escapeHtml(live.polish || '')}</p>
                       </div>
                       <div class="flex items-center gap-2 shrink-0">
-                        ${renderAudioButton(live.id, 'US', false)}
+                        ${renderAudioButton(live.id, 'US', true)}
                         <button onclick="cycleItemStatus('${escapeAttr(live.id)}')" class="px-2.5 py-1.5 rounded-lg border text-xs font-mono min-h-[36px] flex items-center gap-1.5 ${statusMeta.style}">
                           <span class="w-2 h-2 rounded-full ${statusMeta.dot}"></span>
                           <span>${statusMeta.label}</span>
@@ -5689,22 +5702,26 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     }
 
     function renderLibrary() {
-      const syncPillSet = (selector, attr, currentVal) => {
-        document.querySelectorAll(selector).forEach(btn => {
-          const active = btn.getAttribute(attr) === currentVal;
-          btn.classList.toggle('bg-paper-ink', active);
-          btn.classList.toggle('dark:bg-charcoal-cream', active);
-          btn.classList.toggle('text-white', active);
-          btn.classList.toggle('dark:text-charcoal-bg', active);
-          btn.classList.toggle('text-stone-500', !active);
-          btn.classList.toggle('dark:text-stone-400', !active);
-        });
-      };
+      document.querySelectorAll('.lcat-btn').forEach(btn => {
+        const active = btn.getAttribute('data-lcat') === appState.libraryFilters.category;
+        btn.classList.toggle('text-paper-ink', active);
+        btn.classList.toggle('dark:text-charcoal-cream', active);
+        btn.classList.toggle('font-medium', active);
+        btn.classList.toggle('border-[#C46548]', active);
+        btn.classList.toggle('dark:border-[#E2876B]', active);
+        btn.classList.toggle('border-transparent', !active);
+        btn.classList.toggle('text-stone-500', !active);
+        btn.classList.toggle('dark:text-stone-400', !active);
+      });
 
-      syncPillSet('.lcat-btn', 'data-lcat', appState.libraryFilters.category);
-      syncPillSet('.lcefr-btn', 'data-lcefr', appState.libraryFilters.cefr);
-      syncPillSet('.lstatus-btn', 'data-lstatus', appState.libraryFilters.status);
-
+      const cefrSelect = document.getElementById('library-cefr-filter');
+      if (cefrSelect && cefrSelect.value !== appState.libraryFilters.cefr) {
+        cefrSelect.value = appState.libraryFilters.cefr;
+      }
+      const statusSelect = document.getElementById('library-status-filter');
+      if (statusSelect && statusSelect.value !== appState.libraryFilters.status) {
+        statusSelect.value = appState.libraryFilters.status;
+      }
       const packSelect = document.getElementById('library-pack-filter');
       if (packSelect && packSelect.value !== appState.libraryFilters.pack) {
         packSelect.value = appState.libraryFilters.pack;
@@ -5736,9 +5753,9 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
 
       const countEl = document.getElementById('library-count-label');
       if (countEl) {
-        countEl.textContent = remaining > 0
-          ? `Showing ${visibleSlice.length} of ${filtered.length} matches (${appState.items.length} total)`
-          : `Showing ${filtered.length} of ${appState.items.length} items`;
+        countEl.textContent = filtered.length === appState.items.length
+          ? `${appState.items.length} phrases`
+          : `${filtered.length} of ${appState.items.length}`;
       }
 
       const container = document.getElementById('library-cards-list');
@@ -5747,9 +5764,9 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
 
       if (filtered.length === 0) {
         container.innerHTML = `
-          <div class="md:col-span-2 p-8 rounded-2xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card text-center space-y-2">
-            <p class="text-sm font-medium">No expressions match your current filters.</p>
-            <button onclick="resetLibraryFilters()" class="text-xs font-mono text-[#B05438] dark:text-[#E58E73] hover:underline min-h-[38px]">
+          <div class="p-10 rounded-2xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card text-center space-y-2">
+            <p class="text-sm text-stone-500 dark:text-stone-400">No phrases match your current filters.</p>
+            <button onclick="resetLibraryFilters()" class="text-xs text-[#C46548] dark:text-[#E2876B] hover:underline py-1">
               Reset filters
             </button>
           </div>
@@ -5758,77 +5775,58 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         return;
       }
 
-      container.innerHTML = visibleSlice.map(item => {
-        const isExpanded = appState.expandedLibraryIds.has(item.id);
-        const statusMeta = getStatusPillProps(item.status);
+      container.innerHTML = `
+        <div class="rounded-2xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card divide-y divide-paper-border dark:divide-charcoal-border overflow-hidden">
+          ${visibleSlice.map(item => {
+            const isExpanded = appState.expandedLibraryIds.has(item.id);
+            const statusMeta = getStatusPillProps(item.status);
+            const metaParts = [item.category, item.cefr, item.register].filter(Boolean);
 
-        if (isExpanded) {
-          return `
-            <div class="md:col-span-2 space-y-2">
-              <div class="flex justify-end">
-                <button onclick="toggleLibraryCardExpand('${escapeAttr(item.id)}')" class="text-xs font-mono text-stone-500 hover:text-paper-ink dark:hover:text-charcoal-cream px-2 py-1 min-h-[36px]">
-                  − Collapse card
-                </button>
-              </div>
-              ${renderFullPhraseCard(item, false)}
-            </div>
-          `;
-        }
+            if (isExpanded) {
+              return `
+                <div class="p-4 sm:p-5 bg-paper-bg/40 dark:bg-charcoal-bg/40 space-y-3">
+                  <div class="flex justify-end">
+                    <button onclick="toggleLibraryCardExpand('${escapeAttr(item.id)}')" class="text-xs text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream transition-colors">
+                      Collapse ↑
+                    </button>
+                  </div>
+                  ${renderFullPhraseCard(item)}
+                </div>
+              `;
+            }
 
-        return `
-          <div class="rounded-2xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card hover:border-[#C46548]/45 p-4 sm:p-5 transition-all flex flex-col justify-between gap-4">
-            <div class="space-y-2">
-              <div class="flex items-center justify-between gap-2">
-                <div class="flex items-center gap-1.5">
-                  <span class="px-2 py-0.5 rounded text-[11px] font-mono border ${getCategoryPillClass(item.category)}">
-                    ${escapeHtml(item.category)}
+            return `
+              <div class="px-5 sm:px-6 py-5 hover:bg-paper-subtle/35 dark:hover:bg-charcoal-subtle/35 transition-colors flex items-start justify-between gap-4">
+                <button onclick="toggleLibraryCardExpand('${escapeAttr(item.id)}')" class="text-left space-y-1.5 min-w-0 flex-1 focus:outline-none">
+                  <span class="flex items-baseline gap-2.5 flex-wrap">
+                    <span class="serif-display text-xl font-medium text-paper-ink dark:text-charcoal-cream">
+                      ${escapeHtml(item.phrase)}
+                    </span>
+                    <span class="text-xs text-stone-500 dark:text-stone-400">
+                      ${metaParts.map(p => escapeHtml(p)).join(' · ')}
+                    </span>
                   </span>
-                  ${item.cefr ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-mono border ${getCefrPillClass(item.cefr)}">${escapeHtml(item.cefr)}</span>` : ''}
-                </div>
+                  <span class="block text-[15px] text-stone-600 dark:text-stone-300 leading-relaxed line-clamp-2">
+                    “${escapeHtml(item.upgraded)}”
+                  </span>
+                </button>
 
-                <div class="flex items-center gap-1.5">
-                  <button data-audio-key="${escapeAttr(item.id)}-US" onclick="speakItem('${escapeAttr(item.id)}', 'US')" class="px-2 py-1 rounded-lg border border-paper-border dark:border-charcoal-border bg-paper-subtle/70 dark:bg-charcoal-subtle/70 text-[11px] font-mono hover:border-[#C46548] min-h-[34px]">
-                    US
-                  </button>
-                  <button data-audio-key="${escapeAttr(item.id)}-UK" onclick="speakItem('${escapeAttr(item.id)}', 'UK')" class="px-2 py-1 rounded-lg border border-paper-border dark:border-charcoal-border bg-paper-subtle/70 dark:bg-charcoal-subtle/70 text-[11px] font-mono hover:border-[#C46548] min-h-[34px]">
-                    UK
-                  </button>
-                  <button onclick="cycleItemStatus('${escapeAttr(item.id)}')" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-[11px] font-mono min-h-[34px] ${statusMeta.style}">
-                    <span class="w-1.5 h-1.5 rounded-full ${statusMeta.dot}"></span>
-                    <span>${statusMeta.label}</span>
+                <div class="flex items-center gap-2.5 shrink-0 pt-1 text-xs">
+                  ${renderAudioButton(item.id, 'US', true)}
+                  <button onclick="cycleItemStatus('${escapeAttr(item.id)}')" class="inline-flex items-center gap-1.5 text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream transition-colors py-1 px-1" title="Cycle status">
+                    <span class="w-2 h-2 rounded-full ${statusMeta.dot}"></span>
+                    <span class="hidden sm:inline">${statusMeta.label}</span>
                   </button>
                 </div>
               </div>
-
-              <div>
-                <h3 class="serif-display text-xl font-medium text-paper-ink dark:text-charcoal-cream">
-                  ${escapeHtml(item.phrase)}
-                </h3>
-                <p class="font-mono text-[11px] text-stone-400 mt-0.5">
-                  ${escapeHtml(item.ipa)}
-                </p>
-              </div>
-
-              <p class="text-xs sm:text-sm text-stone-600 dark:text-stone-300 leading-relaxed line-clamp-2">
-                “${escapeHtml(item.upgraded)}”
-              </p>
-            </div>
-
-            <div class="pt-3 border-t border-paper-border dark:border-charcoal-border flex items-center justify-between">
-              <span class="px-2 py-0.5 rounded text-[10px] font-mono border ${getRegisterPillClass(item.register)}">
-                ${escapeHtml(item.register || 'Conversational')}
-              </span>
-              <button onclick="toggleLibraryCardExpand('${escapeAttr(item.id)}')" class="text-xs font-mono text-[#B05438] dark:text-[#E58E73] hover:underline min-h-[34px]">
-                Expand card →
-              </button>
-            </div>
-          </div>
-        `;
-      }).join('');
+            `;
+          }).join('')}
+        </div>
+      `;
 
       if (paginationEl) {
         paginationEl.innerHTML = remaining > 0
-          ? `<button onclick="loadMoreLibraryCards()" class="px-5 py-2.5 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card hover:border-[#C46548] text-xs font-mono font-medium transition-colors min-h-[42px]">Load ${Math.min(LIBRARY_PAGE_SIZE, remaining)} more (${remaining} remaining)</button>`
+          ? `<button onclick="loadMoreLibraryCards()" class="px-4 py-2 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card hover:border-[#C46548] text-xs text-stone-600 dark:text-stone-300 transition-colors">Load ${Math.min(LIBRARY_PAGE_SIZE, remaining)} more (${remaining} remaining)</button>`
           : '';
       }
     }
@@ -5878,7 +5876,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         .map(({ status, _searchText, ...clean }) => clean);
 
       return JSON.stringify({
-        app: 'Lexis — Precision & Register',
+        app: 'Lexis',
         schemaVersion: 5,
         exportedAt: new Date().toISOString(),
         installedPackIds: Array.from(appState.installedPacks.keys()),
@@ -6105,13 +6103,15 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     function escapeAttr(val) {
       if (val === null || val === undefined) return '';
       return String(val)
-        .replace(/&/g, '&amp;')
         .replace(/\\/g, '\\\\')
         .replace(/'/g, "\\'")
-        .replace(/"/g, '&quot;')
+        .replace(/\r?\n|\r/g, ' ')
+        .replace(/\u2028/g, '\\u2028')
+        .replace(/\u2029/g, '\\u2029')
+        .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')
-        .replace(/[\r\n\u2028\u2029]+/g, ' ');
+        .replace(/"/g, '&quot;');
     }
   </script>
 
