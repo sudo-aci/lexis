@@ -209,6 +209,49 @@ class TestRepoPacksIntegrity(unittest.TestCase):
         cats = {i["category"] for i in items}
         self.assertEqual(cats, {"Everyday", "Workplace", "Syntax"})
 
+    def test_c2_slang_casual_pack_and_defaults(self) -> None:
+        slang_file = REPO_ROOT / "data" / "packs" / "mastery-c2-slang-casual.json"
+        self.assertTrue(slang_file.exists(), "C2 slang/casual pack must exist")
+        doc = json.loads(slang_file.read_text(encoding="utf-8"))
+        self.assertEqual(doc["pack"]["cefr"], "C2")
+        items = doc["items"]
+        self.assertEqual(len(items), 15)
+        self.assertTrue(all(i.get("cefr") == "C2" for i in items))
+        registers = {i["register"] for i in items}
+        self.assertTrue({"Slang", "Casual", "Workplace"}.issubset(registers))
+
+        manifest = json.loads((REPO_ROOT / "data" / "manifest.json").read_text(encoding="utf-8"))
+        by_id = {p["id"]: p for p in manifest["packs"]}
+        self.assertTrue(by_id["expansion-mastery-c2"]["default"])
+        self.assertTrue(by_id["mastery-c2-slang-casual"]["default"])
+        self.assertTrue(by_id["expansion-precision-c1"]["default"])
+
+        # Ensure mastery-c2-slang-casual introduces zero duplicate phrases vs all other packs
+        other_phrases: set[str] = set()
+        for pack_file in (REPO_ROOT / "data" / "packs").glob("*.json"):
+            if pack_file.name == "mastery-c2-slang-casual.json":
+                continue
+            other_doc = json.loads(pack_file.read_text(encoding="utf-8"))
+            for other_item in other_doc["items"]:
+                other_phrases.add(other_item["phrase"].strip().lower())
+
+        for item in items:
+            self.assertNotIn(
+                item["phrase"].strip().lower(),
+                other_phrases,
+                f"Duplicate phrase in mastery-c2-slang-casual.json: {item['phrase']}",
+            )
+
+    def test_slang_register_normalization(self) -> None:
+        from pipeline.schema import normalize_register
+
+        self.assertEqual(normalize_register("slang"), "Slang")
+        self.assertEqual(normalize_register("Slang"), "Slang")
+        item = normalize_item({"phrase": "low-key", "register": "slang", "cefr": "c2"})
+        assert item is not None
+        self.assertEqual(item["register"], "Slang")
+        self.assertEqual(item["cefr"], "C2")
+
 
 if __name__ == "__main__":
     unittest.main()
