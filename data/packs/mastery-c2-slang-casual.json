@@ -1,0 +1,839 @@
+{
+  "schemaVersion": 1,
+  "pack": {
+    "id": "mastery-c2-slang-casual",
+    "name": "Mastery · C2 Slang, Casual & Modern Work",
+    "description": "15 natural C2 slang, casual everyday, and modern office expressions—real spoken English without textbook stiffness.",
+    "category": "Mixed",
+    "cefr": "C2",
+    "version": "1.0.0",
+    "source": "Lexis C2 Slang & Casual Pack"
+  },
+  "items": [
+    {
+      "id": "c2-sl-01",
+      "phrase": "low-key",
+      "ipa": "/ˌləʊ ˈkiː/",
+      "speechText": "low-key",
+      "category": "Everyday",
+      "register": "Slang",
+      "cefr": "C2",
+      "packId": "mastery-c2-slang-casual",
+      "flat": "I am quietly a bit relieved that they postponed the meeting until Monday.",
+      "upgraded": "I'm low-key relieved they pushed the review to Monday—my Friday was already packed.",
+      "dialogues": [
+        {
+          "context": "Text Message · Weekend Plans",
+          "lines": [
+            { "speaker": "Kasia", "text": "Did you end up going to that huge rooftop party?" },
+            { "speaker": "Liam", "text": "Nah, we kept it low-key and grabbed ramen around the corner instead." }
+          ]
+        },
+        {
+          "context": "Coffee Chat · Honest Reaction",
+          "lines": [
+            { "speaker": "Marek", "text": "Wait, did you actually like the soundtrack to that weird indie film?" },
+            { "speaker": "Chloe", "text": "Okay, I'm low-key obsessed with it—I've had it on repeat all week." }
+          ]
+        }
+      ],
+      "nuance": "Works two ways in modern English: as an adjective meaning understated/chill ('a low-key dinner') and as modern spoken slang adverb meaning 'quietly / slightly / secretly' ('I'm low-key nervous'). Avoid in formal emails, but super natural with friends and close teammates.",
+      "polish": "po cichu / tak trochę (bez robienia hałasu) / na spokojnie",
+      "clozeSentence": "That tiny noodle spot by the station is ___-key the best lunch in town.",
+      "clozeAnswer": "low",
+      "clozeAccepted": ["low"],
+      "clozeHint": "3-letter first half of the hyphenated slang modifier.",
+      "quizPrompt": "Honestly, I secretly really liked their minimalist redesign even though everyone complained.",
+      "quizOptions": [
+        "Honestly, I low-key loved the minimalist redesign.",
+        "Honestly, I under-key loved the minimalist redesign.",
+        "In a clandestine manner, I appreciated the minimalist redesign.",
+        "Honestly, I down-key loved the minimalist redesign."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Completely natural modern spoken English with effortless tone.",
+        "Incorrect prefix ('low-key', never 'under-key').",
+        "Comically stiff for a casual opinion.",
+        "Incorrect prefix ('down-key' doesn't exist)."
+      ],
+      "sandboxPrompt": "Admit to a friend that you secretly enjoyed something slightly unexpected or want a quiet evening.",
+      "sandboxSample": "I'm low-key glad it's pouring outside—gives me a guilt-free excuse to stay in and cook.",
+      "sandboxRubric": [
+        "Register: Light, self-aware casual or slang tone.",
+        "Collocation: Used naturally before a verb/adjective ('low-key obsessed') or as an adjective ('a low-key night').",
+        "Cadence: Effortless and understated—never forced."
+      ]
+    },
+    {
+      "id": "c2-sl-02",
+      "phrase": "it hits different",
+      "ipa": "/ɪt hɪts ˈdɪfrənt/",
+      "speechText": "it hits different",
+      "category": "Everyday",
+      "register": "Slang",
+      "cefr": "C2",
+      "packId": "mastery-c2-slang-casual",
+      "flat": "Drinking hot coffee outside in crisp mountain air feels uniquely better than normal.",
+      "upgraded": "Filter coffee at 6 a.m. after a cold mountain hike just hits different.",
+      "dialogues": [
+        {
+          "context": "Friends · Music",
+          "lines": [
+            { "speaker": "Sam", "text": "Have you listened to their live acoustic session yet?" },
+            { "speaker": "Ola", "text": "Yeah, the second track hits different live—way more raw than the album cut." }
+          ]
+        },
+        {
+          "context": "Travel Chat",
+          "lines": [
+            { "speaker": "Ben", "text": "Was it worth waking up at five to see the square empty?" },
+            { "speaker": "Zosia", "text": "100%—Rome with zero crowds hits different." }
+          ]
+        }
+      ],
+      "nuance": "Modern everyday slang for an experience that lands with unusual emotional punch or satisfaction in a specific context. Notice it deliberately uses the bare form 'different' (not 'differently') as part of the fixed slang pattern.",
+      "polish": "wchodzi zupełnie inaczej / ma całkiem inny klimat / smakuje o niebo lepiej",
+      "clozeSentence": "Reading a real paperback on a long train ride just ___ different than scrolling on a phone.",
+      "clozeAnswer": "hits",
+      "clozeAccepted": ["hits"],
+      "clozeHint": "4-letter present verb meaning strikes or lands.",
+      "quizPrompt": "Getting a sincere compliment from a tough mentor feels much more meaningful than usual.",
+      "quizOptions": [
+        "Getting praise from a notoriously tough mentor just hits different.",
+        "Praise from a tough mentor strikes differently in feeling.",
+        "Getting praise from a tough mentor kicks different.",
+        "Praise from a strict mentor hits another way."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Spot-on modern colloquial slang with natural rhythm.",
+        "Loses the idiomatic punch by turning it literal.",
+        "Wrong verb ('hits different', not 'kicks different').",
+        "Breaks the fixed slang structure."
+      ],
+      "sandboxPrompt": "Describe a simple everyday pleasure that feels uniquely better in a specific setting using 'hits different'.",
+      "sandboxSample": "A Friday afternoon walk right after closing your laptop for a two-week vacation hits different.",
+      "sandboxRubric": [
+        "Register: Warm, conversational modern slang.",
+        "Collocation: Exact fixed form '[subject] (just) hits different'.",
+        "Cadence: Sets up the vivid context before the punchline."
+      ]
+    },
+    {
+      "id": "c2-sl-03",
+      "phrase": "read the room",
+      "ipa": "/riːd ðə ruːm/",
+      "speechText": "read the room",
+      "category": "Everyday",
+      "register": "Slang",
+      "cefr": "C2",
+      "packId": "mastery-c2-slang-casual",
+      "flat": "He failed to notice the tense mood of the group and kept joking at the wrong time.",
+      "upgraded": "He started pitching his side hustle right after the layoff news—seriously, read the room.",
+      "dialogues": [
+        {
+          "context": "Post-Meeting Debrief",
+          "lines": [
+            { "speaker": "Hannah", "text": "Why did you cut the demo short?" },
+            { "speaker": "Piotr", "text": "Tried to read the room—half the execs were already checking their watches." }
+          ]
+        },
+        {
+          "context": "Group Chat",
+          "lines": [
+            { "speaker": "Maya", "text": "Did Tom really complain about his bonus in front of the interns?" },
+            { "speaker": "Alex", "text": "Zero ability to read the room, honestly." }
+          ]
+        }
+      ],
+      "nuance": "Means picking up on unspoken social or emotional atmosphere. Used both positively ('she's great at reading the room') and as a sharp colloquial callout ('read the room!'). Works seamlessly in both casual chats and candid workplace debriefs.",
+      "polish": "wyczuć klimat / zorientować się w nastrojach (na sali)",
+      "clozeSentence": "Everyone was exhausted after a ten-hour flight, yet he didn't ___ the room and insisted on bar-hopping.",
+      "clozeAnswer": "read",
+      "clozeAccepted": ["read"],
+      "clozeHint": "4-letter verb meaning to interpret or sense.",
+      "quizPrompt": "She immediately sensed that the team was stressed and kept her update brief.",
+      "quizOptions": [
+        "She read the room right away and kept her update to two minutes.",
+        "She scanned the atmosphere of the chamber and spoke briefly.",
+        "She read the hall immediately and shortened her talk.",
+        "She felt the room immediately and stayed brief."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Natural, sharp, and idiomatic.",
+        "Overly formal and awkward.",
+        "Wrong noun ('room', never 'hall').",
+        "Calqued from Polish 'wyczuć klimat'—English uses 'read the room'."
+      ],
+      "sandboxPrompt": "Describe a moment in a meeting or dinner where someone either nailed or completely failed to sense the mood.",
+      "sandboxSample": "I could tell nobody wanted a 40-slide deck at 5 p.m., so I read the room and jumped straight to the decision.",
+      "sandboxRubric": [
+        "Register: Candid, socially perceptive.",
+        "Collocation: Exact idiom 'read the room'.",
+        "Cadence: Shows the social cue and the reaction clearly."
+      ]
+    },
+    {
+      "id": "c2-sl-04",
+      "phrase": "don't sleep on [something]",
+      "ipa": "/dəʊnt sliːp ɒn/",
+      "speechText": "don't sleep on",
+      "category": "Everyday",
+      "register": "Slang",
+      "cefr": "C2",
+      "packId": "mastery-c2-slang-casual",
+      "flat": "You shouldn't underestimate or overlook that smaller neighborhood bakery—it's fantastic.",
+      "upgraded": "Don't sleep on the small Vietnamese place by the tram stop—their pho beats everywhere downtown.",
+      "dialogues": [
+        {
+          "context": "Recommendations · Travel",
+          "lines": [
+            { "speaker": "Chris", "text": "We've got two extra days in Poland after Kraków—any ideas?" },
+            { "speaker": "Ewa", "text": "Don't sleep on Wrocław; the river islands and food scene are unreal." }
+          ]
+        },
+        {
+          "context": "Dev Chat",
+          "lines": [
+            { "speaker": "Devon", "text": "Is browser IndexedDB worth learning over localStorage?" },
+            { "speaker": "Tomek", "text": "Seriously, don't sleep on IndexedDB—it handles gigabytes offline without freezing the UI." }
+          ]
+        }
+      ],
+      "nuance": "Vibrant modern slang meaning 'don't overlook / don't underestimate something underrated'. Note the crucial contrast with 'sleep on it' (which means 'wait until tomorrow to decide'). 'Don't sleep on X' (with a concrete noun/recommendation) means 'pay attention to X—it's great!'.",
+      "polish": "nie lekceważ / nie przegap (bo to ukryta perełka)",
+      "clozeSentence": "Everyone talks about Lisbon, but don't ___ on Porto—the coastal walks are incredible.",
+      "clozeAnswer": "sleep",
+      "clozeAccepted": ["sleep"],
+      "clozeHint": "5-letter verb meaning to overlook in this slang phrase.",
+      "quizPrompt": "People overlook the built-in browser speech API, even though it works surprisingly well.",
+      "quizOptions": [
+        "People really sleep on the built-in Web Speech API—it's shockingly capable.",
+        "People really nap over the built-in Web Speech API.",
+        "People are sleeping beside the Web Speech API without noticing.",
+        "People underestimate and slumber on the Web Speech API."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Authentic, punchy modern slang.",
+        "Broken slang verb ('sleep on', never 'nap over').",
+        "Wrong preposition ('on', not 'beside').",
+        "Awkward, unnatural phrasing."
+      ],
+      "sandboxPrompt": "Recommend an underrated city, tool, restaurant, or habit using 'Don't sleep on...'.",
+      "sandboxSample": "Don't sleep on morning walks without headphones—ten minutes of quiet resets your whole focus.",
+      "sandboxRubric": [
+        "Register: Enthusiastic, insider recommendation tone.",
+        "Collocation: 'don't sleep on [noun]' (distinct from 'sleep on it').",
+        "Cadence: Brief concrete reason why it's underrated."
+      ]
+    },
+    {
+      "id": "c2-sl-05",
+      "phrase": "out of pocket",
+      "ipa": "/aʊt əv ˈpɒkɪt/",
+      "speechText": "out of pocket",
+      "category": "Workplace",
+      "register": "Slang",
+      "cefr": "C2",
+      "packId": "mastery-c2-slang-casual",
+      "flat": "I will be unreachable for a few hours this afternoon, and also that remark was totally inappropriate.",
+      "upgraded": "Heads-up: I'll be out of pocket between 2 and 4 for a dentist appointment, then back on Slack.",
+      "dialogues": [
+        {
+          "context": "Slack · #team-status (US Workplace Slang)",
+          "lines": [
+            { "speaker": "Nina", "text": "Can you take a quick look at the staging deploy around 3?" },
+            { "speaker": "Owen", "text": "I'm out of pocket until 4:30, but happy to review right after." }
+          ]
+        },
+        {
+          "context": "Friends · Casual Slang (Different Sense!)",
+          "lines": [
+            { "speaker": "Luke", "text": "Did he really ask her salary in the middle of dinner?" },
+            { "speaker": "Sara", "text": "Yeah, that comment was completely out of pocket." }
+          ]
+        }
+      ],
+      "nuance": "True C2 register mastery means knowing all THREE live meanings of 'out of pocket': (1) Standard/financial: paying with your own cash ('paid $200 out of pocket'); (2) US workplace slang: temporarily unreachable/away from desk ('I'll be out of pocket until 3'); (3) Modern casual slang: wildly inappropriate or crossing a line ('that joke was out of pocket'). Context makes the sense unmistakable.",
+      "polish": "nieosiągalny (w pracy) / grubo przesadzić, nie na miejscu (slang) / z własnej kieszeni",
+      "clozeSentence": "Quick heads-up—I'll be out of ___ on a flight this morning, so ping Alex for anything urgent.",
+      "clozeAnswer": "pocket",
+      "clozeAccepted": ["pocket"],
+      "clozeHint": "6-letter noun completing the multi-sense expression.",
+      "quizPrompt": "Let your US teammates know casually on Slack that you'll be unreachable during the afternoon.",
+      "quizOptions": [
+        "FYI, I'll be out of pocket from 1 to 3 today, then back online.",
+        "FYI, I will be outside my pocket from 1 to 3 today.",
+        "Please be advised I shall remain incommunicado from 1 to 3.",
+        "FYI, I'm out of wallet between 1 and 3 today."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Spot-on modern US workplace Slack phrasing.",
+        "Broken fixed phrase ('out of pocket', never 'outside my pocket').",
+        "Comically stiff for a casual Slack update.",
+        "Wrong noun ('pocket', never 'wallet')."
+      ],
+      "sandboxPrompt": "Write either a casual Slack note saying you'll be unreachable, OR a casual reaction calling a rude remark wildly out of line.",
+      "sandboxSample": "I'll be out of pocket on the train to Gdańsk until noon, so feel free to merge once CI is green.",
+      "sandboxRubric": [
+        "Register: Matches the chosen sense (US office Slack OR casual slang).",
+        "Collocation: Exact idiom 'out of pocket'.",
+        "Cadence: Clear context so the intended meaning is unambiguous."
+      ]
+    },
+    {
+      "id": "c2-sl-06",
+      "phrase": "a no-brainer",
+      "ipa": "/ə ˌnəʊ ˈbreɪnə/",
+      "speechText": "a no-brainer",
+      "category": "Workplace",
+      "register": "Slang",
+      "cefr": "C2",
+      "packId": "mastery-c2-slang-casual",
+      "flat": "That decision is so obviously beneficial that it requires almost no debate.",
+      "upgraded": "At zero hosting cost and instant offline speed, moving to sharded JSON packs was a no-brainer.",
+      "dialogues": [
+        {
+          "context": "Product Decision",
+          "lines": [
+            { "speaker": "Founder", "text": "Worth spending a day adding automated syntax checks to CI?" },
+            { "speaker": "Lead", "text": "Total no-brainer—it already caught two broken quotes before deploy." }
+          ]
+        },
+        {
+          "context": "Apartment Chat",
+          "lines": [
+            { "speaker": "Gosia", "text": "Same rent, twice the light, and five minutes from the park?" },
+            { "speaker": "Kamil", "text": "Honestly, that's a no-brainer—sign it before someone else does." }
+          ]
+        }
+      ],
+      "nuance": "Punchy, informal-to-workplace slang for an obvious, low-effort win. Great in casual meetings, Slack, and conversations—just keep it out of ultra-formal board memos where 'straightforward call' or 'clear win' fits better.",
+      "polish": "oczywista decyzja / nie ma się nad czym zastanawiać / pewniak",
+      "clozeSentence": "With a 30-day free trial and zero lock-in, testing the new tool is a complete ___-brainer.",
+      "clozeAnswer": "no",
+      "clozeAccepted": ["no"],
+      "clozeHint": "2-letter negative prefix.",
+      "quizPrompt": "Accepting a 20% raise with shorter commute is an obviously easy choice.",
+      "quizOptions": [
+        "Higher pay and half the commute? That's a total no-brainer.",
+        "Higher pay and half the commute? That's a brainless choice.",
+        "That decision necessitates negligible cognitive deliberation.",
+        "Higher pay and half the commute? That's a zero-brain."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Natural, energetic, and idiomatic.",
+        "'Brainless' means stupid/foolish—the exact opposite of 'a no-brainer'!",
+        "Hilariously robotic for everyday talk.",
+        "Incorrect form ('a no-brainer', never 'a zero-brain')."
+      ],
+      "sandboxPrompt": "Describe a purchase, tool switch, or life decision that was an obvious win using 'a no-brainer'.",
+      "sandboxSample": "Buying noise-canceling headphones before a twelve-hour flight was the easiest no-brainer of my year.",
+      "sandboxRubric": [
+        "Register: Decisive, natural colloquial/workplace tone.",
+        "Collocation: Exact noun 'a (total/complete) no-brainer' (never 'brainless').",
+        "Cadence: Clearly shows why the upside is obvious."
+      ]
+    },
+    {
+      "id": "c2-ca-01",
+      "phrase": "I'm all for it",
+      "ipa": "/aɪm ɔːl fɔːr ɪt/",
+      "speechText": "I'm all for it",
+      "category": "Everyday",
+      "register": "Casual",
+      "cefr": "C2",
+      "packId": "mastery-c2-slang-casual",
+      "flat": "I completely support that idea and think we should definitely do it.",
+      "upgraded": "If moving stand-up to async Slack saves everyone two hours a week, I'm all for it.",
+      "dialogues": [
+        {
+          "context": "Friends · Dinner",
+          "lines": [
+            { "speaker": "Anna", "text": "Should we skip the fancy tasting menu and just split tapas?" },
+            { "speaker": "Dan", "text": "I'm all for it—way more relaxed." }
+          ]
+        },
+        {
+          "context": "Team Chat",
+          "lines": [
+            { "speaker": "Rachel", "text": "Thinking of making Fridays no-meeting days across engineering." },
+            { "speaker": "Bartek", "text": "I'm all for trying that for a month and seeing how velocity looks." }
+          ]
+        }
+      ],
+      "nuance": "Warm, enthusiastic endorsement that sounds far more human than 'I strongly agree with your proposal'. Works with 'it' ('I'm all for it') or a gerund/noun ('I'm all for keeping things simple').",
+      "polish": "jestem jak najbardziej za / popieram w stu procentach",
+      "clozeSentence": "If we can simplify the signup flow down to one screen, I'm ___ for it.",
+      "clozeAnswer": "all",
+      "clozeAccepted": ["all"],
+      "clozeHint": "3-letter intensifier before 'for it'.",
+      "quizPrompt": "I enthusiastically support taking the scenic train instead of flying.",
+      "quizOptions": [
+        "Taking the night train instead of dealing with airport security? I'm all for it.",
+        "I am totally after taking the scenic train instead of flying.",
+        "I am all behind it to take the scenic train.",
+        "I am whole for taking the train."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Warm, crisp, and completely native.",
+        "Direct Polish calque ('być za' -> 'after').",
+        "Slightly muddled idiom ('I'm all for it' or 'I'm 100% behind it', not 'all behind it to...').",
+        "Wrong intensifier ('all for', never 'whole for')."
+      ],
+      "sandboxPrompt": "Enthusiastically back a friend's or teammate's practical suggestion using 'I'm all for...'.",
+      "sandboxSample": "I'm all for keeping the interface calm and uncluttered—less chrome makes reading way easier.",
+      "sandboxRubric": [
+        "Register: Warm, supportive, natural.",
+        "Collocation: 'be all for [it / noun / gerund]'.",
+        "Cadence: Concise enthusiasm with an optional brief reason."
+      ]
+    },
+    {
+      "id": "c2-ca-02",
+      "phrase": "draw a blank",
+      "ipa": "/drɔː ə blæŋk/",
+      "speechText": "draw a blank",
+      "category": "Everyday",
+      "register": "Casual",
+      "cefr": "C2",
+      "packId": "mastery-c2-slang-casual",
+      "flat": "I tried to remember her surname right now, but nothing came to mind at all.",
+      "upgraded": "I know the café you mean, but I'm drawing a complete blank on its name.",
+      "dialogues": [
+        {
+          "context": "Coffee Chat · Book Recommendation",
+          "lines": [
+            { "speaker": "Julia", "text": "Who wrote that essay collection you lent me last winter?" },
+            { "speaker": "Tomasz", "text": "Ugh, I'm drawing a total blank—I can picture the yellow cover, just not the author." }
+          ]
+        },
+        {
+          "context": "Debugging Session",
+          "lines": [
+            { "speaker": "Leo", "text": "Did the staging logs show why the webhook timed out?" },
+            { "speaker": "Maja", "text": "We drew a blank there too—zero errors in the trace." }
+          ]
+        }
+      ],
+      "nuance": "Works both for momentary memory gaps ('I'm drawing a blank on his name') and for investigations that come up empty ('the search drew a blank'). Comes from pulling an empty ticket in a lottery—far more idiomatic than 'I have a hole in my memory'.",
+      "polish": "mieć pustkę w głowie / nic nie wskórać / nie móc sobie przypomnieć",
+      "clozeSentence": "I've walked past that bookstore fifty times, yet I'm drawing a complete ___ on the street name.",
+      "clozeAnswer": "blank",
+      "clozeAccepted": ["blank"],
+      "clozeHint": "5-letter noun meaning an empty space or void.",
+      "quizPrompt": "I know the actor's face immediately, yet I simply can't recall his name right now.",
+      "quizOptions": [
+        "I recognize him immediately, but I'm drawing a total blank on his name.",
+        "I recognize him, but I have a black hole in my memory on his name.",
+        "I am currently experiencing a total lexical retrieval void.",
+        "I'm pulling an empty card on his name right now."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Natural, fluent, and idiomatic.",
+        "Calqued from Polish ('dziura w pamięci').",
+        "Comically clinical for everyday speech.",
+        "Literal image instead of the fixed idiom 'draw a blank'."
+      ],
+      "sandboxPrompt": "Admit casually that you can't recall a name, title, or password on the spot using 'draw a blank'.",
+      "sandboxSample": "I was literally just listening to their album yesterday, and now I'm drawing a complete blank on the band's name.",
+      "sandboxRubric": [
+        "Register: Relaxed, relatable everyday tone.",
+        "Collocation: 'draw a (total/complete) blank (on [noun])'.",
+        "Cadence: Smooth setup showing the momentary memory lapse."
+      ]
+    },
+    {
+      "id": "c2-ca-03",
+      "phrase": "wing it",
+      "ipa": "/wɪŋ ɪt/",
+      "speechText": "wing it",
+      "category": "Everyday",
+      "register": "Casual",
+      "cefr": "C2",
+      "packId": "mastery-c2-slang-casual",
+      "flat": "I didn't have time to prepare my remarks formally, so I just improvised on the spot.",
+      "upgraded": "The projector died two minutes before my talk, so I ditched the deck and winged it.",
+      "dialogues": [
+        {
+          "context": "Kitchen · Cooking",
+          "lines": [
+            { "speaker": "Sam", "text": "Are you following a recipe for that Thai curry?" },
+            { "speaker": "Ola", "text": "Nah, mostly winging it with whatever's left in the fridge." }
+          ]
+        },
+        {
+          "context": "Post-Demo Chat",
+          "lines": [
+            { "speaker": "Lead", "text": "That Q&A on IndexedDB caching sounded super rehearsed." },
+            { "speaker": "Eng", "text": "Honestly, I completely winged the last three answers." }
+          ]
+        }
+      ],
+      "nuance": "Theater slang originally (actors memorizing lines in the 'wings' offstage before walking on). Means improvising smoothly without full prep—usually with a confident or playfully candid tone.",
+      "polish": "iść na żywioł / improwizować na bieżąco",
+      "clozeSentence": "We didn't have time to write a full script, so we're just going to ___ it.",
+      "clozeAnswer": "wing",
+      "clozeAccepted": ["wing"],
+      "clozeHint": "4-letter verb from theater wings / flying by instinct.",
+      "quizPrompt": "My notes wouldn't sync before the client call, so I improvised through the walkthrough.",
+      "quizOptions": [
+        "My notes didn't sync before the call, so I just winged the walkthrough.",
+        "My notes didn't sync, so I went on the element during the call.",
+        "Without notes, I flew it through the client walkthrough.",
+        "I had to feather my way through the client walkthrough."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Crisp, natural, and idiomatic.",
+        "Literal Polish calque ('iść na żywioł').",
+        "Wrong verb ('wing it', never 'fly it').",
+        "Non-existent idiom."
+      ],
+      "sandboxPrompt": "Describe a moment when you improvised a presentation, recipe, or trip without a formal plan using 'wing it'.",
+      "sandboxSample": "We forgot our guidebook on the train to Lisbon, so we winged the whole weekend and stumbled into our favorite neighborhood.",
+      "sandboxRubric": [
+        "Register: Candid, light, self-assured.",
+        "Collocation: Exact verb 'wing it' (or 'wing [the speech/walkthrough]').",
+        "Cadence: Clearly contrasts lack of prep with how it played out."
+      ]
+    },
+    {
+      "id": "c2-ca-04",
+      "phrase": "call it a day",
+      "ipa": "/kɔːl ɪt ə deɪ/",
+      "speechText": "call it a day",
+      "category": "Everyday",
+      "register": "Casual",
+      "cefr": "C2",
+      "packId": "mastery-c2-slang-casual",
+      "flat": "We have worked enough for today, so let's stop now and pick this up tomorrow.",
+      "upgraded": "All tests are green and the PR is up—let's call it a day and tackle polish with fresh eyes tomorrow.",
+      "dialogues": [
+        {
+          "context": "Late Afternoon · Office",
+          "lines": [
+            { "speaker": "Kuba", "text": "My brain is officially fried after debugging IndexedDB transactions." },
+            { "speaker": "Sara", "text": "Same—let's call it a day and grab a quick walk." }
+          ]
+        },
+        {
+          "context": "Evening Out",
+          "lines": [
+            { "speaker": "Maya", "text": "One more drink or are we calling it a night?" },
+            { "speaker": "Liam", "text": "Early flight tomorrow, so I'm calling it a night." }
+          ]
+        }
+      ],
+      "nuance": "Clean, friendly way to wrap up work or an activity without sounding exhausted or abrupt. In the evening/social context, naturally shifts to 'call it a night'.",
+      "polish": "fajrant / skończyć na dziś / zwinąć się na dzisiaj",
+      "clozeSentence": "We've been staring at this spreadsheet since nine—let's ___ it a day.",
+      "clozeAnswer": "call",
+      "clozeAccepted": ["call"],
+      "clozeHint": "4-letter verb completing the wrap-up idiom.",
+      "quizPrompt": "We've made solid progress; let's stop working for today and continue tomorrow morning.",
+      "quizOptions": [
+        "Great progress today—let's call it a day and pick up fresh tomorrow.",
+        "Great progress today—let's name it a day and continue tomorrow.",
+        "Let us conclude our daily labors at this juncture.",
+        "Let's call it the day and finish tomorrow."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Warm, crisp, and completely idiomatic.",
+        "Wrong verb ('call', never 'name').",
+        "Comically archaic.",
+        "Wrong article ('a day', never 'the day')."
+      ],
+      "sandboxPrompt": "Suggest wrapping up a long study or work session on a positive note using 'call it a day'.",
+      "sandboxSample": "We just shipped the C2 pack and every check is green—let's call it a day while we're ahead.",
+      "sandboxRubric": [
+        "Register: Relaxed, positive closure.",
+        "Collocation: Exact idiom 'call it a day' (or 'call it a night' in the evening).",
+        "Cadence: Smooth transition from accomplishment to stopping."
+      ]
+    },
+    {
+      "id": "c2-ca-05",
+      "phrase": "cut [someone] some slack",
+      "ipa": "/kʌt ... sʌm slæk/",
+      "speechText": "cut him some slack",
+      "category": "Everyday",
+      "register": "Casual",
+      "cefr": "C2",
+      "packId": "mastery-c2-slang-casual",
+      "flat": "Don't judge him too harshly—it's his first week on the job and he's still learning.",
+      "upgraded": "Cut him some slack—he just landed from a red-eye and still showed up for the review.",
+      "dialogues": [
+        {
+          "context": "Coffee Chat · Teammate",
+          "lines": [
+            { "speaker": "Alex", "text": "The new junior missed two edge cases in his first pull request." },
+            { "speaker": "Ewa", "text": "Cut him a little slack—he's been in the codebase for four days." }
+          ]
+        },
+        {
+          "context": "Friends · Self-Compassion",
+          "lines": [
+            { "speaker": "Ben", "text": "I only made it to the gym twice this week instead of four times." },
+            { "speaker": "Zosia", "text": "Cut yourself some slack—you moved apartments on Wednesday." }
+          ]
+        }
+      ],
+      "nuance": "Nautical metaphor (loosening a tight rope so there's less tension). Warm, grounded way to urge patience or self-compassion ('cut yourself some slack') without sounding preachy.",
+      "polish": "odpuścić komuś trochę / dać komuś taryfę ulgową / nie być tak surowym",
+      "clozeSentence": "She's juggling two launches this month, so let's cut her some ___ on the late reply.",
+      "clozeAnswer": "slack",
+      "clozeAccepted": ["slack"],
+      "clozeHint": "5-letter noun meaning looseness in a rope.",
+      "quizPrompt": "Be a bit more forgiving with yourself—you're learning an entire new framework from scratch.",
+      "quizOptions": [
+        "Cut yourself some slack—you're picking up a whole new stack from scratch.",
+        "Give yourself a discount tariff—you're learning from scratch.",
+        "Cut yourself some loose rope while learning the stack.",
+        "Please extend yourself additional leniency during onboarding."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Warm, natural, and idiomatic.",
+        "Literal Polish calque ('taryfa ulgowa').",
+        "Over-explains the metaphor instead of using 'slack'.",
+        "Way too stiff for encouraging a friend."
+      ],
+      "sandboxPrompt": "Defend a teammate or friend who made a minor slip under pressure using 'cut [someone] some slack'.",
+      "sandboxSample": "Cut the support team some slack today—the billing outage tripled their queue before 9 a.m.",
+      "sandboxRubric": [
+        "Register: Empathetic, grounded, conversational.",
+        "Collocation: 'cut [person/yourself] some (or a little) slack'.",
+        "Cadence: Pairs the appeal with the concrete mitigating context."
+      ]
+    },
+    {
+      "id": "c2-wk-01",
+      "phrase": "just spitballing here",
+      "ipa": "/dʒʌst ˈspɪtbɔːlɪŋ hɪə/",
+      "speechText": "just spitballing here",
+      "category": "Workplace",
+      "register": "Casual",
+      "cefr": "C2",
+      "packId": "mastery-c2-slang-casual",
+      "flat": "I am just throwing out a rough, untested idea for brainstorming.",
+      "upgraded": "Just spitballing here—what if we let users filter daily batches by C2 slang vs. workplace register?",
+      "dialogues": [
+        {
+          "context": "Product Brainstorm",
+          "lines": [
+            { "speaker": "PM", "text": "Any quick ideas for reducing first-load bundle size?" },
+            { "speaker": "Dev", "text": "Just spitballing here, but we could shard packs into 250-item JSON files and cache them in IndexedDB." }
+          ]
+        },
+        {
+          "context": "Slack · #design-ideas",
+          "lines": [
+            { "speaker": "Designer", "text": "Totally spitballing—should we add a keyboard shortcut for audio replay?" },
+            { "speaker": "Founder", "text": "Actually love that; let's try it in the next branch." }
+          ]
+        }
+      ],
+      "nuance": "Low-ego modern workplace verb for floating an unpolished brainstorming idea without committing to it. Signals psychological safety ('feel free to shoot this down or build on it'). Best in collaborative US/international teams; in formal written specs stick to 'exploring an early option'.",
+      "polish": "głośno myślę / rzucam luźny pomysł (do burzy mózgów)",
+      "clozeSentence": "Just ___ here—could we auto-generate the manifest right inside the GitHub Action?",
+      "clozeAnswer": "spitballing",
+      "clozeAccepted": ["spitballing"],
+      "clozeHint": "-ing verb meaning tossing out rough brainstorming ideas.",
+      "quizPrompt": "Let me toss out an untested rough idea just to spark discussion.",
+      "quizOptions": [
+        "Just spitballing here—what if we default everyone to C1/C2 cards first?",
+        "Just throwing paper balls here—what if we default to C1/C2?",
+        "I am provisionally projecting an unrefined conceptual hypothesis.",
+        "Just snowballing ideas here—what if we default to C1/C2?"
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Relaxed, collaborative, and authentic modern office English.",
+        "Literal image instead of the established verb 'spitballing'.",
+        "Hilariously stiff for a brainstorm.",
+        "'Snowballing' means escalating rapidly out of control—not brainstorming."
+      ],
+      "sandboxPrompt": "Float a rough, low-stakes product or team idea using 'Just spitballing here...'.",
+      "sandboxSample": "Just spitballing here—what if we add a quick 'C2 Slang Only' toggle for five-minute commute drills?",
+      "sandboxRubric": [
+        "Register: Low-ego, collaborative, creative.",
+        "Collocation: '(Just/Totally) spitballing here' or 'let's spitball a few ideas'.",
+        "Cadence: Clearly marks the idea as a rough starting point."
+      ]
+    },
+    {
+      "id": "c2-wk-02",
+      "phrase": "in the weeds",
+      "ipa": "/ɪn ðə wiːdz/",
+      "speechText": "in the weeds",
+      "category": "Workplace",
+      "register": "Slang",
+      "cefr": "C2",
+      "packId": "mastery-c2-slang-casual",
+      "flat": "We are getting overly bogged down in tiny implementation details instead of deciding the main strategy.",
+      "upgraded": "Let's not get too far in the weeds on CSS tokens yet—let's lock the core data model first.",
+      "dialogues": [
+        {
+          "context": "Architecture Meeting",
+          "lines": [
+            { "speaker": "Lead", "text": "Wait, should we hash each pack with SHA-256 or SHA-512 and store 16 or 32 hex chars?" },
+            { "speaker": "Staff Eng", "text": "We're getting a bit in the weeds—let's step back and agree on the manifest schema first." }
+          ]
+        },
+        {
+          "context": "Hospitality / Busy Week (Second Sense!)",
+          "lines": [
+            { "speaker": "Nora", "text": "How's the launch week treating you?" },
+            { "speaker": "Kamil", "text": "Completely in the weeds today—four PRs open and two customer calls back-to-back." }
+          ]
+        }
+      ],
+      "nuance": "Two super common live senses in C2 English: (1) Getting lost in excessive low-level detail during a discussion ('getting in the weeds on X' / 'deep in the weeds'); (2) Originally restaurant slang meaning swamped/overwhelmed by workload ('totally in the weeds this afternoon').",
+      "polish": "grzęznąć w detalach / być zakopanym po uszy (w robocie)",
+      "clozeSentence": "Before we get too far in the ___ on micro-optimizations, let's check whether the query is actually slow.",
+      "clozeAnswer": "weeds",
+      "clozeAccepted": ["weeds"],
+      "clozeHint": "5-letter plural noun for overgrown wild plants.",
+      "quizPrompt": "Let's zoom out—we're getting tangled up in minor implementation details too early.",
+      "quizOptions": [
+        "Let's pull back a bit—we're getting too deep in the weeds for a kickoff.",
+        "Let's step back—we're getting stuck in the bushes on details.",
+        "We are currently overly enmeshed in granular minutiae.",
+        "Let's zoom out—we're falling into the grass on this topic."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Crisp, diplomatic, and universally understood in modern teams.",
+        "Wrong noun ('in the weeds', never 'in the bushes').",
+        "Accurate meaning, but far too stiff for a meeting.",
+        "Broken metaphor ('weeds', never 'grass')."
+      ],
+      "sandboxPrompt": "Gently pull a meeting back to the big picture—or tell a teammate you're swamped—using 'in the weeds'.",
+      "sandboxSample": "I don't want to pull us into the weeds on edge-case regexes right now—let's agree on the user flow and sort parsing async.",
+      "sandboxRubric": [
+        "Register: Sharp, constructive modern workplace slang.",
+        "Collocation: '(get/go) in(to) the weeds (on [topic])' or 'deep in the weeds'.",
+        "Cadence: Redirects constructively without sounding dismissive."
+      ]
+    },
+    {
+      "id": "c2-wk-03",
+      "phrase": "back-of-the-envelope",
+      "ipa": "/ˌbæk əv ði ˈenvələʊp/",
+      "speechText": "back-of-the-envelope",
+      "category": "Workplace",
+      "register": "Workplace",
+      "cefr": "C2",
+      "packId": "mastery-c2-slang-casual",
+      "flat": "Let's do a quick, rough calculation before building a detailed financial model.",
+      "upgraded": "A quick back-of-the-envelope calculation shows 50,000 cards will take under 15 MB gzipped.",
+      "dialogues": [
+        {
+          "context": "Architecture Sync",
+          "lines": [
+            { "speaker": "Tech Lead", "text": "Will IndexedDB run into quota limits if we load all of Wiktionary?" },
+            { "speaker": "Eng", "text": "Back-of-the-envelope math: 20,000 rich cards is ~40 MB, well under browser limits." }
+          ]
+        },
+        {
+          "context": "Startup Planning",
+          "lines": [
+            { "speaker": "Founder", "text": "Did finance finish the full forecast?" },
+            { "speaker": "COO", "text": "Not yet, just a back-of-the-envelope estimate to sanity-check runway." }
+          ]
+        }
+      ],
+      "nuance": "Describes a fast, pragmatic sanity-check calculation (as if jotted down on the back of a scrap envelope) before investing hours in a spreadsheet. Signals sharp engineering and business judgment.",
+      "polish": "zgrubne wyliczenie „na kolanie” / szybka kalkulacja na serwetce",
+      "clozeSentence": "Even on a back-of-the-___ estimate, automating the pipeline pays for itself in two weeks.",
+      "clozeAnswer": "envelope",
+      "clozeAccepted": ["envelope"],
+      "clozeHint": "8-letter noun for a paper letter cover.",
+      "quizPrompt": "A quick rough sanity check shows the cloud bill won't exceed $50 a month.",
+      "quizOptions": [
+        "Even a back-of-the-envelope calculation puts the monthly cloud bill under $50.",
+        "A calculation on the knee puts the cloud bill under $50.",
+        "A back-of-the-letter calculation puts the bill under $50.",
+        "An elementary preliminary arithmetic estimate shows $50."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Sharp, idiomatic, and standard in tech/finance.",
+        "Direct Polish calque ('liczyć na kolanie').",
+        "Wrong noun ('envelope', never 'letter').",
+        "Wordy and lifeless."
+      ],
+      "sandboxPrompt": "Share a quick sanity-check calculation for a project, trip, or storage estimate using 'back-of-the-envelope'.",
+      "sandboxSample": "Doing quick back-of-the-envelope math, studying seven new cards a day adds up to over 2,500 phrases a year.",
+      "sandboxRubric": [
+        "Register: Crisp, pragmatic, analytical.",
+        "Collocation: 'back-of-the-envelope math / calculation / estimate'.",
+        "Cadence: Connects the quick rough math directly to a useful takeaway."
+      ]
+    },
+    {
+      "id": "c2-wk-04",
+      "phrase": "rubber-stamp",
+      "ipa": "/ˌrʌbə ˈstæmp/",
+      "speechText": "rubber-stamp",
+      "category": "Workplace",
+      "register": "Workplace",
+      "cefr": "C2",
+      "packId": "mastery-c2-slang-casual",
+      "flat": "They shouldn't just approve the proposal automatically without actually reviewing the details.",
+      "upgraded": "Security review isn't a rubber-stamp step—build at least three days into the schedule for real feedback.",
+      "dialogues": [
+        {
+          "context": "Code Review Culture",
+          "lines": [
+            { "speaker": "Reviewer", "text": "Why did that regression slip through review?" },
+            { "speaker": "Lead", "text": "Because the PR was 2,000 lines and got rubber-stamped five minutes before release." }
+          ]
+        },
+        {
+          "context": "Board Governance",
+          "lines": [
+            { "speaker": "Director", "text": "Think the committee will push back on the Q4 budget?" },
+            { "speaker": "CFO", "text": "Definitely—they're not going to rubber-stamp headcount this year." }
+          ]
+        }
+      ],
+      "nuance": "Vivid verb and modifier for mindless, automatic approval without real scrutiny. Almost always carries a critical or cautionary edge—great for calling out weak review processes without attacking individuals.",
+      "polish": "przyklepać (bez czytania / z automatu) / czysta formalność",
+      "clozeSentence": "Don't expect legal to ___-stamp a brand-new enterprise contract overnight.",
+      "clozeAnswer": "rubber",
+      "clozeAccepted": ["rubber"],
+      "clozeHint": "6-letter material used for ink stamps.",
+      "quizPrompt": "The review process shouldn't be an automatic approval with zero real inspection.",
+      "quizOptions": [
+        "PR review shouldn't be a rubber-stamp exercise—we want genuine scrutiny.",
+        "PR review shouldn't be a plastic-stamp process with no reading.",
+        "PR review should avoid perfunctory automatic endorsement.",
+        "PR review shouldn't just glue-stamp every branch."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Sharp, vivid, and naturally persuasive.",
+        "Wrong material ('rubber-stamp', never 'plastic-stamp').",
+        "Accurate meaning, but stiff and overly academic.",
+        "Broken compound verb."
+      ],
+      "sandboxPrompt": "Warn a team not to treat a review or sign-off step as a mere formality using 'rubber-stamp'.",
+      "sandboxSample": "If we rush the design sign-off on Friday afternoon, people will just rubber-stamp it and catch issues during QA.",
+      "sandboxRubric": [
+        "Register: Candid, quality-focused workplace tone.",
+        "Collocation: Verb 'rubber-stamp [something]' or modifier 'a rubber-stamp [step/process]'.",
+        "Cadence: Clearly contrasts mindless approval with real review."
+      ]
+    }
+  ]
+}

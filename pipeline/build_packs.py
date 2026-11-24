@@ -122,7 +122,7 @@ def rebuild_manifest(
         meta = doc.get("pack") or {}
         items = doc.get("items") or []
         pack_id = str(meta.get("id") or pfile.stem)
-        is_default = pack_id in existing_defaults or pack_id.startswith("starter-")
+        is_default = pack_id in existing_defaults or pack_id.startswith(("starter-", "mastery-"))
         pack_entries[pack_id] = {
             "id": pack_id,
             "name": str(meta.get("name") or pack_id),
