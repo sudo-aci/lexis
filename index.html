@@ -2527,7 +2527,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           return;
         }
 
-        // Practice Lesson dedicated hotkeys (Enter, 1–4, Backspace, H, S)
+        // Practice Lesson dedicated hotkeys (Enter, 1–6, Backspace, H, S)
         const inPracticeLesson = appState.currentView === 'practice' && appState.practice.stage === 'session' && appState.practice.session;
         if (inPracticeLesson) {
           const step = getCurrentPracticeStep();
@@ -3424,7 +3424,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       const key = `${itemId}-${accent}`;
       const isSpeaking = appState.speakingKey === key;
       return `
-        <button data-audio-key="${key}" onclick="speakItem('${itemId}', '${accent}')" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-paper-border dark:border-charcoal-border bg-paper-subtle/80 dark:bg-charcoal-subtle/80 hover:border-[#C46548] text-xs font-mono font-medium transition-colors min-h-[36px]" title="Listen (${accent})">
+        <button data-audio-key="${escapeHtml(key)}" onclick="speakItem('${escapeAttr(itemId)}', '${escapeAttr(accent)}')" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-paper-border dark:border-charcoal-border bg-paper-subtle/80 dark:bg-charcoal-subtle/80 hover:border-[#C46548] text-xs font-mono font-medium transition-colors min-h-[36px]" title="Listen (${escapeHtml(accent)})">
           <svg class="icon-speaker ${isSpeaking ? 'hidden' : ''} w-3.5 h-3.5 text-[#C46548]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
             <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
@@ -4381,7 +4381,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     function checkSandboxDraftContainsPhrase(draft, item) {
       const normDraft = normalizeForCompare(draft);
       if (!normDraft || !item) return false;
-      const variants = getCleanPhraseLabel(item).split('/').map(v => v.replace(/\[.*?\]/g, '').replace(/\.\.\./g, '').trim()).filter(Boolean);
+      const variants = getCleanPhraseLabel(item).replace(/\[.*?\]/g, '').split('/').map(v => v.replace(/\.\.\./g, '').trim()).filter(Boolean);
       if (variants.length === 0) return normDraft.length >= 12;
       return variants.some(variant => {
         const words = normalizeForCompare(variant).split(' ').filter(w => w.length >= 2);
@@ -5023,7 +5023,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       const after = parts.slice(1).join('___');
 
       const blankVisual = step.useKeyboard
-        ? `<input id="practice-cloze-input" type="text" value="${escapeAttr(step.typedValue)}" ${step.checked ? 'disabled' : ''} oninput="const s=getCurrentPracticeStep(); if(s){s.typedValue=this.value; const b=document.getElementById('practice-check-btn'); if(b) b.disabled=!this.value.trim();}" placeholder="type word…" autocomplete="off" autocapitalize="none" spellcheck="false" class="inline-block w-36 sm:w-44 px-3 py-1 mx-1 rounded-lg border-b-2 text-center font-mono text-sm sm:text-base focus:outline-none ${step.checked ? (step.isCorrect ? 'border-emerald-500 bg-emerald-500/12 text-emerald-700 dark:text-emerald-300' : 'border-rose-500 bg-rose-500/12 text-rose-700 dark:text-rose-300') : 'border-[#C46548] bg-paper-card dark:bg-charcoal-card text-paper-ink dark:text-charcoal-cream'}" />`
+        ? `<input id="practice-cloze-input" type="text" value="${escapeHtml(step.typedValue)}" ${step.checked ? 'disabled' : ''} oninput="const s=getCurrentPracticeStep(); if(s){s.typedValue=this.value; const b=document.getElementById('practice-check-btn'); if(b) b.disabled=!this.value.trim();}" placeholder="type word…" autocomplete="off" autocapitalize="none" spellcheck="false" class="inline-block w-36 sm:w-44 px-3 py-1 mx-1 rounded-lg border-b-2 text-center font-mono text-sm sm:text-base focus:outline-none ${step.checked ? (step.isCorrect ? 'border-emerald-500 bg-emerald-500/12 text-emerald-700 dark:text-emerald-300' : 'border-rose-500 bg-rose-500/12 text-rose-700 dark:text-rose-300') : 'border-[#C46548] bg-paper-card dark:bg-charcoal-card text-paper-ink dark:text-charcoal-cream'}" />`
         : `<button type="button" ${step.checked ? 'disabled' : ''} onclick="practiceClearClozeBlank()" class="inline-flex items-center justify-center min-w-[96px] px-3.5 py-1 mx-1 rounded-xl border-b-2 font-semibold text-sm sm:text-base align-baseline transition-all ${step.checked ? (step.isCorrect ? 'border-emerald-500 bg-emerald-500/15 text-emerald-700 dark:text-emerald-300' : 'border-rose-500 bg-rose-500/15 text-rose-700 dark:text-rose-300') : (step.selectedWord ? 'duo-pop border-[#C46548] bg-[#C46548]/15 text-[#A84B30] dark:text-[#F6B9A6]' : 'border-dashed border-stone-400 dark:border-stone-500 bg-paper-card/70 dark:bg-charcoal-card/70 text-stone-400')}">${escapeHtml(step.selectedWord || '______')}</button>`;
 
       return `
