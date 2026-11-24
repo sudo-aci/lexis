@@ -2507,9 +2507,9 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
             handlePracticePrimaryAction();
             return;
           }
-          if (['1', '2', '3', '4'].includes(e.key) && step && !step.checked) {
+          if (['1', '2', '3', '4', '5', '6'].includes(e.key) && step && !step.checked) {
             const idx = parseInt(e.key, 10) - 1;
-            if (step.type === 'upgrade' || step.type === 'listen') {
+            if ((step.type === 'upgrade' || step.type === 'listen') && idx < step.options.length) {
               e.preventDefault();
               practiceSelectOption(idx);
               return;
@@ -2532,8 +2532,8 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           }
           if (e.key.toLowerCase() === 's' && step && step.item) {
             e.preventDefault();
-            const textToSpeak = step.type === 'listen' ? step.audioText : null;
-            speakItem(step.item.id, 'US', textToSpeak, 0.72);
+            if (step.type === 'listen') practicePlayListenAudio(true);
+            else speakItem(step.item.id, 'US', null, 0.72);
             return;
           }
         }
@@ -2570,8 +2570,8 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
             const step = getCurrentPracticeStep();
             if (step && step.item) {
               e.preventDefault();
-              const textToSpeak = step.type === 'listen' ? step.audioText : null;
-              speakItem(step.item.id, 'US', textToSpeak, 0.95);
+              if (step.type === 'listen') practicePlayListenAudio(false);
+              else speakItem(step.item.id, 'US');
               return;
             }
           }
@@ -3813,7 +3813,15 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     }
 
     function buildMatchStep(items) {
-      const chosen = items.slice(0, Math.min(4, items.length));
+      const seenLabels = new Set();
+      const chosen = [];
+      for (const it of items) {
+        if (chosen.length >= 4) break;
+        const labelKey = normalizeForCompare(getCleanPhraseLabel(it));
+        if (!labelKey || seenLabels.has(labelKey)) continue;
+        seenLabels.add(labelKey);
+        chosen.push(it);
+      }
       const left = shuffleList(chosen.map(it => ({ id: it.id, label: getCleanPhraseLabel(it), item: it })));
       const right = shuffleList(chosen.map(it => ({ id: it.id, label: getShortPolishCue(it), item: it })));
 
@@ -3829,6 +3837,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         selectedRight: null,
         wrongFlash: null, // { leftId, rightId }
         mistakes: 0,
+        xpAwarded: 0,
         checked: false,
         isCorrect: false,
         isReview: false
@@ -3837,7 +3846,17 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
 
     function buildListenStep(item, allPool) {
       const audioText = item.upgraded || item.speechText || item.phrase;
-      const distractors = shuffleList(allPool.filter(o => o.id !== item.id)).slice(0, 3);
+      const targetLabelKey = normalizeForCompare(getCleanPhraseLabel(item));
+      const seenLabels = new Set([targetLabelKey]);
+      const distractors = [];
+      for (const cand of shuffleList(allPool)) {
+        if (distractors.length >= 3) break;
+        if (cand.id === item.id) continue;
+        const candKey = normalizeForCompare(getCleanPhraseLabel(cand));
+        if (!candKey || seenLabels.has(candKey)) continue;
+        seenLabels.add(candKey);
+        distractors.push(cand);
+      }
       const options = shuffleList([
         {
           id: item.id,
@@ -3863,6 +3882,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         correctIdx,
         selectedIdx: null,
         showTranscript: false,
+        xpAwarded: 0,
         checked: false,
         isCorrect: false,
         isReview: false
@@ -3888,6 +3908,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         rubricChecked: rubric.map(() => false),
         draft: '',
         revealed: false,
+        xpAwarded: 0,
         checked: false,
         isCorrect: false,
         isReview: false
@@ -3914,12 +3935,27 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         return;
       }
 
+      const orderedPool = appState.practice.scope === 'smart' ? pool : shuffleList(pool);
+      const uniqueMatchPool = [];
+      const seenMatchLabels = new Set();
+      for (const it of orderedPool) {
+        const k = normalizeForCompare(getCleanPhraseLabel(it));
+        if (k && !seenMatchLabels.has(k)) {
+          seenMatchLabels.add(k);
+          uniqueMatchPool.push(it);
+        }
+      }
+
+      if (trackMode === 'match' && uniqueMatchPool.length < 2) {
+        showToast('Match Pairs needs at least 2 distinct phrases in the selected focus.');
+        return;
+      }
+
       appState.practice.trackMode = trackMode;
       const targetLen = trackMode === 'match'
-        ? Math.min(4, Math.max(1, Math.floor(pool.length / 2)))
-        : Math.min(appState.practice.length, Math.max(3, pool.length * 2));
+        ? Math.min(4, Math.max(1, Math.floor(uniqueMatchPool.length / 2)))
+        : Math.min(appState.practice.length, Math.max(3, orderedPool.length * 2));
 
-      const orderedPool = appState.practice.scope === 'smart' ? pool : shuffleList(pool);
       const pickItem = (i) => orderedPool[i % orderedPool.length];
       const steps = [];
 
@@ -3932,7 +3968,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         let itemCursor = 0;
         for (let i = 0; i < targetLen; i++) {
           let kind = pattern[i % pattern.length];
-          if (kind === 'match' && orderedPool.length < 3) kind = 'upgrade';
+          if (kind === 'match' && uniqueMatchPool.length < 3) kind = 'upgrade';
           if (kind === 'listen' && !('speechSynthesis' in window)) kind = 'cloze';
 
           if (kind === 'match') {
@@ -3940,10 +3976,9 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
             for (let k = 0; k < Math.min(4, orderedPool.length); k++) {
               batch.push(pickItem(itemCursor + k));
             }
-            // Ensure unique items in match board
-            const uniqueBatch = Array.from(new Map(batch.map(x => [x.id, x])).values());
-            if (uniqueBatch.length >= 2) {
-              steps.push(buildMatchStep(uniqueBatch));
+            const matchStep = buildMatchStep(batch);
+            if (matchStep.left.length >= 2) {
+              steps.push(matchStep);
               itemCursor += 2;
               continue;
             }
@@ -3958,10 +3993,11 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           else if (kind === 'sandbox') steps.push(buildSandboxStep(item));
         }
       } else if (trackMode === 'match') {
-        const rounds = Math.min(appState.practice.length === 5 ? 2 : 3, Math.max(1, Math.ceil(orderedPool.length / 4)));
+        const rounds = Math.min(appState.practice.length === 5 ? 2 : 3, Math.max(1, Math.ceil(uniqueMatchPool.length / 4)));
         for (let r = 0; r < rounds; r++) {
-          const slice = shuffleList(orderedPool).slice(0, Math.min(4, orderedPool.length));
-          if (slice.length >= 2) steps.push(buildMatchStep(slice));
+          const slice = shuffleList(uniqueMatchPool).slice(0, Math.min(4, uniqueMatchPool.length));
+          const matchStep = buildMatchStep(slice);
+          if (matchStep.left.length >= 2) steps.push(matchStep);
         }
       } else {
         for (let i = 0; i < targetLen; i++) {
@@ -3972,6 +4008,11 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           else if (trackMode === 'listen') steps.push(buildListenStep(item, appState.items));
           else if (trackMode === 'sandbox') steps.push(buildSandboxStep(item));
         }
+      }
+
+      if (steps.length === 0) {
+        showToast('Not enough phrases in this focus to start a lesson.');
+        return;
       }
 
       appState.practice.session = {
@@ -4078,6 +4119,21 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       renderPracticeStudio();
     }
 
+    function practicePlayListenAudio(slow = false) {
+      const step = getCurrentPracticeStep();
+      if (!step || !step.item) return;
+      const rate = slow ? 0.72 : 0.95;
+      const key = slow ? 'listen-slow' : 'listen-normal';
+      const text = step.type === 'listen' ? step.audioText : null;
+      speakItem(step.item.id, 'US', text, rate, key);
+    }
+
+    function practicePlaySandboxModel() {
+      const step = getCurrentPracticeStep();
+      if (!step || step.type !== 'sandbox' || !step.item) return;
+      speakItem(step.item.id, 'US', step.modelAnswer, 0.95, 'sandbox-model');
+    }
+
     function practiceTapMatchTile(side, id) {
       const step = getCurrentPracticeStep();
       const session = appState.practice.session;
@@ -4106,12 +4162,14 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           if (step.matchedIds.length === step.left.length) {
             step.checked = true;
             step.isCorrect = true;
-            const bonus = step.mistakes === 0 ? 20 : 15;
+            const baseXp = step.mistakes === 0 ? 20 : 15;
             session.attempted += 1;
             if (!step.isReview) session.correctFirstTry += 1;
             session.combo += 1;
             session.bestCombo = Math.max(session.bestCombo, session.combo);
-            session.xpEarned += bonus;
+            const comboBonus = session.combo >= 3 ? 5 : 0;
+            step.xpAwarded = baseXp + comboBonus;
+            session.xpEarned += step.xpAwarded;
             step.items.forEach(it => recordPracticedItem(session, it, step.mistakes === 0));
             PracticeSound.correct(session.combo);
           }
@@ -4121,7 +4179,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           PracticeSound.wrong();
           renderPracticeStudio();
           setTimeout(() => {
-            if (step.wrongFlash) {
+            if (getCurrentPracticeStep() === step && step.wrongFlash) {
               step.wrongFlash = null;
               step.selectedLeft = null;
               step.selectedRight = null;
@@ -4140,11 +4198,14 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     function checkSandboxDraftContainsPhrase(draft, item) {
       const normDraft = normalizeForCompare(draft);
       if (!normDraft || !item) return false;
-      const cleanPhrase = getCleanPhraseLabel(item).replace(/\[.*?\]/g, '').replace(/\.\.\./g, '').trim();
-      const phraseWords = normalizeForCompare(cleanPhrase).split(' ').filter(w => w.length >= 2);
-      if (phraseWords.length === 0) return normDraft.length >= 12;
-      const matched = phraseWords.filter(w => normDraft.includes(w));
-      return matched.length >= Math.max(1, Math.ceil(phraseWords.length * 0.65));
+      const variants = getCleanPhraseLabel(item).split('/').map(v => v.replace(/\[.*?\]/g, '').replace(/\.\.\./g, '').trim()).filter(Boolean);
+      if (variants.length === 0) return normDraft.length >= 12;
+      return variants.some(variant => {
+        const words = normalizeForCompare(variant).split(' ').filter(w => w.length >= 2);
+        if (words.length === 0) return normDraft.length >= 12;
+        const matched = words.filter(w => normDraft.includes(w));
+        return matched.length >= Math.max(1, Math.ceil(words.length * 0.65));
+      });
     }
 
     function practiceOnSandboxInput(val) {
@@ -4171,7 +4232,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     function practiceInsertSandboxStarter() {
       const step = getCurrentPracticeStep();
       if (!step || step.type !== 'sandbox' || step.checked) return;
-      const starter = getCleanPhraseLabel(step.item).replace(/\.\.\.$/, '').trim();
+      const starter = getCleanPhraseLabel(step.item).split('/')[0].replace(/\.\.\.$/, '').trim();
       const ta = document.getElementById('sandbox-draft-input');
       const nextVal = step.draft.trim() ? `${step.draft.trim()} ${starter} ` : `${starter.charAt(0).toUpperCase() + starter.slice(1)} `;
       step.draft = nextVal;
@@ -4200,7 +4261,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
 
       step.checked = true;
       step.isCorrect = nailedIt;
-      finalizeStepResult(session, step, nailedIt, nailedIt ? 20 : 5);
+      finalizeStepResult(session, step, nailedIt, nailedIt ? 20 : 0);
       renderPracticeStudio();
     }
 
@@ -4221,9 +4282,11 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         session.combo += 1;
         session.bestCombo = Math.max(session.bestCombo, session.combo);
         const comboBonus = session.combo >= 3 ? 5 : 0;
-        session.xpEarned += xpAmount + comboBonus;
+        step.xpAwarded = xpAmount + comboBonus;
+        session.xpEarned += step.xpAwarded;
         PracticeSound.correct(session.combo);
       } else {
+        step.xpAwarded = 0;
         session.combo = 0;
         PracticeSound.wrong();
         // Queue a gentle Mistake Review retry at the end of the lesson (max 1 retry per step)
@@ -4316,7 +4379,10 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       // Audio "Can't listen now" skips cleanly without penalty
       if (step.type === 'listen') {
         if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-        showToast('Skipped audio step — no streak lost.');
+        if (!step.isReview && session.initialStepCount > 0) {
+          session.initialStepCount -= 1;
+        }
+        showToast('Skipped audio step — no streak or accuracy lost.');
         advancePracticeStep();
         return;
       }
@@ -4623,7 +4689,10 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     function renderPracticeLessonStage(container) {
       const session = appState.practice.session;
       const step = getCurrentPracticeStep();
-      if (!session || !step) return;
+      if (!session || !step) {
+        exitPracticeLesson();
+        return;
+      }
 
       const isReviewPhase = step.isReview;
       const completedCount = session.currentIndex + (step.checked ? 1 : 0);
@@ -4944,8 +5013,8 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     // ---- Exercise 5: Audio Listening Recall (1x & 0.75x Slow) ----
     function renderStepListen(step) {
       const item = step.item;
-      const normalKey = `listen-${item.id}-normal`;
-      const slowKey = `listen-${item.id}-slow`;
+      const normalKey = 'listen-normal';
+      const slowKey = 'listen-slow';
       const isNormalPlaying = appState.speakingKey === normalKey;
       const isSlowPlaying = appState.speakingKey === slowKey;
 
@@ -4968,7 +5037,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           </p>
 
           <div class="flex flex-wrap items-center justify-center gap-3 py-4 px-4 rounded-2xl bg-paper-subtle/60 dark:bg-charcoal-subtle/60 border border-paper-border dark:border-charcoal-border">
-            <button data-audio-key="${normalKey}" onclick="speakItem('${escapeAttr(item.id)}', 'US', '${escapeAttr(step.audioText)}', 0.95, '${normalKey}')" class="duo-audio-btn px-6 py-3.5 rounded-2xl font-semibold text-sm flex items-center gap-3 min-h-[56px]">
+            <button data-audio-key="${normalKey}" onclick="practicePlayListenAudio(false)" class="duo-audio-btn px-6 py-3.5 rounded-2xl font-semibold text-sm flex items-center gap-3 min-h-[56px]">
               <svg class="icon-speaker ${isNormalPlaying ? 'hidden' : ''} w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                 <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
@@ -4983,7 +5052,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
               <kbd class="hidden md:inline-block bg-white/20 text-white border border-white/25">A</kbd>
             </button>
 
-            <button data-audio-key="${slowKey}" onclick="speakItem('${escapeAttr(item.id)}', 'US', '${escapeAttr(step.audioText)}', 0.72, '${slowKey}')" class="duo-option px-4 py-3.5 rounded-2xl font-mono text-xs font-semibold flex items-center gap-2 min-h-[56px] text-paper-ink dark:text-charcoal-cream" title="Play slowly (0.75×)">
+            <button data-audio-key="${slowKey}" onclick="practicePlayListenAudio(true)" class="duo-option px-4 py-3.5 rounded-2xl font-mono text-xs font-semibold flex items-center gap-2 min-h-[56px] text-paper-ink dark:text-charcoal-cream" title="Play slowly (0.75×)">
               <span class="icon-speaker ${isSlowPlaying ? 'hidden' : ''} text-base leading-none">🐢</span>
               <span class="icon-eq ${isSlowPlaying ? 'flex' : 'hidden'} items-end gap-0.5 h-3.5 w-4 justify-center">
                 <span class="eq-bar w-0.5 h-full bg-[#C46548] rounded-full"></span>
@@ -5095,7 +5164,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
                 <span class="text-[11px] font-mono uppercase tracking-wider text-[#B05438] dark:text-[#E58E73] font-semibold">
                   Model Native Answer
                 </span>
-                <button onclick="speakItem('${escapeAttr(item.id)}', 'US', '${escapeAttr(step.modelAnswer)}')" class="inline-flex items-center gap-1.5 text-xs font-mono text-[#B05438] dark:text-[#E58E73] hover:underline">
+                <button onclick="practicePlaySandboxModel()" class="inline-flex items-center gap-1.5 text-xs font-mono text-[#B05438] dark:text-[#E58E73] hover:underline">
                   <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
                   <span>Listen</span>
                 </button>
@@ -5206,7 +5275,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
                   <div class="flex flex-wrap items-center gap-2">
                     <span class="font-semibold text-base text-emerald-800 dark:text-emerald-300">${escapeHtml(praise)}</span>
                     <span class="px-2 py-0.5 rounded-full text-[11px] font-mono bg-emerald-600/15 text-emerald-800 dark:text-emerald-200 font-semibold">
-                      +${step.type === 'builder' || step.type === 'sandbox' ? 20 : 15} XP
+                      +${step.xpAwarded || 0} XP
                     </span>
                   </div>
                   ${item && step.type !== 'match' ? `
@@ -5845,10 +5914,13 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     function escapeAttr(val) {
       if (val === null || val === undefined) return '';
       return String(val)
+        .replace(/&/g, '&amp;')
         .replace(/\\/g, '\\\\')
         .replace(/'/g, "\\'")
         .replace(/"/g, '&quot;')
-        .replace(/\n/g, ' ');
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/[\r\n\u2028\u2029]+/g, ' ');
     }
   </script>
 
