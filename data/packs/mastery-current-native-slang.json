@@ -155,7 +155,7 @@
       "speechText": "the vibe, off vibe",
       "category": "Everyday",
       "register": "Slang",
-      "cefr": "C1-C2",
+      "cefr": "C1",
       "packId": "mastery-current-native-slang",
       "flat": "The atmosphere in that bar felt strange and slightly uncomfortable.",
       "upgraded": "We only stayed for one drink—the vibe in there was kind of off.",
@@ -192,8 +192,7 @@
       "clozeSentence": "The food was fine, I guess, but the whole place just had a weird ___.",
       "clozeAnswer": "vibe",
       "clozeAccepted": [
-        "vibe",
-        "vibes"
+        "vibe"
       ],
       "clozeHint": "4-letter modern noun for atmosphere or gut energy.",
       "quizPrompt": "The restaurant looked nice, but the atmosphere felt subtly tense and awkward.",
@@ -294,7 +293,7 @@
       "speechText": "not gonna lie",
       "category": "Everyday",
       "register": "Slang",
-      "cefr": "C1-C2",
+      "cefr": "C1",
       "packId": "mastery-current-native-slang",
       "flat": "To speak honestly with you, I was actually quite nervous before that interview.",
       "upgraded": "Not gonna lie, I was sweating bullets before that interview started.",
@@ -433,7 +432,7 @@
       "speechText": "legit",
       "category": "Everyday",
       "register": "Slang",
-      "cefr": "C1-C2",
+      "cefr": "C1",
       "packId": "mastery-current-native-slang",
       "flat": "That little taco truck is genuinely one of the best places I have ever eaten.",
       "upgraded": "No joke, that taco truck is legit one of the best meals in the city.",
@@ -503,7 +502,7 @@
       "speechText": "to ghost someone",
       "category": "Everyday",
       "register": "Slang",
-      "cefr": "C1-C2",
+      "cefr": "C1",
       "packId": "mastery-current-native-slang",
       "flat": "The recruiter seemed super enthusiastic after my final interview, then stopped replying completely.",
       "upgraded": "The recruiter was all over my inbox last week, and then they totally ghosted me.",
@@ -609,10 +608,9 @@
       "clozeSentence": "Are you ___ to catch the late showing if we grab a quick bite first?",
       "clozeAnswer": "down",
       "clozeAccepted": [
-        "down",
-        "up"
+        "down"
       ],
-      "clozeHint": "4-letter slang adjective meaning 'willing / up for it' (opposite of 'up'!).",
+      "clozeHint": "4-letter slang adjective meaning eager/willing (literally the opposite of 'up').",
       "quizPrompt": "Sure, I'd really love to go for a quick run before breakfast tomorrow.",
       "quizOptions": [
         "Yeah, I'm down to go for a quick run before breakfast.",

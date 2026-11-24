@@ -37,7 +37,8 @@ SYNTAX_POS = {"conj", "prep", "particle"}
 
 REGISTER_TAG_MAP = {
     "slang": "Slang",
-    "internet": "Slang",
+    "internet slang": "Slang",
+    "internet-slang": "Slang",
     "informal": "Casual",
     "colloquial": "Conversational",
     "idiomatic": "Conversational",

@@ -280,6 +280,11 @@ class TestRepoPacksIntegrity(unittest.TestCase):
 
             for item in items:
                 self.assertEqual(validate_item(item), [])
+                self.assertIn(
+                    item["cefr"],
+                    {"B2-C1", "C1", "C2"},
+                    f"Non-filterable CEFR '{item['cefr']}' in {pack_file.name}: {item['id']}",
+                )
                 self.assertNotIn(
                     item["phrase"].strip().lower(),
                     other_phrases,
@@ -292,24 +297,45 @@ class TestRepoPacksIntegrity(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp = Path(tmpdir)
             kaikki_gz = tmp / "slang.jsonl.gz"
-            row = {
-                "word": "touch grass",
-                "lang_code": "en",
-                "pos": "verb",
-                "sounds": [{"ipa": "/tʌtʃ ɡrɑːs/", "tags": ["UK"]}],
-                "senses": [{
-                    "glosses": ["To go outside and disconnect from the internet."],
-                    "tags": ["slang", "internet"],
-                }],
-            }
+            rows = [
+                {
+                    # Non-DEFAULT_POS ("noun") exercises the "slang" branch of is_idiomatic
+                    "word": "main character",
+                    "lang_code": "en",
+                    "pos": "noun",
+                    "sounds": [{"ipa": "/meɪn ˈkærəktə/", "tags": ["UK"]}],
+                    "senses": [{
+                        "glosses": ["Someone acting as the center of attention in real life."],
+                        "tags": ["slang", "internet-slang"],
+                    }],
+                },
+                {
+                    # Technical "Internet" topic must NOT be misclassified as Slang
+                    "word": "packet loss",
+                    "lang_code": "en",
+                    "pos": "phrase",
+                    "sounds": [{"ipa": "/ˈpækɪt lɒs/", "tags": ["US"]}],
+                    "senses": [{
+                        "glosses": ["Failure of transmitted data packets to reach their destination."],
+                        "topics": ["Internet", "computing"],
+                    }],
+                },
+            ]
             with gzip.open(kaikki_gz, "wt", encoding="utf-8") as f:
-                f.write(json.dumps(row) + "\n")
+                for row in rows:
+                    f.write(json.dumps(row) + "\n")
             out = tmp / "slang_seed.jsonl"
             stats = ingest_kaikki_file(kaikki_gz, out, min_words=2, require_ipa=True)
-            self.assertEqual(stats["written"], 1)
-            item = json.loads(out.read_text(encoding="utf-8").strip())
-            self.assertEqual(item["register"], "Slang")
-            self.assertEqual(validate_item(item), [])
+            self.assertEqual(stats["written"], 2)
+            written = {
+                r["phrase"]: r
+                for r in (json.loads(line) for line in out.read_text(encoding="utf-8").splitlines() if line.strip())
+            }
+            self.assertEqual(written["main character"]["register"], "Slang")
+            self.assertEqual(validate_item(written["main character"]), [])
+            self.assertEqual(written["packet loss"]["category"], "Workplace")
+            self.assertEqual(written["packet loss"]["register"], "Workplace")
+            self.assertEqual(validate_item(written["packet loss"]), [])
 
 
 if __name__ == "__main__":

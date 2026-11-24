@@ -77,8 +77,8 @@ def normalize_register(raw_reg: Any, default: str = "Conversational") -> str:
     mapping = {
         "informal": "Casual",
         "slang": "Slang",
-        "internet": "Slang",
         "internet slang": "Slang",
+        "internet-slang": "Slang",
         "street": "Slang",
         "gen-z": "Slang",
         "colloquial": "Conversational",
