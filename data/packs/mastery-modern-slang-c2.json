@@ -1,0 +1,844 @@
+{
+  "schemaVersion": 1,
+  "pack": {
+    "id": "mastery-modern-slang-c2",
+    "name": "Mastery · Modern Slang & Real-Life Speech (C2)",
+    "description": "12 current internet-to-IRL slang expressions, vivid reactions, and modern native colloquialisms heard in podcasts, texts, and daily conversation.",
+    "category": "Everyday",
+    "cefr": "C2",
+    "version": "1.0.0",
+    "source": "Lexis Modern Slang Pack"
+  },
+  "items": [
+    {
+      "id": "msl-01",
+      "phrase": "cooked",
+      "ipa": "/kʊkt/",
+      "speechText": "we're cooked",
+      "category": "Everyday",
+      "register": "Slang",
+      "cefr": "C2",
+      "packId": "mastery-modern-slang-c2",
+      "flat": "If we miss this last train, we are in serious trouble and have no good options left.",
+      "upgraded": "If that connection gets delayed five more minutes, we are completely cooked.",
+      "dialogues": [
+        {
+          "context": "Study Chat · Before an Exam",
+          "lines": [
+            {
+              "speaker": "Noah",
+              "text": "Wait, was chapter 9 on the syllabus too?"
+            },
+            {
+              "speaker": "Kasia",
+              "text": "Yeah, half the test is chapter 9. If you haven't read it, you might be cooked."
+            }
+          ]
+        },
+        {
+          "context": "After a Brutal Workout",
+          "lines": [
+            {
+              "speaker": "Jake",
+              "text": "My legs are totally cooked after those hill sprints."
+            },
+            {
+              "speaker": "Maya",
+              "text": "Same—stairs are officially my enemy until Thursday."
+            }
+          ]
+        }
+      ],
+      "nuance": "One of the biggest current slang adjectives in everyday US/UK speech. Means 'doomed / finished / screwed' ('we're cooked') or 'completely burned out / exhausted'. Bonus contrast: 'let him cook' (active verb) means the exact opposite—'let him do his thing, he's onto something brilliant!'",
+      "polish": "po nas / pozamiatane / ugotowani / kompletnie wykończony",
+      "clozeSentence": "The client moved the launch up by two weeks and half the API isn't built—we're ___.",
+      "clozeAnswer": "cooked",
+      "clozeAccepted": [
+        "cooked"
+      ],
+      "clozeHint": "6-letter past participle from the kitchen, used in modern slang to mean 'doomed/finished'.",
+      "quizPrompt": "My battery is at 2% and I don't have the hotel address written down—I'm totally screwed.",
+      "quizOptions": [
+        "Phone's at 2% and I don't know the address—I'm baked.",
+        "Phone's at 2% and I don't know the address—I'm totally cooked.",
+        "Phone's at 2% and I don't know the address—I'm thoroughly boiled.",
+        "Phone's at 2% and I don't know the address—I'm cooking."
+      ],
+      "quizCorrectIndex": 1,
+      "quizExplanations": [
+        "'Baked' is slang for being high on cannabis—very different meaning!",
+        "Exact current slang for 'doomed / in big trouble'.",
+        "Not used in this slang sense.",
+        "'I'm cooking' means you're doing something brilliantly—the opposite of 'I'm cooked'!"
+      ],
+      "sandboxPrompt": "Dramatically tell a friend you're doomed or completely exhausted after a chaotic day.",
+      "sandboxSample": "I slept three hours and have four back-to-back demos today—my brain is officially cooked.",
+      "sandboxRubric": [
+        "Register: Expressive, humorous modern slang.",
+        "Collocation: Passive adjective 'be cooked' (distinct from 'let someone cook').",
+        "Cadence: Punchy, lightly dramatic exaggeration."
+      ]
+    },
+    {
+      "id": "msl-02",
+      "phrase": "locked in",
+      "ipa": "/lɒkt ɪn/",
+      "speechText": "locked in",
+      "category": "Everyday",
+      "register": "Slang",
+      "cefr": "C2",
+      "packId": "mastery-modern-slang-c2",
+      "flat": "I am completely focused with zero distractions until I finish this sprint.",
+      "upgraded": "Phone's on Do Not Disturb, noise-canceling on—I'm fully locked in until five.",
+      "dialogues": [
+        {
+          "context": "Slack · Deep Work",
+          "lines": [
+            {
+              "speaker": "Sam",
+              "text": "Hey, grabbing a quick espresso—want in?"
+            },
+            {
+              "speaker": "Marek",
+              "text": "Rain check! I'm super locked in on this bug right now and don't want to lose momentum."
+            }
+          ]
+        },
+        {
+          "context": "Watching Basketball",
+          "lines": [
+            {
+              "speaker": "Ben",
+              "text": "She hasn't missed a single shot all quarter."
+            },
+            {
+              "speaker": "Alex",
+              "text": "Yeah, she's completely locked in tonight."
+            }
+          ]
+        }
+      ],
+      "nuance": "Crossed over from sports into everyday speech, podcasts, and study/work culture. Means being in total flow state, hyper-focused, and fully committed ('time to lock in', 'I'm locked in'). Also used literally for confirmed plans ('Friday dinner is locked in').",
+      "polish": "w pełnym skupieniu / w trybie pełnej koncentracji / wkręcony na maksa",
+      "clozeSentence": "Two days till the deadline—time to put the phone away and ___ in.",
+      "clozeAnswer": "lock",
+      "clozeAccepted": [
+        "lock"
+      ],
+      "clozeHint": "4-letter verb meaning to secure tightly.",
+      "quizPrompt": "He is completely focused and ignoring every distraction until the project is shipped.",
+      "quizOptions": [
+        "He's completely locked up until this ships.",
+        "He's totally closed in until this ships.",
+        "He's completely locked in until this ships.",
+        "He's totally locked out until this ships."
+      ],
+      "quizCorrectIndex": 2,
+      "quizExplanations": [
+        "'Locked up' means in prison!",
+        "'Closed in' means cramped or claustrophobic.",
+        "Spot-on current native phrasing for intense focus.",
+        "'Locked out' means unable to get inside."
+      ],
+      "sandboxPrompt": "Tell a friend or coworker you're entering deep-focus mode for the next couple of hours.",
+      "sandboxSample": "Going offline for the next two hours—I need to lock in and finally finish this proposal.",
+      "sandboxRubric": [
+        "Register: Crisp, energetic modern casual/startup tone.",
+        "Collocation: Exact particle 'lock in' / 'locked in' (never 'locked up').",
+        "Cadence: Direct and decisive."
+      ]
+    },
+    {
+      "id": "msl-03",
+      "phrase": "mid",
+      "ipa": "/mɪd/",
+      "speechText": "pretty mid",
+      "category": "Everyday",
+      "register": "Slang",
+      "cefr": "C2",
+      "packId": "mastery-modern-slang-c2",
+      "flat": "Everyone hyped that new burger place up, but honestly it was completely average and forgettable.",
+      "upgraded": "Everyone waited an hour for that brunch spot, and honestly? It was pretty mid.",
+      "dialogues": [
+        {
+          "context": "After a Movie",
+          "lines": [
+            {
+              "speaker": "Chloe",
+              "text": "So what did you think? Worth the IMAX ticket?"
+            },
+            {
+              "speaker": "Tom",
+              "text": "Visuals were cool, but the plot was super mid."
+            }
+          ]
+        },
+        {
+          "context": "Coffee Chat · Travel",
+          "lines": [
+            {
+              "speaker": "Ola",
+              "text": "Should I bother visiting that rooftop bar everyone posts on Instagram?"
+            },
+            {
+              "speaker": "Liam",
+              "text": "Skip it—drinks are 18 euros and the view is honestly mid."
+            }
+          ]
+        }
+      ],
+      "nuance": "Short for 'middling / mediocre', delivered with a mildly unimpressed shrug—especially when something doesn't live up to its hype. Pure casual/slang register: great for reviewing movies, restaurants, and albums with friends; never use it in professional performance reviews or client feedback.",
+      "polish": "średni / przeciętny / bez szału / taki sobie (mimo hajpu)",
+      "clozeSentence": "The trailer looked insane, so I was disappointed when the actual game turned out pretty ___.",
+      "clozeAnswer": "mid",
+      "clozeAccepted": [
+        "mid"
+      ],
+      "clozeHint": "3-letter slang adjective meaning aggressively mediocre.",
+      "quizPrompt": "The cafe was wildly overhyped online, and the coffee itself was totally unimpressive.",
+      "quizOptions": [
+        "Everyone hyped that cafe up, and the coffee was honestly mid.",
+        "Everyone hyped that cafe up, and the coffee was middle.",
+        "Everyone hyped that cafe up, and the coffee was half-way.",
+        "Everyone hyped that cafe up, and the coffee was medium-tier quality."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Punchy, modern native verdict for something overhyped and underwhelming.",
+        "'Middle' doesn't mean mediocre as a predicate adjective.",
+        "Not idiomatic for quality reviews.",
+        "Overly stiff and awkward."
+      ],
+      "sandboxPrompt": "Give a candid, low-drama review of an overhyped movie, restaurant, or gadget using 'mid'.",
+      "sandboxSample": "Not gonna lie, the new season started strong, but the finale felt super mid.",
+      "sandboxRubric": [
+        "Register: Casual, candid everyday slang.",
+        "Collocation: Predicate adjective ('is mid', 'pretty mid', 'super mid').",
+        "Cadence: Understated disappointment rather than harsh anger."
+      ]
+    },
+    {
+      "id": "msl-04",
+      "phrase": "living rent-free in my head",
+      "ipa": "/ˈlɪvɪŋ rent friː ɪn maɪ hed/",
+      "speechText": "living rent-free in my head",
+      "category": "Everyday",
+      "register": "Slang",
+      "cefr": "C2",
+      "packId": "mastery-modern-slang-c2",
+      "flat": "I cannot stop thinking about that one awkward comment I made three years ago.",
+      "upgraded": "That one cringe joke I told in 2022 still lives rent-free in my head.",
+      "dialogues": [
+        {
+          "context": "Group Chat · Catchy Song",
+          "lines": [
+            {
+              "speaker": "Elena",
+              "text": "Why have you been humming that 90s jingle since breakfast?"
+            },
+            {
+              "speaker": "Dan",
+              "text": "I heard it once in a supermarket yesterday and now it's living rent-free in my head."
+            }
+          ]
+        },
+        {
+          "context": "Coffee Chat · Food Craving",
+          "lines": [
+            {
+              "speaker": "Kira",
+              "text": "Remember that pistachio tiramisu we had in Bologna?"
+            },
+            {
+              "speaker": "Julia",
+              "text": "Don't even start—it's been living rent-free in my head since October."
+            }
+          ]
+        }
+      ],
+      "nuance": "Playful, wildly common modern idiom for anything you obsess over or can't shake—a song, an amazing meal, an awkward memory, or a rival who still bothers you. Notice the visual metaphor: it's occupying space in your brain without paying rent!",
+      "polish": "siedzieć komuś cały czas w głowie / nie dawać spokoju (nie można o tym przestać myśleć)",
+      "clozeSentence": "Ever since I saw that jacket in the window, it's been living ___-free in my head.",
+      "clozeAnswer": "rent",
+      "clozeAccepted": [
+        "rent"
+      ],
+      "clozeHint": "4-letter noun for the monthly payment for an apartment.",
+      "quizPrompt": "That one scene from the finale has been stuck in my thoughts all week.",
+      "quizOptions": [
+        "That finale scene has been sitting without charge inside my mind.",
+        "That finale scene has been living free of lease in my brain.",
+        "That finale scene is squatting in my skull for free.",
+        "That finale scene has been living rent-free in my head all week."
+      ],
+      "quizCorrectIndex": 3,
+      "quizExplanations": [
+        "Unnatural literal rewrite.",
+        "Wrong noun ('rent-free', not 'free of lease').",
+        "Overly weird phrasing that misses the exact idiom.",
+        "Spot-on, effortless modern native expression."
+      ],
+      "sandboxPrompt": "Tell a friend about a song, food, or funny memory you haven't been able to stop thinking about.",
+      "sandboxSample": "That bizarre street performer playing techno on bagpipes has been living rent-free in my head all week.",
+      "sandboxRubric": [
+        "Register: Playful, conversational modern idiom.",
+        "Collocation: Exact phrasing 'live/living rent-free in [someone's] head'.",
+        "Cadence: Vivid, relatable detail."
+      ]
+    },
+    {
+      "id": "msl-05",
+      "phrase": "it's giving [X]",
+      "ipa": "/ɪts ˈɡɪvɪŋ/",
+      "speechText": "it's giving cozy autumn",
+      "category": "Everyday",
+      "register": "Slang",
+      "cefr": "C2",
+      "packId": "mastery-modern-slang-c2",
+      "flat": "This hotel lobby has the exact aesthetic and atmosphere of a 1970s Wes Anderson film.",
+      "upgraded": "Whoa, this lobby is totally giving 1970s Wes Anderson.",
+      "dialogues": [
+        {
+          "context": "Trying On a Coat",
+          "lines": [
+            {
+              "speaker": "Maya",
+              "text": "Be honest—is this oversized trench coat too much?"
+            },
+            {
+              "speaker": "Hannah",
+              "text": "Not at all! It's giving Parisian detective in the best way."
+            }
+          ]
+        },
+        {
+          "context": "Scrolling Rental Listings",
+          "lines": [
+            {
+              "speaker": "Tomek",
+              "text": "Look at the fluorescent lighting and grey carpet in this studio."
+            },
+            {
+              "speaker": "Sam",
+              "text": "Oof, it's giving dentist waiting room."
+            }
+          ]
+        }
+      ],
+      "nuance": "Originated in ballroom culture and AAVE, now widely used in casual spoken English to describe the exact energy, aesthetic, or mood something radiates—short for 'it's giving [X] vibes'. You drop the word 'vibes' and let the noun phrase carry the punchline ('it's giving cozy Sunday', 'it's giving scam').",
+      "polish": "zalatuje [czymś] / ma klimat [czegoś] / wygląda totalnie jak [coś]",
+      "clozeSentence": "With the velvet curtains and jazz vinyl playing, this bar is totally ___ 1920s speakeasy.",
+      "clozeAnswer": "giving",
+      "clozeAccepted": [
+        "giving"
+      ],
+      "clozeHint": "Present participle of 'give', used here without the word 'vibes'.",
+      "quizPrompt": "Your new minimalist desk setup really has the aesthetic of a Scandinavian design magazine.",
+      "quizOptions": [
+        "Your new desk setup is totally giving Scandinavian design magazine.",
+        "Your new desk setup is handing Scandinavian design magazine.",
+        "Your new desk setup gives away Scandinavian design magazine.",
+        "Your new desk setup is donating Scandinavian design vibes."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Pure, witty modern native phrasing.",
+        "Wrong verb ('handing' doesn't work).",
+        "'Give away' means to reveal a secret or donate for free.",
+        "Unnatural verb choice."
+      ],
+      "sandboxPrompt": "Humorously describe the vibe or aesthetic of a café, outfit, or apartment using 'it's giving'.",
+      "sandboxSample": "That oversized wool sweater and thermos combo is really giving cozy Norwegian cabin.",
+      "sandboxRubric": [
+        "Register: Playful, expressive contemporary slang.",
+        "Collocation: Uses 'it's giving [noun/aesthetic]' cleanly.",
+        "Cadence: Vivid image that paints the exact vibe in a few words."
+      ]
+    },
+    {
+      "id": "msl-06",
+      "phrase": "to flex",
+      "ipa": "/tuː fleks/",
+      "speechText": "not trying to flex",
+      "category": "Everyday",
+      "register": "Slang",
+      "cefr": "C2",
+      "packId": "mastery-modern-slang-c2",
+      "flat": "He wasn't really asking for advice; he just wanted to subtly show off his expensive new watch.",
+      "upgraded": "Let's be real, he didn't care about the time—he was just trying to flex his new watch.",
+      "dialogues": [
+        {
+          "context": "Group Chat · Humblebrag",
+          "lines": [
+            {
+              "speaker": "Jake",
+              "text": "Did you see Alex casually mention his business-class upgrade three times?"
+            },
+            {
+              "speaker": "Ola",
+              "text": "Haha, yeah, subtle flex—though honestly I'd brag too if it were free."
+            }
+          ]
+        },
+        {
+          "context": "Kitchen · Funny Trivia",
+          "lines": [
+            {
+              "speaker": "Ben",
+              "text": "Fun fact: I can recite every European capital in under forty seconds."
+            },
+            {
+              "speaker": "Kasia",
+              "text": "Weird flex, but okay—I'm actually kind of impressed."
+            }
+          ]
+        }
+      ],
+      "nuance": "Used both as a verb ('stop flexing', 'flexing on everyone') and a noun ('weird flex, but okay', 'a subtle flex', 'not a flex'). Notice how 'not a flex' is super popular right now for calling out bad habits people brag about ('sleeping four hours a night is not the flex you think it is').",
+      "polish": "szpanować / popisywać się / flexować się (też: powód do dumy)",
+      "clozeSentence": "Bragging about never taking a vacation is really not the ___ you think it is.",
+      "clozeAnswer": "flex",
+      "clozeAccepted": [
+        "flex"
+      ],
+      "clozeHint": "4-letter slang noun/verb for showing off (literally tightening a muscle).",
+      "quizPrompt": "He keeps casually bringing up his salary just to show off.",
+      "quizOptions": [
+        "He keeps bringing up his salary just to stretch on everyone.",
+        "He keeps casually dropping his salary just to flex.",
+        "He keeps mentioning his income in order to bend.",
+        "He keeps showing his muscles about his salary."
+      ],
+      "quizCorrectIndex": 1,
+      "quizExplanations": [
+        "Wrong verb ('stretch' doesn't have this meaning).",
+        "Exact modern native slang.",
+        "Literal synonym of 'flex' that fails as slang.",
+        "Over-literal metaphor."
+      ],
+      "sandboxPrompt": "Use 'flex' (either playfully teasing a friend or calling out something that's 'not a flex').",
+      "sandboxSample": "Being able to fall asleep within three minutes on any flight is honestly my biggest life flex.",
+      "sandboxRubric": [
+        "Register: Witty, natural modern speech.",
+        "Collocation: Uses 'flex' accurately as verb or noun ('subtle flex', 'not a flex', 'weird flex').",
+        "Cadence: Light, conversational delivery."
+      ]
+    },
+    {
+      "id": "msl-07",
+      "phrase": "to gatekeep",
+      "ipa": "/tuː ˈɡeɪtkiːp/",
+      "speechText": "don't gatekeep",
+      "category": "Everyday",
+      "register": "Slang",
+      "cefr": "C2",
+      "packId": "mastery-modern-slang-c2",
+      "flat": "Stop refusing to share the name of that quiet beach just because you don't want more people going there.",
+      "upgraded": "Come on, don't gatekeep—drop the name of that quiet little bakery!",
+      "dialogues": [
+        {
+          "context": "Coffee Chat · Travel Tips",
+          "lines": [
+            {
+              "speaker": "Nina",
+              "text": "I found this unreal rooftop cafe with zero tourists and 3-euro espresso."
+            },
+            {
+              "speaker": "Chris",
+              "text": "Are you seriously going to gatekeep it from me? Send me the pin!"
+            }
+          ]
+        },
+        {
+          "context": "Music Hobby · Banter",
+          "lines": [
+            {
+              "speaker": "Marek",
+              "text": "I hate when older fans try to gatekeep a band the second they get popular."
+            },
+            {
+              "speaker": "Chloe",
+              "text": "Seriously—let people enjoy good music without taking a quiz first."
+            }
+          ]
+        }
+      ],
+      "nuance": "Used in two super common modern ways: (1) playfully teasing someone for hoarding a great spot, recipe, or brand ('don't gatekeep that jacket—where'd you get it?'), and (2) criticizing elitist behavior in hobbies/communities ('gatekeeping indie rock').",
+      "polish": "chomikować dla siebie / nie chcieć zdradzić (miejscówki) / robić z czegoś elitarny klub",
+      "clozeSentence": "That pasta sauce is incredible—please don't ___ the recipe!",
+      "clozeAnswer": "gatekeep",
+      "clozeAccepted": [
+        "gatekeep"
+      ],
+      "clozeHint": "8-letter compound slang verb (gate + keep) meaning to withhold cool info/access.",
+      "quizPrompt": "Tell me where you found those vintage boots—don't keep it a secret!",
+      "quizOptions": [
+        "Tell me where you got those boots—don't doorkeep it!",
+        "Tell me where you got those boots—don't guard the gate!",
+        "Tell me where you got those boots—don't gatekeep!",
+        "Tell me where you got those boots—don't lock the entrance!"
+      ],
+      "quizCorrectIndex": 2,
+      "quizExplanations": [
+        "Not a real slang term.",
+        "Too literal and clunky.",
+        "Playful, completely natural current native slang.",
+        "Literal, non-idiomatic phrasing."
+      ],
+      "sandboxPrompt": "Playfully ask a friend to stop hoarding a great recommendation (cafe, playlist, or travel spot).",
+      "sandboxSample": "Okay, you've posted three stories from that hidden beach—stop gatekeeping and send me the location!",
+      "sandboxRubric": [
+        "Register: Playful, natural modern banter.",
+        "Collocation: Exact verb 'gatekeep' (with or without direct object).",
+        "Cadence: Light teasing tone rather than genuine hostility."
+      ]
+    },
+    {
+      "id": "msl-08",
+      "phrase": "to touch grass",
+      "ipa": "/tuː tʌtʃ ɡrɑːs/",
+      "speechText": "go touch grass",
+      "category": "Everyday",
+      "register": "Slang",
+      "cefr": "C2",
+      "packId": "mastery-modern-slang-c2",
+      "flat": "You've been arguing with strangers online for hours; you need to go outside and disconnect.",
+      "upgraded": "Dude, close Twitter and go touch grass—none of this matters in real life.",
+      "dialogues": [
+        {
+          "context": "Friend Chat · Screen Time",
+          "lines": [
+            {
+              "speaker": "Sam",
+              "text": "I just spent two hours reading comments about a celebrity feud I don't even care about."
+            },
+            {
+              "speaker": "Kasia",
+              "text": "Haha, yeah, that's your cue to log off and go touch grass."
+            }
+          ]
+        },
+        {
+          "context": "Remote Work · Friday Afternoon",
+          "lines": [
+            {
+              "speaker": "Liam",
+              "text": "I haven't left my desk since 8 a.m.—my eyes feel square."
+            },
+            {
+              "speaker": "Elena",
+              "text": "Seriously, shut the laptop and go touch some grass before sunset."
+            }
+          ]
+        }
+      ],
+      "nuance": "Internet-born phrase that jumped straight into everyday spoken English. Literally means 'go outside and reconnect with reality' when someone is way too online, overthinking internet drama, or glued to screens. Tone ranges from teasing self-awareness ('I really need to touch grass') to playful roasting ('bro, touch grass').",
+      "polish": "wyjść na dwór / odkleić się od ekranu / dotknąć trawy (wrócić do rzeczywistości)",
+      "clozeSentence": "If you're genuinely angry about a Reddit thread at midnight, it's time to go ___ grass.",
+      "clozeAnswer": "touch",
+      "clozeAccepted": [
+        "touch"
+      ],
+      "clozeHint": "5-letter verb meaning to make physical contact with.",
+      "quizPrompt": "I've been staring at screens for twelve hours straight; I seriously need to step outside and reset.",
+      "quizOptions": [
+        "I've been glued to my laptop all day—I seriously need to feel the lawn.",
+        "I've been glued to my laptop all day—I seriously need to walk on turf.",
+        "I've been glued to my laptop all day—I seriously need to grab some leaves.",
+        "I've been glued to my laptop all day—I seriously need to go touch grass."
+      ],
+      "quizCorrectIndex": 3,
+      "quizExplanations": [
+        "Literal paraphrase that misses the fixed slang idiom.",
+        "Sounds like a sports broadcast.",
+        "Not an idiom.",
+        "Spot-on, self-aware modern native humor."
+      ],
+      "sandboxPrompt": "Joke about needing to step away from screens or internet rabbit holes using 'touch grass'.",
+      "sandboxSample": "I just caught myself reading reviews of toaster ovens at 1 a.m.—definitely time to put the phone down and touch grass.",
+      "sandboxRubric": [
+        "Register: Humorous, self-aware modern slang.",
+        "Collocation: Exact idiom 'touch grass' / 'touch some grass'.",
+        "Cadence: Vivid, relatable 'too online' setup."
+      ]
+    },
+    {
+      "id": "msl-09",
+      "phrase": "deadass / for real",
+      "ipa": "/ˈdedæs / fə rɪəl/",
+      "speechText": "for real",
+      "category": "Everyday",
+      "register": "Slang",
+      "cefr": "C2",
+      "packId": "mastery-modern-slang-c2",
+      "flat": "Are you being completely serious right now, or are you joking with me?",
+      "upgraded": "Wait, are you for real? You actually ran into him at the airport in Tokyo?",
+      "dialogues": [
+        {
+          "context": "Group Chat · Wild Coincidence",
+          "lines": [
+            {
+              "speaker": "Alex",
+              "text": "No way—they canceled the entire festival two hours before doors?"
+            },
+            {
+              "speaker": "Jake",
+              "text": "Deadass. Everyone's just standing outside the gates in the rain."
+            }
+          ]
+        },
+        {
+          "context": "Coffee Chat · Honest Agreement",
+          "lines": [
+            {
+              "speaker": "Julia",
+              "text": "Honestly, ten-minute walks after lunch fix like half my afternoon brain fog."
+            },
+            {
+              "speaker": "Dan",
+              "text": "For real—I started doing that last month and it's a total game-changer."
+            }
+          ]
+        }
+      ],
+      "nuance": "'For real' (texted 'fr') is universally safe casual slang for 'seriously?' or 'I totally agree!'. 'Deadass' (originating in NYC/AAVE slang) is punchier and more informal ('Are you deadass?' / 'I'm deadass tired')—keep 'deadass' strictly for friends/peers, never with bosses, older relatives, or formal settings because of the mild swear element.",
+      "polish": "na serio? / bez kitu / serio mówię / dokładnie tak",
+      "clozeSentence": "Wait, you quit your job and booked a one-way ticket to Lisbon? Are you for ___?",
+      "clozeAnswer": "real",
+      "clozeAccepted": [
+        "real"
+      ],
+      "clozeHint": "4-letter adjective meaning genuine or actual.",
+      "quizPrompt": "Seriously? You managed to find last-minute tickets at face value?",
+      "quizOptions": [
+        "For real? You actually scored last-minute tickets at face value?",
+        "For true? You actually got last-minute tickets?",
+        "In reality? You managed to obtain tickets at face value?",
+        "On serious? You really got those tickets?"
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Completely natural, high-energy native disbelief.",
+        "'For true' is not standard English slang.",
+        "Stiff and unnatural in casual speech.",
+        "Direct Polish calque of 'na serio?'—never say 'on serious'."
+      ],
+      "sandboxPrompt": "React with genuine disbelief or strong agreement to a friend's wild story using 'for real' (or 'deadass').",
+      "sandboxSample": "Wait, for real? They upgraded your whole row to business class just for volunteering to switch seats?",
+      "sandboxRubric": [
+        "Register: Spontaneous, authentic casual reaction.",
+        "Collocation: Uses 'for real' / 'deadass' naturally (and avoids 'on serious').",
+        "Cadence: Punchy follow-up reacting to the key detail."
+      ]
+    },
+    {
+      "id": "msl-10",
+      "phrase": "to get the ick",
+      "ipa": "/tuː ɡet ði ɪk/",
+      "speechText": "to get the ick",
+      "category": "Everyday",
+      "register": "Slang",
+      "cefr": "C2",
+      "packId": "mastery-modern-slang-c2",
+      "flat": "I suddenly lost all romantic attraction to him after seeing one tiny annoying habit.",
+      "upgraded": "He clapped when the plane landed and I instantly got the ick.",
+      "dialogues": [
+        {
+          "context": "Brunch · Dating Debrief",
+          "lines": [
+            {
+              "speaker": "Hannah",
+              "text": "Wait, I thought you really liked him after date one—what happened?"
+            },
+            {
+              "speaker": "Chloe",
+              "text": "He snapped his fingers at the waiter, and boom—instant ick. Couldn't unsee it."
+            }
+          ]
+        },
+        {
+          "context": "Podcast Banter",
+          "lines": [
+            {
+              "speaker": "Maya",
+              "text": "Once you get the ick, is there any coming back from it?"
+            },
+            {
+              "speaker": "Ola",
+              "text": "Zero chance. Once the ick sets in, it's over."
+            }
+          ]
+        }
+      ],
+      "nuance": "Hugely popular in current UK and US spoken English (especially popularized via British pop culture and social media). Describes a sudden, often petty or visceral wave of cringe/turn-off that instantly kills attraction—or, more broadly, makes something feel cringey ('that ad gave me the ick'). Always takes the definite article: 'the ick'.",
+      "polish": "dostać nagłego odrzutu / poczuć totalny cringe (nagła utrata zauroczenia przez drobiazg)",
+      "clozeSentence": "Everything was going great until he started loudly arguing over a two-euro tip—that gave me the ___.",
+      "clozeAnswer": "ick",
+      "clozeAccepted": [
+        "ick"
+      ],
+      "clozeHint": "3-letter slang noun for a sudden wave of cringe/turn-off.",
+      "quizPrompt": "Seeing him brag rudely to the bartender instantly ruined my crush on him.",
+      "quizOptions": [
+        "Seeing him talk down to the bartender gave me an eww.",
+        "Seeing him talk down to the bartender instantly gave me the ick.",
+        "Seeing him talk down to the bartender caused me a disgust.",
+        "Seeing him talk down to the bartender gave me the cringe-off."
+      ],
+      "quizCorrectIndex": 1,
+      "quizExplanations": [
+        "'An eww' isn't the established slang noun.",
+        "Exact, ubiquitous modern native expression ('give/get the ick').",
+        "Grammatically off ('disgust' is uncountable) and overly stiff.",
+        "Made-up compound."
+      ],
+      "sandboxPrompt": "Humorously describe a harmless or rude habit that gives someone 'the ick'.",
+      "sandboxSample": "Honestly, watching someone chew ice loudly on a Zoom call gives me an instant ick.",
+      "sandboxRubric": [
+        "Register: Humorous, candid modern conversational slang.",
+        "Collocation: Uses 'get the ick' / 'give [someone] the ick' (with article).",
+        "Cadence: Crisp comedic timing."
+      ]
+    },
+    {
+      "id": "msl-11",
+      "phrase": "say less",
+      "ipa": "/seɪ les/",
+      "speechText": "say less",
+      "category": "Everyday",
+      "register": "Slang",
+      "cefr": "C2",
+      "packId": "mastery-modern-slang-c2",
+      "flat": "You don't need to convince me any further; I already completely agree and I'm in.",
+      "upgraded": "Free tacos and live jazz on the rooftop? Say less—I'm grabbing my jacket.",
+      "dialogues": [
+        {
+          "context": "Text Message · Spontaneous Plan",
+          "lines": [
+            {
+              "speaker": "Jake",
+              "text": "The bakery just put out fresh cinnamon rolls and there's zero line."
+            },
+            {
+              "speaker": "Kasia",
+              "text": "Say less. I'll be there in five."
+            }
+          ]
+        },
+        {
+          "context": "Office Chat · Quick Help",
+          "lines": [
+            {
+              "speaker": "Dan",
+              "text": "Any chance you could sanity-check my deck? Coffee's on me."
+            },
+            {
+              "speaker": "Nina",
+              "text": "Say less—drop the link in Slack."
+            }
+          ]
+        }
+      ],
+      "nuance": "Punchy, playful modern slang meaning 'I'm already sold—you don't need to say another word!' Evolved from 'say no more'. Always delivered warmly/enthusiastically—it is NOT telling someone to shut up (though Polish speakers sometimes worry it sounds rude at first glance!).",
+      "polish": "nie mów nic więcej / namówiłeś mnie / już lecę / wchodzę w to",
+      "clozeSentence": "Half-price sushi and we don't even have to drive? Say ___—I'm in.",
+      "clozeAnswer": "less",
+      "clozeAccepted": [
+        "less"
+      ],
+      "clozeHint": "4-letter comparative opposite of 'more'.",
+      "quizPrompt": "You don't have to persuade me anymore—I'm already coming!",
+      "quizOptions": [
+        "Speak fewer words—I am already persuaded.",
+        "Talk little—I'm already on my way.",
+        "Say less—I'm already on my way.",
+        "Don't talk anymore—I'm already coming."
+      ],
+      "quizCorrectIndex": 2,
+      "quizExplanations": [
+        "Literal, robotic rewrite that destroys the idiom.",
+        "Non-existent phrasing.",
+        "Crisp, modern native reaction showing instant enthusiasm.",
+        "Sounds genuinely annoyed/rude rather than playfully eager."
+      ],
+      "sandboxPrompt": "Respond enthusiastically to a friend pitching an irresistible weekend plan.",
+      "sandboxSample": "A cabin by the lake with a sauna and zero cell service? Say less—tell me what to pack.",
+      "sandboxRubric": [
+        "Register: Playful, high-energy modern slang.",
+        "Collocation: Exact fixed phrase 'Say less'.",
+        "Cadence: Followed by immediate action or buy-in."
+      ]
+    },
+    {
+      "id": "msl-12",
+      "phrase": "to be hyped",
+      "ipa": "/tuː biː haɪpt/",
+      "speechText": "I'm so hyped",
+      "category": "Everyday",
+      "register": "Casual",
+      "cefr": "C2",
+      "packId": "mastery-modern-slang-c2",
+      "flat": "I am very excited about seeing that band live this weekend.",
+      "upgraded": "I've been waiting two years for this tour—I'm so hyped for Saturday!",
+      "dialogues": [
+        {
+          "context": "Text Message · Travel Countdown",
+          "lines": [
+            {
+              "speaker": "Tomek",
+              "text": "Only three more days till Japan—have you even packed yet?"
+            },
+            {
+              "speaker": "Noah",
+              "text": "Not even close, but I'm insanely hyped!"
+            }
+          ]
+        },
+        {
+          "context": "Before a Game Launch",
+          "lines": [
+            {
+              "speaker": "Sam",
+              "text": "Are you actually hyped for the sequel, or just curious?"
+            },
+            {
+              "speaker": "Marek",
+              "text": "Low-key hyped—the studio's track record is pretty solid."
+            }
+          ]
+        }
+      ],
+      "nuance": "The go-to natural casual alternative to 'very excited' (alongside 'stoked' and 'pumped'). Pairs cleanly with 'for + noun' ('hyped for the trip') or 'to + verb' ('hyped to finally meet you'). Note: 'overhyped' means getting more buzz than it deserves.",
+      "polish": "być mega nakręconym / jarać się czymś / nie móc się doczekać",
+      "clozeSentence": "We finally got tickets to the summer festival—everyone in the group chat is super ___.",
+      "clozeAnswer": "hyped",
+      "clozeAccepted": [
+        "hyped",
+        "stoked",
+        "pumped"
+      ],
+      "clozeHint": "5-letter casual adjective from 'hype', meaning super excited.",
+      "quizPrompt": "I'm genuinely excited to finally visit Lisbon next month.",
+      "quizOptions": [
+        "I'm so hypeing to visit Lisbon next month.",
+        "I am maximally enthused regarding Lisbon next month.",
+        "I'm so overhyped to go to Lisbon next month.",
+        "I'm so hyped to finally check out Lisbon next month."
+      ],
+      "quizCorrectIndex": 3,
+      "quizExplanations": [
+        "Incorrect form—use 'hyped' (or 'hype' in very casual US slang, never 'hypeing').",
+        "Sounds like a stiff corporate memo.",
+        "'Overhyped' is negative—it means something received too much undeserved buzz.",
+        "Natural, energetic everyday native phrasing."
+      ],
+      "sandboxPrompt": "Tell a friend about an upcoming trip, concert, or release you're genuinely excited for.",
+      "sandboxSample": "I'm so hyped for the long weekend—I'm turning off Slack and driving straight to the mountains.",
+      "sandboxRubric": [
+        "Register: Enthusiastic, natural casual speech.",
+        "Collocation: Uses 'hyped for + noun' or 'hyped to + verb' (not 'overhyped').",
+        "Cadence: High-energy, authentic delivery."
+      ]
+    }
+  ]
+}

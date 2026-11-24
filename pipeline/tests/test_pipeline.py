@@ -247,10 +247,69 @@ class TestRepoPacksIntegrity(unittest.TestCase):
 
         self.assertEqual(normalize_register("slang"), "Slang")
         self.assertEqual(normalize_register("Slang"), "Slang")
+        self.assertEqual(normalize_register("internet slang"), "Slang")
+        self.assertEqual(normalize_register("gen-z"), "Slang")
         item = normalize_item({"phrase": "low-key", "register": "slang", "cefr": "c2"})
         assert item is not None
         self.assertEqual(item["register"], "Slang")
         self.assertEqual(item["cefr"], "C2")
+
+    def test_current_native_and_modern_slang_packs(self) -> None:
+        manifest = json.loads((REPO_ROOT / "data" / "manifest.json").read_text(encoding="utf-8"))
+        by_id = {p["id"]: p for p in manifest["packs"]}
+
+        for pack_id, expected_count in (
+            ("mastery-current-native-slang", 14),
+            ("mastery-modern-slang-c2", 12),
+        ):
+            self.assertIn(pack_id, by_id, f"Missing pack {pack_id} in manifest")
+            self.assertTrue(by_id[pack_id]["default"], f"{pack_id} should be pre-installed by default")
+            pack_file = REPO_ROOT / by_id[pack_id]["file"]
+            doc = json.loads(pack_file.read_text(encoding="utf-8"))
+            items = doc["items"]
+            self.assertEqual(len(items), expected_count)
+
+            # Ensure zero duplicate phrases vs every other pack
+            other_phrases: set[str] = set()
+            for other_file in (REPO_ROOT / "data" / "packs").glob("*.json"):
+                if other_file.name == pack_file.name:
+                    continue
+                other_doc = json.loads(other_file.read_text(encoding="utf-8"))
+                for other_item in other_doc["items"]:
+                    other_phrases.add(other_item["phrase"].strip().lower())
+
+            for item in items:
+                self.assertEqual(validate_item(item), [])
+                self.assertNotIn(
+                    item["phrase"].strip().lower(),
+                    other_phrases,
+                    f"Duplicate phrase in {pack_file.name}: {item['phrase']}",
+                )
+                self.assertGreaterEqual(len(item["dialogues"]), 2)
+                self.assertIn(item["clozeAnswer"], item["clozeAccepted"])
+
+    def test_kaikki_slang_ingestion_preserves_slang_register(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp = Path(tmpdir)
+            kaikki_gz = tmp / "slang.jsonl.gz"
+            row = {
+                "word": "touch grass",
+                "lang_code": "en",
+                "pos": "verb",
+                "sounds": [{"ipa": "/tʌtʃ ɡrɑːs/", "tags": ["UK"]}],
+                "senses": [{
+                    "glosses": ["To go outside and disconnect from the internet."],
+                    "tags": ["slang", "internet"],
+                }],
+            }
+            with gzip.open(kaikki_gz, "wt", encoding="utf-8") as f:
+                f.write(json.dumps(row) + "\n")
+            out = tmp / "slang_seed.jsonl"
+            stats = ingest_kaikki_file(kaikki_gz, out, min_words=2, require_ipa=True)
+            self.assertEqual(stats["written"], 1)
+            item = json.loads(out.read_text(encoding="utf-8").strip())
+            self.assertEqual(item["register"], "Slang")
+            self.assertEqual(validate_item(item), [])
 
 
 if __name__ == "__main__":
