@@ -397,112 +397,112 @@
     },
     {
       "id": "c2-ca-02",
-      "phrase": "it completely slipped my mind",
-      "ipa": "/ɪt kəmˈpliːtli slɪpt maɪ maɪnd/",
-      "speechText": "it completely slipped my mind",
+      "phrase": "draw a blank",
+      "ipa": "/drɔː ə blæŋk/",
+      "speechText": "draw a blank",
       "category": "Everyday",
       "register": "Casual",
       "cefr": "C2",
       "packId": "mastery-c2-slang-casual",
-      "flat": "I forgot to send you the link yesterday because I was busy.",
-      "upgraded": "Ah, sorry—sending the notes completely slipped my mind after the call. Dropping them here now.",
+      "flat": "I tried to remember her surname right now, but nothing came to mind at all.",
+      "upgraded": "I know the café you mean, but I'm drawing a complete blank on its name.",
       "dialogues": [
         {
-          "context": "Text Message",
+          "context": "Coffee Chat · Book Recommendation",
           "lines": [
-            { "speaker": "Julia", "text": "Hey, did you grab the spare charger before leaving?" },
-            { "speaker": "Tomasz", "text": "Ugh, it totally slipped my mind—I'll pick one up on the way." }
+            { "speaker": "Julia", "text": "Who wrote that essay collection you lent me last winter?" },
+            { "speaker": "Tomasz", "text": "Ugh, I'm drawing a total blank—I can picture the yellow cover, just not the author." }
           ]
         },
         {
-          "context": "Office Hallway",
+          "context": "Debugging Session",
           "lines": [
-            { "speaker": "Leo", "text": "Did you have a chance to ping finance about the invoice?" },
-            { "speaker": "Maja", "text": "Honestly, it slipped my mind this morning—firing off the email right now." }
+            { "speaker": "Leo", "text": "Did the staging logs show why the webhook timed out?" },
+            { "speaker": "Maja", "text": "We drew a blank there too—zero errors in the trace." }
           ]
         }
       ],
-      "nuance": "Lighter and more graceful than the blunt 'I forgot'—implies an honest momentary lapse rather than carelessness. Pairing it immediately with the fix ('Dropping them here now') keeps accountability sharp.",
-      "polish": "zupełnie wypadło mi z głowy",
-      "clozeSentence": "I meant to bring your book back today, and it completely ___ my mind.",
-      "clozeAnswer": "slipped",
-      "clozeAccepted": ["slipped"],
-      "clozeHint": "Past tense verb meaning slid away unnoticed.",
-      "quizPrompt": "I'm sorry, I totally forgot to attach the receipt to my expense report.",
+      "nuance": "Works both for momentary memory gaps ('I'm drawing a blank on his name') and for investigations that come up empty ('the search drew a blank'). Comes from pulling an empty ticket in a lottery—far more idiomatic than 'I have a hole in my memory'.",
+      "polish": "mieć pustkę w głowie / nic nie wskórać / nie móc sobie przypomnieć",
+      "clozeSentence": "I've walked past that bookstore fifty times, yet I'm drawing a complete ___ on the street name.",
+      "clozeAnswer": "blank",
+      "clozeAccepted": ["blank"],
+      "clozeHint": "5-letter noun meaning an empty space or void.",
+      "quizPrompt": "I know the actor's face immediately, yet I simply can't recall his name right now.",
       "quizOptions": [
-        "Sorry about that—attaching the receipt completely slipped my mind.",
-        "Sorry, the receipt totally fell out of my head.",
-        "Regrettably, the receipt escaped my cognitive retention.",
-        "Sorry, it slipped from my brain completely."
+        "I recognize him immediately, but I'm drawing a total blank on his name.",
+        "I recognize him, but I have a black hole in my memory on his name.",
+        "I am currently experiencing a total lexical retrieval void.",
+        "I'm pulling an empty card on his name right now."
       ],
       "quizCorrectIndex": 0,
       "quizExplanations": [
-        "Natural, gracious, and idiomatic.",
-        "Literal Polish calque ('wypadło mi z głowy').",
-        "Comically formal for an everyday slip-up.",
-        "Wrong noun and preposition ('slipped my mind', no 'from' and not 'brain')."
+        "Natural, fluent, and idiomatic.",
+        "Calqued from Polish ('dziura w pamięci').",
+        "Comically clinical for everyday speech.",
+        "Literal image instead of the fixed idiom 'draw a blank'."
       ],
-      "sandboxPrompt": "Politely own up to forgetting a small errand or link and follow immediately with the fix.",
-      "sandboxSample": "Total honesty—forwarding the deck slipped my mind after lunch, so I'm sending it over right now.",
+      "sandboxPrompt": "Admit casually that you can't recall a name, title, or password on the spot using 'draw a blank'.",
+      "sandboxSample": "I was literally just listening to their album yesterday, and now I'm drawing a complete blank on the band's name.",
       "sandboxRubric": [
-        "Register: Candid, polite, zero melodrama.",
-        "Collocation: Exact idiom '[something] slipped my mind' (transitive, no 'from').",
-        "Cadence: Acknowledges the miss and resolves it immediately."
+        "Register: Relaxed, relatable everyday tone.",
+        "Collocation: 'draw a (total/complete) blank (on [noun])'.",
+        "Cadence: Smooth setup showing the momentary memory lapse."
       ]
     },
     {
       "id": "c2-ca-03",
-      "phrase": "play it by ear",
-      "ipa": "/pleɪ ɪt baɪ ɪə/",
-      "speechText": "play it by ear",
+      "phrase": "wing it",
+      "ipa": "/wɪŋ ɪt/",
+      "speechText": "wing it",
       "category": "Everyday",
       "register": "Casual",
       "cefr": "C2",
       "packId": "mastery-c2-slang-casual",
-      "flat": "Let's not make a strict plan now and just decide what to do depending on how things go.",
-      "upgraded": "Weather looks unpredictable on Saturday, so let's play it by ear and decide over coffee.",
+      "flat": "I didn't have time to prepare my remarks formally, so I just improvised on the spot.",
+      "upgraded": "The projector died two minutes before my talk, so I ditched the deck and winged it.",
       "dialogues": [
         {
-          "context": "Trip Planning",
+          "context": "Kitchen · Cooking",
           "lines": [
-            { "speaker": "Sam", "text": "Should we pre-book every museum for our three days in Vienna?" },
-            { "speaker": "Ola", "text": "Let's book the Albertina and play the rest by ear." }
+            { "speaker": "Sam", "text": "Are you following a recipe for that Thai curry?" },
+            { "speaker": "Ola", "text": "Nah, mostly winging it with whatever's left in the fridge." }
           ]
         },
         {
-          "context": "Client Pitch Prep",
+          "context": "Post-Demo Chat",
           "lines": [
-            { "speaker": "Lead", "text": "How deep should we go into the technical architecture on slide four?" },
-            { "speaker": "Eng", "text": "Let's play it by ear—if their CTO leans in, we'll unpack it; if not, we'll keep moving." }
+            { "speaker": "Lead", "text": "That Q&A on IndexedDB caching sounded super rehearsed." },
+            { "speaker": "Eng", "text": "Honestly, I completely winged the last three answers." }
           ]
         }
       ],
-      "nuance": "Musical metaphor (playing a tune without sheet music). Signals relaxed adaptability rather than poor planning. You can also swap 'it' for a noun ('play the afternoon by ear', 'play the rest by ear').",
-      "polish": "zobaczymy na bieżąco / będziemy improwizować (w zależności od sytuacji)",
-      "clozeSentence": "I'm not sure when my train gets in, so let's play dinner by ___.",
-      "clozeAnswer": "ear",
-      "clozeAccepted": ["ear"],
-      "clozeHint": "3-letter noun from playing music without a score.",
-      "quizPrompt": "Let's stay flexible and decide how to spend Sunday morning once we wake up.",
+      "nuance": "Theater slang originally (actors memorizing lines in the 'wings' offstage before walking on). Means improvising smoothly without full prep—usually with a confident or playfully candid tone.",
+      "polish": "iść na żywioł / improwizować na bieżąco",
+      "clozeSentence": "We didn't have time to write a full script, so we're just going to ___ it.",
+      "clozeAnswer": "wing",
+      "clozeAccepted": ["wing"],
+      "clozeHint": "4-letter verb from theater wings / flying by instinct.",
+      "quizPrompt": "My notes wouldn't sync before the client call, so I improvised through the walkthrough.",
       "quizOptions": [
-        "Let's play Sunday morning by ear depending on how tired we are.",
-        "Let's play Sunday morning by nose depending on our energy.",
-        "Let us improvise the morning schedule on the current basis.",
-        "Let's play it on ear once we wake up."
+        "My notes didn't sync before the call, so I just winged the walkthrough.",
+        "My notes didn't sync, so I went on the element during the call.",
+        "Without notes, I flew it through the client walkthrough.",
+        "I had to feather my way through the client walkthrough."
       ],
       "quizCorrectIndex": 0,
       "quizExplanations": [
-        "Natural, relaxed, and idiomatic.",
-        "Wrong body part ('by ear', never 'by nose').",
-        "Calque from Polish 'na bieżąco' + stiff wording.",
-        "Wrong preposition ('by ear', never 'on ear')."
+        "Crisp, natural, and idiomatic.",
+        "Literal Polish calque ('iść na żywioł').",
+        "Wrong verb ('wing it', never 'fly it').",
+        "Non-existent idiom."
       ],
-      "sandboxPrompt": "Suggest keeping weekend plans flexible because of weather or unpredictable timing.",
-      "sandboxSample": "My flight lands right around rush hour, so let's play Friday evening by ear and text once I'm out of the airport.",
+      "sandboxPrompt": "Describe a moment when you improvised a presentation, recipe, or trip without a formal plan using 'wing it'.",
+      "sandboxSample": "We forgot our guidebook on the train to Lisbon, so we winged the whole weekend and stumbled into our favorite neighborhood.",
       "sandboxRubric": [
-        "Register: Easygoing, practical.",
-        "Collocation: 'play [it / noun] by ear'.",
-        "Cadence: Clearly explains why flexibility makes sense."
+        "Register: Candid, light, self-assured.",
+        "Collocation: Exact verb 'wing it' (or 'wing [the speech/walkthrough]').",
+        "Cadence: Clearly contrasts lack of prep with how it played out."
       ]
     },
     {
@@ -562,167 +562,167 @@
     },
     {
       "id": "c2-ca-05",
-      "phrase": "I wouldn't put it past [someone]",
-      "ipa": "/aɪ ˈwʊdnt pʊt ɪt pɑːst/",
-      "speechText": "I wouldn't put it past him",
+      "phrase": "cut [someone] some slack",
+      "ipa": "/kʌt ... sʌm slæk/",
+      "speechText": "cut him some slack",
       "category": "Everyday",
       "register": "Casual",
       "cefr": "C2",
       "packId": "mastery-c2-slang-casual",
-      "flat": "I would not be surprised at all if he actually stayed up all night rebuilding the app.",
-      "upgraded": "Honestly, I wouldn't put it past him to rewrite the entire parser on a Sunday just for fun.",
+      "flat": "Don't judge him too harshly—it's his first week on the job and he's still learning.",
+      "upgraded": "Cut him some slack—he just landed from a red-eye and still showed up for the review.",
       "dialogues": [
         {
           "context": "Coffee Chat · Teammate",
           "lines": [
-            { "speaker": "Alex", "text": "Think Mark really brought his own hand-grinder on a camping trip?" },
-            { "speaker": "Ewa", "text": "Oh, I wouldn't put it past him—the guy refuses to drink bad coffee." }
+            { "speaker": "Alex", "text": "The new junior missed two edge cases in his first pull request." },
+            { "speaker": "Ewa", "text": "Cut him a little slack—he's been in the codebase for four days." }
           ]
         },
         {
-          "context": "Office Banter",
+          "context": "Friends · Self-Compassion",
           "lines": [
-            { "speaker": "Ben", "text": "Could the vendor try sneaking a renewal fee into the fine print?" },
-            { "speaker": "Zosia", "text": "After last year? I wouldn't put it past them." }
+            { "speaker": "Ben", "text": "I only made it to the gym twice this week instead of four times." },
+            { "speaker": "Zosia", "text": "Cut yourself some slack—you moved apartments on Wednesday." }
           ]
         }
       ],
-      "nuance": "Wry, idiomatic C2 understatement meaning 'that sounds completely in character for them'—used either playfully for a friend's quirky dedication or skeptically for someone shady. Always takes 'to + verb' when naming the action ('wouldn't put it past her to...').",
-      "polish": "wcale bym się po nim/niej tego nie zdziwił(a) / był(a)by do tego zdolny/a",
-      "clozeSentence": "Wait, he biked forty kilometers in the rain for sourdough? Honestly, I wouldn't ___ it past him.",
-      "clozeAnswer": "put",
-      "clozeAccepted": ["put"],
-      "clozeHint": "3-letter verb completing the idiom.",
-      "quizPrompt": "Knowing her attention to detail, I wouldn't be surprised if she already built a spreadsheet for the trip.",
+      "nuance": "Nautical metaphor (loosening a tight rope so there's less tension). Warm, grounded way to urge patience or self-compassion ('cut yourself some slack') without sounding preachy.",
+      "polish": "odpuścić komuś trochę / dać komuś taryfę ulgową / nie być tak surowym",
+      "clozeSentence": "She's juggling two launches this month, so let's cut her some ___ on the late reply.",
+      "clozeAnswer": "slack",
+      "clozeAccepted": ["slack"],
+      "clozeHint": "5-letter noun meaning looseness in a rope.",
+      "quizPrompt": "Be a bit more forgiving with yourself—you're learning an entire new framework from scratch.",
       "quizOptions": [
-        "I wouldn't put it past her to have color-coded the entire trip itinerary already.",
-        "I wouldn't place it behind her to organize the whole trip.",
-        "I would not deem it beyond her capacity to build a spreadsheet.",
-        "I wouldn't put it over her to make a spreadsheet."
+        "Cut yourself some slack—you're picking up a whole new stack from scratch.",
+        "Give yourself a discount tariff—you're learning from scratch.",
+        "Cut yourself some loose rope while learning the stack.",
+        "Please extend yourself additional leniency during onboarding."
       ],
       "quizCorrectIndex": 0,
       "quizExplanations": [
-        "Effortless, witty, and genuinely C2.",
-        "Wrong verb and preposition ('put it past', never 'place it behind').",
-        "Overly formal for lighthearted teasing.",
-        "Wrong preposition ('past', never 'over')."
+        "Warm, natural, and idiomatic.",
+        "Literal Polish calque ('taryfa ulgowa').",
+        "Over-explains the metaphor instead of using 'slack'.",
+        "Way too stiff for encouraging a friend."
       ],
-      "sandboxPrompt": "Playfully predict something totally in character for a friend or colleague using 'I wouldn't put it past...'.",
-      "sandboxSample": "I wouldn't put it past her to show up to a casual hike with a full pour-over coffee kit in her backpack.",
+      "sandboxPrompt": "Defend a teammate or friend who made a minor slip under pressure using 'cut [someone] some slack'.",
+      "sandboxSample": "Cut the support team some slack today—the billing outage tripled their queue before 9 a.m.",
       "sandboxRubric": [
-        "Register: Wry, playful, or shrewdly observant.",
-        "Collocation: 'wouldn't put it past [person] (to + verb)'.",
-        "Cadence: Specific detail makes the remark land."
+        "Register: Empathetic, grounded, conversational.",
+        "Collocation: 'cut [person/yourself] some (or a little) slack'.",
+        "Cadence: Pairs the appeal with the concrete mitigating context."
       ]
     },
     {
       "id": "c2-wk-01",
-      "phrase": "give me a ballpark",
-      "ipa": "/ɡɪv miː ə ˈbɔːlpɑːk/",
-      "speechText": "give me a ballpark",
+      "phrase": "just spitballing here",
+      "ipa": "/dʒʌst ˈspɪtbɔːlɪŋ hɪə/",
+      "speechText": "just spitballing here",
       "category": "Workplace",
       "register": "Casual",
       "cefr": "C2",
       "packId": "mastery-c2-slang-casual",
-      "flat": "Can you give me a rough estimate of how long this task will take?",
-      "upgraded": "No need for an exact quote yet—just give me a ballpark: are we talking days or weeks?",
+      "flat": "I am just throwing out a rough, untested idea for brainstorming.",
+      "upgraded": "Just spitballing here—what if we let users filter daily batches by C2 slang vs. workplace register?",
       "dialogues": [
         {
-          "context": "Slack · #eng-planning",
+          "context": "Product Brainstorm",
           "lines": [
-            { "speaker": "PM", "text": "Before we write a full RFC, can you give me a ballpark on the migration effort?" },
-            { "speaker": "Dev", "text": "Rough ballpark, three to four days including tests." }
+            { "speaker": "PM", "text": "Any quick ideas for reducing first-load bundle size?" },
+            { "speaker": "Dev", "text": "Just spitballing here, but we could shard packs into 250-item JSON files and cache them in IndexedDB." }
           ]
         },
         {
-          "context": "Vendor Call",
+          "context": "Slack · #design-ideas",
           "lines": [
-            { "speaker": "Buyer", "text": "Are we even in the same ballpark on pricing?" },
-            { "speaker": "Rep", "text": "Yeah, we're very close—just a few thousand apart annually." }
+            { "speaker": "Designer", "text": "Totally spitballing—should we add a keyboard shortcut for audio replay?" },
+            { "speaker": "Founder", "text": "Actually love that; let's try it in the next branch." }
           ]
         }
       ],
-      "nuance": "Baseball metaphor meaning 'rough order-of-magnitude range'—takes the pressure off someone who hates committing to a premature exact number. Works as a noun ('a ballpark', 'in the right ballpark'), modifier ('ballpark figure'), or casual verb ('can you ballpark it?').",
-      "polish": "rząd wielkości / orientacyjnie / mniej więcej (widełki)",
-      "clozeSentence": "Don't hold yourself to the hour—just give me a ___ figure so I can plan the sprint.",
-      "clozeAnswer": "ballpark",
-      "clozeAccepted": ["ballpark"],
-      "clozeHint": "8-letter compound noun from baseball meaning rough range.",
-      "quizPrompt": "I don't need an exact budget yet, just a rough order-of-magnitude range.",
+      "nuance": "Low-ego modern workplace verb for floating an unpolished brainstorming idea without committing to it. Signals psychological safety ('feel free to shoot this down or build on it'). Best in collaborative US/international teams; in formal written specs stick to 'exploring an early option'.",
+      "polish": "głośno myślę / rzucam luźny pomysł (do burzy mózgów)",
+      "clozeSentence": "Just ___ here—could we auto-generate the manifest right inside the GitHub Action?",
+      "clozeAnswer": "spitballing",
+      "clozeAccepted": ["spitballing"],
+      "clozeHint": "-ing verb meaning tossing out rough brainstorming ideas.",
+      "quizPrompt": "Let me toss out an untested rough idea just to spark discussion.",
       "quizOptions": [
-        "No need for exact numbers yet—just give me a ballpark figure.",
-        "No need for exact numbers—just give me a stadium number.",
-        "Please supply a preliminary approximate magnitude range.",
-        "Just give me a playground figure for the budget."
+        "Just spitballing here—what if we default everyone to C1/C2 cards first?",
+        "Just throwing paper balls here—what if we default to C1/C2?",
+        "I am provisionally projecting an unrefined conceptual hypothesis.",
+        "Just snowballing ideas here—what if we default to C1/C2?"
       ],
       "quizCorrectIndex": 0,
       "quizExplanations": [
-        "Natural, low-pressure modern workplace English.",
-        "Wrong noun ('ballpark', never 'stadium').",
-        "Way too stiff for a quick alignment check.",
-        "Wrong compound noun ('ballpark', not 'playground')."
+        "Relaxed, collaborative, and authentic modern office English.",
+        "Literal image instead of the established verb 'spitballing'.",
+        "Hilariously stiff for a brainstorm.",
+        "'Snowballing' means escalating rapidly out of control—not brainstorming."
       ],
-      "sandboxPrompt": "Ask a teammate for a rough time or cost estimate without putting them on the spot.",
-      "sandboxSample": "I know requirements are still shifting—just ballpark it for me: closer to $5k or $20k?",
+      "sandboxPrompt": "Float a rough, low-stakes product or team idea using 'Just spitballing here...'.",
+      "sandboxSample": "Just spitballing here—what if we add a quick 'C2 Slang Only' toggle for five-minute commute drills?",
       "sandboxRubric": [
-        "Register: Practical, low-pressure workplace tone.",
-        "Collocation: 'give a ballpark (figure)', 'in the same ballpark', or verb 'ballpark it'.",
-        "Cadence: Signals explicitly that rough precision is fine."
+        "Register: Low-ego, collaborative, creative.",
+        "Collocation: '(Just/Totally) spitballing here' or 'let's spitball a few ideas'.",
+        "Cadence: Clearly marks the idea as a rough starting point."
       ]
     },
     {
       "id": "c2-wk-02",
-      "phrase": "don't have the bandwidth",
-      "ipa": "/dəʊnt hæv ðə ˈbændwɪdθ/",
-      "speechText": "I don't have the bandwidth",
+      "phrase": "in the weeds",
+      "ipa": "/ɪn ðə wiːdz/",
+      "speechText": "in the weeds",
       "category": "Workplace",
       "register": "Slang",
       "cefr": "C2",
       "packId": "mastery-c2-slang-casual",
-      "flat": "I am currently too busy and mentally stretched to take on another project right now.",
-      "upgraded": "I'd love to help with the workshop, but I genuinely don't have the bandwidth until next quarter.",
+      "flat": "We are getting overly bogged down in tiny implementation details instead of deciding the main strategy.",
+      "upgraded": "Let's not get too far in the weeds on CSS tokens yet—let's lock the core data model first.",
       "dialogues": [
         {
-          "context": "1:1 Meeting · Workload",
+          "context": "Architecture Meeting",
           "lines": [
-            { "speaker": "Manager", "text": "Could you also mentor the new intern this month?" },
-            { "speaker": "Engineer", "text": "I want to do it properly, and honestly I don't have the bandwidth while shipping v2." }
+            { "speaker": "Lead", "text": "Wait, should we hash each pack with SHA-256 or SHA-512 and store 16 or 32 hex chars?" },
+            { "speaker": "Staff Eng", "text": "We're getting a bit in the weeds—let's step back and agree on the manifest schema first." }
           ]
         },
         {
-          "context": "Friends · Life Overload",
+          "context": "Hospitality / Busy Week (Second Sense!)",
           "lines": [
-            { "speaker": "Nora", "text": "Want to help organize the neighborhood swap meet next week?" },
-            { "speaker": "Kamil", "text": "Love the idea, zero emotional bandwidth right now with the move." }
+            { "speaker": "Nora", "text": "How's the launch week treating you?" },
+            { "speaker": "Kamil", "text": "Completely in the weeds today—four PRs open and two customer calls back-to-back." }
           ]
         }
       ],
-      "nuance": "Tech metaphor that crossed into everyday spoken English for both calendar time and mental/emotional capacity. Keeps a 'no' objective and boundary-clear rather than apologetic. Note: use naturally in moderation so it doesn't feel buzzwordy.",
-      "polish": "nie mieć mocy przerobowych / nie mieć zasobów (czasu ani głowy)",
-      "clozeSentence": "Between the audit and onboarding two new hires, the team simply doesn't have the ___ for a redesign.",
-      "clozeAnswer": "bandwidth",
-      "clozeAccepted": ["bandwidth"],
-      "clozeHint": "9-letter tech noun repurposed for personal/team capacity.",
-      "quizPrompt": "Politely tell a colleague you don't have the time or mental space to take on an extra review this week.",
+      "nuance": "Two super common live senses in C2 English: (1) Getting lost in excessive low-level detail during a discussion ('getting in the weeds on X' / 'deep in the weeds'); (2) Originally restaurant slang meaning swamped/overwhelmed by workload ('totally in the weeds this afternoon').",
+      "polish": "grzęznąć w detalach / być zakopanym po uszy (w robocie)",
+      "clozeSentence": "Before we get too far in the ___ on micro-optimizations, let's check whether the query is actually slow.",
+      "clozeAnswer": "weeds",
+      "clozeAccepted": ["weeds"],
+      "clozeHint": "5-letter plural noun for overgrown wild plants.",
+      "quizPrompt": "Let's zoom out—we're getting tangled up in minor implementation details too early.",
       "quizOptions": [
-        "I'd love to dig in, but I really don't have the bandwidth until Monday.",
-        "I don't have the frequency to review this document this week.",
-        "My processing capacity is currently depleted for additional tasks.",
-        "I am lacking the wifi to help with that this week."
+        "Let's pull back a bit—we're getting too deep in the weeds for a kickoff.",
+        "Let's step back—we're getting stuck in the bushes on details.",
+        "We are currently overly enmeshed in granular minutiae.",
+        "Let's zoom out—we're falling into the grass on this topic."
       ],
       "quizCorrectIndex": 0,
       "quizExplanations": [
-        "Crisp, realistic, and respectful boundary-setting.",
-        "Wrong tech metaphor ('bandwidth', never 'frequency').",
-        "Robotic and overly formal.",
-        "Broken metaphor ('bandwidth', never 'wifi')."
+        "Crisp, diplomatic, and universally understood in modern teams.",
+        "Wrong noun ('in the weeds', never 'in the bushes').",
+        "Accurate meaning, but far too stiff for a meeting.",
+        "Broken metaphor ('weeds', never 'grass')."
       ],
-      "sandboxPrompt": "Decline an optional request politely by explaining your capacity and offering a realistic later window.",
-      "sandboxSample": "I don't have the bandwidth to give this the review it deserves today, but I can block an hour Thursday morning.",
+      "sandboxPrompt": "Gently pull a meeting back to the big picture—or tell a teammate you're swamped—using 'in the weeds'.",
+      "sandboxSample": "I don't want to pull us into the weeds on edge-case regexes right now—let's agree on the user flow and sort parsing async.",
       "sandboxRubric": [
-        "Register: Calm, boundaried, modern workplace/casual tone.",
-        "Collocation: '(don't) have the bandwidth (for/to ...)' or 'zero bandwidth'.",
-        "Cadence: Pairs the honest 'no' with a clear timeline or alternative."
+        "Register: Sharp, constructive modern workplace slang.",
+        "Collocation: '(get/go) in(to) the weeds (on [topic])' or 'deep in the weeds'.",
+        "Cadence: Redirects constructively without sounding dismissive."
       ]
     },
     {

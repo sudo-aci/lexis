@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-22T18:53:59Z",
+  "generatedAt": "2026-11-24T07:17:02Z",
   "totalItems": 81,
   "packs": [
     {
@@ -27,8 +27,8 @@
       "source": "Lexis C2 Slang & Casual Pack",
       "file": "data/packs/mastery-c2-slang-casual.json",
       "itemCount": 15,
-      "sizeBytes": 44221,
-      "sha256": "c3ede573ac920d1f",
+      "sizeBytes": 44385,
+      "sha256": "50a56676d124c603",
       "default": true
     },
     {

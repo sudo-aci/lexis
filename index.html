@@ -2468,8 +2468,8 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           await setRemovedPackIds(removed);
         }
 
-        await hydrateStateFromDB();
         if (!silent) {
+          await hydrateStateFromDB();
           showToast(`Installed "${manifestPack.name}" (${count} phrases)`);
         }
         return count;
@@ -2479,7 +2479,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         return 0;
       } finally {
         appState.busyPackIds.delete(packId);
-        renderAll();
+        if (!silent) renderAll();
       }
     }
 
@@ -3638,9 +3638,15 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       container.innerHTML = `
         <div class="rounded-2xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card p-5 sm:p-8 space-y-6 shadow-sm">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <span class="px-2.5 py-1 rounded-md text-[11px] font-mono border ${getCategoryPillClass(item.category)}">
-              ${escapeHtml(item.category)} · Active Sandbox
-            </span>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="px-2.5 py-1 rounded-md text-[11px] font-mono border ${getCategoryPillClass(item.category)}">
+                ${escapeHtml(item.category)} · Active Sandbox
+              </span>
+              ${item.cefr ? `<span class="px-2 py-1 rounded-md text-[11px] font-mono border ${getCefrPillClass(item.cefr)}">${escapeHtml(item.cefr)}</span>` : ''}
+              <span class="px-2 py-1 rounded-md text-[11px] font-mono border ${getRegisterPillClass(item.register)}">
+                ${escapeHtml(item.register || 'Conversational')}
+              </span>
+            </div>
             <span class="text-xs font-mono text-stone-400">Item ${idx + 1} / ${total}</span>
           </div>
 

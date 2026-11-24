@@ -70,7 +70,7 @@ def build_batch_prompt(batch: list[dict[str, Any]]) -> str:
         "Keep the exact `id` and `phrase` from each seed.\n\n"
         "Required JSON fields per object:\n"
         "- id, phrase, ipa, speechText, category ('Everyday'|'Workplace'|'Syntax'), "
-        "register ('Casual'|'Conversational'|'Workplace'|'Diplomatic'|'Nuanced'), cefr ('B2'|'B2-C1'|'C1'|'C2')\n"
+        "register ('Casual'|'Slang'|'Conversational'|'Workplace'|'Diplomatic'|'Nuanced'), cefr ('B2'|'B2-C1'|'C1'|'C2')\n"
         "- flat (functional/textbook baseline), upgraded (idiomatic native sentence)\n"
         "- dialogues (array of 2 realistic 2-line exchanges with context + lines[{speaker, text}])\n"
         "- nuance (usage guidance + Polish speaker pitfalls/calques)\n"
