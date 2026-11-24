@@ -37,6 +37,7 @@ SYNTAX_POS = {"conj", "prep", "particle"}
 
 REGISTER_TAG_MAP = {
     "slang": "Slang",
+    "internet": "Slang",
     "informal": "Casual",
     "colloquial": "Conversational",
     "idiomatic": "Conversational",
@@ -195,7 +196,7 @@ def convert_kaikki_entry(
         return None
 
     definition, examples, tags = extract_senses_info(entry)
-    is_idiomatic = bool(tags & {"idiomatic", "idiom", "colloquial", "informal"})
+    is_idiomatic = bool(tags & {"idiomatic", "idiom", "colloquial", "informal", "slang"})
     if allowed_pos and pos not in allowed_pos and not (word_count >= 2 and is_idiomatic):
         return None
 
