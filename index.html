@@ -927,6 +927,317 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
     .brand-squircle:hover {
       transform: translateY(-1px);
     }
+
+    /* ==================== PRACTICE STUDIO (MODERN DUOLINGO-INSPIRED UX) ==================== */
+    @keyframes duoStepIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .duo-step-enter {
+      animation: duoStepIn 0.26s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes duoDrawerUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .duo-drawer-enter {
+      animation: duoDrawerUp 0.24s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @keyframes duoPop {
+      0% { transform: scale(0.86); opacity: 0.4; }
+      65% { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .duo-pop {
+      animation: duoPop 0.22s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+
+    @keyframes duoShake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); }
+      45% { transform: translateX(6px); }
+      70% { transform: translateX(-4px); }
+      88% { transform: translateX(3px); }
+    }
+    .duo-shake {
+      animation: duoShake 0.34s ease-in-out;
+    }
+
+    @keyframes duoConfettiFall {
+      0% { transform: translateY(-12px) rotate(0deg) scale(0.9); opacity: 1; }
+      85% { opacity: 1; }
+      100% { transform: translateY(170px) rotate(420deg) scale(0.75); opacity: 0; }
+    }
+    .duo-confetti {
+      position: absolute;
+      top: 0;
+      width: 8px;
+      height: 12px;
+      border-radius: 2px;
+      pointer-events: none;
+      animation: duoConfettiFall var(--dur, 1.4s) cubic-bezier(0.2, 0.7, 0.3, 1) var(--delay, 0s) forwards;
+    }
+
+    .duo-btn-primary {
+      background: #C46548;
+      color: #FFFFFF;
+      border: 1px solid #B05438;
+      border-bottom: 3px solid #964128;
+      transition: transform 0.1s ease, filter 0.15s ease, border-bottom-width 0.1s ease, background-color 0.15s ease;
+    }
+    .duo-btn-primary:hover:not(:disabled) {
+      background: #B85A3E;
+      transform: translateY(-1px);
+    }
+    .duo-btn-primary:active:not(:disabled) {
+      transform: translateY(2px);
+      border-bottom-width: 1px;
+    }
+    .duo-btn-primary:disabled {
+      background: #E6E1D8;
+      border-color: #D7D0C5;
+      border-bottom-color: #CBC3B6;
+      color: #9A9287;
+      cursor: not-allowed;
+    }
+    .dark .duo-btn-primary:disabled {
+      background: #2C2A27;
+      border-color: #3A3733;
+      border-bottom-color: #252320;
+      color: #6E6A64;
+    }
+
+    .duo-btn-success {
+      background: #059669;
+      color: #FFFFFF;
+      border: 1px solid #047857;
+      border-bottom: 3px solid #065F46;
+      transition: transform 0.1s ease, background-color 0.15s ease, border-bottom-width 0.1s ease;
+    }
+    .duo-btn-success:hover:not(:disabled) {
+      background: #047857;
+      transform: translateY(-1px);
+    }
+    .duo-btn-success:active:not(:disabled) {
+      transform: translateY(2px);
+      border-bottom-width: 1px;
+    }
+
+    .duo-btn-danger {
+      background: #D94854;
+      color: #FFFFFF;
+      border: 1px solid #BE3843;
+      border-bottom: 3px solid #9E2A34;
+      transition: transform 0.1s ease, background-color 0.15s ease, border-bottom-width 0.1s ease;
+    }
+    .duo-btn-danger:hover:not(:disabled) {
+      background: #C43B46;
+      transform: translateY(-1px);
+    }
+    .duo-btn-danger:active:not(:disabled) {
+      transform: translateY(2px);
+      border-bottom-width: 1px;
+    }
+
+    .duo-option {
+      border: 1.5px solid #E6E1D8;
+      border-bottom: 3.5px solid #DDD6C9;
+      background: #FFFFFF;
+      transition: transform 0.1s ease, border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .dark .duo-option {
+      border-color: #35322E;
+      border-bottom-color: #272522;
+      background: #1F1E1C;
+    }
+    .duo-option:hover:not(:disabled):not(.is-selected):not(.is-correct):not(.is-wrong):not(.is-matched) {
+      border-color: #C46548;
+      border-bottom-color: #B05438;
+      background: rgba(196, 101, 72, 0.035);
+    }
+    .duo-option:active:not(:disabled) {
+      transform: translateY(2px);
+      border-bottom-width: 1.5px;
+    }
+    .duo-option.is-selected {
+      border-color: #C46548;
+      border-bottom-color: #A84B30;
+      background: rgba(196, 101, 72, 0.085);
+      box-shadow: 0 0 0 2px rgba(196, 101, 72, 0.15);
+    }
+    .dark .duo-option.is-selected {
+      border-color: #E08568;
+      border-bottom-color: #B85C40;
+      background: rgba(217, 123, 94, 0.13);
+      box-shadow: 0 0 0 2px rgba(217, 123, 94, 0.18);
+    }
+    .duo-option.is-correct {
+      border-color: #10B981;
+      border-bottom-color: #059669;
+      background: rgba(16, 185, 129, 0.1);
+    }
+    .dark .duo-option.is-correct {
+      border-color: #34D399;
+      border-bottom-color: #059669;
+      background: rgba(16, 185, 129, 0.14);
+    }
+    .duo-option.is-wrong {
+      border-color: #E11D48;
+      border-bottom-color: #BE123C;
+      background: rgba(225, 29, 72, 0.08);
+    }
+    .dark .duo-option.is-wrong {
+      border-color: #FB7185;
+      border-bottom-color: #BE123C;
+      background: rgba(244, 63, 94, 0.14);
+    }
+    .duo-option.is-matched {
+      opacity: 0.36;
+      border-color: #10B981;
+      border-bottom-width: 1.5px;
+      background: rgba(16, 185, 129, 0.08);
+      transform: scale(0.97);
+      pointer-events: none;
+    }
+
+    .duo-tile {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.55rem 0.9rem;
+      min-height: 44px;
+      border-radius: 0.75rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      line-height: 1.3;
+      border: 1.5px solid #E2DBD0;
+      border-bottom: 3px solid #D4CBBF;
+      background: #FFFFFF;
+      color: #191816;
+      user-select: none;
+      transition: transform 0.1s ease, border-color 0.15s ease, background-color 0.15s ease;
+    }
+    .dark .duo-tile {
+      border-color: #3B3833;
+      border-bottom-color: #2A2824;
+      background: #252320;
+      color: #F3F0EA;
+    }
+    .duo-tile:hover:not(:disabled) {
+      border-color: #C46548;
+      border-bottom-color: #A84B30;
+      background: rgba(196, 101, 72, 0.06);
+    }
+    .duo-tile:active:not(:disabled) {
+      transform: translateY(2px);
+      border-bottom-width: 1.5px;
+    }
+    .duo-tile.is-selected {
+      border-color: #C46548;
+      border-bottom-color: #A84B30;
+      background: rgba(196, 101, 72, 0.12);
+      color: #9C4227;
+    }
+    .dark .duo-tile.is-selected {
+      border-color: #E08568;
+      border-bottom-color: #B85C40;
+      background: rgba(217, 123, 94, 0.18);
+      color: #F6B9A6;
+    }
+    .duo-tile-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.55rem 0.9rem;
+      min-height: 44px;
+      border-radius: 0.75rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      line-height: 1.3;
+      border: 1.5px dashed #DDD6C9;
+      background: rgba(230, 225, 216, 0.45);
+      color: transparent;
+      user-select: none;
+      pointer-events: none;
+    }
+    .dark .duo-tile-ghost {
+      border-color: #36332F;
+      background: rgba(40, 38, 35, 0.55);
+    }
+
+    .duo-progress-track {
+      position: relative;
+      height: 12px;
+      border-radius: 9999px;
+      background: #E8E3DA;
+      overflow: hidden;
+    }
+    .dark .duo-progress-track {
+      background: #2C2A26;
+    }
+    .duo-progress-fill {
+      position: relative;
+      height: 100%;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, #C46548 0%, #D97B5E 100%);
+      transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s ease;
+    }
+    .duo-progress-fill.is-streak {
+      background: linear-gradient(90deg, #059669 0%, #10B981 100%);
+    }
+    .duo-progress-fill.is-review {
+      background: linear-gradient(90deg, #D97706 0%, #F59E0B 100%);
+    }
+    .duo-progress-fill::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 6px;
+      right: 6px;
+      height: 3px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.32);
+    }
+
+    .duo-audio-btn {
+      border: 1.5px solid #B05438;
+      border-bottom: 4px solid #913F27;
+      background: #C46548;
+      color: #FFFFFF;
+      transition: transform 0.1s ease, background-color 0.15s ease, border-bottom-width 0.1s ease;
+    }
+    .duo-audio-btn:hover {
+      background: #B85A3E;
+      transform: translateY(-1px);
+    }
+    .duo-audio-btn:active {
+      transform: translateY(2px);
+      border-bottom-width: 1.5px;
+    }
+
+    .duo-track-card {
+      border: 1.5px solid #E6E1D8;
+      border-bottom: 3px solid #DDD6C9;
+      background: #FFFFFF;
+      transition: transform 0.14s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .dark .duo-track-card {
+      border-color: #33302C;
+      border-bottom-color: #252320;
+      background: #1F1E1C;
+    }
+    .duo-track-card:hover {
+      border-color: #C46548;
+      border-bottom-color: #A84B30;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px -12px rgba(196, 101, 72, 0.35);
+    }
+    .duo-track-card:active {
+      transform: translateY(1px);
+      border-bottom-width: 1.5px;
+    }
   </style>
 <style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:Inter, -apple-system, BlinkMacSystemFont, sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:JetBrains Mono, ui-monospace, monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.pointer-events-none{pointer-events:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.inset-x-0{left:0px;right:0px}.bottom-0{bottom:0px}.bottom-20{bottom:5rem}.left-3\.5{left:0.875rem}.left-4{left:1rem}.right-4{right:1rem}.top-0{top:0px}.top-1\/2{top:50%}.z-40{z-index:40}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.my-3{margin-top:0.75rem;margin-bottom:0.75rem}.my-5{margin-top:1.25rem;margin-bottom:1.25rem}.mb-1{margin-bottom:0.25rem}.mr-1{margin-right:0.25rem}.mt-1{margin-top:0.25rem}.mb-1\.5{margin-bottom:0.375rem}.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-14{height:3.5rem}.h-16{height:4rem}.h-2{height:0.5rem}.h-24{height:6rem}.h-3\.5{height:0.875rem}.h-4{height:1rem}.h-5{height:1.25rem}.h-9{height:2.25rem}.h-1\.5{height:0.375rem}.h-3{height:0.75rem}.h-full{height:100%}.min-h-\[36px\]{min-height:36px}.min-h-\[38px\]{min-height:38px}.min-h-\[40px\]{min-height:40px}.min-h-\[44px\]{min-height:44px}.min-h-\[48px\]{min-height:48px}.min-h-screen{min-height:100vh}.w-2{width:0.5rem}.w-24{width:6rem}.w-3\.5{width:0.875rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-9{width:2.25rem}.w-full{width:100%}.w-0\.5{width:0.125rem}.min-w-\[38px\]{min-width:38px}.max-w-3xl{max-width:48rem}.max-w-5xl{max-width:64rem}.max-w-full{max-width:100%}.max-w-md{max-width:28rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.-translate-y-1\/2{--tw-translate-y:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.cursor-pointer{cursor:pointer}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-end{align-items:flex-end}.items-center{align-items:center}.items-baseline{align-items:baseline}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-1\.5{gap:0.375rem}.gap-2{gap:0.5rem}.gap-2\.5{gap:0.625rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-5{gap:1.25rem}.gap-0\.5{gap:0.125rem}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-2\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.625rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.625rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.space-y-1\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.375rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.375rem * var(--tw-space-y-reverse))}.space-y-5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.25rem * var(--tw-space-y-reverse))}.self-start{align-self:flex-start}.self-center{align-self:center}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.whitespace-nowrap{white-space:nowrap}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-\[10px\]{border-radius:10px}.rounded-\[22px\]{border-radius:22px}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.rounded-md{border-radius:0.375rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-emerald-500\/25{border-color:rgb(16 185 129 / 0.25)}.border-paper-border{--tw-border-opacity:1;border-color:rgb(230 225 216 / var(--tw-border-opacity, 1))}.border-\[\#C46548\]\/30{border-color:rgb(196 101 72 / 0.3)}.border-sky-500\/20{border-color:rgb(14 165 233 / 0.2)}.border-white\/20{border-color:rgb(255 255 255 / 0.2)}.bg-\[\#C46548\]{--tw-bg-opacity:1;background-color:rgb(196 101 72 / var(--tw-bg-opacity, 1))}.bg-black\/45{background-color:rgb(0 0 0 / 0.45)}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.bg-emerald-500\/10{background-color:rgb(16 185 129 / 0.1)}.bg-paper-bg{--tw-bg-opacity:1;background-color:rgb(250 248 245 / var(--tw-bg-opacity, 1))}.bg-paper-bg\/90{background-color:rgb(250 248 245 / 0.9)}.bg-paper-bg\/95{background-color:rgb(250 248 245 / 0.95)}.bg-paper-card{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-paper-ink{--tw-bg-opacity:1;background-color:rgb(25 24 22 / var(--tw-bg-opacity, 1))}.bg-paper-subtle{--tw-bg-opacity:1;background-color:rgb(242 239 233 / var(--tw-bg-opacity, 1))}.bg-\[\#C46548\]\/10{background-color:rgb(196 101 72 / 0.1)}.bg-\[\#C46548\]\/\[0\.04\]{background-color:rgb(196 101 72 / 0.04)}.bg-paper-bg\/70{background-color:rgb(250 248 245 / 0.7)}.bg-paper-subtle\/45{background-color:rgb(242 239 233 / 0.45)}.bg-paper-subtle\/55{background-color:rgb(242 239 233 / 0.55)}.bg-paper-subtle\/70{background-color:rgb(242 239 233 / 0.7)}.bg-paper-subtle\/80{background-color:rgb(242 239 233 / 0.8)}.bg-sky-500\/10{background-color:rgb(14 165 233 / 0.1)}.bg-stone-300{--tw-bg-opacity:1;background-color:rgb(214 211 209 / var(--tw-bg-opacity, 1))}.bg-stone-400{--tw-bg-opacity:1;background-color:rgb(168 162 158 / var(--tw-bg-opacity, 1))}.p-1{padding:0.25rem}.p-2{padding:0.5rem}.p-3\.5{padding:0.875rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.px-1{padding-left:0.25rem;padding-right:0.25rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-3\.5{padding-left:0.875rem;padding-right:0.875rem}.px-4{padding-left:1rem;padding-right:1rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.px-1\.5{padding-left:0.375rem;padding-right:0.375rem}.pb-28{padding-bottom:7rem}.pb-3{padding-bottom:0.75rem}.pb-5{padding-bottom:1.25rem}.pl-10{padding-left:2.5rem}.pr-4{padding-right:1rem}.pt-1{padding-top:0.25rem}.pt-2{padding-top:0.5rem}.pt-3{padding-top:0.75rem}.pt-6{padding-top:1.5rem}.pb-1{padding-bottom:0.25rem}.pb-4{padding-bottom:1rem}.pt-5{padding-top:1.25rem}.text-left{text-align:left}.font-mono{font-family:JetBrains Mono, ui-monospace, monospace}.text-2xl{font-size:1.5rem;line-height:2rem}.text-\[11px\]{font-size:11px}.text-base{font-size:1rem;line-height:1.5rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-relaxed{line-height:1.625}.leading-snug{line-height:1.375}.tracking-tight{letter-spacing:-0.025em}.tracking-wide{letter-spacing:0.025em}.tracking-wider{letter-spacing:0.05em}.text-\[\#C46548\]{--tw-text-opacity:1;color:rgb(196 101 72 / var(--tw-text-opacity, 1))}.text-emerald-700{--tw-text-opacity:1;color:rgb(4 120 87 / var(--tw-text-opacity, 1))}.text-paper-ink{--tw-text-opacity:1;color:rgb(25 24 22 / var(--tw-text-opacity, 1))}.text-stone-400{--tw-text-opacity:1;color:rgb(168 162 158 / var(--tw-text-opacity, 1))}.text-stone-500{--tw-text-opacity:1;color:rgb(120 113 108 / var(--tw-text-opacity, 1))}.text-stone-600{--tw-text-opacity:1;color:rgb(87 83 78 / var(--tw-text-opacity, 1))}.text-stone-700{--tw-text-opacity:1;color:rgb(68 64 60 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-\[\#B05438\]{--tw-text-opacity:1;color:rgb(176 84 56 / var(--tw-text-opacity, 1))}.text-amber-700{--tw-text-opacity:1;color:rgb(180 83 9 / var(--tw-text-opacity, 1))}.text-sky-700{--tw-text-opacity:1;color:rgb(3 105 161 / var(--tw-text-opacity, 1))}.text-stone-800{--tw-text-opacity:1;color:rgb(41 37 36 / var(--tw-text-opacity, 1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.placeholder-stone-400::placeholder{--tw-placeholder-opacity:1;color:rgb(168 162 158 / var(--tw-placeholder-opacity, 1))}.opacity-75{opacity:0.75}.opacity-80{opacity:0.8}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.ring-1{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.ring-\[\#191816\]\/15{--tw-ring-color:rgb(25 24 22 / 0.15)}.ring-black\/15{--tw-ring-color:rgb(0 0 0 / 0.15)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.selection\:bg-\[\#C46548\]\/15 *::selection{background-color:rgb(196 101 72 / 0.15)}.selection\:text-\[\#A84B30\] *::selection{--tw-text-opacity:1;color:rgb(168 75 48 / var(--tw-text-opacity, 1))}.selection\:bg-\[\#C46548\]\/15::selection{background-color:rgb(196 101 72 / 0.15)}.selection\:text-\[\#A84B30\]::selection{--tw-text-opacity:1;color:rgb(168 75 48 / var(--tw-text-opacity, 1))}.hover\:border-\[\#C46548\]:hover{--tw-border-opacity:1;border-color:rgb(196 101 72 / var(--tw-border-opacity, 1))}.hover\:bg-\[\#B05438\]:hover{--tw-bg-opacity:1;background-color:rgb(176 84 56 / var(--tw-bg-opacity, 1))}.hover\:bg-paper-subtle:hover{--tw-bg-opacity:1;background-color:rgb(242 239 233 / var(--tw-bg-opacity, 1))}.hover\:bg-stone-400:hover{--tw-bg-opacity:1;background-color:rgb(168 162 158 / var(--tw-bg-opacity, 1))}.hover\:text-paper-ink:hover{--tw-text-opacity:1;color:rgb(25 24 22 / var(--tw-text-opacity, 1))}.hover\:opacity-90:hover{opacity:0.9}.focus\:border-\[\#C46548\]:focus{--tw-border-opacity:1;border-color:rgb(196 101 72 / var(--tw-border-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.dark\:block:is(.dark *){display:block}.dark\:hidden:is(.dark *){display:none}.dark\:border-charcoal-border:is(.dark *){--tw-border-opacity:1;border-color:rgb(51 48 44 / var(--tw-border-opacity, 1))}.dark\:border-\[\#D97B5E\]\/25:is(.dark *){border-color:rgb(217 123 94 / 0.25)}.dark\:border-black\/20:is(.dark *){border-color:rgb(0 0 0 / 0.2)}.dark\:bg-charcoal-bg:is(.dark *){--tw-bg-opacity:1;background-color:rgb(22 21 20 / var(--tw-bg-opacity, 1))}.dark\:bg-charcoal-bg\/90:is(.dark *){background-color:rgb(22 21 20 / 0.9)}.dark\:bg-charcoal-bg\/95:is(.dark *){background-color:rgb(22 21 20 / 0.95)}.dark\:bg-charcoal-card:is(.dark *){--tw-bg-opacity:1;background-color:rgb(31 30 28 / var(--tw-bg-opacity, 1))}.dark\:bg-charcoal-cream:is(.dark *){--tw-bg-opacity:1;background-color:rgb(243 240 234 / var(--tw-bg-opacity, 1))}.dark\:bg-charcoal-subtle:is(.dark *){--tw-bg-opacity:1;background-color:rgb(40 38 35 / var(--tw-bg-opacity, 1))}.dark\:bg-\[\#D97B5E\]\/\[0\.05\]:is(.dark *){background-color:rgb(217 123 94 / 0.05)}.dark\:bg-charcoal-bg\/70:is(.dark *){background-color:rgb(22 21 20 / 0.7)}.dark\:bg-charcoal-subtle\/45:is(.dark *){background-color:rgb(40 38 35 / 0.45)}.dark\:bg-charcoal-subtle\/70:is(.dark *){background-color:rgb(40 38 35 / 0.7)}.dark\:bg-charcoal-subtle\/80:is(.dark *){background-color:rgb(40 38 35 / 0.8)}.dark\:bg-stone-700:is(.dark *){--tw-bg-opacity:1;background-color:rgb(68 64 60 / var(--tw-bg-opacity, 1))}.dark\:text-charcoal-bg:is(.dark *){--tw-text-opacity:1;color:rgb(22 21 20 / var(--tw-text-opacity, 1))}.dark\:text-charcoal-cream:is(.dark *){--tw-text-opacity:1;color:rgb(243 240 234 / var(--tw-text-opacity, 1))}.dark\:text-emerald-300:is(.dark *){--tw-text-opacity:1;color:rgb(110 231 183 / var(--tw-text-opacity, 1))}.dark\:text-stone-300:is(.dark *){--tw-text-opacity:1;color:rgb(214 211 209 / var(--tw-text-opacity, 1))}.dark\:text-stone-400:is(.dark *){--tw-text-opacity:1;color:rgb(168 162 158 / var(--tw-text-opacity, 1))}.dark\:text-\[\#E58E73\]:is(.dark *){--tw-text-opacity:1;color:rgb(229 142 115 / var(--tw-text-opacity, 1))}.dark\:text-amber-400:is(.dark *){--tw-text-opacity:1;color:rgb(251 191 36 / var(--tw-text-opacity, 1))}.dark\:text-sky-300:is(.dark *){--tw-text-opacity:1;color:rgb(125 211 252 / var(--tw-text-opacity, 1))}.dark\:text-stone-200:is(.dark *){--tw-text-opacity:1;color:rgb(231 229 228 / var(--tw-text-opacity, 1))}.dark\:text-stone-500:is(.dark *){--tw-text-opacity:1;color:rgb(120 113 108 / var(--tw-text-opacity, 1))}.dark\:placeholder-stone-500:is(.dark *)::placeholder{--tw-placeholder-opacity:1;color:rgb(120 113 108 / var(--tw-placeholder-opacity, 1))}.dark\:ring-white\/15:is(.dark *){--tw-ring-color:rgb(255 255 255 / 0.15)}.dark\:selection\:text-\[\#E58E73\] *:is(.dark *)::selection{--tw-text-opacity:1;color:rgb(229 142 115 / var(--tw-text-opacity, 1))}.dark\:selection\:text-\[\#E58E73\]:is(.dark *)::selection{--tw-text-opacity:1;color:rgb(229 142 115 / var(--tw-text-opacity, 1))}.dark\:hover\:bg-charcoal-subtle:hover:is(.dark *){--tw-bg-opacity:1;background-color:rgb(40 38 35 / var(--tw-bg-opacity, 1))}.dark\:hover\:text-charcoal-cream:hover:is(.dark *){--tw-text-opacity:1;color:rgb(243 240 234 / var(--tw-text-opacity, 1))}.dark\:focus\:border-\[\#E08568\]:focus:is(.dark *){--tw-border-opacity:1;border-color:rgb(224 133 104 / var(--tw-border-opacity, 1))}@media (min-width: 640px){.sm\:left-auto{left:auto}.sm\:flex{display:flex}.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:flex-row{flex-direction:row}.sm\:items-end{align-items:flex-end}.sm\:items-center{align-items:center}.sm\:gap-3{gap:0.75rem}.sm\:gap-6{gap:1.5rem}.sm\:self-auto{align-self:auto}.sm\:p-7{padding:1.75rem}.sm\:p-4{padding:1rem}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:pt-8{padding-top:2rem}.sm\:text-2xl{font-size:1.5rem;line-height:2rem}.sm\:text-3xl{font-size:1.875rem;line-height:2.25rem}.sm\:text-sm{font-size:0.875rem;line-height:1.25rem}.sm\:text-xs{font-size:0.75rem;line-height:1rem}}@media (min-width: 768px){.md\:bottom-6{bottom:1.5rem}.md\:inline-block{display:inline-block}.md\:flex{display:flex}.md\:hidden{display:none}.md\:h-16{height:4rem}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:items-center{align-items:center}.md\:pb-16{padding-bottom:4rem}}@media (min-width: 1024px){.lg\:inline-block{display:inline-block}.lg\:flex-row{flex-direction:row}.lg\:items-end{align-items:flex-end}}</style></head>
 <body class="bg-paper-bg text-paper-ink dark:bg-charcoal-bg dark:text-charcoal-cream min-h-screen flex flex-col antialiased selection:bg-[#C46548]/15 selection:text-[#A84B30] dark:selection:text-[#E58E73]">
@@ -1011,7 +1322,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
 
       <div class="space-y-2.5 text-xs sm:text-sm">
         <div class="flex items-center justify-between">
-          <span class="text-stone-600 dark:text-stone-300">Switch Views (or Answer Quiz 1–4)</span>
+          <span class="text-stone-600 dark:text-stone-300">Switch Views (or Pick Option 1–4 in Lesson)</span>
           <div class="flex items-center gap-1">
             <kbd class="border border-paper-border dark:border-charcoal-border bg-paper-subtle dark:bg-charcoal-subtle">1</kbd>
             <span class="text-stone-400">–</span>
@@ -1019,7 +1330,11 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
           </div>
         </div>
         <div class="flex items-center justify-between">
-          <span class="text-stone-600 dark:text-stone-300">Previous / Next Card</span>
+          <span class="text-stone-600 dark:text-stone-300">Check Answer / Continue Lesson</span>
+          <kbd class="border border-paper-border dark:border-charcoal-border bg-paper-subtle dark:bg-charcoal-subtle">Enter</kbd>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-stone-600 dark:text-stone-300">Previous / Next Card (Today)</span>
           <div class="flex items-center gap-1">
             <kbd class="border border-paper-border dark:border-charcoal-border bg-paper-subtle dark:bg-charcoal-subtle">←</kbd>
             <kbd class="border border-paper-border dark:border-charcoal-border bg-paper-subtle dark:bg-charcoal-subtle">→</kbd>
@@ -1029,8 +1344,11 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
           </div>
         </div>
         <div class="flex items-center justify-between">
-          <span class="text-stone-600 dark:text-stone-300">Play US Audio Pronunciation</span>
-          <kbd class="border border-paper-border dark:border-charcoal-border bg-paper-subtle dark:bg-charcoal-subtle">A</kbd>
+          <span class="text-stone-600 dark:text-stone-300">Play Audio (Normal / Slow 0.75×)</span>
+          <div class="flex items-center gap-1">
+            <kbd class="border border-paper-border dark:border-charcoal-border bg-paper-subtle dark:bg-charcoal-subtle">A</kbd>
+            <kbd class="border border-paper-border dark:border-charcoal-border bg-paper-subtle dark:bg-charcoal-subtle">S</kbd>
+          </div>
         </div>
         <div class="flex items-center justify-between">
           <span class="text-stone-600 dark:text-stone-300">Cycle Mastery Status</span>
@@ -1094,38 +1412,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
     </section>
 
     <!-- ==================== VIEW 2: PRACTICE ==================== -->
-    <section id="view-practice" class="hidden space-y-6">
-      <div class="max-w-3xl mx-auto space-y-4 pb-5 border-b border-paper-border dark:border-charcoal-border">
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
-          <div>
-            <p class="text-xs font-mono uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-1">
-              Active Recall Studio
-            </p>
-            <h1 class="serif-display text-2xl sm:text-3xl font-medium">
-              Precision &amp; Production
-            </h1>
-          </div>
-
-          <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card text-xs font-mono self-start sm:self-auto">
-            <span class="text-stone-400">Session:</span>
-            <span id="practice-accuracy-text" class="font-semibold text-paper-ink dark:text-charcoal-cream">0 / 0 (—)</span>
-          </div>
-        </div>
-
-        <!-- 3 Interactive Exercise Tabs -->
-        <div class="inline-flex rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-subtle dark:bg-charcoal-subtle p-1 gap-1 overflow-x-auto max-w-full">
-          <button data-pmode="upgrade" onclick="setPracticeMode('upgrade')" class="pmode-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-medium whitespace-nowrap transition-all min-h-[40px]">
-            Precision Upgrade
-          </button>
-          <button data-pmode="cloze" onclick="setPracticeMode('cloze')" class="pmode-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-medium whitespace-nowrap transition-all min-h-[40px]">
-            Contextual Cloze
-          </button>
-          <button data-pmode="sandbox" onclick="setPracticeMode('sandbox')" class="pmode-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-medium whitespace-nowrap transition-all min-h-[40px]">
-            Active Sandbox
-          </button>
-        </div>
-      </div>
-
+    <section id="view-practice" class="hidden">
       <div id="practice-workspace" class="max-w-3xl mx-auto"></div>
     </section>
 
@@ -1978,16 +2265,20 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         pack: 'All'
       },
       practice: {
-        mode: 'upgrade', // 'upgrade' | 'cloze' | 'sandbox'
-        index: 0,
-        attempted: 0,
-        correct: 0,
-        quizSelected: null,
-        clozeSubmitted: false,
-        clozeIsCorrect: false,
-        clozeShowHint: false,
-        sandboxDraft: '',
-        sandboxRevealed: false
+        stage: 'hub', // 'hub' | 'session' | 'summary'
+        scope: 'smart', // 'smart' | 'today' | 'review' | 'Everyday' | 'Workplace' | 'Syntax' | 'all'
+        length: 8, // 5 | 8 | 12
+        trackMode: 'mixed', // 'mixed' | 'upgrade' | 'cloze' | 'builder' | 'match' | 'listen' | 'sandbox'
+        session: null,
+        stats: {
+          totalXp: 0,
+          streakDays: 0,
+          lastPracticeDate: null,
+          todayXp: 0,
+          todayDate: null,
+          lessonsCompleted: 0,
+          soundEnabled: true
+        }
       }
     };
 
@@ -2003,6 +2294,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       setupKeyboardShortcuts();
 
       await initStorageAndLibrary();
+      await loadPracticeStats();
       initTodayBatch();
       renderAll();
 
@@ -2207,7 +2499,14 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           return;
         }
 
-        if (isTyping) return;
+        // Allow Enter inside Cloze input to trigger Check/Continue smoothly
+        if (isTyping) {
+          if (e.key === 'Enter' && tag === 'INPUT' && e.target && e.target.id === 'practice-cloze-input') {
+            e.preventDefault();
+            handlePracticePrimaryAction();
+          }
+          return;
+        }
         if (e.metaKey || e.ctrlKey || e.altKey) return;
 
         // '?' opens shortcuts modal
@@ -2228,33 +2527,60 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           return;
         }
 
-        // '1' - '4': Select quiz options in Practice -> Precision Upgrade, or switch tabs
-        if (['1', '2', '3', '4'].includes(e.key)) {
-          const num = parseInt(e.key, 10);
-          if (
-            appState.currentView === 'practice' &&
-            appState.practice.mode === 'upgrade' &&
-            appState.practice.quizSelected === null
-          ) {
+        // Practice Lesson dedicated hotkeys (Enter, 1–4, Backspace, H, S)
+        const inPracticeLesson = appState.currentView === 'practice' && appState.practice.stage === 'session' && appState.practice.session;
+        if (inPracticeLesson) {
+          const step = getCurrentPracticeStep();
+          if (e.key === 'Enter') {
             e.preventDefault();
-            selectUpgradeOption(num - 1);
+            handlePracticePrimaryAction();
             return;
           }
+          if (['1', '2', '3', '4'].includes(e.key) && step && !step.checked) {
+            const idx = parseInt(e.key, 10) - 1;
+            if (step.type === 'upgrade' || step.type === 'listen') {
+              e.preventDefault();
+              practiceSelectOption(idx);
+              return;
+            }
+            if (step.type === 'cloze' && !step.useKeyboard && idx < step.wordBank.length) {
+              e.preventDefault();
+              practiceSelectClozeTile(idx);
+              return;
+            }
+          }
+          if (e.key === 'Backspace' && step && step.type === 'builder' && !step.checked && step.selectedIndices.length > 0) {
+            e.preventDefault();
+            practiceRemoveBuilderTile(step.selectedIndices.length - 1);
+            return;
+          }
+          if (e.key.toLowerCase() === 'h' && step && step.type === 'cloze' && !step.checked) {
+            e.preventDefault();
+            practiceToggleClozeHint();
+            return;
+          }
+          if (e.key.toLowerCase() === 's' && step && step.item) {
+            e.preventDefault();
+            const textToSpeak = step.type === 'listen' ? step.audioText : null;
+            speakItem(step.item.id, 'US', textToSpeak, 0.72);
+            return;
+          }
+        }
 
+        // '1' - '4': Switch tabs outside active quiz selection
+        if (['1', '2', '3', '4'].includes(e.key)) {
+          const num = parseInt(e.key, 10);
           e.preventDefault();
           const viewMap = { 1: 'today', 2: 'practice', 3: 'library', 4: 'backup' };
           switchView(viewMap[num]);
           return;
         }
 
-        // ArrowLeft / ArrowRight or J / K navigate cards
+        // ArrowLeft / ArrowRight or J / K navigate Today focus cards
         if (e.key === 'ArrowRight' || e.key.toLowerCase() === 'j') {
           if (appState.currentView === 'today' && appState.todayLayout === 'focus') {
             e.preventDefault();
             stepTodayFocusCard(1);
-          } else if (appState.currentView === 'practice') {
-            e.preventDefault();
-            stepPracticeItem(1);
           }
           return;
         }
@@ -2263,15 +2589,21 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           if (appState.currentView === 'today' && appState.todayLayout === 'focus') {
             e.preventDefault();
             stepTodayFocusCard(-1);
-          } else if (appState.currentView === 'practice') {
-            e.preventDefault();
-            stepPracticeItem(-1);
           }
           return;
         }
 
         // 'A' plays US audio
         if (e.key.toLowerCase() === 'a') {
+          if (inPracticeLesson) {
+            const step = getCurrentPracticeStep();
+            if (step && step.item) {
+              e.preventDefault();
+              const textToSpeak = step.type === 'listen' ? step.audioText : null;
+              speakItem(step.item.id, 'US', textToSpeak, 0.95);
+              return;
+            }
+          }
           const activeItem = getActiveFocusedItem();
           if (activeItem) {
             e.preventDefault();
@@ -2297,7 +2629,8 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         return cards[appState.todayIndex % Math.max(1, cards.length)] || null;
       }
       if (appState.currentView === 'practice') {
-        return getCurrentPracticeItem();
+        const step = getCurrentPracticeStep();
+        return (step && step.item) ? step.item : null;
       }
       return null;
     }
@@ -2947,7 +3280,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     }
 
     // ==================== WEB SPEECH API PRONUNCIATION (US & UK BUTTONS) ====================
-    function speakItem(itemId, accent = 'US', customText = null) {
+    function speakItem(itemId, accent = 'US', customText = null, rate = 0.95, customAudioKey = null) {
       if (!('speechSynthesis' in window)) {
         showToast('Audio pronunciation is unavailable in this browser.');
         return;
@@ -2961,7 +3294,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       const utterance = new SpeechSynthesisUtterance(text);
       const lang = accent === 'UK' ? 'en-GB' : 'en-US';
       utterance.lang = lang;
-      utterance.rate = 0.95;
+      utterance.rate = typeof rate === 'number' ? rate : 0.95;
 
       const voices = window.speechSynthesis.getVoices();
       const preferred = voices.find(v => v.lang === lang && (v.name.includes('Natural') || v.name.includes('Daniel') || v.name.includes('Samantha') || v.name.includes('Google')))
@@ -2969,7 +3302,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         || voices.find(v => v.lang.startsWith('en'));
       if (preferred) utterance.voice = preferred;
 
-      const key = `${itemId}-${accent}`;
+      const key = customAudioKey || `${itemId}-${accent}`;
       appState.speakingKey = key;
       syncAudioIndicators();
 
@@ -3319,420 +3652,1940 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       `;
     }
 
-    // ==================== VIEW 2: PRACTICE (ACTIVE RECALL STUDIO) ====================
-    function setPracticeMode(mode) {
-      appState.practice.mode = mode;
-      resetPracticeStep();
-      renderPracticeStudio();
+    // ==================== VIEW 2: PRACTICE (MODERN DUOLINGO-INSPIRED STUDIO) ====================
+    const PRACTICE_DAILY_GOAL_XP = 60;
+    const PRACTICE_FALLBACK_CLOZE_DISTRACTORS = [
+      'worth', 'grain', 'flag', 'tracks', 'sense', 'point', 'through', 'across', 'under', 'around', 'clear', 'short', 'right', 'touch'
+    ];
+
+    // Subtle offline Web Audio synthesizer (zero external files)
+    const PracticeSound = (() => {
+      let ctx = null;
+      function getCtx() {
+        if (!appState.practice.stats.soundEnabled) return null;
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return null;
+        if (!ctx) ctx = new AudioCtx();
+        if (ctx.state === 'suspended') ctx.resume().catch(() => {});
+        return ctx;
+      }
+
+      function playTone(freq, startOffset, duration, type = 'sine', gainVal = 0.08) {
+        const c = getCtx();
+        if (!c) return;
+        try {
+          const now = c.currentTime + startOffset;
+          const osc = c.createOscillator();
+          const gain = c.createGain();
+          osc.type = type;
+          osc.frequency.setValueAtTime(freq, now);
+          gain.gain.setValueAtTime(0.0001, now);
+          gain.gain.exponentialRampToValueAtTime(gainVal, now + 0.012);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+          osc.connect(gain);
+          gain.connect(c.destination);
+          osc.start(now);
+          osc.stop(now + duration + 0.02);
+        } catch (e) {}
+      }
+
+      return {
+        tap() { playTone(560, 0, 0.045, 'triangle', 0.045); },
+        matchPair() {
+          playTone(587.33, 0, 0.11, 'sine', 0.075);
+          playTone(880, 0.07, 0.16, 'sine', 0.075);
+        },
+        correct(combo = 1) {
+          const semitoneShift = Math.min(combo - 1, 5);
+          const mult = Math.pow(2, semitoneShift / 12);
+          playTone(523.25 * mult, 0, 0.12, 'sine', 0.085);
+          playTone(659.25 * mult, 0.08, 0.18, 'sine', 0.085);
+        },
+        wrong() {
+          playTone(215, 0, 0.13, 'triangle', 0.08);
+          playTone(170, 0.09, 0.18, 'triangle', 0.075);
+        },
+        complete() {
+          playTone(523.25, 0, 0.16, 'sine', 0.08);
+          playTone(659.25, 0.1, 0.16, 'sine', 0.08);
+          playTone(783.99, 0.2, 0.18, 'sine', 0.085);
+          playTone(1046.5, 0.31, 0.34, 'sine', 0.09);
+        }
+      };
+    })();
+
+    function getOffsetDateKey(daysOffset = 0) {
+      const d = new Date();
+      d.setDate(d.getDate() + daysOffset);
+      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
     }
 
-    function resetPracticeStep() {
-      appState.practice.quizSelected = null;
-      appState.practice.clozeSubmitted = false;
-      appState.practice.clozeIsCorrect = false;
-      appState.practice.clozeShowHint = false;
-      appState.practice.sandboxDraft = '';
-      appState.practice.sandboxRevealed = false;
-    }
-
-    function getPracticePool() {
-      return appState.practiceOrder.length > 0 ? appState.practiceOrder : appState.items;
-    }
-
-    function getCurrentPracticeItem() {
-      const pool = getPracticePool();
-      if (pool.length === 0) return null;
-      return pool[appState.practice.index % pool.length] || null;
-    }
-
-    function stepPracticeItem(delta) {
-      const pool = getPracticePool();
-      const len = pool.length || 1;
-      appState.practice.index = (appState.practice.index + delta + len) % len;
-      resetPracticeStep();
-      renderPracticeStudio();
-    }
-
-    function updateSessionAccuracyUI() {
-      const el = document.getElementById('practice-accuracy-text');
-      if (!el) return;
-      const { attempted, correct } = appState.practice;
-      if (attempted === 0) {
-        el.textContent = '0 / 0 (—)';
-      } else {
-        const pct = Math.round((correct / attempted) * 100);
-        el.textContent = `${correct} / ${attempted} (${pct}%)`;
+    async function loadPracticeStats() {
+      try {
+        const saved = await LexisDB.getMeta('practice_stats');
+        if (saved && typeof saved === 'object') {
+          appState.practice.stats = {
+            ...appState.practice.stats,
+            ...saved
+          };
+        }
+        const today = getTodayDateKey();
+        if (appState.practice.stats.todayDate !== today) {
+          appState.practice.stats.todayXp = 0;
+          appState.practice.stats.todayDate = today;
+        }
+        const yesterday = getOffsetDateKey(-1);
+        if (
+          appState.practice.stats.lastPracticeDate &&
+          appState.practice.stats.lastPracticeDate !== today &&
+          appState.practice.stats.lastPracticeDate !== yesterday
+        ) {
+          appState.practice.stats.streakDays = 0;
+        }
+      } catch (err) {
+        console.warn('Could not load practice stats:', err);
       }
     }
 
-    function renderPracticeStudio() {
-      updateSessionAccuracyUI();
+    function savePracticeStats() {
+      LexisDB.setMeta('practice_stats', appState.practice.stats).catch(err => console.warn('Stats save error:', err));
+    }
 
-      document.querySelectorAll('.pmode-btn').forEach(btn => {
-        const active = btn.getAttribute('data-pmode') === appState.practice.mode;
-        btn.classList.toggle('bg-paper-card', active);
-        btn.classList.toggle('dark:bg-charcoal-card', active);
-        btn.classList.toggle('text-paper-ink', active);
-        btn.classList.toggle('dark:text-charcoal-cream', active);
-        btn.classList.toggle('shadow-sm', active);
-        btn.classList.toggle('text-stone-500', !active);
-        btn.classList.toggle('dark:text-stone-400', !active);
+    function togglePracticeSound() {
+      appState.practice.stats.soundEnabled = !appState.practice.stats.soundEnabled;
+      savePracticeStats();
+      if (appState.practice.stats.soundEnabled) PracticeSound.tap();
+      renderPracticeStudio();
+    }
+
+    function setPracticeScope(scope) {
+      appState.practice.scope = scope;
+      PracticeSound.tap();
+      renderPracticeStudio();
+    }
+
+    function setPracticeLength(len) {
+      appState.practice.length = len;
+      PracticeSound.tap();
+      renderPracticeStudio();
+    }
+
+    function getCurrentPracticeStep() {
+      const s = appState.practice.session;
+      if (!s || appState.practice.stage !== 'session') return null;
+      return s.steps[s.currentIndex] || null;
+    }
+
+    function shuffleList(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function levenshteinDistance(a, b) {
+      const m = a.length;
+      const n = b.length;
+      const dp = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
+      for (let i = 0; i <= m; i++) dp[i][0] = i;
+      for (let j = 0; j <= n; j++) dp[0][j] = j;
+      for (let i = 1; i <= m; i++) {
+        for (let j = 1; j <= n; j++) {
+          const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+          dp[i][j] = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + cost);
+        }
+      }
+      return dp[m][n];
+    }
+
+    function normalizeForCompare(str) {
+      return String(str || '')
+        .toLowerCase()
+        .replace(/[“”"']/g, "'")
+        .replace(/[—–]/g, ' ')
+        .replace(/[.,!?;:()]/g, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    function getShortPolishCue(item) {
+      const raw = (item.polish || '').trim();
+      if (!raw || raw === '—') return item.flat || item.register || 'Native expression';
+      const firstPart = raw.split('/')[0].trim();
+      return firstPart.length > 56 ? firstPart.slice(0, 53).trim() + '…' : firstPart;
+    }
+
+    function getCleanPhraseLabel(item) {
+      const raw = (item.phrase || '').trim();
+      const firstQuoted = raw.match(/\([^)]*?["“]([^"”]+)["”]/);
+      if (firstQuoted && firstQuoted[1]) return firstQuoted[1];
+      return raw.length > 42 ? raw.slice(0, 39).trim() + '…' : raw;
+    }
+
+    function getPracticePool(scope = appState.practice.scope) {
+      const all = appState.items || [];
+      if (all.length === 0) return [];
+
+      if (scope === 'today') {
+        const todayItems = appState.todayIds.map(id => appState.itemsById.get(id)).filter(Boolean);
+        return todayItems.length > 0 ? todayItems : all;
+      }
+      if (scope === 'review') {
+        const active = all.filter(i => i.status !== 'mastered');
+        return active.length > 0 ? active : all;
+      }
+      if (scope === 'Everyday' || scope === 'Workplace' || scope === 'Syntax') {
+        const byCat = all.filter(i => i.category === scope);
+        return byCat.length > 0 ? byCat : all;
+      }
+      if (scope === 'all') {
+        return all;
+      }
+
+      // 'smart': prioritize Today's batch + Practicing + New, then Mastered
+      const todaySet = new Set(appState.todayIds);
+      const priority = [];
+      const secondary = [];
+      const mastered = [];
+      all.forEach(item => {
+        if (todaySet.has(item.id) || item.status === 'practicing') priority.push(item);
+        else if (item.status === 'new') secondary.push(item);
+        else mastered.push(item);
+      });
+      const weightFn = item => getCefrWeight(item.cefr);
+      return [
+        ...weightedSampleItems(priority, priority.length, weightFn),
+        ...weightedSampleItems(secondary, secondary.length, weightFn),
+        ...weightedSampleItems(mastered, mastered.length, weightFn)
+      ];
+    }
+
+    // ---- Exercise Step Builders ----
+    function buildUpgradeStep(item) {
+      const rawOptions = Array.isArray(item.quizOptions) && item.quizOptions.length >= 2
+        ? item.quizOptions
+        : [item.upgraded, item.flat, 'Overly formal phrasing', 'Awkward literal phrasing'];
+      const rawExplanations = Array.isArray(item.quizExplanations) ? item.quizExplanations : [];
+      const origCorrect = typeof item.quizCorrectIndex === 'number' ? item.quizCorrectIndex : 0;
+
+      const bundled = rawOptions.map((text, idx) => ({
+        text,
+        explanation: rawExplanations[idx] || (idx === origCorrect ? 'Natural, balanced, and idiomatic.' : 'Less natural in tone or collocation.'),
+        isCorrect: idx === origCorrect
+      }));
+      const shuffled = shuffleList(bundled);
+      const correctIdx = Math.max(0, shuffled.findIndex(o => o.isCorrect));
+
+      return {
+        uid: `upg-${item.id}-${Math.random().toString(36).slice(2, 7)}`,
+        type: 'upgrade',
+        item,
+        prompt: item.quizPrompt || item.flat,
+        options: shuffled,
+        correctIdx,
+        selectedIdx: null,
+        checked: false,
+        isCorrect: false,
+        isReview: false
+      };
+    }
+
+    function buildClozeStep(item, allPool) {
+      const answer = String(item.clozeAnswer || item.phrase.split(/\s+/)[0] || '').trim();
+      const accepted = (item.clozeAccepted && item.clozeAccepted.length > 0 ? item.clozeAccepted : [answer])
+        .map(a => String(a).trim());
+      const acceptedLower = new Set(accepted.map(a => a.toLowerCase()));
+
+      // Gather plausible distractors from other items' cloze answers (same category preferred)
+      const sameCat = [];
+      const otherCat = [];
+      allPool.forEach(other => {
+        if (other.id === item.id || !other.clozeAnswer) return;
+        const cand = String(other.clozeAnswer).trim();
+        if (!cand || acceptedLower.has(cand.toLowerCase())) return;
+        if (other.category === item.category) sameCat.push(cand);
+        else otherCat.push(cand);
       });
 
-      const workspace = document.getElementById('practice-workspace');
-      const pool = getPracticePool();
-      if (!workspace || pool.length === 0) return;
+      const distractors = [];
+      const seen = new Set([answer.toLowerCase(), ...acceptedLower]);
+      const candidates = [...shuffleList(sameCat), ...shuffleList(otherCat), ...shuffleList(PRACTICE_FALLBACK_CLOZE_DISTRACTORS)];
+      for (const c of candidates) {
+        if (distractors.length >= 4) break;
+        const key = c.toLowerCase();
+        if (!seen.has(key)) {
+          seen.add(key);
+          // Match capitalization pattern (capitalized if answer starts with uppercase)
+          const formatted = /^[A-Z]/.test(answer) ? (c.charAt(0).toUpperCase() + c.slice(1)) : c.toLowerCase();
+          distractors.push(formatted);
+        }
+      }
 
-      const idx = appState.practice.index % pool.length;
-      const item = pool[idx];
+      const wordBank = shuffleList([answer, ...distractors]);
 
-      if (appState.practice.mode === 'upgrade') {
-        renderPrecisionUpgradeDrill(workspace, item, idx, pool.length);
-      } else if (appState.practice.mode === 'cloze') {
-        renderContextualClozeDrill(workspace, item, idx, pool.length);
+      return {
+        uid: `clz-${item.id}-${Math.random().toString(36).slice(2, 7)}`,
+        type: 'cloze',
+        item,
+        sentence: item.clozeSentence || `${item.phrase} — ___`,
+        answer,
+        accepted,
+        hint: item.clozeHint || 'Key word from the target phrase.',
+        wordBank,
+        selectedWord: null,
+        typedValue: '',
+        useKeyboard: false,
+        showHint: false,
+        hadTypo: false,
+        checked: false,
+        isCorrect: false,
+        isReview: false
+      };
+    }
+
+    function buildSentenceChunks(sentence) {
+      const clean = String(sentence || '').trim();
+      if (!clean) return ['Natural', 'phrasing'];
+      // Keep em-dash attached cleanly to previous word or split around it naturally
+      const rawTokens = clean.replace(/—/g, '— ').split(/\s+/).filter(Boolean);
+      if (rawTokens.length <= 6) return rawTokens;
+
+      // Target 5–7 natural phrase tiles (2–3 words each)
+      const targetTiles = rawTokens.length >= 13 ? 6 : 5;
+      const chunkSize = Math.ceil(rawTokens.length / targetTiles);
+      const chunks = [];
+      let current = [];
+
+      for (let i = 0; i < rawTokens.length; i++) {
+        current.push(rawTokens[i]);
+        const endsClause = /[,;—:?!.]$/.test(rawTokens[i]);
+        const remaining = rawTokens.length - (i + 1);
+        if ((current.length >= chunkSize || (endsClause && current.length >= 2)) && remaining >= 2) {
+          chunks.push(current.join(' '));
+          current = [];
+        }
+      }
+      if (current.length > 0) chunks.push(current.join(' '));
+      return chunks;
+    }
+
+    function buildBuilderStep(item) {
+      const targetSentence = (item.upgraded || item.sandboxSample || item.phrase).trim();
+      const solutionChunks = buildSentenceChunks(targetSentence);
+      let bank = shuffleList(solutionChunks.map((text, idx) => ({ id: idx, text })));
+      if (bank.length > 1 && bank.every((t, i) => t.text === solutionChunks[i])) {
+        [bank[0], bank[1]] = [bank[1], bank[0]];
+      }
+
+      return {
+        uid: `bld-${item.id}-${Math.random().toString(36).slice(2, 7)}`,
+        type: 'builder',
+        item,
+        cue: item.flat || getShortPolishCue(item),
+        polishCue: getShortPolishCue(item),
+        targetSentence,
+        solutionChunks,
+        bank,
+        selectedIndices: [], // indices into `bank`
+        checked: false,
+        isCorrect: false,
+        isReview: false
+      };
+    }
+
+    function buildMatchStep(items) {
+      const chosen = items.slice(0, Math.min(4, items.length));
+      const left = shuffleList(chosen.map(it => ({ id: it.id, label: getCleanPhraseLabel(it), item: it })));
+      const right = shuffleList(chosen.map(it => ({ id: it.id, label: getShortPolishCue(it), item: it })));
+
+      return {
+        uid: `mch-${chosen.map(i => i.id).join('-')}-${Math.random().toString(36).slice(2, 5)}`,
+        type: 'match',
+        item: chosen[0] || null,
+        items: chosen,
+        left,
+        right,
+        matchedIds: [],
+        selectedLeft: null,
+        selectedRight: null,
+        wrongFlash: null, // { leftId, rightId }
+        mistakes: 0,
+        checked: false,
+        isCorrect: false,
+        isReview: false
+      };
+    }
+
+    function buildListenStep(item, allPool) {
+      const audioText = item.upgraded || item.speechText || item.phrase;
+      const distractors = shuffleList(allPool.filter(o => o.id !== item.id)).slice(0, 3);
+      const options = shuffleList([
+        {
+          id: item.id,
+          phrase: getCleanPhraseLabel(item),
+          cue: getShortPolishCue(item),
+          isCorrect: true
+        },
+        ...distractors.map(d => ({
+          id: d.id,
+          phrase: getCleanPhraseLabel(d),
+          cue: getShortPolishCue(d),
+          isCorrect: false
+        }))
+      ]);
+      const correctIdx = Math.max(0, options.findIndex(o => o.isCorrect));
+
+      return {
+        uid: `lst-${item.id}-${Math.random().toString(36).slice(2, 7)}`,
+        type: 'listen',
+        item,
+        audioText,
+        options,
+        correctIdx,
+        selectedIdx: null,
+        showTranscript: false,
+        checked: false,
+        isCorrect: false,
+        isReview: false
+      };
+    }
+
+    function buildSandboxStep(item) {
+      const rubric = Array.isArray(item.sandboxRubric) && item.sandboxRubric.length > 0
+        ? item.sandboxRubric
+        : [
+            'Register: Tone fits the scenario naturally.',
+            'Collocation: Accurate prepositions and word partners.',
+            'Cadence: Crisp, unforced native phrasing.'
+          ];
+
+      return {
+        uid: `sbx-${item.id}-${Math.random().toString(36).slice(2, 7)}`,
+        type: 'sandbox',
+        item,
+        prompt: item.sandboxPrompt || `Write a natural sentence using "${item.phrase}".`,
+        modelAnswer: item.sandboxSample || item.upgraded,
+        rubric,
+        rubricChecked: rubric.map(() => false),
+        draft: '',
+        revealed: false,
+        checked: false,
+        isCorrect: false,
+        isReview: false
+      };
+    }
+
+    function cloneStepForReview(step) {
+      const pool = appState.items;
+      let fresh = null;
+      if (step.type === 'upgrade') fresh = buildUpgradeStep(step.item);
+      else if (step.type === 'cloze') fresh = buildClozeStep(step.item, pool);
+      else if (step.type === 'builder') fresh = buildBuilderStep(step.item);
+      else if (step.type === 'listen') fresh = buildListenStep(step.item, pool);
+      else if (step.type === 'sandbox') fresh = buildSandboxStep(step.item);
+      else if (step.type === 'match') fresh = buildMatchStep(step.items || [step.item]);
+      if (fresh) fresh.isReview = true;
+      return fresh;
+    }
+
+    function startPracticeLesson(trackMode = 'mixed') {
+      const pool = getPracticePool(appState.practice.scope);
+      if (pool.length === 0) {
+        showToast('No phrases available yet. Install a pack in Packs & Backup.');
+        return;
+      }
+
+      appState.practice.trackMode = trackMode;
+      const targetLen = trackMode === 'match'
+        ? Math.min(4, Math.max(1, Math.floor(pool.length / 2)))
+        : Math.min(appState.practice.length, Math.max(3, pool.length * 2));
+
+      const orderedPool = appState.practice.scope === 'smart' ? pool : shuffleList(pool);
+      const pickItem = (i) => orderedPool[i % orderedPool.length];
+      const steps = [];
+
+      if (trackMode === 'mixed') {
+        // Duolingo-style varied lesson choreography
+        const pattern = targetLen <= 5
+          ? ['upgrade', 'cloze', 'builder', 'match', 'listen']
+          : ['upgrade', 'cloze', 'builder', 'match', 'listen', 'upgrade', 'cloze', 'sandbox', 'builder', 'listen', 'upgrade', 'cloze'];
+
+        let itemCursor = 0;
+        for (let i = 0; i < targetLen; i++) {
+          let kind = pattern[i % pattern.length];
+          if (kind === 'match' && orderedPool.length < 3) kind = 'upgrade';
+          if (kind === 'listen' && !('speechSynthesis' in window)) kind = 'cloze';
+
+          if (kind === 'match') {
+            const batch = [];
+            for (let k = 0; k < Math.min(4, orderedPool.length); k++) {
+              batch.push(pickItem(itemCursor + k));
+            }
+            // Ensure unique items in match board
+            const uniqueBatch = Array.from(new Map(batch.map(x => [x.id, x])).values());
+            if (uniqueBatch.length >= 2) {
+              steps.push(buildMatchStep(uniqueBatch));
+              itemCursor += 2;
+              continue;
+            }
+            kind = 'upgrade';
+          }
+
+          const item = pickItem(itemCursor++);
+          if (kind === 'upgrade') steps.push(buildUpgradeStep(item));
+          else if (kind === 'cloze') steps.push(buildClozeStep(item, appState.items));
+          else if (kind === 'builder') steps.push(buildBuilderStep(item));
+          else if (kind === 'listen') steps.push(buildListenStep(item, appState.items));
+          else if (kind === 'sandbox') steps.push(buildSandboxStep(item));
+        }
+      } else if (trackMode === 'match') {
+        const rounds = Math.min(appState.practice.length === 5 ? 2 : 3, Math.max(1, Math.ceil(orderedPool.length / 4)));
+        for (let r = 0; r < rounds; r++) {
+          const slice = shuffleList(orderedPool).slice(0, Math.min(4, orderedPool.length));
+          if (slice.length >= 2) steps.push(buildMatchStep(slice));
+        }
       } else {
-        renderActiveSandboxDrill(workspace, item, idx, pool.length);
+        for (let i = 0; i < targetLen; i++) {
+          const item = pickItem(i);
+          if (trackMode === 'upgrade') steps.push(buildUpgradeStep(item));
+          else if (trackMode === 'cloze') steps.push(buildClozeStep(item, appState.items));
+          else if (trackMode === 'builder') steps.push(buildBuilderStep(item));
+          else if (trackMode === 'listen') steps.push(buildListenStep(item, appState.items));
+          else if (trackMode === 'sandbox') steps.push(buildSandboxStep(item));
+        }
+      }
+
+      appState.practice.session = {
+        trackMode,
+        steps,
+        initialStepCount: steps.length,
+        currentIndex: 0,
+        attempted: 0,
+        correctFirstTry: 0,
+        combo: 0,
+        bestCombo: 0,
+        xpEarned: 0,
+        startedAt: Date.now(),
+        durationSec: 0,
+        practicedItemMap: new Map(), // id -> { item, nailed: boolean }
+        animateNextStep: true
+      };
+
+      appState.practice.stage = 'session';
+      PracticeSound.tap();
+      renderPracticeStudio();
+    }
+
+    function exitPracticeLesson() {
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      appState.practice.stage = 'hub';
+      appState.practice.session = null;
+      renderPracticeStudio();
+    }
+
+    // ---- Step Interaction Handlers ----
+    function practiceSelectOption(idx) {
+      const step = getCurrentPracticeStep();
+      if (!step || step.checked) return;
+      if (idx < 0 || idx >= step.options.length) return;
+      step.selectedIdx = idx;
+      PracticeSound.tap();
+      renderPracticeStudio();
+    }
+
+    function practiceSelectClozeTile(tileIdx) {
+      const step = getCurrentPracticeStep();
+      if (!step || step.type !== 'cloze' || step.checked) return;
+      const word = step.wordBank[tileIdx];
+      if (!word) return;
+      step.selectedWord = step.selectedWord === word ? null : word;
+      PracticeSound.tap();
+      renderPracticeStudio();
+    }
+
+    function practiceClearClozeBlank() {
+      const step = getCurrentPracticeStep();
+      if (!step || step.type !== 'cloze' || step.checked || step.useKeyboard) return;
+      step.selectedWord = null;
+      PracticeSound.tap();
+      renderPracticeStudio();
+    }
+
+    function practiceToggleClozeInputMode() {
+      const step = getCurrentPracticeStep();
+      if (!step || step.type !== 'cloze' || step.checked) return;
+      step.useKeyboard = !step.useKeyboard;
+      step.selectedWord = null;
+      PracticeSound.tap();
+      renderPracticeStudio();
+      if (step.useKeyboard) {
+        setTimeout(() => {
+          const inp = document.getElementById('practice-cloze-input');
+          if (inp) inp.focus();
+        }, 20);
       }
     }
 
-    // Exercise Tab 1: Precision Upgrade
-    function renderPrecisionUpgradeDrill(container, item, idx, total) {
-      const answered = appState.practice.quizSelected !== null;
-      const options = item.quizOptions || [item.upgraded, item.flat, 'Overly formal phrasing', 'Awkward preposition phrasing'];
-      const correctIdx = typeof item.quizCorrectIndex === 'number' ? item.quizCorrectIndex : 0;
-      const explanations = item.quizExplanations || [
-        'Sounds natural, balanced, and idiomatic.',
-        'Too flat or unnatural in collocation.',
-        'Overly stiff for the situation.',
-        'Preposition or grammar trap.'
+    function practiceToggleClozeHint() {
+      const step = getCurrentPracticeStep();
+      if (!step || step.type !== 'cloze' || step.checked) return;
+      step.showHint = !step.showHint;
+      PracticeSound.tap();
+      renderPracticeStudio();
+    }
+
+    function practiceAddBuilderTile(bankIdx) {
+      const step = getCurrentPracticeStep();
+      if (!step || step.type !== 'builder' || step.checked) return;
+      if (step.selectedIndices.includes(bankIdx)) return;
+      step.selectedIndices.push(bankIdx);
+      PracticeSound.tap();
+      renderPracticeStudio();
+    }
+
+    function practiceRemoveBuilderTile(posInTray) {
+      const step = getCurrentPracticeStep();
+      if (!step || step.type !== 'builder' || step.checked) return;
+      step.selectedIndices.splice(posInTray, 1);
+      PracticeSound.tap();
+      renderPracticeStudio();
+    }
+
+    function practiceClearBuilderTray() {
+      const step = getCurrentPracticeStep();
+      if (!step || step.type !== 'builder' || step.checked) return;
+      step.selectedIndices = [];
+      PracticeSound.tap();
+      renderPracticeStudio();
+    }
+
+    function practiceTapMatchTile(side, id) {
+      const step = getCurrentPracticeStep();
+      const session = appState.practice.session;
+      if (!step || step.type !== 'match' || step.checked) return;
+      if (step.matchedIds.includes(id)) return;
+
+      step.wrongFlash = null;
+      if (side === 'left') {
+        step.selectedLeft = step.selectedLeft === id ? null : id;
+        const leftEntry = step.left.find(l => l.id === id);
+        if (step.selectedLeft && leftEntry && leftEntry.item && 'speechSynthesis' in window) {
+          speakItem(leftEntry.item.id, 'US');
+        }
+      } else {
+        step.selectedRight = step.selectedRight === id ? null : id;
+      }
+
+      if (step.selectedLeft && step.selectedRight) {
+        if (step.selectedLeft === step.selectedRight) {
+          step.matchedIds.push(step.selectedLeft);
+          step.selectedLeft = null;
+          step.selectedRight = null;
+          PracticeSound.matchPair();
+
+          // Check if entire board is matched
+          if (step.matchedIds.length === step.left.length) {
+            step.checked = true;
+            step.isCorrect = true;
+            const bonus = step.mistakes === 0 ? 20 : 15;
+            session.attempted += 1;
+            if (!step.isReview) session.correctFirstTry += 1;
+            session.combo += 1;
+            session.bestCombo = Math.max(session.bestCombo, session.combo);
+            session.xpEarned += bonus;
+            step.items.forEach(it => recordPracticedItem(session, it, step.mistakes === 0));
+            PracticeSound.correct(session.combo);
+          }
+        } else {
+          step.mistakes += 1;
+          step.wrongFlash = { leftId: step.selectedLeft, rightId: step.selectedRight };
+          PracticeSound.wrong();
+          renderPracticeStudio();
+          setTimeout(() => {
+            if (step.wrongFlash) {
+              step.wrongFlash = null;
+              step.selectedLeft = null;
+              step.selectedRight = null;
+              renderPracticeStudio();
+            }
+          }, 420);
+          return;
+        }
+      } else {
+        PracticeSound.tap();
+      }
+
+      renderPracticeStudio();
+    }
+
+    function checkSandboxDraftContainsPhrase(draft, item) {
+      const normDraft = normalizeForCompare(draft);
+      if (!normDraft || !item) return false;
+      const cleanPhrase = getCleanPhraseLabel(item).replace(/\[.*?\]/g, '').replace(/\.\.\./g, '').trim();
+      const phraseWords = normalizeForCompare(cleanPhrase).split(' ').filter(w => w.length >= 2);
+      if (phraseWords.length === 0) return normDraft.length >= 12;
+      const matched = phraseWords.filter(w => normDraft.includes(w));
+      return matched.length >= Math.max(1, Math.ceil(phraseWords.length * 0.65));
+    }
+
+    function practiceOnSandboxInput(val) {
+      const step = getCurrentPracticeStep();
+      if (!step || step.type !== 'sandbox') return;
+      step.draft = val;
+      const pill = document.getElementById('sandbox-detect-pill');
+      const checkBtn = document.getElementById('practice-check-btn');
+      const detected = checkSandboxDraftContainsPhrase(val, step.item);
+      if (pill) {
+        if (detected) {
+          pill.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-mono bg-emerald-500/12 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30 transition-all';
+          pill.innerHTML = '<span>✓</span><span>Target phrase detected</span>';
+        } else {
+          pill.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-mono bg-paper-subtle dark:bg-charcoal-subtle text-stone-500 dark:text-stone-400 border border-paper-border dark:border-charcoal-border transition-all';
+          pill.innerHTML = `<span>○</span><span>Try including “${escapeHtml(getCleanPhraseLabel(step.item))}”</span>`;
+        }
+      }
+      if (checkBtn) {
+        checkBtn.disabled = !val.trim();
+      }
+    }
+
+    function practiceInsertSandboxStarter() {
+      const step = getCurrentPracticeStep();
+      if (!step || step.type !== 'sandbox' || step.checked) return;
+      const starter = getCleanPhraseLabel(step.item).replace(/\.\.\.$/, '').trim();
+      const ta = document.getElementById('sandbox-draft-input');
+      const nextVal = step.draft.trim() ? `${step.draft.trim()} ${starter} ` : `${starter.charAt(0).toUpperCase() + starter.slice(1)} `;
+      step.draft = nextVal;
+      PracticeSound.tap();
+      if (ta) {
+        ta.value = nextVal;
+        ta.focus();
+        practiceOnSandboxInput(nextVal);
+      } else {
+        renderPracticeStudio();
+      }
+    }
+
+    function practiceToggleRubricItem(idx) {
+      const step = getCurrentPracticeStep();
+      if (!step || step.type !== 'sandbox') return;
+      step.rubricChecked[idx] = !step.rubricChecked[idx];
+      PracticeSound.tap();
+      renderPracticeStudio();
+    }
+
+    function practiceGradeSandbox(nailedIt) {
+      const step = getCurrentPracticeStep();
+      const session = appState.practice.session;
+      if (!step || step.type !== 'sandbox' || step.checked) return;
+
+      step.checked = true;
+      step.isCorrect = nailedIt;
+      finalizeStepResult(session, step, nailedIt, nailedIt ? 20 : 5);
+      renderPracticeStudio();
+    }
+
+    function recordPracticedItem(session, item, nailed) {
+      if (!session || !item) return;
+      const prev = session.practicedItemMap.get(item.id);
+      if (!prev) {
+        session.practicedItemMap.set(item.id, { item, nailed });
+      } else {
+        prev.nailed = prev.nailed && nailed;
+      }
+    }
+
+    function finalizeStepResult(session, step, isCorrect, xpAmount = 15) {
+      session.attempted += 1;
+      if (isCorrect) {
+        if (!step.isReview) session.correctFirstTry += 1;
+        session.combo += 1;
+        session.bestCombo = Math.max(session.bestCombo, session.combo);
+        const comboBonus = session.combo >= 3 ? 5 : 0;
+        session.xpEarned += xpAmount + comboBonus;
+        PracticeSound.correct(session.combo);
+      } else {
+        session.combo = 0;
+        PracticeSound.wrong();
+        // Queue a gentle Mistake Review retry at the end of the lesson (max 1 retry per step)
+        if (!step.isReview) {
+          const retry = cloneStepForReview(step);
+          if (retry) session.steps.push(retry);
+        }
+      }
+      if (step.item) {
+        recordPracticedItem(session, step.item, isCorrect);
+      }
+    }
+
+    function isStepReadyToCheck(step) {
+      if (!step || step.checked) return false;
+      if (step.type === 'upgrade' || step.type === 'listen') return step.selectedIdx !== null;
+      if (step.type === 'cloze') {
+        return step.useKeyboard ? Boolean(step.typedValue.trim()) : Boolean(step.selectedWord);
+      }
+      if (step.type === 'builder') return step.selectedIndices.length === step.bank.length;
+      if (step.type === 'sandbox') return !step.revealed && Boolean(step.draft.trim());
+      return false;
+    }
+
+    function checkCurrentPracticeStep() {
+      const step = getCurrentPracticeStep();
+      const session = appState.practice.session;
+      if (!step || !session || step.checked) return;
+
+      if (step.type === 'upgrade' || step.type === 'listen') {
+        if (step.selectedIdx === null) return;
+        step.checked = true;
+        step.isCorrect = step.selectedIdx === step.correctIdx;
+        finalizeStepResult(session, step, step.isCorrect, 15);
+        renderPracticeStudio();
+        return;
+      }
+
+      if (step.type === 'cloze') {
+        const raw = step.useKeyboard ? step.typedValue : (step.selectedWord || '');
+        const cleaned = raw.trim().toLowerCase().replace(/[.,!?;:]+$/, '');
+        if (!cleaned) return;
+        const accepted = step.accepted.map(a => a.toLowerCase().trim());
+        let isCorrect = accepted.includes(cleaned);
+        step.hadTypo = false;
+
+        // Gentle Duolingo-style 1-char typo tolerance in keyboard mode for words >= 5 chars
+        if (!isCorrect && step.useKeyboard) {
+          const nearMatch = accepted.some(acc => acc.length >= 5 && levenshteinDistance(cleaned, acc) === 1);
+          if (nearMatch) {
+            isCorrect = true;
+            step.hadTypo = true;
+          }
+        }
+
+        step.checked = true;
+        step.isCorrect = isCorrect;
+        finalizeStepResult(session, step, isCorrect, step.useKeyboard ? 20 : 15);
+        renderPracticeStudio();
+        return;
+      }
+
+      if (step.type === 'builder') {
+        if (step.selectedIndices.length === 0) return;
+        const built = step.selectedIndices.map(i => step.bank[i].text).join(' ');
+        const isCorrect = normalizeForCompare(built) === normalizeForCompare(step.targetSentence);
+        step.checked = true;
+        step.isCorrect = isCorrect;
+        finalizeStepResult(session, step, isCorrect, 20);
+        renderPracticeStudio();
+        return;
+      }
+
+      if (step.type === 'sandbox') {
+        if (!step.draft.trim()) {
+          showToast('Write a quick sentence first to compare with the model answer.');
+          return;
+        }
+        step.revealed = true;
+        PracticeSound.tap();
+        renderPracticeStudio();
+      }
+    }
+
+    function practiceSkipStep() {
+      const step = getCurrentPracticeStep();
+      const session = appState.practice.session;
+      if (!step || !session || step.checked) return;
+
+      // Audio "Can't listen now" skips cleanly without penalty
+      if (step.type === 'listen') {
+        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+        showToast('Skipped audio step — no streak lost.');
+        advancePracticeStep();
+        return;
+      }
+
+      step.checked = true;
+      step.isCorrect = false;
+      if (step.type === 'sandbox') step.revealed = true;
+      finalizeStepResult(session, step, false, 0);
+      renderPracticeStudio();
+    }
+
+    function advancePracticeStep() {
+      const session = appState.practice.session;
+      if (!session) return;
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+
+      if (session.currentIndex + 1 < session.steps.length) {
+        session.currentIndex += 1;
+        session.animateNextStep = true;
+        renderPracticeStudio();
+      } else {
+        completePracticeLesson();
+      }
+    }
+
+    function handlePracticePrimaryAction() {
+      const step = getCurrentPracticeStep();
+      if (!step) return;
+      if (step.checked) {
+        advancePracticeStep();
+      } else if (isStepReadyToCheck(step)) {
+        checkCurrentPracticeStep();
+      }
+    }
+
+    function completePracticeLesson() {
+      const session = appState.practice.session;
+      if (!session) return;
+      session.durationSec = Math.max(5, Math.round((Date.now() - session.startedAt) / 1000));
+
+      // Update persistent daily streak & XP stats
+      const stats = appState.practice.stats;
+      const today = getTodayDateKey();
+      const yesterday = getOffsetDateKey(-1);
+      if (stats.todayDate !== today) {
+        stats.todayXp = 0;
+        stats.todayDate = today;
+      }
+      if (stats.lastPracticeDate !== today) {
+        stats.streakDays = stats.lastPracticeDate === yesterday ? (stats.streakDays + 1) : 1;
+        stats.lastPracticeDate = today;
+      }
+      const completionBonus = 15;
+      session.xpEarned += completionBonus;
+      stats.totalXp += session.xpEarned;
+      stats.todayXp += session.xpEarned;
+      stats.lessonsCompleted += 1;
+      savePracticeStats();
+
+      appState.practice.stage = 'summary';
+      PracticeSound.complete();
+      renderPracticeStudio();
+    }
+
+    function promoteNailedLessonItems() {
+      const session = appState.practice.session;
+      if (!session) return;
+      let updated = 0;
+      session.practicedItemMap.forEach(({ item, nailed }) => {
+        if (!nailed) return;
+        const live = appState.itemsById.get(item.id);
+        if (live && live.status === 'new') {
+          live.status = 'practicing';
+          appState.progressMap.set(live.id, { id: live.id, status: 'practicing', updatedAt: new Date().toISOString() });
+          LexisDB.putProgress(live.id, 'practicing').catch(() => {});
+          updated += 1;
+        }
+      });
+      if (updated > 0) {
+        updateMasteredPill();
+        PracticeSound.matchPair();
+        showToast(`Moved ${updated} phrase${updated === 1 ? '' : 's'} to Practicing!`);
+        renderPracticeStudio();
+      } else {
+        showToast('All nailed phrases are already Practicing or Mastered.');
+      }
+    }
+
+    // ==================== MAIN PRACTICE RENDERER ====================
+    function renderPracticeStudio() {
+      const workspace = document.getElementById('practice-workspace');
+      if (!workspace) return;
+
+      if (appState.items.length === 0) {
+        workspace.innerHTML = `
+          <div class="rounded-2xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card p-8 text-center space-y-3">
+            <p class="serif-display text-xl">No phrases loaded yet</p>
+            <p class="text-sm text-stone-500 dark:text-stone-400">Install a starter pack in Packs &amp; Backup to begin guided practice.</p>
+          </div>
+        `;
+        return;
+      }
+
+      if (appState.practice.stage === 'session' && appState.practice.session) {
+        renderPracticeLessonStage(workspace);
+      } else if (appState.practice.stage === 'summary' && appState.practice.session) {
+        renderPracticeSummary(workspace);
+      } else {
+        renderPracticeHub(workspace);
+      }
+    }
+
+    // ---- Stage A: Practice Hub ----
+    function renderPracticeHub(container) {
+      const stats = appState.practice.stats;
+      const goalPct = Math.min(100, Math.round((stats.todayXp / PRACTICE_DAILY_GOAL_XP) * 100));
+      const scope = appState.practice.scope;
+      const length = appState.practice.length;
+      const poolCount = getPracticePool(scope).length;
+      const estMins = length <= 5 ? '2 min' : (length <= 8 ? '3 min' : '5 min');
+
+      const scopes = [
+        { id: 'smart', label: 'Smart Mix' },
+        { id: 'today', label: `Today's ${Math.max(1, appState.todayIds.length)}` },
+        { id: 'review', label: 'Needs Review' },
+        { id: 'Everyday', label: 'Everyday' },
+        { id: 'Workplace', label: 'Workplace' },
+        { id: 'Syntax', label: 'Syntax' },
+        { id: 'all', label: 'All' }
       ];
-      const statusMeta = getStatusPillProps(item.status);
+
+      const tracks = [
+        {
+          id: 'upgrade',
+          title: 'Precision Upgrade',
+          desc: 'Swap flat textbook phrasing for idiomatic native choices.',
+          tag: '4-Choice',
+          icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 20V10M18 20V4M6 20v-4"></path></svg>`
+        },
+        {
+          id: 'cloze',
+          title: 'Tap-to-Fill Cloze',
+          desc: 'Snap missing particles from a word bank — or type for hard mode.',
+          tag: 'Word Bank',
+          icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"></rect><path d="M7 15h4M15 15h2M7 10h10"></path></svg>`
+        },
+        {
+          id: 'builder',
+          title: 'Sentence Builder',
+          desc: 'Assemble native phrasing tile by tile to build natural cadence.',
+          tag: 'Word Tiles',
+          icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="4" width="8" height="6" rx="1.5"></rect><rect x="13" y="4" width="8" height="6" rx="1.5"></rect><rect x="3" y="14" width="11" height="6" rx="1.5"></rect><rect x="16" y="14" width="5" height="6" rx="1.5"></rect></svg>`
+        },
+        {
+          id: 'match',
+          title: 'Match Pairs',
+          desc: 'Rapid-fire tap matching between English idioms and meanings.',
+          tag: 'Speed Recall',
+          icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M8 7h12M8 17h12M4 7h.01M4 17h.01"></path><path d="M15 4l3 3-3 3M15 14l3 3-3 3"></path></svg>`
+        },
+        {
+          id: 'listen',
+          title: 'Audio Recall',
+          desc: 'Train your ear at 1× native pace or 0.75× slow turtle playback.',
+          tag: 'Listening',
+          icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>`
+        },
+        {
+          id: 'sandbox',
+          title: 'Active Sandbox',
+          desc: 'Craft your own sentence with live phrase detection & model rubric.',
+          tag: 'Production',
+          icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 20h9"></path><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg>`
+        }
+      ];
 
       container.innerHTML = `
-        <div class="rounded-2xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card p-5 sm:p-8 space-y-6 shadow-sm">
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <div class="flex items-center gap-2 flex-wrap">
-              <span class="px-2.5 py-1 rounded-md text-[11px] font-mono border ${getCategoryPillClass(item.category)}">
-                ${escapeHtml(item.category)}
-              </span>
-              ${item.cefr ? `<span class="px-2 py-1 rounded-md text-[11px] font-mono border ${getCefrPillClass(item.cefr)}">${escapeHtml(item.cefr)}</span>` : ''}
-              <span class="px-2 py-1 rounded-md text-[11px] font-mono border ${getRegisterPillClass(item.register)}">
-                ${escapeHtml(item.register || 'Conversational')}
-              </span>
+        <div class="space-y-6 duo-step-enter">
+          <!-- Header & Motivation Strip -->
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-5 border-b border-paper-border dark:border-charcoal-border">
+            <div>
+              <p class="text-xs font-mono uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-1">
+                Guided Practice Studio
+              </p>
+              <h1 class="serif-display text-2xl sm:text-3xl font-medium text-paper-ink dark:text-charcoal-cream">
+                Train Active Recall
+              </h1>
             </div>
-            <span class="text-xs font-mono text-stone-400">Item ${idx + 1} / ${total}</span>
+
+            <div class="flex flex-wrap items-center gap-2">
+              <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card text-xs font-mono" title="Daily practice streak">
+                <span class="text-[#C46548]">🔥</span>
+                <span class="font-semibold text-paper-ink dark:text-charcoal-cream">${stats.streakDays}</span>
+                <span class="text-stone-400">${stats.streakDays === 1 ? 'day' : 'days'}</span>
+              </div>
+              <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card text-xs font-mono" title="Total XP earned">
+                <span class="text-amber-600 dark:text-amber-400">✦</span>
+                <span class="font-semibold text-paper-ink dark:text-charcoal-cream">${stats.totalXp} XP</span>
+              </div>
+              <button onclick="togglePracticeSound()" aria-label="Toggle Sound Effects" title="${stats.soundEnabled ? 'Sound effects on' : 'Sound effects muted'}" class="p-2 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card text-stone-600 dark:text-stone-300 hover:border-[#C46548] transition-colors min-h-[36px] min-w-[36px] flex items-center justify-center">
+                ${stats.soundEnabled ? `
+                  <svg class="w-4 h-4 text-[#C46548]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                ` : `
+                  <svg class="w-4 h-4 text-stone-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+                `}
+              </button>
+            </div>
           </div>
 
-          <div class="space-y-2">
-            <span class="block text-[11px] font-mono uppercase tracking-wider text-stone-400">
-              Standard Phrasing — Choose the Most Natural Native Option
-            </span>
-            <p class="serif-display text-xl sm:text-2xl text-paper-ink dark:text-charcoal-cream leading-relaxed">
-              “${escapeHtml(item.quizPrompt || item.flat)}”
-            </p>
+          <!-- Hero Guided Lesson Card -->
+          <div class="rounded-2xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card p-5 sm:p-7 shadow-sm space-y-5">
+            <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+              <div class="space-y-2 max-w-lg">
+                <div class="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-wider text-[#B05438] dark:text-[#E58E73] font-semibold">
+                  <span>Recommended · Adaptive Mix</span>
+                  <span class="text-stone-300 dark:text-stone-600">•</span>
+                  <span class="text-stone-500 dark:text-stone-400">${poolCount} phrases ready</span>
+                </div>
+                <h2 class="serif-display text-2xl sm:text-[28px] leading-snug font-medium text-paper-ink dark:text-charcoal-cream">
+                  Daily Mix Lesson
+                </h2>
+                <p class="text-xs sm:text-sm text-stone-600 dark:text-stone-300 leading-relaxed">
+                  A bite-sized guided session mixing phrase upgrades, word-bank cloze, sentence building, quick matching, and audio recall—with automatic review of anything you miss.
+                </p>
+              </div>
+
+              <button id="btn-start-daily-lesson" onclick="startPracticeLesson('mixed')" class="duo-btn-primary px-6 py-3.5 rounded-2xl font-semibold text-sm sm:text-base flex items-center justify-center gap-2.5 shrink-0 min-h-[52px]">
+                <span>Start Lesson</span>
+                <span class="text-xs font-mono opacity-85">· ${length} steps</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+              </button>
+            </div>
+
+            <!-- Daily XP Goal Bar -->
+            <div class="space-y-1.5 pt-1">
+              <div class="flex items-center justify-between text-[11px] font-mono">
+                <span class="text-stone-500 dark:text-stone-400">Daily Goal · ${estMins} per lesson</span>
+                <span class="${goalPct >= 100 ? 'text-emerald-700 dark:text-emerald-300 font-semibold' : 'text-stone-600 dark:text-stone-300'}">
+                  ${stats.todayXp} / ${PRACTICE_DAILY_GOAL_XP} XP ${goalPct >= 100 ? '✓ Goal reached!' : ''}
+                </span>
+              </div>
+              <div class="duo-progress-track">
+                <div class="duo-progress-fill ${goalPct >= 100 ? 'is-streak' : ''}" style="width: ${Math.max(goalPct > 0 ? 6 : 0, goalPct)}%"></div>
+              </div>
+            </div>
+
+            <!-- Focus Scope & Length Controls -->
+            <div class="pt-4 border-t border-paper-border dark:border-charcoal-border flex flex-col md:flex-row md:items-center justify-between gap-3">
+              <div class="flex items-center gap-1 flex-wrap">
+                <span class="text-[11px] font-mono uppercase tracking-wider text-stone-400 mr-1">Focus:</span>
+                ${scopes.map(sc => {
+                  const active = sc.id === scope;
+                  return `
+                    <button onclick="setPracticeScope('${sc.id}')" class="px-2.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors min-h-[34px] ${active ? 'bg-paper-ink dark:bg-charcoal-cream text-white dark:text-charcoal-bg' : 'bg-paper-subtle dark:bg-charcoal-subtle text-stone-600 dark:text-stone-300 hover:text-paper-ink dark:hover:text-charcoal-cream'}">
+                      ${escapeHtml(sc.label)}
+                    </button>
+                  `;
+                }).join('')}
+              </div>
+
+              <div class="inline-flex items-center gap-1 self-start md:self-auto shrink-0 rounded-lg border border-paper-border dark:border-charcoal-border bg-paper-subtle dark:bg-charcoal-subtle p-0.5">
+                ${[5, 8, 12].map(n => `
+                  <button onclick="setPracticeLength(${n})" class="px-2.5 py-1 rounded-md text-xs font-mono transition-all min-h-[30px] ${length === n ? 'bg-paper-card dark:bg-charcoal-card text-paper-ink dark:text-charcoal-cream shadow-sm font-semibold' : 'text-stone-500 dark:text-stone-400'}">
+                    ${n}
+                  </button>
+                `).join('')}
+              </div>
+            </div>
           </div>
 
-          <div class="space-y-2.5">
-            ${options.map((opt, oIdx) => {
-              let cardStyle = 'border-paper-border dark:border-charcoal-border bg-paper-bg/60 dark:bg-charcoal-bg/60 hover:border-[#C46548]/50';
-              let badgeStyle = 'border-paper-border dark:border-charcoal-border text-stone-500';
-              let badgeContent = `${oIdx + 1}`;
+          <!-- Targeted Skill Tracks -->
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xs font-mono uppercase tracking-wider text-stone-500 dark:text-stone-400 font-semibold">
+                Or Focus on One Skill
+              </h3>
+              <span class="text-[11px] font-mono text-stone-400">Uses selected Focus &amp; Size</span>
+            </div>
 
-              if (answered) {
-                if (oIdx === correctIdx) {
-                  cardStyle = 'border-emerald-500/60 bg-emerald-500/[0.08]';
-                  badgeStyle = 'bg-emerald-600 border-emerald-600 text-white';
-                  badgeContent = '✓';
-                } else if (oIdx === appState.practice.quizSelected) {
-                  cardStyle = 'border-rose-500/60 bg-rose-500/[0.08]';
-                  badgeStyle = 'bg-rose-600 border-rose-600 text-white';
-                  badgeContent = '✕';
-                } else {
-                  cardStyle = 'border-paper-border dark:border-charcoal-border opacity-60';
-                }
-              }
-
-              return `
-                <button ${answered ? 'disabled' : ''} onclick="selectUpgradeOption(${oIdx})" class="w-full text-left p-3.5 sm:p-4 rounded-xl border transition-all space-y-2 min-h-[50px] ${cardStyle}">
-                  <div class="flex items-start gap-3">
-                    <span class="w-6 h-6 rounded-md border flex items-center justify-center text-xs font-mono shrink-0 mt-0.5 ${badgeStyle}">
-                      ${badgeContent}
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              ${tracks.map(t => `
+                <button onclick="startPracticeLesson('${t.id}')" class="duo-track-card text-left p-4 rounded-2xl flex flex-col justify-between gap-3 min-h-[126px]">
+                  <div class="flex items-start justify-between gap-2">
+                    <span class="w-9 h-9 rounded-xl bg-[#C46548]/10 text-[#B05438] dark:text-[#E58E73] flex items-center justify-center shrink-0">
+                      ${t.icon}
                     </span>
-                    <span class="text-sm leading-relaxed text-paper-ink dark:text-charcoal-cream">
-                      ${escapeHtml(opt)}
+                    <span class="px-2 py-0.5 rounded-md text-[10px] font-mono uppercase tracking-wider bg-paper-subtle dark:bg-charcoal-subtle text-stone-500 dark:text-stone-400">
+                      ${escapeHtml(t.tag)}
                     </span>
                   </div>
-                  ${answered ? `
-                    <p class="pl-9 text-xs leading-relaxed ${oIdx === correctIdx ? 'text-emerald-700 dark:text-emerald-300 font-medium' : 'text-stone-500 dark:text-stone-400'}">
-                      ${escapeHtml(explanations[oIdx] || '')}
-                    </p>
-                  ` : ''}
+                  <div class="space-y-1">
+                    <div class="text-sm font-semibold text-paper-ink dark:text-charcoal-cream">${escapeHtml(t.title)}</div>
+                    <p class="text-xs text-stone-500 dark:text-stone-400 leading-relaxed">${escapeHtml(t.desc)}</p>
+                  </div>
+                </button>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // ---- Stage B: Focused Distraction-Free Lesson ----
+    function renderPracticeLessonStage(container) {
+      const session = appState.practice.session;
+      const step = getCurrentPracticeStep();
+      if (!session || !step) return;
+
+      const isReviewPhase = step.isReview;
+      const completedCount = session.currentIndex + (step.checked ? 1 : 0);
+      const pct = Math.min(100, Math.round((completedCount / Math.max(1, session.steps.length)) * 100));
+      const animateClass = session.animateNextStep ? 'duo-step-enter' : '';
+      session.animateNextStep = false;
+
+      let exerciseHtml = '';
+      if (step.type === 'upgrade') exerciseHtml = renderStepUpgrade(step);
+      else if (step.type === 'cloze') exerciseHtml = renderStepCloze(step);
+      else if (step.type === 'builder') exerciseHtml = renderStepBuilder(step);
+      else if (step.type === 'match') exerciseHtml = renderStepMatch(step);
+      else if (step.type === 'listen') exerciseHtml = renderStepListen(step);
+      else if (step.type === 'sandbox') exerciseHtml = renderStepSandbox(step);
+
+      container.innerHTML = `
+        <div class="space-y-5">
+          <!-- Top Lesson Progress Bar (Duolingo Zen Chrome) -->
+          <div class="flex items-center gap-3">
+            <button onclick="exitPracticeLesson()" aria-label="Exit Lesson" title="Exit to Practice Hub" class="w-10 h-10 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card hover:bg-paper-subtle dark:hover:bg-charcoal-subtle text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream flex items-center justify-center shrink-0 transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+
+            <div class="flex-1 space-y-1">
+              <div class="duo-progress-track">
+                <div class="duo-progress-fill ${isReviewPhase ? 'is-review' : (session.combo >= 3 ? 'is-streak' : '')}" style="width: ${Math.max(4, pct)}%"></div>
+              </div>
+              <div class="flex items-center justify-between text-[11px] font-mono text-stone-400 px-0.5">
+                <span>${isReviewPhase ? '↻ Mistake Review — Lock it in!' : `Step ${session.currentIndex + 1} of ${session.steps.length}`}</span>
+                <span>+${session.xpEarned} XP</span>
+              </div>
+            </div>
+
+            ${session.combo >= 2 ? `
+              <div class="duo-pop inline-flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-emerald-500/12 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300 text-xs font-mono font-semibold shrink-0">
+                <span>🔥</span>
+                <span>${session.combo}×</span>
+              </div>
+            ` : ''}
+
+            <button onclick="togglePracticeSound()" aria-label="Toggle Sound" class="w-10 h-10 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card text-stone-500 dark:text-stone-400 hover:border-[#C46548] flex items-center justify-center shrink-0 transition-colors">
+              ${appState.practice.stats.soundEnabled ? `
+                <svg class="w-4 h-4 text-[#C46548]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+              ` : `
+                <svg class="w-4 h-4 text-stone-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+              `}
+            </button>
+          </div>
+
+          <!-- Exercise Stage Card -->
+          <div class="${animateClass} rounded-2xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card p-5 sm:p-7 shadow-sm space-y-5">
+            ${exerciseHtml}
+          </div>
+
+          <!-- Unified Tactile Bottom Action / Feedback Drawer -->
+          ${renderPracticeBottomDrawer(step, session)}
+        </div>
+      `;
+
+      // Restore focus to Cloze keyboard input if active
+      if (step.type === 'cloze' && step.useKeyboard && !step.checked) {
+        const inp = document.getElementById('practice-cloze-input');
+        if (inp) {
+          inp.focus();
+          inp.setSelectionRange(inp.value.length, inp.value.length);
+        }
+      }
+    }
+
+    // ---- Exercise 1: Precision Upgrade ----
+    function renderStepUpgrade(step) {
+      const item = step.item;
+      return `
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-1 rounded-lg text-[11px] font-mono border ${getCategoryPillClass(item.category)}">
+              ${escapeHtml(item.category)}
+            </span>
+            <span class="text-xs font-mono text-stone-400">${escapeHtml(item.register || '')}</span>
+          </div>
+          <span class="text-[11px] font-mono uppercase tracking-wider text-stone-400">Precision Upgrade</span>
+        </div>
+
+        <div class="space-y-2.5">
+          <p class="text-xs font-mono uppercase tracking-wider text-[#B05438] dark:text-[#E58E73] font-semibold">
+            Upgrade this phrasing to sound natural
+          </p>
+          <div class="p-4 sm:p-5 rounded-2xl bg-paper-subtle/65 dark:bg-charcoal-subtle/65 border border-paper-border dark:border-charcoal-border">
+            <p class="serif-display text-xl sm:text-2xl text-paper-ink dark:text-charcoal-cream leading-snug">
+              “${escapeHtml(step.prompt)}”
+            </p>
+          </div>
+        </div>
+
+        <div class="space-y-2.5">
+          ${step.options.map((opt, idx) => {
+            let stateClass = '';
+            let badgeClass = 'border-paper-border dark:border-charcoal-border text-stone-500 dark:text-stone-400';
+            let badgeText = `${idx + 1}`;
+
+            if (step.checked) {
+              if (idx === step.correctIdx) {
+                stateClass = 'is-correct';
+                badgeClass = 'bg-emerald-600 border-emerald-600 text-white';
+                badgeText = '✓';
+              } else if (idx === step.selectedIdx) {
+                stateClass = 'is-wrong duo-shake';
+                badgeClass = 'bg-rose-600 border-rose-600 text-white';
+                badgeText = '✕';
+              } else {
+                stateClass = 'opacity-55';
+              }
+            } else if (idx === step.selectedIdx) {
+              stateClass = 'is-selected';
+              badgeClass = 'bg-[#C46548] border-[#C46548] text-white';
+            }
+
+            return `
+              <button ${step.checked ? 'disabled' : ''} onclick="practiceSelectOption(${idx})" class="duo-option ${stateClass} w-full text-left p-3.5 sm:p-4 rounded-xl space-y-1.5 min-h-[54px]">
+                <div class="flex items-start gap-3">
+                  <span class="w-6 h-6 rounded-lg border flex items-center justify-center text-xs font-mono font-semibold shrink-0 mt-0.5 ${badgeClass}">
+                    ${badgeText}
+                  </span>
+                  <span class="text-sm sm:text-[15px] leading-relaxed text-paper-ink dark:text-charcoal-cream">
+                    ${escapeHtml(opt.text)}
+                  </span>
+                </div>
+                ${step.checked && (idx === step.correctIdx || idx === step.selectedIdx) ? `
+                  <p class="pl-9 text-xs leading-relaxed ${idx === step.correctIdx ? 'text-emerald-700 dark:text-emerald-300 font-medium' : 'text-rose-700 dark:text-rose-300'}">
+                    ${escapeHtml(opt.explanation)}
+                  </p>
+                ` : ''}
+              </button>
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
+
+    // ---- Exercise 2: Tap-to-Fill Cloze (Word Bank + Keyboard Toggle) ----
+    function renderStepCloze(step) {
+      const item = step.item;
+      const parts = step.sentence.split('___');
+      const before = parts[0] || '';
+      const after = parts.slice(1).join('___');
+
+      const blankVisual = step.useKeyboard
+        ? `<input id="practice-cloze-input" type="text" value="${escapeAttr(step.typedValue)}" ${step.checked ? 'disabled' : ''} oninput="const s=getCurrentPracticeStep(); if(s){s.typedValue=this.value; const b=document.getElementById('practice-check-btn'); if(b) b.disabled=!this.value.trim();}" placeholder="type word…" autocomplete="off" autocapitalize="none" spellcheck="false" class="inline-block w-36 sm:w-44 px-3 py-1 mx-1 rounded-lg border-b-2 text-center font-mono text-sm sm:text-base focus:outline-none ${step.checked ? (step.isCorrect ? 'border-emerald-500 bg-emerald-500/12 text-emerald-700 dark:text-emerald-300' : 'border-rose-500 bg-rose-500/12 text-rose-700 dark:text-rose-300') : 'border-[#C46548] bg-paper-card dark:bg-charcoal-card text-paper-ink dark:text-charcoal-cream'}" />`
+        : `<button type="button" ${step.checked ? 'disabled' : ''} onclick="practiceClearClozeBlank()" class="inline-flex items-center justify-center min-w-[96px] px-3.5 py-1 mx-1 rounded-xl border-b-2 font-semibold text-sm sm:text-base align-baseline transition-all ${step.checked ? (step.isCorrect ? 'border-emerald-500 bg-emerald-500/15 text-emerald-700 dark:text-emerald-300' : 'border-rose-500 bg-rose-500/15 text-rose-700 dark:text-rose-300') : (step.selectedWord ? 'duo-pop border-[#C46548] bg-[#C46548]/15 text-[#A84B30] dark:text-[#F6B9A6]' : 'border-dashed border-stone-400 dark:border-stone-500 bg-paper-card/70 dark:bg-charcoal-card/70 text-stone-400')}">${escapeHtml(step.selectedWord || '______')}</button>`;
+
+      return `
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-1 rounded-lg text-[11px] font-mono border ${getCategoryPillClass(item.category)}">
+              ${escapeHtml(item.category)}
+            </span>
+            <span class="text-xs font-mono text-stone-400">${step.useKeyboard ? 'Hard Mode · Type' : 'Word Bank'}</span>
+          </div>
+
+          ${!step.checked ? `
+            <button onclick="practiceToggleClozeInputMode()" class="px-2.5 py-1.5 rounded-lg border border-paper-border dark:border-charcoal-border bg-paper-subtle/70 dark:bg-charcoal-subtle/70 hover:border-[#C46548] text-xs font-mono text-stone-600 dark:text-stone-300 transition-colors min-h-[34px]">
+              ${step.useKeyboard ? 'Use word bank' : '⌨ Type instead'}
+            </button>
+          ` : ''}
+        </div>
+
+        <div class="space-y-3">
+          <p class="text-xs font-mono uppercase tracking-wider text-[#B05438] dark:text-[#E58E73] font-semibold">
+            Complete the natural expression
+          </p>
+          <div class="p-5 sm:p-6 rounded-2xl bg-paper-subtle/60 dark:bg-charcoal-subtle/60 border border-paper-border dark:border-charcoal-border text-base sm:text-lg leading-loose text-paper-ink dark:text-charcoal-cream">
+            <span>${escapeHtml(before)}</span>${blankVisual}<span>${escapeHtml(after)}</span>
+          </div>
+          <p class="text-xs text-stone-500 dark:text-stone-400">
+            <span class="font-mono uppercase text-[10px] text-stone-400 mr-1">Meaning:</span>
+            ${escapeHtml(getShortPolishCue(item))}
+          </p>
+        </div>
+
+        ${!step.useKeyboard ? `
+          <div class="flex flex-wrap items-center gap-2.5 pt-1">
+            ${step.wordBank.map((word, wIdx) => {
+              const isSelected = step.selectedWord === word;
+              if (isSelected && !step.checked) {
+                return `<span class="duo-tile-ghost">${escapeHtml(word)}</span>`;
+              }
+              return `
+                <button ${step.checked ? 'disabled' : ''} onclick="practiceSelectClozeTile(${wIdx})" class="duo-tile ${isSelected ? 'is-selected' : ''} gap-2">
+                  <span class="hidden sm:inline-block text-[10px] font-mono text-stone-400">${wIdx + 1}</span>
+                  <span>${escapeHtml(word)}</span>
+                </button>
+              `;
+            }).join('')}
+          </div>
+        ` : ''}
+
+        ${!step.checked ? `
+          <div class="pt-1">
+            <button onclick="practiceToggleClozeHint()" class="inline-flex items-center gap-1.5 text-xs font-mono text-stone-500 dark:text-stone-400 hover:text-[#C46548] transition-colors min-h-[34px]">
+              <span>💡</span>
+              <span>${step.showHint ? `Hint: ${escapeHtml(step.hint)}` : 'Need a hint?'}</span>
+            </button>
+          </div>
+        ` : ''}
+      `;
+    }
+
+    // ---- Exercise 3: Sentence Builder (Duolingo Word Tiles) ----
+    function renderStepBuilder(step) {
+      const item = step.item;
+      const usedSet = new Set(step.selectedIndices);
+
+      return `
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-1 rounded-lg text-[11px] font-mono border ${getCategoryPillClass(item.category)}">
+              ${escapeHtml(item.category)}
+            </span>
+            <span class="text-xs font-mono text-stone-400">Sentence Builder</span>
+          </div>
+          ${!step.checked && step.selectedIndices.length > 0 ? `
+            <button onclick="practiceClearBuilderTray()" class="text-xs font-mono text-stone-500 hover:text-[#C46548] min-h-[32px] px-2">
+              Clear tray
+            </button>
+          ` : ''}
+        </div>
+
+        <div class="space-y-2.5">
+          <p class="text-xs font-mono uppercase tracking-wider text-[#B05438] dark:text-[#E58E73] font-semibold">
+            Tap tiles in order to build the native phrasing
+          </p>
+          <div class="p-4 rounded-2xl bg-paper-subtle/65 dark:bg-charcoal-subtle/65 border border-paper-border dark:border-charcoal-border space-y-1.5">
+            <p class="serif-display text-lg sm:text-xl text-paper-ink dark:text-charcoal-cream leading-snug">
+              “${escapeHtml(step.cue)}”
+            </p>
+            <p class="text-xs text-stone-500 dark:text-stone-400">
+              Target idiom: <span class="font-medium text-paper-ink dark:text-charcoal-cream">${escapeHtml(getCleanPhraseLabel(item))}</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Answer Drop Tray -->
+        <div class="min-h-[82px] p-3.5 rounded-2xl border-2 border-dashed ${step.checked ? (step.isCorrect ? 'border-emerald-500/60 bg-emerald-500/[0.06]' : 'border-rose-500/60 bg-rose-500/[0.06]') : 'border-paper-border dark:border-charcoal-border bg-paper-bg/70 dark:bg-charcoal-bg/70'} flex flex-wrap items-center gap-2 transition-colors">
+          ${step.selectedIndices.length === 0 ? `
+            <span class="text-xs font-mono text-stone-400 px-1">Tap phrase tiles below to assemble the sentence…</span>
+          ` : step.selectedIndices.map((bankIdx, pos) => `
+            <button ${step.checked ? 'disabled' : ''} onclick="practiceRemoveBuilderTile(${pos})" class="duo-tile duo-pop is-selected">
+              ${escapeHtml(step.bank[bankIdx].text)}
+            </button>
+          `).join('')}
+        </div>
+
+        <!-- Shuffled Tile Bank (Ghost slots preserve visual stability) -->
+        <div class="flex flex-wrap items-center gap-2 pt-1">
+          ${step.bank.map((tile, bIdx) => {
+            if (usedSet.has(bIdx)) {
+              return `<span class="duo-tile-ghost" aria-hidden="true">${escapeHtml(tile.text)}</span>`;
+            }
+            return `
+              <button ${step.checked ? 'disabled' : ''} onclick="practiceAddBuilderTile(${bIdx})" class="duo-tile">
+                ${escapeHtml(tile.text)}
+              </button>
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
+
+    // ---- Exercise 4: Match Pairs (Tap-to-Match Board) ----
+    function renderStepMatch(step) {
+      const remaining = step.left.length - step.matchedIds.length;
+      return `
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <span class="text-xs font-mono uppercase tracking-wider text-[#B05438] dark:text-[#E58E73] font-semibold">
+            Tap matching English &amp; Polish pairs
+          </span>
+          <span class="text-xs font-mono text-stone-400">
+            ${remaining === 0 ? 'All pairs matched!' : `${remaining} left`}
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+          <div class="space-y-2.5">
+            <span class="block text-[10px] font-mono uppercase tracking-wider text-stone-400 px-1">English Phrasing</span>
+            ${step.left.map(tile => {
+              const matched = step.matchedIds.includes(tile.id);
+              const selected = step.selectedLeft === tile.id;
+              const wrong = step.wrongFlash && step.wrongFlash.leftId === tile.id;
+              const cls = matched ? 'is-matched' : (wrong ? 'is-wrong duo-shake' : (selected ? 'is-selected' : ''));
+              return `
+                <button ${matched ? 'disabled' : ''} onclick="practiceTapMatchTile('left', '${escapeAttr(tile.id)}')" class="duo-option ${cls} w-full text-left px-4 py-3.5 rounded-xl min-h-[58px] flex items-center justify-between gap-2">
+                  <span class="text-sm font-semibold text-paper-ink dark:text-charcoal-cream leading-snug">${escapeHtml(tile.label)}</span>
+                  ${matched ? '<span class="text-emerald-600 dark:text-emerald-400 font-mono text-xs">✓</span>' : '<svg class="w-3.5 h-3.5 text-stone-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>'}
                 </button>
               `;
             }).join('')}
           </div>
 
-          ${answered ? `
-            <div class="p-4 rounded-xl border border-[#C46548]/25 bg-[#C46548]/[0.05] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div>
-                <span class="text-[11px] font-mono uppercase tracking-wider text-[#B05438] dark:text-[#E58E73] font-semibold">
-                  Target: ${escapeHtml(item.phrase)} (${escapeHtml(item.ipa)})
-                </span>
-                <p class="text-xs text-stone-600 dark:text-stone-300 mt-0.5">
-                  PL: ${escapeHtml(item.polish)}
-                </p>
-              </div>
-              <div class="flex items-center gap-1.5">
-                ${renderAudioButton(item.id, 'US', false)}
-                ${renderAudioButton(item.id, 'UK', false)}
-              </div>
-            </div>
-          ` : ''}
-
-          <div class="flex flex-wrap items-center justify-between pt-3 border-t border-paper-border dark:border-charcoal-border gap-2">
-            <button onclick="stepPracticeItem(-1)" class="px-3.5 py-2 rounded-xl border border-paper-border dark:border-charcoal-border text-xs font-medium text-stone-600 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream min-h-[44px]">
-              ← Previous
-            </button>
-            <div class="flex items-center gap-2">
-              <button onclick="cycleItemStatus('${item.id}')" class="px-3 py-2 rounded-xl border text-xs font-mono min-h-[44px] flex items-center gap-1.5 ${statusMeta.style}">
-                <span class="w-2 h-2 rounded-full ${statusMeta.dot}"></span>
-                <span>${statusMeta.label}</span>
-              </button>
-              <button onclick="stepPracticeItem(1)" class="px-4 py-2 rounded-xl bg-paper-ink dark:bg-charcoal-cream text-white dark:text-charcoal-bg text-xs sm:text-sm font-medium hover:opacity-90 min-h-[44px]">
-                Next →
-              </button>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    function selectUpgradeOption(oIdx) {
-      const item = getCurrentPracticeItem();
-      if (!item || appState.practice.quizSelected !== null) return;
-      const options = item.quizOptions || [];
-      if (oIdx < 0 || oIdx >= options.length) return;
-
-      const correctIdx = typeof item.quizCorrectIndex === 'number' ? item.quizCorrectIndex : 0;
-      appState.practice.quizSelected = oIdx;
-      appState.practice.attempted += 1;
-      if (oIdx === correctIdx) appState.practice.correct += 1;
-      renderPracticeStudio();
-    }
-
-    // Exercise Tab 2: Contextual Cloze
-    function renderContextualClozeDrill(container, item, idx, total) {
-      const sentence = item.clozeSentence || `Example: ___`;
-      const parts = sentence.split('___');
-      const before = parts[0] || '';
-      const after = parts.slice(1).join('___');
-      const submitted = appState.practice.clozeSubmitted;
-      const correct = appState.practice.clozeIsCorrect;
-      const statusMeta = getStatusPillProps(item.status);
-
-      container.innerHTML = `
-        <div class="rounded-2xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card p-5 sm:p-8 space-y-6 shadow-sm">
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <div class="flex items-center gap-2 flex-wrap">
-              <span class="px-2.5 py-1 rounded-md text-[11px] font-mono border ${getCategoryPillClass(item.category)}">
-                ${escapeHtml(item.category)} · Contextual Cloze
-              </span>
-              ${item.cefr ? `<span class="px-2 py-1 rounded-md text-[11px] font-mono border ${getCefrPillClass(item.cefr)}">${escapeHtml(item.cefr)}</span>` : ''}
-              <span class="px-2 py-1 rounded-md text-[11px] font-mono border ${getRegisterPillClass(item.register)}">
-                ${escapeHtml(item.register || 'Conversational')}
-              </span>
-            </div>
-            <span class="text-xs font-mono text-stone-400">Item ${idx + 1} / ${total}</span>
-          </div>
-
-          <div class="space-y-3">
-            <span class="block text-[11px] font-mono uppercase tracking-wider text-stone-400">
-              Fill in the Missing Particle or Word
-            </span>
-            <div class="p-5 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-bg/75 dark:bg-charcoal-bg/75 text-base sm:text-lg leading-loose">
-              <span>${escapeHtml(before)}</span>
-              <input id="practice-cloze-input" type="text" ${submitted ? 'disabled' : ''} onkeydown="if(event.key==='Enter') checkPracticeCloze()" placeholder="..." autocomplete="off" autocapitalize="none" class="inline-block w-36 sm:w-44 px-2.5 py-0.5 mx-1 rounded-md border-b-2 text-center font-mono text-sm sm:text-base focus:outline-none ${submitted ? (correct ? 'border-emerald-500 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300' : 'border-rose-500 bg-rose-500/10 text-rose-700 dark:text-rose-300') : 'border-[#C46548] bg-paper-card dark:bg-charcoal-card'}" />
-              <span>${escapeHtml(after)}</span>
-            </div>
-          </div>
-
-          ${!submitted ? `
-            <div class="flex flex-wrap items-center justify-between gap-3">
-              <button onclick="appState.practice.clozeShowHint = !appState.practice.clozeShowHint; renderPracticeStudio();" class="text-xs font-mono text-stone-500 dark:text-stone-400 hover:text-[#C46548] min-h-[38px]">
-                ${appState.practice.clozeShowHint ? `Hint: ${escapeHtml(item.clozeHint)}` : 'Show hint'}
-              </button>
-              <button onclick="checkPracticeCloze()" class="px-4 py-2.5 rounded-xl bg-[#C46548] hover:bg-[#B05438] text-white text-xs sm:text-sm font-medium transition-colors min-h-[44px]">
-                Check Answer
-              </button>
-            </div>
-          ` : `
-            <div class="p-4 rounded-xl border ${correct ? 'border-emerald-500/30 bg-emerald-500/[0.06]' : 'border-amber-500/30 bg-amber-500/[0.06]'} space-y-2.5">
-              <div class="flex flex-wrap items-center justify-between gap-2">
-                <span class="text-xs font-mono uppercase tracking-wider font-semibold ${correct ? 'text-emerald-700 dark:text-emerald-400' : 'text-amber-700 dark:text-amber-400'}">
-                  ${correct ? 'Exact match!' : `Expected: "${escapeHtml(item.clozeAnswer)}"`} · ${escapeHtml(item.phrase)}
-                </span>
-                <div class="flex items-center gap-1.5">
-                  ${renderAudioButton(item.id, 'US', false)}
-                  ${renderAudioButton(item.id, 'UK', false)}
-                </div>
-              </div>
-              <p class="text-xs sm:text-sm text-stone-700 dark:text-stone-300 leading-relaxed">
-                ${escapeHtml(item.nuance)}
-              </p>
-            </div>
-          `}
-
-          <div class="flex flex-wrap items-center justify-between pt-3 border-t border-paper-border dark:border-charcoal-border gap-2">
-            <button onclick="stepPracticeItem(-1)" class="px-3.5 py-2 rounded-xl border border-paper-border dark:border-charcoal-border text-xs font-medium text-stone-600 dark:text-stone-400 min-h-[44px]">
-              ← Previous
-            </button>
-            <div class="flex items-center gap-2">
-              <button onclick="cycleItemStatus('${item.id}')" class="px-3 py-2 rounded-xl border text-xs font-mono min-h-[44px] flex items-center gap-1.5 ${statusMeta.style}">
-                <span class="w-2 h-2 rounded-full ${statusMeta.dot}"></span>
-                <span>${statusMeta.label}</span>
-              </button>
-              <button onclick="stepPracticeItem(1)" class="px-4 py-2 rounded-xl bg-paper-ink dark:bg-charcoal-cream text-white dark:text-charcoal-bg text-xs sm:text-sm font-medium hover:opacity-90 min-h-[44px]">
-                Next →
-              </button>
-            </div>
-          </div>
-        </div>
-      `;
-
-      if (!submitted) {
-        const inp = document.getElementById('practice-cloze-input');
-        if (inp) inp.focus();
-      }
-    }
-
-    function checkPracticeCloze() {
-      const inp = document.getElementById('practice-cloze-input');
-      if (!inp) return;
-      const val = inp.value.trim().toLowerCase();
-      if (!val) {
-        showToast('Type your answer in the blank first.');
-        return;
-      }
-      const item = getCurrentPracticeItem();
-      if (!item) return;
-      const accepted = (item.clozeAccepted || [item.clozeAnswer]).map(a => a.toLowerCase().trim());
-
-      appState.practice.clozeSubmitted = true;
-      appState.practice.clozeIsCorrect = accepted.includes(val);
-      appState.practice.attempted += 1;
-      if (appState.practice.clozeIsCorrect) appState.practice.correct += 1;
-      renderPracticeStudio();
-    }
-
-    // Exercise Tab 3: Active Sandbox (3-point self-check rubric: Register, Collocation, Cadence + revealable model answer)
-    function renderActiveSandboxDrill(container, item, idx, total) {
-      const revealed = appState.practice.sandboxRevealed;
-      const modelAnswer = item.sandboxSample || item.upgraded;
-      const rubric = item.sandboxRubric || [
-        'Register: Tone fits the conversational or workplace scenario naturally.',
-        'Collocation: Target phrase used with accurate prepositions and word partners.',
-        'Cadence: Crisp, unforced native phrasing.'
-      ];
-      const statusMeta = getStatusPillProps(item.status);
-
-      container.innerHTML = `
-        <div class="rounded-2xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card p-5 sm:p-8 space-y-6 shadow-sm">
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <div class="flex items-center gap-2 flex-wrap">
-              <span class="px-2.5 py-1 rounded-md text-[11px] font-mono border ${getCategoryPillClass(item.category)}">
-                ${escapeHtml(item.category)} · Active Sandbox
-              </span>
-              ${item.cefr ? `<span class="px-2 py-1 rounded-md text-[11px] font-mono border ${getCefrPillClass(item.cefr)}">${escapeHtml(item.cefr)}</span>` : ''}
-              <span class="px-2 py-1 rounded-md text-[11px] font-mono border ${getRegisterPillClass(item.register)}">
-                ${escapeHtml(item.register || 'Conversational')}
-              </span>
-            </div>
-            <span class="text-xs font-mono text-stone-400">Item ${idx + 1} / ${total}</span>
-          </div>
-
           <div class="space-y-2.5">
-            <div class="flex flex-wrap items-center justify-between gap-2">
-              <h2 class="serif-display text-2xl font-medium">
-                ${escapeHtml(item.phrase)}
-              </h2>
-              <div class="flex items-center gap-1.5">
-                ${renderAudioButton(item.id, 'US', false)}
-                ${renderAudioButton(item.id, 'UK', false)}
-              </div>
-            </div>
-            <p class="text-sm text-stone-600 dark:text-stone-300 leading-relaxed">
-              <span class="font-mono text-xs uppercase text-stone-400 mr-1.5">Prompt:</span>
-              ${escapeHtml(item.sandboxPrompt || `Write a natural sentence using "${item.phrase}".`)}
-            </p>
+            <span class="block text-[10px] font-mono uppercase tracking-wider text-stone-400 px-1">Meaning / Polish</span>
+            ${step.right.map(tile => {
+              const matched = step.matchedIds.includes(tile.id);
+              const selected = step.selectedRight === tile.id;
+              const wrong = step.wrongFlash && step.wrongFlash.rightId === tile.id;
+              const cls = matched ? 'is-matched' : (wrong ? 'is-wrong duo-shake' : (selected ? 'is-selected' : ''));
+              return `
+                <button ${matched ? 'disabled' : ''} onclick="practiceTapMatchTile('right', '${escapeAttr(tile.id)}')" class="duo-option ${cls} w-full text-left px-4 py-3.5 rounded-xl min-h-[58px] flex items-center justify-between gap-2">
+                  <span class="text-xs sm:text-sm text-stone-700 dark:text-stone-200 leading-snug">${escapeHtml(tile.label)}</span>
+                  ${matched ? '<span class="text-emerald-600 dark:text-emerald-400 font-mono text-xs">✓</span>' : ''}
+                </button>
+              `;
+            }).join('')}
           </div>
+        </div>
+      `;
+    }
 
-          <div class="space-y-2">
-            <label for="sandbox-draft-input" class="block text-xs font-mono uppercase tracking-wider text-stone-400">
-              Your Sentence
-            </label>
-            <textarea id="sandbox-draft-input" rows="3" oninput="appState.practice.sandboxDraft = this.value" placeholder="Write your own natural sentence using the target expression..." class="w-full p-3.5 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-bg dark:bg-charcoal-bg text-sm focus:outline-none focus:border-[#C46548]">${escapeHtml(appState.practice.sandboxDraft)}</textarea>
-          </div>
+    // ---- Exercise 5: Audio Listening Recall (1x & 0.75x Slow) ----
+    function renderStepListen(step) {
+      const item = step.item;
+      const normalKey = `listen-${item.id}-normal`;
+      const slowKey = `listen-${item.id}-slow`;
+      const isNormalPlaying = appState.speakingKey === normalKey;
+      const isSlowPlaying = appState.speakingKey === slowKey;
 
-          <!-- 3-Point Self-Check Rubric (Register, Collocation, Cadence) -->
-          <div class="p-4 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-subtle/45 dark:bg-charcoal-subtle/45 space-y-2">
-            <span class="block text-[11px] font-mono uppercase tracking-wider text-stone-500 dark:text-stone-400 font-semibold">
-              3-Point Self-Check Rubric (Register · Collocation · Cadence)
+      return `
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-1 rounded-lg text-[11px] font-mono border ${getCategoryPillClass(item.category)}">
+              ${escapeHtml(item.category)}
             </span>
-            ${rubric.map(r => `
-              <label class="flex items-start gap-2.5 text-xs sm:text-sm text-stone-700 dark:text-stone-300 cursor-pointer">
-                <input type="checkbox" class="mt-0.5 rounded border-stone-400 accent-[#C46548] focus:ring-[#C46548]" />
-                <span>${escapeHtml(r)}</span>
-              </label>
-            `).join('')}
+            <span class="text-xs font-mono text-stone-400">Audio Recall</span>
+          </div>
+          <button onclick="const s=getCurrentPracticeStep(); if(s){s.showTranscript=!s.showTranscript; renderPracticeStudio();}" class="text-xs font-mono text-stone-500 dark:text-stone-400 hover:text-[#C46548] min-h-[32px]">
+            ${step.showTranscript ? 'Hide transcript' : 'Show transcript'}
+          </button>
+        </div>
+
+        <div class="space-y-4">
+          <p class="text-xs font-mono uppercase tracking-wider text-[#B05438] dark:text-[#E58E73] font-semibold">
+            Listen and pick the expression you heard
+          </p>
+
+          <div class="flex flex-wrap items-center justify-center gap-3 py-4 px-4 rounded-2xl bg-paper-subtle/60 dark:bg-charcoal-subtle/60 border border-paper-border dark:border-charcoal-border">
+            <button data-audio-key="${normalKey}" onclick="speakItem('${escapeAttr(item.id)}', 'US', '${escapeAttr(step.audioText)}', 0.95, '${normalKey}')" class="duo-audio-btn px-6 py-3.5 rounded-2xl font-semibold text-sm flex items-center gap-3 min-h-[56px]">
+              <svg class="icon-speaker ${isNormalPlaying ? 'hidden' : ''} w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+              </svg>
+              <span class="icon-eq ${isNormalPlaying ? 'flex' : 'hidden'} items-end gap-0.5 h-4 w-5 justify-center">
+                <span class="eq-bar w-1 h-full bg-white rounded-full"></span>
+                <span class="eq-bar w-1 h-full bg-white rounded-full"></span>
+                <span class="eq-bar w-1 h-full bg-white rounded-full"></span>
+              </span>
+              <span>Tap to Listen</span>
+              <kbd class="hidden md:inline-block bg-white/20 text-white border border-white/25">A</kbd>
+            </button>
+
+            <button data-audio-key="${slowKey}" onclick="speakItem('${escapeAttr(item.id)}', 'US', '${escapeAttr(step.audioText)}', 0.72, '${slowKey}')" class="duo-option px-4 py-3.5 rounded-2xl font-mono text-xs font-semibold flex items-center gap-2 min-h-[56px] text-paper-ink dark:text-charcoal-cream" title="Play slowly (0.75×)">
+              <span class="icon-speaker ${isSlowPlaying ? 'hidden' : ''} text-base leading-none">🐢</span>
+              <span class="icon-eq ${isSlowPlaying ? 'flex' : 'hidden'} items-end gap-0.5 h-3.5 w-4 justify-center">
+                <span class="eq-bar w-0.5 h-full bg-[#C46548] rounded-full"></span>
+                <span class="eq-bar w-0.5 h-full bg-[#C46548] rounded-full"></span>
+                <span class="eq-bar w-0.5 h-full bg-[#C46548] rounded-full"></span>
+              </span>
+              <span>0.75× Slow</span>
+            </button>
           </div>
 
-          ${!revealed ? `
-            <div class="flex justify-end">
-              <button onclick="revealSandboxRubric()" class="px-4 py-2.5 rounded-xl bg-[#C46548] hover:bg-[#B05438] text-white text-xs sm:text-sm font-medium transition-colors min-h-[44px]">
-                Reveal Model Answer
+          ${(step.showTranscript || step.checked) ? `
+            <p class="text-sm text-center serif-display italic text-stone-600 dark:text-stone-300 px-2">
+              “${escapeHtml(step.audioText)}”
+            </p>
+          ` : ''}
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+          ${step.options.map((opt, idx) => {
+            let stateClass = '';
+            let badgeClass = 'border-paper-border dark:border-charcoal-border text-stone-500';
+            let badgeText = `${idx + 1}`;
+
+            if (step.checked) {
+              if (idx === step.correctIdx) {
+                stateClass = 'is-correct';
+                badgeClass = 'bg-emerald-600 border-emerald-600 text-white';
+                badgeText = '✓';
+              } else if (idx === step.selectedIdx) {
+                stateClass = 'is-wrong duo-shake';
+                badgeClass = 'bg-rose-600 border-rose-600 text-white';
+                badgeText = '✕';
+              } else {
+                stateClass = 'opacity-55';
+              }
+            } else if (idx === step.selectedIdx) {
+              stateClass = 'is-selected';
+              badgeClass = 'bg-[#C46548] border-[#C46548] text-white';
+            }
+
+            return `
+              <button ${step.checked ? 'disabled' : ''} onclick="practiceSelectOption(${idx})" class="duo-option ${stateClass} text-left p-3.5 rounded-xl min-h-[64px] flex items-start gap-3">
+                <span class="w-6 h-6 rounded-lg border flex items-center justify-center text-xs font-mono font-semibold shrink-0 mt-0.5 ${badgeClass}">
+                  ${badgeText}
+                </span>
+                <div class="space-y-0.5">
+                  <div class="text-sm font-semibold text-paper-ink dark:text-charcoal-cream leading-snug">${escapeHtml(opt.phrase)}</div>
+                  <div class="text-xs text-stone-500 dark:text-stone-400 leading-snug">${escapeHtml(opt.cue)}</div>
+                </div>
               </button>
-            </div>
-          ` : `
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
+
+    // ---- Exercise 6: Guided Active Sandbox ----
+    function renderStepSandbox(step) {
+      const item = step.item;
+      const detected = checkSandboxDraftContainsPhrase(step.draft, item);
+
+      return `
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-1 rounded-lg text-[11px] font-mono border ${getCategoryPillClass(item.category)}">
+              ${escapeHtml(item.category)}
+            </span>
+            <span class="text-xs font-mono text-stone-400">Free Production</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            ${renderAudioButton(item.id, 'US', false)}
+            ${renderAudioButton(item.id, 'UK', false)}
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <p class="text-xs font-mono uppercase tracking-wider text-[#B05438] dark:text-[#E58E73] font-semibold">
+            Use this phrase in your own sentence
+          </p>
+          <h2 class="serif-display text-2xl sm:text-[26px] font-medium text-paper-ink dark:text-charcoal-cream">
+            ${escapeHtml(item.phrase)}
+          </h2>
+          <p class="text-xs sm:text-sm text-stone-600 dark:text-stone-300 leading-relaxed">
+            ${escapeHtml(step.prompt)}
+          </p>
+        </div>
+
+        <div class="space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span id="sandbox-detect-pill" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-mono transition-all ${detected ? 'bg-emerald-500/12 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30' : 'bg-paper-subtle dark:bg-charcoal-subtle text-stone-500 dark:text-stone-400 border border-paper-border dark:border-charcoal-border'}">
+              <span>${detected ? '✓' : '○'}</span>
+              <span>${detected ? 'Target phrase detected' : `Try including “${escapeHtml(getCleanPhraseLabel(item))}”`}</span>
+            </span>
+
+            ${!step.revealed ? `
+              <button type="button" onclick="practiceInsertSandboxStarter()" class="text-xs font-mono text-[#B05438] dark:text-[#E58E73] hover:underline min-h-[30px]">
+                + Insert phrase
+              </button>
+            ` : ''}
+          </div>
+
+          <textarea id="sandbox-draft-input" rows="3" ${step.checked ? 'disabled' : ''} oninput="practiceOnSandboxInput(this.value)" placeholder="Write a natural sentence as if speaking to a colleague or friend..." class="w-full p-4 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-bg dark:bg-charcoal-bg text-sm sm:text-base leading-relaxed focus:outline-none focus:border-[#C46548]">${escapeHtml(step.draft)}</textarea>
+        </div>
+
+        ${step.revealed ? `
+          <div class="duo-drawer-enter space-y-4 pt-1">
             <div class="p-4 rounded-xl border border-[#C46548]/30 bg-[#C46548]/[0.05] space-y-2">
               <div class="flex items-center justify-between gap-2">
                 <span class="text-[11px] font-mono uppercase tracking-wider text-[#B05438] dark:text-[#E58E73] font-semibold">
                   Model Native Answer
                 </span>
-                <button onclick="speakItem('${item.id}', 'US', '${escapeAttr(modelAnswer)}')" class="text-[11px] font-mono text-[#B05438] dark:text-[#E58E73] hover:underline">
-                  Listen (US)
+                <button onclick="speakItem('${escapeAttr(item.id)}', 'US', '${escapeAttr(step.modelAnswer)}')" class="inline-flex items-center gap-1.5 text-xs font-mono text-[#B05438] dark:text-[#E58E73] hover:underline">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                  <span>Listen</span>
                 </button>
               </div>
-              <p class="text-xs sm:text-sm font-medium text-paper-ink dark:text-charcoal-cream leading-relaxed">
-                “${escapeHtml(modelAnswer)}”
+              <p class="serif-display text-base sm:text-lg text-paper-ink dark:text-charcoal-cream leading-relaxed">
+                “${escapeHtml(step.modelAnswer)}”
               </p>
             </div>
-          `}
 
-          <div class="flex flex-wrap items-center justify-between pt-3 border-t border-paper-border dark:border-charcoal-border gap-2">
-            <button onclick="stepPracticeItem(-1)" class="px-3.5 py-2 rounded-xl border border-paper-border dark:border-charcoal-border text-xs font-medium text-stone-600 dark:text-stone-400 min-h-[44px]">
-              ← Previous
+            <div class="p-4 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-subtle/50 dark:bg-charcoal-subtle/50 space-y-2">
+              <span class="block text-[11px] font-mono uppercase tracking-wider text-stone-500 dark:text-stone-400 font-semibold">
+                Quick Self-Check
+              </span>
+              ${step.rubric.map((r, rIdx) => `
+                <label class="flex items-start gap-2.5 text-xs sm:text-sm text-stone-700 dark:text-stone-300 cursor-pointer">
+                  <input type="checkbox" ${step.rubricChecked[rIdx] ? 'checked' : ''} onchange="practiceToggleRubricItem(${rIdx})" class="mt-1 rounded border-stone-400 accent-[#C46548]" />
+                  <span>${escapeHtml(r)}</span>
+                </label>
+              `).join('')}
+            </div>
+
+            ${!step.checked ? `
+              <div class="grid grid-cols-2 gap-3 pt-1">
+                <button onclick="practiceGradeSandbox(false)" class="duo-option px-4 py-3 rounded-xl text-xs sm:text-sm font-semibold text-stone-700 dark:text-stone-200 min-h-[48px]">
+                  Needs Practice (Review Later)
+                </button>
+                <button onclick="practiceGradeSandbox(true)" class="duo-btn-success px-4 py-3 rounded-xl text-xs sm:text-sm font-semibold min-h-[48px]">
+                  ✓ Nailed It (+20 XP)
+                </button>
+              </div>
+            ` : ''}
+          </div>
+        ` : ''}
+      `;
+    }
+
+    // ---- Unified Tactile Bottom Action / Feedback Drawer ----
+    function renderPracticeBottomDrawer(step, session) {
+      // Unchecked Match Pairs has no Check button — completes automatically upon matching all pairs
+      if (step.type === 'match' && !step.checked) {
+        return `
+          <div class="flex items-center justify-between gap-3 px-4 py-3 rounded-2xl border border-paper-border dark:border-charcoal-border bg-paper-card/85 dark:bg-charcoal-card/85">
+            <span class="text-xs font-mono text-stone-500 dark:text-stone-400">
+              Match all ${step.left.length} pairs to continue
+            </span>
+            <button onclick="practiceSkipStep()" class="px-3.5 py-2 rounded-xl text-xs font-mono text-stone-500 hover:text-paper-ink dark:hover:text-charcoal-cream min-h-[38px]">
+              Skip
             </button>
-            <div class="flex items-center gap-2">
-              <button onclick="cycleItemStatus('${item.id}')" class="px-3 py-2 rounded-xl border text-xs font-mono min-h-[44px] flex items-center gap-1.5 ${statusMeta.style}">
-                <span class="w-2 h-2 rounded-full ${statusMeta.dot}"></span>
-                <span>${statusMeta.label}</span>
-              </button>
-              <button onclick="stepPracticeItem(1)" class="px-4 py-2 rounded-xl bg-paper-ink dark:bg-charcoal-cream text-white dark:text-charcoal-bg text-xs sm:text-sm font-medium hover:opacity-90 min-h-[44px]">
-                Next →
+          </div>
+        `;
+      }
+
+      // Sandbox revealed awaiting self-grade
+      if (step.type === 'sandbox' && step.revealed && !step.checked) {
+        return '';
+      }
+
+      // Pre-Check Action Bar
+      if (!step.checked) {
+        const ready = isStepReadyToCheck(step);
+        const skipLabel = step.type === 'listen' ? "Can't listen now" : 'Skip';
+        const ctaLabel = step.type === 'sandbox' ? 'Compare with Model' : 'Check Answer';
+
+        return `
+          <div class="flex items-center justify-between gap-3 p-3.5 sm:p-4 rounded-2xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card shadow-sm">
+            <button onclick="practiceSkipStep()" class="px-4 py-2.5 rounded-xl border border-paper-border dark:border-charcoal-border text-xs sm:text-sm font-medium text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream transition-colors min-h-[46px]">
+              ${skipLabel}
+            </button>
+
+            <button id="practice-check-btn" ${ready ? '' : 'disabled'} onclick="checkCurrentPracticeStep()" class="duo-btn-primary px-6 sm:px-8 py-2.5 rounded-xl text-sm font-semibold min-h-[46px] flex items-center gap-2">
+              <span>${ctaLabel}</span>
+              <kbd class="hidden md:inline-block bg-white/20 text-white border border-white/25">↵</kbd>
+            </button>
+          </div>
+        `;
+      }
+
+      // Post-Check Slide-Up Feedback Sheet
+      const item = step.item;
+      const statusMeta = item ? getStatusPillProps(item.status) : null;
+      const praiseList = ['Spot on!', 'Natural & crisp!', 'Sounds native!', 'Clean phrasing!', 'Nailed the register!'];
+      const praise = session.combo >= 3
+        ? `${session.combo} in a row!`
+        : praiseList[session.attempted % praiseList.length];
+
+      let expectedText = '';
+      if (!step.isCorrect) {
+        if (step.type === 'upgrade') expectedText = step.options[step.correctIdx]?.text || item.upgraded;
+        else if (step.type === 'cloze') expectedText = `Missing word: “${step.answer}”`;
+        else if (step.type === 'builder') expectedText = step.targetSentence;
+        else if (step.type === 'listen') expectedText = `${getCleanPhraseLabel(item)} — “${step.audioText}”`;
+        else if (step.type === 'sandbox') expectedText = step.modelAnswer;
+      }
+
+      const nuanceSnippet = item
+        ? (step.type === 'cloze' && step.hadTypo
+            ? `Accepted with a minor spelling slip — exact spelling is “${step.answer}”. ${item.nuance}`
+            : item.nuance)
+        : '';
+
+      if (step.isCorrect) {
+        return `
+          <div class="duo-drawer-enter p-4 sm:p-5 rounded-2xl border-2 border-emerald-500/45 bg-emerald-500/[0.09] space-y-3.5">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div class="flex items-start gap-3">
+                <span class="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-sm shrink-0 mt-0.5">✓</span>
+                <div class="space-y-1">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span class="font-semibold text-base text-emerald-800 dark:text-emerald-300">${escapeHtml(praise)}</span>
+                    <span class="px-2 py-0.5 rounded-full text-[11px] font-mono bg-emerald-600/15 text-emerald-800 dark:text-emerald-200 font-semibold">
+                      +${step.type === 'builder' || step.type === 'sandbox' ? 20 : 15} XP
+                    </span>
+                  </div>
+                  ${item && step.type !== 'match' ? `
+                    <p class="text-xs sm:text-sm text-stone-700 dark:text-stone-200 leading-relaxed">
+                      <span class="font-semibold text-paper-ink dark:text-charcoal-cream">${escapeHtml(item.phrase)}</span>
+                      <span class="font-mono text-[11px] text-stone-500 dark:text-stone-400 ml-1">${escapeHtml(item.ipa || '')}</span>
+                      ${nuanceSnippet ? ` — ${escapeHtml(nuanceSnippet)}` : ''}
+                    </p>
+                  ` : `
+                    <p class="text-xs sm:text-sm text-emerald-800/85 dark:text-emerald-200/85">
+                      ${step.mistakes === 0 ? 'Flawless board with zero misses!' : 'All pairs locked in!'}
+                    </p>
+                  `}
+                </div>
+              </div>
+
+              <button onclick="advancePracticeStep()" class="duo-btn-success px-6 sm:px-7 py-3 rounded-xl text-sm font-semibold shrink-0 min-h-[46px] flex items-center justify-center gap-2">
+                <span>Continue</span>
+                <kbd class="hidden md:inline-block bg-white/20 text-white border border-white/25">↵</kbd>
               </button>
             </div>
+
+            ${item && step.type !== 'match' ? `
+              <div class="flex flex-wrap items-center justify-between gap-2 pt-2.5 border-t border-emerald-500/20">
+                <div class="flex items-center gap-1.5">
+                  ${renderAudioButton(item.id, 'US', false)}
+                  ${renderAudioButton(item.id, 'UK', false)}
+                </div>
+                <button onclick="cycleItemStatus('${escapeAttr(item.id)}')" class="px-3 py-1.5 rounded-lg border text-xs font-mono min-h-[36px] flex items-center gap-1.5 ${statusMeta.style}">
+                  <span class="w-2 h-2 rounded-full ${statusMeta.dot}"></span>
+                  <span>${statusMeta.label}</span>
+                </button>
+              </div>
+            ` : ''}
           </div>
+        `;
+      }
+
+      // Incorrect Feedback Banner
+      return `
+        <div class="duo-drawer-enter p-4 sm:p-5 rounded-2xl border-2 border-rose-500/45 bg-rose-500/[0.08] space-y-3.5">
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+            <div class="flex items-start gap-3">
+              <span class="w-8 h-8 rounded-full bg-rose-600 text-white flex items-center justify-center font-bold text-sm shrink-0 mt-0.5">✕</span>
+              <div class="space-y-1.5">
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="font-semibold text-base text-rose-800 dark:text-rose-300">Almost — here's the natural phrasing</span>
+                  ${!step.isReview ? `
+                    <span class="px-2 py-0.5 rounded-full text-[11px] font-mono bg-amber-500/15 text-amber-800 dark:text-amber-300">
+                      ↻ Queued for review
+                    </span>
+                  ` : ''}
+                </div>
+                ${expectedText ? `
+                  <p class="text-sm font-semibold text-paper-ink dark:text-charcoal-cream leading-relaxed">
+                    ${escapeHtml(expectedText)}
+                  </p>
+                ` : ''}
+                ${nuanceSnippet ? `
+                  <p class="text-xs sm:text-sm text-stone-700 dark:text-stone-300 leading-relaxed">
+                    ${escapeHtml(nuanceSnippet)}
+                  </p>
+                ` : ''}
+              </div>
+            </div>
+
+            <button onclick="advancePracticeStep()" class="duo-btn-danger px-6 sm:px-7 py-3 rounded-xl text-sm font-semibold shrink-0 min-h-[46px] flex items-center justify-center gap-2">
+              <span>Got it</span>
+              <kbd class="hidden md:inline-block bg-white/20 text-white border border-white/25">↵</kbd>
+            </button>
+          </div>
+
+          ${item && step.type !== 'match' ? `
+            <div class="flex flex-wrap items-center justify-between gap-2 pt-2.5 border-t border-rose-500/20">
+              <div class="flex items-center gap-1.5">
+                ${renderAudioButton(item.id, 'US', false)}
+                ${renderAudioButton(item.id, 'UK', false)}
+              </div>
+              <span class="text-xs text-stone-500 dark:text-stone-400">PL: ${escapeHtml(item.polish || '—')}</span>
+            </div>
+          ` : ''}
         </div>
       `;
     }
 
-    function revealSandboxRubric() {
-      if (!appState.practice.sandboxDraft.trim()) {
-        showToast('Write your sentence first so you can compare it with the model answer.');
-        return;
-      }
-      appState.practice.sandboxRevealed = true;
-      renderPracticeStudio();
+    // ---- Stage C: Lesson Complete Celebration Summary ----
+    function renderPracticeSummary(container) {
+      const session = appState.practice.session;
+      const stats = appState.practice.stats;
+      if (!session) return;
+
+      const accuracy = session.initialStepCount > 0
+        ? Math.min(100, Math.round((session.correctFirstTry / session.initialStepCount) * 100))
+        : 100;
+      const practicedRows = Array.from(session.practicedItemMap.values());
+      const promotableCount = practicedRows.filter(r => r.nailed && (appState.itemsById.get(r.item.id)?.status === 'new')).length;
+
+      const confettiColors = ['#C46548', '#10B981', '#F59E0B', '#D97B5E', '#059669'];
+      const confettiPieces = Array.from({ length: 18 }, (_, i) => {
+        const left = 6 + ((i * 5.2) % 88);
+        const delay = ((i % 6) * 0.08).toFixed(2);
+        const dur = (1.2 + (i % 4) * 0.22).toFixed(2);
+        const color = confettiColors[i % confettiColors.length];
+        return `<span class="duo-confetti" style="left:${left}%;background:${color};--delay:${delay}s;--dur:${dur}s;"></span>`;
+      }).join('');
+
+      container.innerHTML = `
+        <div class="duo-step-enter space-y-6">
+          <div class="relative overflow-hidden rounded-3xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card p-6 sm:p-9 shadow-sm text-center space-y-6">
+            ${confettiPieces}
+
+            <div class="space-y-2 relative">
+              <div class="w-16 h-16 mx-auto rounded-2xl bg-emerald-500/12 border border-emerald-500/30 flex items-center justify-center text-3xl duo-pop">
+                ✦
+              </div>
+              <p class="text-xs font-mono uppercase tracking-wider text-emerald-700 dark:text-emerald-300 font-semibold">
+                Lesson Complete · +15 XP Bonus Included
+              </p>
+              <h1 class="serif-display text-3xl sm:text-4xl font-medium text-paper-ink dark:text-charcoal-cream">
+                ${accuracy >= 90 ? 'Sharp & Natural.' : (accuracy >= 70 ? 'Solid Progress!' : 'Great Reps Today!')}
+              </h1>
+              <p class="text-xs sm:text-sm text-stone-500 dark:text-stone-400">
+                Streak: 🔥 ${stats.streakDays} ${stats.streakDays === 1 ? 'day' : 'days'} · Daily XP: ${stats.todayXp} / ${PRACTICE_DAILY_GOAL_XP}
+              </p>
+            </div>
+
+            <!-- 3 Key Metrics -->
+            <div class="grid grid-cols-3 gap-2.5 sm:gap-4 max-w-lg mx-auto relative">
+              <div class="p-3.5 sm:p-4 rounded-2xl border border-amber-500/25 bg-amber-500/[0.06] space-y-1">
+                <div class="text-[10px] font-mono uppercase tracking-wider text-amber-700 dark:text-amber-400">Total XP</div>
+                <div class="text-xl sm:text-2xl font-mono font-semibold text-paper-ink dark:text-charcoal-cream">+${session.xpEarned}</div>
+              </div>
+              <div class="p-3.5 sm:p-4 rounded-2xl border border-emerald-500/25 bg-emerald-500/[0.06] space-y-1">
+                <div class="text-[10px] font-mono uppercase tracking-wider text-emerald-700 dark:text-emerald-300">Accuracy</div>
+                <div class="text-xl sm:text-2xl font-mono font-semibold text-paper-ink dark:text-charcoal-cream">${accuracy}%</div>
+              </div>
+              <div class="p-3.5 sm:p-4 rounded-2xl border border-[#C46548]/25 bg-[#C46548]/[0.06] space-y-1">
+                <div class="text-[10px] font-mono uppercase tracking-wider text-[#B05438] dark:text-[#E58E73]">Best Combo</div>
+                <div class="text-xl sm:text-2xl font-mono font-semibold text-paper-ink dark:text-charcoal-cream">${session.bestCombo}×</div>
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2 relative">
+              <button onclick="startPracticeLesson('${escapeAttr(session.trackMode)}')" class="duo-btn-primary w-full sm:w-auto px-7 py-3.5 rounded-2xl text-sm sm:text-base font-semibold min-h-[50px]">
+                Start Another Lesson
+              </button>
+              <button onclick="exitPracticeLesson()" class="duo-option w-full sm:w-auto px-6 py-3.5 rounded-2xl text-sm font-medium text-stone-700 dark:text-stone-200 min-h-[50px]">
+                Back to Practice Hub
+              </button>
+            </div>
+          </div>
+
+          <!-- Practiced Phrases Mastery Quick-Update -->
+          ${practicedRows.length > 0 ? `
+            <div class="rounded-2xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card p-5 sm:p-6 space-y-4">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-paper-border dark:border-charcoal-border">
+                <div>
+                  <h2 class="serif-display text-lg font-medium text-paper-ink dark:text-charcoal-cream">Phrases Practiced</h2>
+                  <p class="text-xs text-stone-500 dark:text-stone-400">Tap any status pill to update your Library mastery.</p>
+                </div>
+                ${promotableCount > 0 ? `
+                  <button onclick="promoteNailedLessonItems()" class="px-3.5 py-2 rounded-xl bg-emerald-500/12 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300 text-xs font-mono font-medium hover:bg-emerald-500/20 transition-colors min-h-[38px] self-start sm:self-auto">
+                    Mark ${promotableCount} nailed as Practicing
+                  </button>
+                ` : ''}
+              </div>
+
+              <div class="divide-y divide-paper-border dark:divide-charcoal-border">
+                ${practicedRows.map(({ item, nailed }) => {
+                  const live = appState.itemsById.get(item.id) || item;
+                  const statusMeta = getStatusPillProps(live.status);
+                  return `
+                    <div class="py-3 flex items-center justify-between gap-3">
+                      <div class="min-w-0">
+                        <div class="flex items-center gap-2">
+                          <span class="text-xs ${nailed ? 'text-emerald-600 dark:text-emerald-400' : 'text-amber-600 dark:text-amber-400'}">${nailed ? '✓' : '↻'}</span>
+                          <span class="text-sm font-medium text-paper-ink dark:text-charcoal-cream truncate">${escapeHtml(live.phrase)}</span>
+                        </div>
+                        <p class="text-xs text-stone-500 dark:text-stone-400 pl-5 truncate">${escapeHtml(live.polish || '')}</p>
+                      </div>
+                      <div class="flex items-center gap-2 shrink-0">
+                        ${renderAudioButton(live.id, 'US', false)}
+                        <button onclick="cycleItemStatus('${escapeAttr(live.id)}')" class="px-2.5 py-1.5 rounded-lg border text-xs font-mono min-h-[36px] flex items-center gap-1.5 ${statusMeta.style}">
+                          <span class="w-2 h-2 rounded-full ${statusMeta.dot}"></span>
+                          <span>${statusMeta.label}</span>
+                        </button>
+                      </div>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+          ` : ''}
+        </div>
+      `;
     }
 
     // ==================== VIEW 3: LIBRARY RENDERER (PAGINATED FOR LARGE DATABASES) ====================
