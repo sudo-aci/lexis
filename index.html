@@ -941,6 +941,14 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
     .dark .nav-desktop-active::after {
       background-color: #E2876B;
     }
+
+    html.dark {
+      color-scheme: dark;
+    }
+    html.dark select option {
+      background-color: #1F1E1C;
+      color: #F3F0EA;
+    }
   </style>
 </head>
 <body class="bg-paper-bg text-paper-ink dark:bg-charcoal-bg dark:text-charcoal-cream min-h-screen flex flex-col antialiased selection:bg-[#C46548]/15 selection:text-[#A84B30] dark:selection:text-[#E58E73]">
@@ -1180,7 +1188,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
     </section>
 
     <!-- ==================== VIEW 4: PACKS, BACKUP & EXPORT ==================== -->
-    <section id="view-backup" class="space-y-6 max-w-2xl mx-auto">
+    <section id="view-backup" class="hidden space-y-6 max-w-2xl mx-auto">
       <div class="space-y-1">
         <h1 class="serif-display text-2xl font-medium text-paper-ink dark:text-charcoal-cream">
           Packs &amp; Backup
@@ -1405,7 +1413,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
         <span>Library</span>
       </button>
 
-      <button data-nav="backup" onclick="switchView('backup')" class="nav-btn flex flex-col items-center justify-center gap-1 rounded-xl text-[11px] font-medium transition-colors min-h-[48px] text-[#B05438] dark:text-[#E58E73] bg-[#C46548]/10">
+      <button data-nav="backup" onclick="switchView('backup')" class="nav-btn flex flex-col items-center justify-center gap-1 rounded-xl text-[11px] font-medium transition-colors min-h-[48px] text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
           <polyline points="17 8 12 3 7 8"></polyline>
@@ -2585,7 +2593,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       for (const [pid, count] of packCounts.entries()) {
         const meta = appState.installedPacks.get(pid);
         const label = meta ? meta.name : (pid === 'custom' ? 'Custom / Batch Imported' : pid);
-        options.push(`<option value="${escapeAttr(pid)}">${escapeHtml(label)} (${count})</option>`);
+        options.push(`<option value="${escapeHtml(pid)}">${escapeHtml(label)} (${count})</option>`);
       }
 
       select.innerHTML = options.join('');
@@ -2826,8 +2834,8 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         const isSpeaking = btn.getAttribute('data-audio-key') === appState.speakingKey;
         const icon = btn.querySelector('.icon-speaker');
         const eq = btn.querySelector('.icon-eq');
-        if (icon && eq) {
-          icon.classList.toggle('hidden', isSpeaking);
+        if (icon) icon.classList.toggle('hidden', isSpeaking);
+        if (eq) {
           eq.classList.toggle('hidden', !isSpeaking);
           eq.classList.toggle('flex', isSpeaking);
         }
@@ -2914,18 +2922,32 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     }
 
     function highlightPhraseInText(text, phrase) {
-      const safeText = escapeHtml(text || '');
+      const rawText = String(text || '');
       const clean = String(phrase || '')
         .replace(/\[.*?\]/g, '')
         .replace(/\.\.\.$/, '')
         .trim();
-      if (!clean || clean.length < 3) return safeText;
-      const escapedPhrase = escapeHtml(clean).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      if (!clean || clean.length < 3) return escapeHtml(rawText);
+      const regexBody = clean.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       try {
-        const re = new RegExp(`(${escapedPhrase})`, 'ig');
-        return safeText.replace(re, '<span class="text-[#C46548] dark:text-[#E2876B] font-medium">$1</span>');
+        const re = new RegExp(regexBody, 'ig');
+        let result = '';
+        let lastIndex = 0;
+        let match;
+        while ((match = re.exec(rawText)) !== null) {
+          if (match.index > lastIndex) {
+            result += escapeHtml(rawText.slice(lastIndex, match.index));
+          }
+          result += `<span class="text-[#C46548] dark:text-[#E2876B] font-medium">${escapeHtml(match[0])}</span>`;
+          lastIndex = match.index + match[0].length;
+          if (match[0].length === 0) break;
+        }
+        if (lastIndex < rawText.length) {
+          result += escapeHtml(rawText.slice(lastIndex));
+        }
+        return result;
       } catch (e) {
-        return safeText;
+        return escapeHtml(rawText);
       }
     }
 
@@ -2933,7 +2955,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       const key = `${itemId}-${accent}`;
       const isSpeaking = appState.speakingKey === key;
       return `
-        <button data-audio-key="${escapeAttr(key)}" onclick="speakItem('${escapeAttr(itemId)}', '${accent}')" class="inline-flex items-center gap-1 px-1.5 py-1 rounded-md text-xs text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream hover:bg-paper-subtle/70 dark:hover:bg-charcoal-subtle/70 transition-colors" title="Listen (${accent})">
+        <button data-audio-key="${escapeHtml(key)}" onclick="speakItem('${escapeAttr(itemId)}', '${accent}')" class="inline-flex items-center gap-1 px-1.5 py-1 rounded-md text-xs text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream hover:bg-paper-subtle/70 dark:hover:bg-charcoal-subtle/70 transition-colors" title="Listen (${accent})">
           ${showIcon ? `
             <svg class="icon-speaker ${isSpeaking ? 'hidden' : ''} w-3.5 h-3.5 text-[#C46548] dark:text-[#E2876B]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
@@ -2945,7 +2967,6 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
               <span class="eq-bar w-0.5 h-full bg-[#C46548] dark:bg-[#E2876B] rounded-full"></span>
             </span>
           ` : `
-            <span class="icon-speaker ${isSpeaking ? 'hidden' : ''}"></span>
             <span class="icon-eq ${isSpeaking ? 'flex' : 'hidden'} items-end gap-0.5 h-2.5 w-3 justify-center">
               <span class="eq-bar w-0.5 h-full bg-[#C46548] dark:bg-[#E2876B] rounded-full"></span>
               <span class="eq-bar w-0.5 h-full bg-[#C46548] dark:bg-[#E2876B] rounded-full"></span>
@@ -2956,12 +2977,16 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       `;
     }
 
-    function renderFullPhraseCard(item, showShortcutHints = false) {
+    function renderFullPhraseCard(item) {
       const isNuanceOpen = appState.openNuanceIds.has(item.id);
       const isPolishOpen = appState.openPolishIds.has(item.id);
       const statusMeta = getStatusPillProps(item.status);
       const dialogues = item.dialogues || [];
-      const metaParts = [item.category, item.cefr, item.register || 'Conversational'].filter(Boolean);
+      const metaParts = [
+        item.category ? { text: item.category, mono: false } : null,
+        item.cefr ? { text: item.cefr, mono: true } : null,
+        { text: item.register || 'Conversational', mono: false }
+      ].filter(Boolean);
 
       return `
         <article class="rounded-2xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card px-6 sm:px-9 py-7 sm:py-9 transition-all flex flex-col justify-between">
@@ -2971,7 +2996,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
               <div class="flex items-center gap-2 text-xs text-stone-500 dark:text-stone-400 flex-wrap">
                 ${metaParts.map((part, idx) => `
                   ${idx > 0 ? '<span class="text-stone-300 dark:text-stone-600">·</span>' : ''}
-                  <span class="${idx === 1 ? 'font-mono' : ''}">${escapeHtml(part)}</span>
+                  <span class="${part.mono ? 'font-mono' : ''}">${escapeHtml(part.text)}</span>
                 `).join('')}
               </div>
 
@@ -2992,7 +3017,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
                 ${escapeHtml(item.phrase)}
               </h2>
               ${item.ipa ? `
-                <p class="font-mono text-sm text-stone-400 dark:text-stone-500">
+                <p class="font-mono text-sm text-stone-500 dark:text-stone-400">
                   ${escapeHtml(item.ipa)}
                 </p>
               ` : ''}
@@ -3004,13 +3029,13 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
                 <p class="text-[17px] sm:text-[18px] leading-relaxed text-paper-ink dark:text-charcoal-cream">
                   “${escapeHtml(item.upgraded)}”
                 </p>
-                <button onclick="copyToClipboard('${escapeAttr(item.upgraded)}', 'Copied phrasing')" class="shrink-0 text-xs text-stone-400 dark:text-stone-500 hover:text-paper-ink dark:hover:text-charcoal-cream transition-colors pt-1" title="Copy natural phrasing">
+                <button onclick="copyToClipboard('${escapeAttr(item.upgraded)}', 'Copied phrasing')" class="shrink-0 text-xs text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream transition-colors pt-1" title="Copy natural phrasing">
                   Copy
                 </button>
               </div>
 
               <p class="pl-4 text-sm text-stone-500 dark:text-stone-400 leading-relaxed">
-                <span class="text-xs uppercase tracking-wider text-stone-400 dark:text-stone-500 mr-1.5">Instead of</span>
+                <span class="text-xs uppercase tracking-wider text-stone-500 dark:text-stone-400 mr-1.5">Instead of</span>
                 “${escapeHtml(item.flat)}”
               </p>
             </div>
@@ -3018,13 +3043,13 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
             <!-- In Context Dialogues (Borderless Editorial Flow) -->
             ${dialogues.length > 0 ? `
               <div class="pt-6 border-t border-paper-border dark:border-charcoal-border space-y-4">
-                <span class="block text-xs font-medium uppercase tracking-wider text-stone-400 dark:text-stone-500">
+                <span class="block text-xs font-medium uppercase tracking-wider text-stone-500 dark:text-stone-400">
                   In context
                 </span>
                 <div class="space-y-5">
                   ${dialogues.map(ex => `
                     <div class="space-y-2">
-                      ${ex.context ? `<div class="text-xs text-stone-400 dark:text-stone-500">${escapeHtml(ex.context)}</div>` : ''}
+                      ${ex.context ? `<div class="text-xs text-stone-500 dark:text-stone-400">${escapeHtml(ex.context)}</div>` : ''}
                       <div class="space-y-1.5 text-[15px] leading-relaxed">
                         ${(ex.lines || []).map(line => `
                           <p class="text-stone-700 dark:text-stone-300">
@@ -3047,7 +3072,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
                 <span class="font-medium ${isNuanceOpen ? 'text-paper-ink dark:text-charcoal-cream' : 'text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream'}">
                   Nuance &amp; pitfalls
                 </span>
-                <span class="text-xs text-stone-400 dark:text-stone-500">${isNuanceOpen ? 'Hide' : 'Show'}</span>
+                <span class="text-xs text-stone-500 dark:text-stone-400">${isNuanceOpen ? 'Hide' : 'Show'}</span>
               </button>
               ${isNuanceOpen ? `
                 <p class="pb-4 text-[15px] text-stone-700 dark:text-stone-300 leading-relaxed">
@@ -3061,7 +3086,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
                 <span class="font-medium ${isPolishOpen ? 'text-paper-ink dark:text-charcoal-cream' : 'text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream'}">
                   Polish equivalent
                 </span>
-                <span class="text-xs text-stone-400 dark:text-stone-500">${isPolishOpen ? 'Hide' : 'Show'}</span>
+                <span class="text-xs text-stone-500 dark:text-stone-400">${isPolishOpen ? 'Hide' : 'Show'}</span>
               </button>
               ${isPolishOpen ? `
                 <p class="pb-3 text-[15px] text-paper-ink dark:text-charcoal-cream leading-relaxed">
@@ -3080,7 +3105,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       const gridBtn = document.getElementById('btn-today-grid');
       const headerBar = document.getElementById('today-header-bar');
       const activeClasses = ['font-medium', 'text-paper-ink', 'dark:text-charcoal-cream'];
-      const inactiveClasses = ['text-stone-400', 'dark:text-stone-500', 'hover:text-paper-ink', 'dark:hover:text-charcoal-cream'];
+      const inactiveClasses = ['text-stone-500', 'dark:text-stone-400', 'hover:text-paper-ink', 'dark:hover:text-charcoal-cream'];
 
       if (appState.todayLayout === 'focus') {
         focusBtn.classList.add(...activeClasses);
@@ -3117,7 +3142,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       if (appState.todayLayout === 'grid') {
         workspace.innerHTML = `
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
-            ${cards.map(item => renderFullPhraseCard(item, false)).join('')}
+            ${cards.map(item => renderFullPhraseCard(item)).join('')}
           </div>
         `;
         return;
@@ -3129,7 +3154,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       workspace.innerHTML = `
         <div class="max-w-2xl mx-auto space-y-6">
           <!-- Active Focus Card -->
-          ${renderFullPhraseCard(currentItem, true)}
+          ${renderFullPhraseCard(currentItem)}
 
           <!-- Quiet Pagination Footer -->
           <div class="flex items-center justify-between gap-3 pt-1">
@@ -3644,11 +3669,11 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
               return `
                 <div class="p-4 sm:p-5 bg-paper-bg/40 dark:bg-charcoal-bg/40 space-y-3">
                   <div class="flex justify-end">
-                    <button onclick="toggleLibraryCardExpand('${escapeAttr(item.id)}')" class="text-xs text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream transition-colors">
+                    <button onclick="toggleLibraryCardExpand('${escapeAttr(item.id)}')" class="text-xs text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream transition-colors">
                       Collapse ↑
                     </button>
                   </div>
-                  ${renderFullPhraseCard(item, false)}
+                  ${renderFullPhraseCard(item)}
                 </div>
               `;
             }
@@ -3656,21 +3681,21 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
             return `
               <div class="px-5 sm:px-6 py-5 hover:bg-paper-subtle/35 dark:hover:bg-charcoal-subtle/35 transition-colors flex items-start justify-between gap-4">
                 <button onclick="toggleLibraryCardExpand('${escapeAttr(item.id)}')" class="text-left space-y-1.5 min-w-0 flex-1 focus:outline-none">
-                  <div class="flex items-baseline gap-2.5 flex-wrap">
-                    <h3 class="serif-display text-xl font-medium text-paper-ink dark:text-charcoal-cream">
+                  <span class="flex items-baseline gap-2.5 flex-wrap">
+                    <span class="serif-display text-xl font-medium text-paper-ink dark:text-charcoal-cream">
                       ${escapeHtml(item.phrase)}
-                    </h3>
-                    <span class="text-xs text-stone-400 dark:text-stone-500">
+                    </span>
+                    <span class="text-xs text-stone-500 dark:text-stone-400">
                       ${metaParts.map(p => escapeHtml(p)).join(' · ')}
                     </span>
-                  </div>
-                  <p class="text-[15px] text-stone-600 dark:text-stone-300 leading-relaxed line-clamp-2">
+                  </span>
+                  <span class="block text-[15px] text-stone-600 dark:text-stone-300 leading-relaxed line-clamp-2">
                     “${escapeHtml(item.upgraded)}”
-                  </p>
+                  </span>
                 </button>
 
                 <div class="flex items-center gap-2.5 shrink-0 pt-1 text-xs">
-                  ${renderAudioButton(item.id, 'US', false)}
+                  ${renderAudioButton(item.id, 'US', true)}
                   <button onclick="cycleItemStatus('${escapeAttr(item.id)}')" class="inline-flex items-center gap-1.5 text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream transition-colors py-1 px-1" title="Cycle status">
                     <span class="w-2 h-2 rounded-full ${statusMeta.dot}"></span>
                     <span class="hidden sm:inline">${statusMeta.label}</span>
@@ -3963,8 +3988,13 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       return String(val)
         .replace(/\\/g, '\\\\')
         .replace(/'/g, "\\'")
-        .replace(/"/g, '&quot;')
-        .replace(/\n/g, ' ');
+        .replace(/\r?\n|\r/g, ' ')
+        .replace(/\u2028/g, '\\u2028')
+        .replace(/\u2029/g, '\\u2029')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
     }
   </script>
 
