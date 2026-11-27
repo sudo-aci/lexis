@@ -1398,7 +1398,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
             <button id="btn-today-focus" onclick="setTodayLayout('focus')" class="transition-colors font-medium text-paper-ink dark:text-charcoal-cream">
               Focus
             </button>
-            <button id="btn-today-grid" onclick="setTodayLayout('grid')" class="transition-colors text-stone-400 dark:text-stone-500 hover:text-paper-ink dark:hover:text-charcoal-cream">
+            <button id="btn-today-grid" onclick="setTodayLayout('grid')" class="transition-colors text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream">
               Grid
             </button>
           </div>
@@ -2149,7 +2149,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
     })();
 
     // ==================== WEEKLY PACK GENERATOR PROMPT ====================
-    const WEEKLY_PACK_PROMPT = `Generate 25 genuinely natural, high-frequency C1/C2 English expressions (focus heavily on C1 and C2; include B2-C1 only rarely) for a fluent Polish speaker aiming for effortless, idiomatic everyday, slang, and modern workplace fluency:
+    const WEEKLY_PACK_PROMPT = `Generate 25 genuinely natural, high-frequency English expressions balanced evenly across B2-C1, C1, and C2 levels for a fluent Polish speaker aiming for effortless, idiomatic everyday, slang, and modern workplace fluency:
 - 11 Everyday English expressions (mix of Casual, modern Slang, and Conversational reactions, low-key storytelling, social nuance)
 - 10 Workplace expressions (conversational Slack/email phrasing, modern office slang, diplomatic pushback, executive framing)
 - 4 C2 Syntax & Discourse patterns (fronted concessives, subtle inversion, wh-clefts, crisp rhetorical contrast)
@@ -2214,16 +2214,17 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     // ==================== STORAGE KEYS & APPLICATION STATE ====================
     const STORAGE = {
       LEGACY_ITEMS: 'lexis_pr_items_v4',
-      TODAY_IDS: 'lexis_pr_today_ids_v5',
-      TODAY_DATE: 'lexis_pr_today_date_v5',
+      TODAY_IDS: 'lexis_pr_today_ids_v6',
+      TODAY_DATE: 'lexis_pr_today_date_v6',
       TODAY_LAYOUT: 'lexis_pr_today_layout_v4',
+      CEFR_ROTATION_OFFSET: 'lexis_pr_cefr_rotation_v1',
       THEME: 'lexis_pr_theme_v4'
     };
 
     const appState = {
       items: [],
       itemsById: new Map(),
-      practiceOrder: [], // C1/C2-focused practice queue (B2-C1 interleaved rarely)
+      practiceOrder: [], // Round-robin CEFR rotation across B2-C1, C1, and C2
       progressMap: new Map(), // id -> { id, status, updatedAt }
       installedPacks: new Map(), // packId -> pack metadata
       packManifest: null, // parsed data/manifest.json
@@ -2250,6 +2251,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         scope: 'smart', // 'smart' | 'today' | 'review' | 'Everyday' | 'Workplace' | 'Syntax' | 'all'
         length: 8, // 5 | 8 | 12
         trackMode: 'mixed', // 'mixed' | 'upgrade' | 'cloze' | 'builder' | 'match' | 'listen' | 'sandbox'
+        rotationOffset: 0, // Advances across B2-C1 -> C1 -> C2 between lessons
         session: null,
         stats: {
           totalXp: 0,
@@ -2880,52 +2882,73 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       }
     }
 
+    const CEFR_ROTATION_TIERS = [1, 2, 3]; // 1: B2-C1, 2: C1 (incl. C1-C2), 3: C2
+
     function getCefrRank(cefr) {
       const tag = normalizeCefrTag(cefr);
-      if (tag.includes('C2')) return 3;
-      if (tag === 'C1') return 2;
+      if (tag === 'C2') return 3;
+      if (tag.startsWith('C1')) return 2; // C1 and C1-C2
       return 1; // B2-C1 or lower
     }
 
-    function getCefrWeight(cefr) {
-      const rank = getCefrRank(cefr);
-      if (rank === 3) return 6.0;  // Strong C2 priority
-      if (rank === 2) return 4.5;  // Strong C1 priority
-      return 0.35;                 // Suggest B2-C1 rarely
+    function rotateByCefr(items, { shuffleWithinTier = true, startOffset = 0, excludeIds = null } = {}) {
+      const list = Array.isArray(items) ? items : [];
+      if (list.length <= 1) return list.slice();
+
+      const buckets = { 1: [], 2: [], 3: [] };
+      list.forEach(item => {
+        buckets[getCefrRank(item.cefr)].push(item);
+      });
+
+      const orderBucket = (arr) => {
+        const freshUnmastered = [];
+        const recentUnmastered = [];
+        const mastered = [];
+        arr.forEach(item => {
+          if (item.status === 'mastered') {
+            mastered.push(item);
+          } else if (excludeIds && excludeIds.has(item.id)) {
+            recentUnmastered.push(item);
+          } else {
+            freshUnmastered.push(item);
+          }
+        });
+        const prep = (group) => shuffleWithinTier
+          ? shuffleList(group)
+          : group.slice().sort((a, b) => String(a.id).localeCompare(String(b.id)));
+        return [...prep(freshUnmastered), ...prep(recentUnmastered), ...prep(mastered)];
+      };
+
+      const ordered = {
+        1: orderBucket(buckets[1]),
+        2: orderBucket(buckets[2]),
+        3: orderBucket(buckets[3])
+      };
+      const cursors = { 1: 0, 2: 0, 3: 0 };
+      const result = [];
+      const parsedOffset = Math.trunc(Number(startOffset));
+      let step = Number.isFinite(parsedOffset) ? ((parsedOffset % 3) + 3) % 3 : 0;
+
+      while (result.length < list.length) {
+        let pickedInPass = false;
+        for (let tries = 0; tries < 3; tries++) {
+          const tier = CEFR_ROTATION_TIERS[(step + tries) % 3];
+          if (cursors[tier] < ordered[tier].length) {
+            result.push(ordered[tier][cursors[tier]++]);
+            step = (step + tries + 1) % 3;
+            pickedInPass = true;
+            break;
+          }
+        }
+        if (!pickedInPass) break;
+      }
+
+      return result;
     }
 
     function buildPracticeOrder(items) {
-      // Focus Practice Studio heavily on C1/C2 (interleaving 1 B2-C1 refresher every 8 cards)
-      const isHighTier = (item) => getCefrRank(item.cefr) >= 2;
-      const sortTier = (a, b) => {
-        const statusScore = s => (s === 'mastered' ? 1 : 0);
-        const sDiff = statusScore(a.status) - statusScore(b.status);
-        if (sDiff !== 0) return sDiff;
-        const rDiff = getCefrRank(b.cefr) - getCefrRank(a.cefr);
-        if (rDiff !== 0) return rDiff;
-        return String(a.id).localeCompare(String(b.id));
-      };
-
-      const high = items.filter(isHighTier).sort(sortTier);
-      const lower = items.filter(i => !isHighTier(i)).sort(sortTier);
-      if (high.length === 0) return lower;
-      if (lower.length === 0) return high;
-
-      const queue = [];
-      let hi = 0;
-      let lo = 0;
-      while (hi < high.length) {
-        for (let k = 0; k < 7 && hi < high.length; k++) {
-          queue.push(high[hi++]);
-        }
-        if (lo < lower.length) {
-          queue.push(lower[lo++]);
-        }
-      }
-      while (lo < lower.length) {
-        queue.push(lower[lo++]);
-      }
-      return queue;
+      // Deterministically rotate B2-C1 -> C1 -> C2 with unmastered items prioritized within each tier
+      return rotateByCefr(items, { shuffleWithinTier: false, startOffset: 0 });
     }
 
     async function hydrateStateFromDB() {
@@ -3143,79 +3166,54 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       generateTodayBatch();
     }
 
-    function weightedSampleItems(arr, count, weightFn) {
-      const pool = arr.slice();
-      const picked = [];
-      const n = Math.min(count, pool.length);
-      for (let step = 0; step < n; step++) {
-        let totalWeight = 0;
-        const weights = pool.map(item => {
-          const w = Math.max(0.01, weightFn(item));
-          totalWeight += w;
-          return w;
-        });
-        let r = Math.random() * totalWeight;
-        let chosenIdx = pool.length - 1;
-        for (let i = 0; i < pool.length; i++) {
-          r -= weights[i];
-          if (r <= 0) {
-            chosenIdx = i;
-            break;
-          }
-        }
-        picked.push(pool[chosenIdx]);
-        pool.splice(chosenIdx, 1);
-      }
-      return picked;
-    }
-
     function generateTodayBatch() {
-      // Focus heavily on C1 & C2 across registers (Casual, Slang, Workplace, Diplomatic, Nuanced)
-      // and allow at most 1 rare B2-C1 refresher across the entire 7-card batch when C1/C2 cards exist.
-      let lowerTierBudget = 1;
+      // Rotate evenly across B2-C1, C1, and C2 while preserving the 3 Everyday · 3 Workplace · 1 Syntax mix
+      let rotationOffset = 0;
+      try {
+        const parsed = parseInt(localStorage.getItem(STORAGE.CEFR_ROTATION_OFFSET), 10);
+        rotationOffset = Number.isFinite(parsed) ? ((parsed % 3) + 3) % 3 : 0;
+      } catch (e) {
+        rotationOffset = 0;
+      }
 
-      const pickPrioritized = (pool, count) => {
-        const picked = [];
-        const usedIds = new Set();
-
-        const pickFromSubset = (subset, needed) => {
-          for (let slot = 0; slot < needed && picked.length < count; slot++) {
-            const candidates = subset.filter(i => !usedIds.has(i.id));
-            if (candidates.length === 0) break;
-
-            const highTier = candidates.filter(i => getCefrRank(i.cefr) >= 2);
-            // Respect rare B2-C1 cap strictly per card when high-tier items are available
-            const eligible = (lowerTierBudget <= 0 && highTier.length > 0) ? highTier : candidates;
-
-            const [chosen] = weightedSampleItems(eligible, 1, item => getCefrWeight(item.cefr));
-            if (chosen) {
-              picked.push(chosen);
-              usedIds.add(chosen.id);
-              if (getCefrRank(chosen.cefr) < 2) lowerTierBudget--;
-            }
-          }
-        };
-
-        const unmastered = pool.filter(i => i.status !== 'mastered');
-        pickFromSubset(unmastered, count);
-        if (picked.length < count) {
-          const mastered = pool.filter(i => i.status === 'mastered');
-          pickFromSubset(mastered, count - picked.length);
-        }
-        return picked;
+      const prevIds = new Set(appState.todayIds);
+      const pickCategory = (category, count, offset) => {
+        const pool = appState.items.filter(i => i.category === category);
+        return rotateByCefr(pool, {
+          shuffleWithinTier: true,
+          startOffset: offset,
+          excludeIds: prevIds
+        }).slice(0, count);
       };
 
-      const everyday = pickPrioritized(appState.items.filter(i => i.category === 'Everyday'), 3);
-      const workplace = pickPrioritized(appState.items.filter(i => i.category === 'Workplace'), 3);
-      const syntax = pickPrioritized(appState.items.filter(i => i.category === 'Syntax'), 1);
+      const everyday = pickCategory('Everyday', 3, rotationOffset);
+      const workplace = pickCategory('Workplace', 3, (rotationOffset + 1) % 3);
+      const syntax = pickCategory('Syntax', 1, (rotationOffset + 2) % 3);
 
-      appState.todayIds = [...everyday, ...workplace, ...syntax].map(i => i.id);
-      if (appState.todayIds.length === 0 && appState.items.length > 0) {
-        appState.todayIds = weightedSampleItems(appState.items, 7, item => getCefrWeight(item.cefr)).map(i => i.id);
+      let selected = [...everyday, ...workplace, ...syntax];
+      if (selected.length === 0 && appState.items.length > 0) {
+        selected = rotateByCefr(appState.items, {
+          shuffleWithinTier: true,
+          startOffset: rotationOffset,
+          excludeIds: prevIds
+        }).slice(0, 7);
       }
+
+      // Order the final Focus Deck so consecutive cards strictly rotate B2-C1 -> C1 -> C2
+      const rotatedBatch = rotateByCefr(selected, {
+        shuffleWithinTier: true,
+        startOffset: rotationOffset
+      });
+
+      appState.todayIds = rotatedBatch.map(i => i.id);
       appState.todayIndex = 0;
-      localStorage.setItem(STORAGE.TODAY_IDS, JSON.stringify(appState.todayIds));
-      localStorage.setItem(STORAGE.TODAY_DATE, getTodayDateKey());
+      try {
+        localStorage.setItem(STORAGE.TODAY_IDS, JSON.stringify(appState.todayIds));
+        localStorage.setItem(STORAGE.TODAY_DATE, getTodayDateKey());
+        localStorage.setItem(STORAGE.CEFR_ROTATION_OFFSET, String((rotationOffset + 1) % 3));
+      } catch (e) {
+        // Ignore storage quota / private mode restrictions
+      }
     }
 
     function shuffleTodayBatch() {
@@ -3837,27 +3835,29 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       return raw.length > 42 ? raw.slice(0, 39).trim() + '…' : raw;
     }
 
-    function getPracticePool(scope = appState.practice.scope) {
+    function getPracticePool(scope = appState.practice.scope, startOffset = appState.practice.rotationOffset) {
       const all = appState.items || [];
       if (all.length === 0) return [];
+      const parsedOffset = Math.trunc(Number(startOffset));
+      const offset = Number.isFinite(parsedOffset) ? ((parsedOffset % 3) + 3) % 3 : 0;
 
       if (scope === 'today') {
         const todayItems = appState.todayIds.map(id => appState.itemsById.get(id)).filter(Boolean);
-        return todayItems.length > 0 ? todayItems : all;
+        return rotateByCefr(todayItems.length > 0 ? todayItems : all, { shuffleWithinTier: true, startOffset: offset });
       }
       if (scope === 'review') {
         const active = all.filter(i => i.status !== 'mastered');
-        return active.length > 0 ? active : all;
+        return rotateByCefr(active.length > 0 ? active : all, { shuffleWithinTier: true, startOffset: offset });
       }
       if (scope === 'Everyday' || scope === 'Workplace' || scope === 'Syntax') {
         const byCat = all.filter(i => i.category === scope);
-        return byCat.length > 0 ? byCat : all;
+        return rotateByCefr(byCat.length > 0 ? byCat : all, { shuffleWithinTier: true, startOffset: offset });
       }
       if (scope === 'all') {
-        return all;
+        return rotateByCefr(all, { shuffleWithinTier: true, startOffset: offset });
       }
 
-      // 'smart': prioritize Today's batch + Practicing + New, then Mastered
+      // 'smart': prioritize Today's batch + Practicing, then New, then Mastered — rotating B2-C1 -> C1 -> C2 throughout
       const todaySet = new Set(appState.todayIds);
       const priority = [];
       const secondary = [];
@@ -3867,12 +3867,10 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         else if (item.status === 'new') secondary.push(item);
         else mastered.push(item);
       });
-      const weightFn = item => getCefrWeight(item.cefr);
-      return [
-        ...weightedSampleItems(priority, priority.length, weightFn),
-        ...weightedSampleItems(secondary, secondary.length, weightFn),
-        ...weightedSampleItems(mastered, mastered.length, weightFn)
-      ];
+      const pRot = rotateByCefr(priority, { shuffleWithinTier: true, startOffset: offset });
+      const sRot = rotateByCefr(secondary, { shuffleWithinTier: true, startOffset: (offset + pRot.length) % 3 });
+      const mRot = rotateByCefr(mastered, { shuffleWithinTier: true, startOffset: (offset + pRot.length + sRot.length) % 3 });
+      return [...pRot, ...sRot, ...mRot];
     }
 
     // ---- Exercise Step Builders ----
@@ -4125,13 +4123,14 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     }
 
     function startPracticeLesson(trackMode = 'mixed') {
-      const pool = getPracticePool(appState.practice.scope);
+      const pool = getPracticePool(appState.practice.scope, appState.practice.rotationOffset);
       if (pool.length === 0) {
         showToast('No phrases available yet. Install a pack in Packs & Backup.');
         return;
       }
 
-      const orderedPool = appState.practice.scope === 'smart' ? pool : shuffleList(pool);
+      // Pool is already shuffled within each CEFR tier and rotated across B2-C1 -> C1 -> C2
+      const orderedPool = pool;
       const uniqueMatchPool = [];
       const seenMatchLabels = new Set();
       for (const it of orderedPool) {
@@ -4190,8 +4189,12 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         }
       } else if (trackMode === 'match') {
         const rounds = Math.min(appState.practice.length === 5 ? 2 : 3, Math.max(1, Math.ceil(uniqueMatchPool.length / 4)));
+        const boardSize = Math.min(4, uniqueMatchPool.length);
         for (let r = 0; r < rounds; r++) {
-          const slice = shuffleList(uniqueMatchPool).slice(0, Math.min(4, uniqueMatchPool.length));
+          const slice = [];
+          for (let k = 0; k < boardSize; k++) {
+            slice.push(uniqueMatchPool[(r * boardSize + k) % uniqueMatchPool.length]);
+          }
           const matchStep = buildMatchStep(slice);
           if (matchStep.left.length >= 2) steps.push(matchStep);
         }
@@ -4210,6 +4213,8 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         showToast('Not enough phrases in this focus to start a lesson.');
         return;
       }
+
+      appState.practice.rotationOffset = (appState.practice.rotationOffset + 1) % 3;
 
       appState.practice.session = {
         trackMode,
@@ -5036,7 +5041,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       const after = parts.slice(1).join('___');
 
       const blankVisual = step.useKeyboard
-        ? `<input id="practice-cloze-input" type="text" value="${escapeAttr(step.typedValue)}" ${step.checked ? 'disabled' : ''} oninput="const s=getCurrentPracticeStep(); if(s){s.typedValue=this.value; const b=document.getElementById('practice-check-btn'); if(b) b.disabled=!this.value.trim();}" placeholder="type word…" autocomplete="off" autocapitalize="none" spellcheck="false" class="inline-block w-36 sm:w-44 px-3 py-1 mx-1 rounded-lg border-b-2 text-center font-mono text-sm sm:text-base focus:outline-none ${step.checked ? (step.isCorrect ? 'border-emerald-500 bg-emerald-500/12 text-emerald-700 dark:text-emerald-300' : 'border-rose-500 bg-rose-500/12 text-rose-700 dark:text-rose-300') : 'border-[#C46548] bg-paper-card dark:bg-charcoal-card text-paper-ink dark:text-charcoal-cream'}" />`
+        ? `<input id="practice-cloze-input" type="text" value="${escapeHtml(step.typedValue)}" ${step.checked ? 'disabled' : ''} oninput="const s=getCurrentPracticeStep(); if(s){s.typedValue=this.value; const b=document.getElementById('practice-check-btn'); if(b) b.disabled=!this.value.trim();}" placeholder="type word…" autocomplete="off" autocapitalize="none" spellcheck="false" class="inline-block w-36 sm:w-44 px-3 py-1 mx-1 rounded-lg border-b-2 text-center font-mono text-sm sm:text-base focus:outline-none ${step.checked ? (step.isCorrect ? 'border-emerald-500 bg-emerald-500/12 text-emerald-700 dark:text-emerald-300' : 'border-rose-500 bg-rose-500/12 text-rose-700 dark:text-rose-300') : 'border-[#C46548] bg-paper-card dark:bg-charcoal-card text-paper-ink dark:text-charcoal-cream'}" />`
         : `<button type="button" ${step.checked ? 'disabled' : ''} onclick="practiceClearClozeBlank()" class="inline-flex items-center justify-center min-w-[96px] px-3.5 py-1 mx-1 rounded-xl border-b-2 font-semibold text-sm sm:text-base align-baseline transition-all ${step.checked ? (step.isCorrect ? 'border-emerald-500 bg-emerald-500/15 text-emerald-700 dark:text-emerald-300' : 'border-rose-500 bg-rose-500/15 text-rose-700 dark:text-rose-300') : (step.selectedWord ? 'duo-pop border-[#C46548] bg-[#C46548]/15 text-[#A84B30] dark:text-[#F6B9A6]' : 'border-dashed border-stone-400 dark:border-stone-500 bg-paper-card/70 dark:bg-charcoal-card/70 text-stone-400')}">${escapeHtml(step.selectedWord || '______')}</button>`;
 
       return `
@@ -5357,7 +5362,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           <div class="duo-drawer-enter space-y-4 pt-1">
             <div class="p-4 rounded-xl border border-[#C46548]/30 bg-[#C46548]/[0.05] space-y-2">
               <div class="flex items-center justify-between gap-2">
-                <span class="text-xs uppercase tracking-wider text-stone-400 dark:text-stone-500">
+                <span class="text-xs uppercase tracking-wider text-stone-500 dark:text-stone-400">
                   Model answer
                 </span>
                 <button onclick="practicePlaySandboxModel()" class="inline-flex items-center gap-1.5 text-xs font-mono text-[#B05438] dark:text-[#E58E73] hover:underline">
@@ -5736,7 +5741,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
 
       const filtered = appState.items.filter(item => {
         if (appState.libraryFilters.category !== 'All' && item.category !== appState.libraryFilters.category) return false;
-        if (appState.libraryFilters.cefr !== 'All' && normalizeCefrTag(item.cefr) !== normalizeCefrTag(appState.libraryFilters.cefr)) return false;
+        if (appState.libraryFilters.cefr !== 'All' && getCefrRank(item.cefr) !== getCefrRank(appState.libraryFilters.cefr)) return false;
         if (appState.libraryFilters.register !== 'All' && String(item.register || '').toLowerCase() !== appState.libraryFilters.register.toLowerCase()) return false;
         if (appState.libraryFilters.status !== 'All' && item.status !== appState.libraryFilters.status) return false;
         if (appState.libraryFilters.pack !== 'All' && (item.packId || 'custom') !== appState.libraryFilters.pack) return false;
