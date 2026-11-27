@@ -1,0 +1,988 @@
+{
+  "schemaVersion": 1,
+  "pack": {
+    "id": "mastery-current-native-slang",
+    "name": "Mastery · Natural Current Spoken & Slang",
+    "description": "14 high-frequency current spoken expressions and mainstream slang native speakers actually use in real life, group chats, and casual hangouts.",
+    "category": "Everyday",
+    "cefr": "C1",
+    "version": "1.0.0",
+    "source": "Lexis Current Native Pack"
+  },
+  "items": [
+    {
+      "id": "cns-01",
+      "phrase": "no worries / all good",
+      "ipa": "/nəʊ ˈwʌriz / ɔːl ɡʊd/",
+      "speechText": "no worries, all good",
+      "category": "Everyday",
+      "register": "Casual",
+      "cefr": "C1",
+      "packId": "mastery-current-native-slang",
+      "flat": "You do not need to apologize; it is not a problem for me at all.",
+      "upgraded": "No worries at all—you're all good, take your time.",
+      "dialogues": [
+        {
+          "context": "Coffee Shop · Running Late",
+          "lines": [
+            {
+              "speaker": "Kasia",
+              "text": "So sorry I'm ten minutes late, the tram completely stalled!"
+            },
+            {
+              "speaker": "Ben",
+              "text": "No worries at all—I just grabbed a coffee anyway. All good!"
+            }
+          ]
+        },
+        {
+          "context": "Slack · Quick Favor",
+          "lines": [
+            {
+              "speaker": "Liam",
+              "text": "Thanks for sending that file over so fast."
+            },
+            {
+              "speaker": "Chloe",
+              "text": "No worries! Ping me if anything's missing."
+            }
+          ]
+        }
+      ],
+      "nuance": "The default, frictionless way native speakers respond to both 'thank you' and small apologies. Textbooks teach 'you're welcome' or 'don't mention it', which can sometimes sound slightly stiff or transactional in casual chats. Originally Australian, 'no worries' is now ubiquitous in the US and UK too.",
+      "polish": "spoko / nie ma sprawy / luz / nic się nie stało",
+      "clozeSentence": "Sorry I forgot to text you back last night! — Ah, no ___, I figured you were busy.",
+      "clozeAnswer": "worries",
+      "clozeAccepted": [
+        "worries"
+      ],
+      "clozeHint": "Plural 7-letter noun meaning concerns.",
+      "quizPrompt": "Don't apologize for bumping into my chair; it's completely fine.",
+      "quizOptions": [
+        "No worry, it is all well.",
+        "I forgive your mistake; please do not feel anxious.",
+        "All good, no worries at all!",
+        "Not a worry in the world, you are welcomed."
+      ],
+      "quizCorrectIndex": 2,
+      "quizExplanations": [
+        "Must be plural ('no worries') and 'all good' (not 'all well').",
+        "Way too theatrical and formal for a tiny everyday bump.",
+        "Warm, effortless, and exactly how natives brush off minor slip-ups.",
+        "Wordy and mixes up 'welcome' with 'welcomed'."
+      ],
+      "sandboxPrompt": "Reassure a friend who just apologized for spilling a bit of water on the table.",
+      "sandboxSample": "Honestly, no worries—it's just water, we're all good.",
+      "sandboxRubric": [
+        "Register: Warm and breezy, immediately dissolving awkwardness.",
+        "Collocation: Plural 'no worries' or crisp 'all good'.",
+        "Cadence: Short and reassuring without over-explaining."
+      ]
+    },
+    {
+      "id": "cns-02",
+      "phrase": "my bad",
+      "ipa": "/maɪ bæd/",
+      "speechText": "my bad",
+      "category": "Everyday",
+      "register": "Casual",
+      "cefr": "C1",
+      "packId": "mastery-current-native-slang",
+      "flat": "I apologize, that mistake was entirely my fault.",
+      "upgraded": "Oh, my bad—I sent you the wrong link. Here's the actual one.",
+      "dialogues": [
+        {
+          "context": "Group Chat · Wrong Time",
+          "lines": [
+            {
+              "speaker": "Alex",
+              "text": "Wait, didn't you say the movie starts at 8? The ticket says 7:30."
+            },
+            {
+              "speaker": "Tomek",
+              "text": "Oh shoot, my bad! I was looking at tomorrow's showtime."
+            }
+          ]
+        },
+        {
+          "context": "Walking Down the Street",
+          "lines": [
+            {
+              "speaker": "Hannah",
+              "text": "Whoa, almost stepped right on your shoe—my bad!"
+            },
+            {
+              "speaker": "Dan",
+              "text": "Haha, all good!"
+            }
+          ]
+        }
+      ],
+      "nuance": "Ultra-natural way to own up to a minor, low-stakes slip-up without making it dramatic. Crucial boundary: ONLY use 'my bad' for small mistakes (typos, wrong link, bumping into someone). Never use it for serious screw-ups or formal apologies—there it sounds dismissive.",
+      "polish": "mój błąd / moja wina / sorry, nawaliłem (przy drobiazgu)",
+      "clozeSentence": "Wait, I forgot to attach the PDF—my ___, sending it now.",
+      "clozeAnswer": "bad",
+      "clozeAccepted": [
+        "bad"
+      ],
+      "clozeHint": "3-letter adjective used here as an informal noun.",
+      "quizPrompt": "Oops, that was my mistake—I accidentally muted you on the call.",
+      "quizOptions": [
+        "Oops, my bad—I accidentally hit mute on you.",
+        "Oops, my faultness—I muted your audio.",
+        "Please accept my sincere regret for muting your microphone.",
+        "Oops, my wrong—I accidentally muted you."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Quick, light, and completely native for a tiny tech mishap.",
+        "'Faultness' is not a word.",
+        "Absurdly stiff for accidentally clicking mute.",
+        "Always 'my bad' (never 'my wrong')."
+      ],
+      "sandboxPrompt": "Acknowledge a small mistake in a casual Slack or text message (like texting the wrong group chat).",
+      "sandboxSample": "Haha, my bad—meant to send that to my roommate, not the whole team channel!",
+      "sandboxRubric": [
+        "Register: Light, casual ownership suited to a minor error.",
+        "Collocation: Exact fixed phrase 'my bad'.",
+        "Cadence: Immediately paired with a brief clarification or fix."
+      ]
+    },
+    {
+      "id": "cns-03",
+      "phrase": "the vibe / off vibe",
+      "ipa": "/ðə vaɪb / ɒf vaɪb/",
+      "speechText": "the vibe, off vibe",
+      "category": "Everyday",
+      "register": "Slang",
+      "cefr": "C1-C2",
+      "packId": "mastery-current-native-slang",
+      "flat": "The atmosphere in that bar felt strange and slightly uncomfortable.",
+      "upgraded": "We only stayed for one drink—the vibe in there was kind of off.",
+      "dialogues": [
+        {
+          "context": "After an Apartment Viewing",
+          "lines": [
+            {
+              "speaker": "Julia",
+              "text": "So how was the flat? The photos looked amazing."
+            },
+            {
+              "speaker": "Chris",
+              "text": "Honestly, the landlord gave me a weird vibe, so I'm gonna keep looking."
+            }
+          ]
+        },
+        {
+          "context": "New Cafe · Weekend",
+          "lines": [
+            {
+              "speaker": "Nina",
+              "text": "Okay, I'm obsessed with this place already."
+            },
+            {
+              "speaker": "Marek",
+              "text": "Right? Super cozy vibe, and the playlist is actually good."
+            }
+          ]
+        }
+      ],
+      "nuance": "One of the highest-frequency words in modern native speech. Works as a noun ('good vibes', 'the vibe was off', 'not my vibe') and as a verb ('we really vibed' = we clicked effortlessly). Polish speakers often overuse 'atmosphere' or 'climate' (calque from 'klimat') where natives naturally say 'vibe'.",
+      "polish": "klimat / nastrój / energia (też: dziwne odczucie / 'coś nie grało')",
+      "clozeSentence": "The food was fine, I guess, but the whole place just had a weird ___.",
+      "clozeAnswer": "vibe",
+      "clozeAccepted": [
+        "vibe",
+        "vibes"
+      ],
+      "clozeHint": "4-letter modern noun for atmosphere or gut energy.",
+      "quizPrompt": "The restaurant looked nice, but the atmosphere felt subtly tense and awkward.",
+      "quizOptions": [
+        "The restaurant looked nice, but its climate was strangely off.",
+        "The restaurant looked nice, but the vibe in there was a little off.",
+        "The restaurant looked nice, but the atmospheric mood lacked warmth.",
+        "The restaurant looked nice, but it gave out broken vibrations."
+      ],
+      "quizCorrectIndex": 1,
+      "quizExplanations": [
+        "Polish calque ('klimat' -> 'climate'); 'climate' in English means weather or political/economic climate.",
+        "100% natural modern native phrasing.",
+        "Sounds like a stiff hospitality report.",
+        "Over-literal expansion of 'vibe' that nobody uses."
+      ],
+      "sandboxPrompt": "Describe why you either loved or immediately wanted to leave a new cafe or bar.",
+      "sandboxSample": "The coffee was great, and the whole place had such a relaxed Sunday morning vibe.",
+      "sandboxRubric": [
+        "Register: Natural modern conversational English.",
+        "Collocation: Uses 'vibe' smoothly (e.g., 'great vibe', 'weird vibe', 'vibe was off').",
+        "Cadence: Avoids Polish calque 'climate'."
+      ]
+    },
+    {
+      "id": "cns-04",
+      "phrase": "to bail (on [someone/something])",
+      "ipa": "/tuː beɪl ɒn/",
+      "speechText": "to bail on someone",
+      "category": "Everyday",
+      "register": "Casual",
+      "cefr": "C1",
+      "packId": "mastery-current-native-slang",
+      "flat": "I hate canceling our plans at the last minute, especially since you already booked a table.",
+      "upgraded": "I hate to bail on you last minute, but I'm coming down with something.",
+      "dialogues": [
+        {
+          "context": "Text Message · Saturday Plans",
+          "lines": [
+            {
+              "speaker": "Elena",
+              "text": "Hey, is Mike still coming to trivia tonight?"
+            },
+            {
+              "speaker": "Noah",
+              "text": "Nah, he bailed like twenty minutes ago—said he got stuck finishing a deck."
+            }
+          ]
+        },
+        {
+          "context": "House Party · Late Evening",
+          "lines": [
+            {
+              "speaker": "Kira",
+              "text": "I think I'm gonna bail early—I have a 7 a.m. flight tomorrow."
+            },
+            {
+              "speaker": "Sam",
+              "text": "Totally fair, safe travels!"
+            }
+          ]
+        }
+      ],
+      "nuance": "Used both for canceling plans last-minute ('he bailed on dinner') and leaving an event early ('I might bail around 10'). Carries a slightly cheeky or guilty nuance when someone flakes—pair with 'hate to' or 'sorry to' when you're the one bailing.",
+      "polish": "wystawić kogoś / wykręcić się (w ostatniej chwili) / zmyć się wcześniej",
+      "clozeSentence": "Don't ___ on us tonight—you already skipped the last two dinners!",
+      "clozeAnswer": "bail",
+      "clozeAccepted": [
+        "bail"
+      ],
+      "clozeHint": "4-letter casual verb meaning to cancel last-minute or leave early.",
+      "quizPrompt": "Two people canceled on our hike at the last minute because of the rain.",
+      "quizOptions": [
+        "Two people resigned from our hike at the final moment.",
+        "Two people put us out of the hike because of the rain.",
+        "Two people bailed on the hike last minute because of the rain.",
+        "Two people bailed out our hike because of the rain."
+      ],
+      "quizCorrectIndex": 2,
+      "quizExplanations": [
+        "'Resign' is for jobs, not weekend hikes.",
+        "Not an idiomatic expression for canceling plans.",
+        "Exact natural verb + preposition ('bail on [event/person]').",
+        "'Bail out' means rescuing someone financially or jumping from a plane—different meaning."
+      ],
+      "sandboxPrompt": "Politely text a friend to cancel tonight's plans because you're completely drained.",
+      "sandboxSample": "Hey, I really hate to bail on you last minute, but I'm totally wiped—can we reschedule for Thursday?",
+      "sandboxRubric": [
+        "Register: Friendly, apologetic, and natural for texting.",
+        "Collocation: Correct preposition 'bail on [someone/something]'.",
+        "Cadence: Softened nicely so it doesn't sound flakey."
+      ]
+    },
+    {
+      "id": "cns-05",
+      "phrase": "not gonna lie (ngl)",
+      "ipa": "/nɒt ˈɡɒnə laɪ/",
+      "speechText": "not gonna lie",
+      "category": "Everyday",
+      "register": "Slang",
+      "cefr": "C1-C2",
+      "packId": "mastery-current-native-slang",
+      "flat": "To speak honestly with you, I was actually quite nervous before that interview.",
+      "upgraded": "Not gonna lie, I was sweating bullets before that interview started.",
+      "dialogues": [
+        {
+          "context": "Voice Note · Morning Commute",
+          "lines": [
+            {
+              "speaker": "Ola",
+              "text": "How are you surviving the 6 a.m. gym routine?"
+            },
+            {
+              "speaker": "Liam",
+              "text": "Not gonna lie, I almost turned off my alarm and went back to sleep today."
+            }
+          ]
+        },
+        {
+          "context": "Text Message · Food Review",
+          "lines": [
+            {
+              "speaker": "Maya",
+              "text": "Was the viral pistachio croissant worth the 40-minute line?"
+            },
+            {
+              "speaker": "Ben",
+              "text": "Ngl, it was actually unreal—I'd wait again."
+            }
+          ]
+        }
+      ],
+      "nuance": "A super common spoken and texting opener (abbreviated 'ngl' in texts) signaling candid honesty, mild vulnerability, or an unexpected admission. Far warmer and more current than textbook 'To tell you the truth' or 'Frankly speaking'. Note the natural spoken reduction 'gonna' (not 'going to').",
+      "polish": "nie będę kłamać / szczerze mówiąc / powiem ci szczerze",
+      "clozeSentence": "Not ___ lie, I completely forgot we had a long weekend coming up.",
+      "clozeAnswer": "gonna",
+      "clozeAccepted": [
+        "gonna",
+        "going to"
+      ],
+      "clozeHint": "Natural spoken contraction of 'going to'.",
+      "quizPrompt": "Honestly, I expected the sequel to be terrible, but I actually loved it.",
+      "quizOptions": [
+        "I am not going to tell a lie, the sequel surprised me positively.",
+        "Not to lie to you, I genuinely enjoyed the sequel.",
+        "Without lying to you, the sequel was unexpectedly enjoyable.",
+        "Not gonna lie, I went in expecting nothing and ended up loving it."
+      ],
+      "quizCorrectIndex": 3,
+      "quizExplanations": [
+        "Clunky and over-articulated—loses the breezy conversational cadence.",
+        "Awkward phrasing; natives don't say 'not to lie to you'.",
+        "Polish calque feel ('bez kłamania / szczerze bez ściemy').",
+        "Effortless, current native speech."
+      ],
+      "sandboxPrompt": "Admit something candidly to a friend (e.g., that you loved something you expected to hate, or that you're procrastinating).",
+      "sandboxSample": "Not gonna lie, I've spent the last hour reorganizing my desk instead of starting my taxes.",
+      "sandboxRubric": [
+        "Register: Candid, relatable, conversational.",
+        "Collocation: Exact opener 'Not gonna lie,' (or 'Ngl,' in text context).",
+        "Cadence: Flows cleanly into a genuine, slightly self-deprecating confession."
+      ]
+    },
+    {
+      "id": "cns-06",
+      "phrase": "to hit [someone] up",
+      "ipa": "/tuː hɪt ˈsʌmwʌn ʌp/",
+      "speechText": "to hit someone up",
+      "category": "Everyday",
+      "register": "Casual",
+      "cefr": "C1",
+      "packId": "mastery-current-native-slang",
+      "flat": "Please contact me by message when you arrive in London next month.",
+      "upgraded": "Hit me up when you're in town next month—let's definitely grab a pint.",
+      "dialogues": [
+        {
+          "context": "Farewell · Leaving a Conference",
+          "lines": [
+            {
+              "speaker": "Alex",
+              "text": "Awesome catching up—I'll be in Warsaw for a few days in May."
+            },
+            {
+              "speaker": "Kasia",
+              "text": "Oh nice! Definitely hit me up when you land, I'll show you the best spots."
+            }
+          ]
+        },
+        {
+          "context": "Friend Chat · Recommendations",
+          "lines": [
+            {
+              "speaker": "Sam",
+              "text": "Do you know a good mechanic who won't rip me off?"
+            },
+            {
+              "speaker": "Dave",
+              "text": "Yeah, I'll hit up my brother—he's been going to the same guy for years."
+            }
+          ]
+        }
+      ],
+      "nuance": "Everyday casual verb for texting, DMing, or calling someone to hang out or ask for a quick favor. With pronouns, always split the phrasal verb: 'hit me up', 'hit him up' (NEVER 'hit up me'). Also means 'to ask someone for something' ('he hit me up for a ride').",
+      "polish": "odezwać się do kogoś / napisać / dać znać",
+      "clozeSentence": "If you're free this weekend, ___ me up and we can go grab tacos.",
+      "clozeAnswer": "hit",
+      "clozeAccepted": [
+        "hit"
+      ],
+      "clozeHint": "3-letter verb forming a casual phrasal verb with 'up'.",
+      "quizPrompt": "Send me a message whenever you're done with work and we'll meet up.",
+      "quizOptions": [
+        "Hit me up whenever you wrap up work and we'll grab dinner.",
+        "Hit up me as soon as you conclude your work.",
+        "Strike me up when you finish at the office.",
+        "Hit me on whenever you're free after work."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Completely natural—pronoun sits between 'hit' and 'up', paired smoothly with 'wrap up'.",
+        "Pronoun objects must split the phrasal verb ('hit me up', never 'hit up me').",
+        "Wrong verb ('strike' does not work here).",
+        "Wrong particle ('hit on someone' means to flirt with them—very different meaning!)."
+      ],
+      "sandboxPrompt": "Invite an old friend visiting your city to reach out once they're settled in.",
+      "sandboxSample": "Hit me up once you check into your hotel—I know a killer ramen place two blocks from there.",
+      "sandboxRubric": [
+        "Register: Warm, laid-back, natural friend-to-friend tone.",
+        "Collocation: Pronoun placed inside 'hit [me/him/her] up' (and never confused with 'hit on').",
+        "Cadence: Easygoing invitation without stiff phrasing."
+      ]
+    },
+    {
+      "id": "cns-07",
+      "phrase": "legit",
+      "ipa": "/ləˈdʒɪt/",
+      "speechText": "legit",
+      "category": "Everyday",
+      "register": "Slang",
+      "cefr": "C1-C2",
+      "packId": "mastery-current-native-slang",
+      "flat": "That little taco truck is genuinely one of the best places I have ever eaten.",
+      "upgraded": "No joke, that taco truck is legit one of the best meals in the city.",
+      "dialogues": [
+        {
+          "context": "Online Shopping · Skepticism",
+          "lines": [
+            {
+              "speaker": "Kira",
+              "text": "Those concert tickets are half price on this site—does it look legit to you?"
+            },
+            {
+              "speaker": "Liam",
+              "text": "Hmm, zero reviews and a weird URL... definitely doesn't look legit."
+            }
+          ]
+        },
+        {
+          "context": "Chat · Weekend Story",
+          "lines": [
+            {
+              "speaker": "Tomek",
+              "text": "How bad was the storm last night?"
+            },
+            {
+              "speaker": "Sam",
+              "text": "I legit thought our balcony table was gonna blow away."
+            }
+          ]
+        }
+      ],
+      "nuance": "Short for 'legitimate', used in two ultra-common ways: (1) adjective meaning genuine, trustworthy, or seriously impressive ('that coffee shop is legit', 'is this site legit?'), and (2) casual adverb meaning 'genuinely / honestly' ('I legit forgot'). Keep out of formal contracts/emails, where you write 'legitimate' in full.",
+      "polish": "serio / naprawdę / konkretny / wiarygodny (bez ściemy)",
+      "clozeSentence": "Wait, I ___ thought today was Thursday until I checked my calendar.",
+      "clozeAnswer": "legit",
+      "clozeAccepted": [
+        "legit",
+        "legitimately"
+      ],
+      "clozeHint": "5-letter shortened slang form of 'legitimate'.",
+      "quizPrompt": "I genuinely thought I had lost my passport until I checked my coat pocket.",
+      "quizOptions": [
+        "I legally believed my passport was lost until I checked my coat.",
+        "I legit thought I'd lost my passport until I checked my coat pocket.",
+        "I legitimately was under the impression of passport loss.",
+        "I legitly thought I lost my passport."
+      ],
+      "quizCorrectIndex": 1,
+      "quizExplanations": [
+        "'Legally' relates to law, not honesty or emphasis.",
+        "Completely natural casual native speech.",
+        "Robotic and overly formal.",
+        "'Legitly' is non-standard; use 'legit' or 'legitimately'."
+      ],
+      "sandboxPrompt": "Recommend a genuinely awesome restaurant, app, or movie to a friend using 'legit'.",
+      "sandboxSample": "If you're ever in Kraków, that tiny pierogi place off the main square is legit the best I've had.",
+      "sandboxRubric": [
+        "Register: Enthusiastic, natural casual endorsement.",
+        "Collocation: Uses 'legit' cleanly as adverb or predicate adjective.",
+        "Cadence: Punchy and authentic."
+      ]
+    },
+    {
+      "id": "cns-08",
+      "phrase": "to ghost [someone]",
+      "ipa": "/tuː ɡəʊst ˈsʌmwʌn/",
+      "speechText": "to ghost someone",
+      "category": "Everyday",
+      "register": "Slang",
+      "cefr": "C1-C2",
+      "packId": "mastery-current-native-slang",
+      "flat": "The recruiter seemed super enthusiastic after my final interview, then stopped replying completely.",
+      "upgraded": "The recruiter was all over my inbox last week, and then they totally ghosted me.",
+      "dialogues": [
+        {
+          "context": "Coffee Chat · Job Hunt",
+          "lines": [
+            {
+              "speaker": "Julia",
+              "text": "Any word back from that fintech role you interviewed for?"
+            },
+            {
+              "speaker": "Dan",
+              "text": "Nothing—three weeks of radio silence. Pretty sure I got ghosted."
+            }
+          ]
+        },
+        {
+          "context": "Group Chat · Dating",
+          "lines": [
+            {
+              "speaker": "Elena",
+              "text": "Wait, what happened with the guy from Lisbon?"
+            },
+            {
+              "speaker": "Maya",
+              "text": "We had two great dates and then he just ghosted out of nowhere."
+            }
+          ]
+        }
+      ],
+      "nuance": "Started in dating slang, now completely mainstream across friendships, freelancing, and job hunting ('the client ghosted me', 'getting ghosted by HR'). Also used in passive ('get ghosted') and as a noun ('ghosting').",
+      "polish": "olać kogoś bez słowa / zniknąć bez śladu / urwać kontakt bez wyjaśnienia",
+      "clozeSentence": "We had a great first call about the freelance project, and then the client completely ___ me.",
+      "clozeAnswer": "ghosted",
+      "clozeAccepted": [
+        "ghosted"
+      ],
+      "clozeHint": "Past tense of the slang verb meaning 'vanished like a spirit'.",
+      "quizPrompt": "He stopped answering all my texts and calls without any explanation.",
+      "quizOptions": [
+        "He disappeared as a spirit from my messages without explanation.",
+        "He totally ghosted me out of nowhere.",
+        "He made a ghost out of my messages.",
+        "He haunted me by not replying to my texts."
+      ],
+      "quizCorrectIndex": 1,
+      "quizExplanations": [
+        "Over-literal and non-idiomatic.",
+        "Exact, modern native phrasing.",
+        "Not an English idiom.",
+        "'Haunt' means to keep coming back—the exact opposite of ghosting!"
+      ],
+      "sandboxPrompt": "Describe a frustrating situation where a recruiter, seller, or acquaintance abruptly stopped replying.",
+      "sandboxSample": "I held the sofa for a buyer all weekend, and then he completely ghosted me ten minutes before pickup.",
+      "sandboxRubric": [
+        "Register: Relatable, current everyday speech.",
+        "Collocation: Transitive 'ghost [someone]' or passive 'get ghosted'.",
+        "Cadence: Crisp contrast between expectation and sudden silence."
+      ]
+    },
+    {
+      "id": "cns-09",
+      "phrase": "to be down (for / to)",
+      "ipa": "/tuː biː daʊn fɔː/",
+      "speechText": "to be down for",
+      "category": "Everyday",
+      "register": "Casual",
+      "cefr": "C1",
+      "packId": "mastery-current-native-slang",
+      "flat": "Yes, I would happily join you for Thai food tonight.",
+      "upgraded": "Oh, I'm totally down for Thai tonight—just name the time.",
+      "dialogues": [
+        {
+          "context": "Text Message · Weekend Plan",
+          "lines": [
+            {
+              "speaker": "Noah",
+              "text": "Anyone down to grab ramen after work?"
+            },
+            {
+              "speaker": "Kasia",
+              "text": "Count me in—I'm always down for ramen."
+            }
+          ]
+        },
+        {
+          "context": "Office Kitchen · Afternoon",
+          "lines": [
+            {
+              "speaker": "Chris",
+              "text": "Hey, I'm making a coffee run. You down to walk over?"
+            },
+            {
+              "speaker": "Ola",
+              "text": "100% down, give me two seconds to grab my coat."
+            }
+          ]
+        }
+      ],
+      "nuance": "One of the most natural ways in North American (and increasingly global) English to say 'I'm in / I'm up for it'. Note the grammar: 'down for + noun/gerund' ('down for drinks') and 'down to + base verb' ('down to go'). Watch out for tone/context: 'feeling down' still means sad, whereas 'I'm down for pizza' means enthusiastic!",
+      "polish": "pisać się na coś / być za / chętnie (wchodzę w to)",
+      "clozeSentence": "Are you ___ to catch the late showing if we grab a quick bite first?",
+      "clozeAnswer": "down",
+      "clozeAccepted": [
+        "down",
+        "up"
+      ],
+      "clozeHint": "4-letter slang adjective meaning 'willing / up for it' (opposite of 'up'!).",
+      "quizPrompt": "Sure, I'd really love to go for a quick run before breakfast tomorrow.",
+      "quizOptions": [
+        "Yeah, I'm down to go for a quick run before breakfast.",
+        "Yeah, I'm down for to run before breakfast.",
+        "Yeah, I am feeling down about running before breakfast.",
+        "Yeah, I write myself into going for a run."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Effortless, natural native agreement using 'down to + verb'.",
+        "Invalid preposition combination ('for to').",
+        "'Feeling down about' means sad/discouraged—opposite meaning!",
+        "Direct Polish calque of 'piszę się na to'."
+      ],
+      "sandboxPrompt": "Enthusiastically accept a friend's suggestion to go to a weekend street-food market.",
+      "sandboxSample": "I'm super down for the street-food market—let's go early before the lines get crazy.",
+      "sandboxRubric": [
+        "Register: Upbeat, relaxed friend-to-friend tone.",
+        "Collocation: Correct pattern ('down for + noun' or 'down to + verb').",
+        "Cadence: Natural enthusiastic response."
+      ]
+    },
+    {
+      "id": "cns-10",
+      "phrase": "fair play",
+      "ipa": "/feə pleɪ/",
+      "speechText": "fair play",
+      "category": "Everyday",
+      "register": "Conversational",
+      "cefr": "C1",
+      "packId": "mastery-current-native-slang",
+      "flat": "I have to respect her for learning a new language while working full-time.",
+      "upgraded": "Fair play to her—she trained for a marathon while juggling two jobs.",
+      "dialogues": [
+        {
+          "context": "Pub Chat · Career Switch",
+          "lines": [
+            {
+              "speaker": "Tom",
+              "text": "Did you hear Dave quit consulting to open a sourdough bakery?"
+            },
+            {
+              "speaker": "Hannah",
+              "text": "Fair play to him! Most people just talk about doing that and never actually jump."
+            }
+          ]
+        },
+        {
+          "context": "Watching a Match",
+          "lines": [
+            {
+              "speaker": "Ben",
+              "text": "Okay, I didn't think they'd pull off that comeback in the last five minutes."
+            },
+            {
+              "speaker": "Marek",
+              "text": "Yeah, fair play—they completely outplayed us in the second half."
+            }
+          ]
+        }
+      ],
+      "nuance": "Huge in UK, Irish, and Commonwealth everyday speech (and widely understood everywhere). Means 'credit where it's due / respect!'. Polish speakers often think 'fair play' only means sportsmanship in football—in real native speech it's a warm everyday way to admire someone's grit, guts, or honesty.",
+      "polish": "szacun / pełen szacunek / trzeba im/jej to przyznać",
+      "clozeSentence": "He walked away from a toxic job with no backup and built his own studio—___ play to him.",
+      "clozeAnswer": "fair",
+      "clozeAccepted": [
+        "fair"
+      ],
+      "clozeHint": "4-letter adjective meaning just or reasonable.",
+      "quizPrompt": "I genuinely respect him for admitting he was wrong in front of the whole team.",
+      "quizOptions": [
+        "Clean play to him for owning up in front of everyone.",
+        "Fair game to him for owning up in front of everyone.",
+        "Sportsmanship to him for admitting his mistake.",
+        "Fair play to him—owning up in front of the whole team takes guts."
+      ],
+      "quizCorrectIndex": 3,
+      "quizExplanations": [
+        "Wrong adjective ('clean play' isn't the idiom).",
+        "'Fair game' means a legitimate target for criticism/jokes—totally different meaning!",
+        "Awkward noun choice; nobody says 'sportsmanship to him'.",
+        "Warm, authentic UK/conversational expression of respect."
+      ],
+      "sandboxPrompt": "Give genuine credit to a friend who pulled off something impressive or bold.",
+      "sandboxSample": "Fair play to you for biking to work all winter—I would've caved by November.",
+      "sandboxRubric": [
+        "Register: Warm, genuine conversational admiration.",
+        "Collocation: Exact expression 'fair play' or 'fair play to [someone]'.",
+        "Cadence: Natural follow-up highlighting why it's impressive."
+      ]
+    },
+    {
+      "id": "cns-11",
+      "phrase": "sketchy / dodgy",
+      "ipa": "/ˈsketʃi / ˈdɒdʒi/",
+      "speechText": "sketchy, dodgy",
+      "category": "Everyday",
+      "register": "Casual",
+      "cefr": "C1",
+      "packId": "mastery-current-native-slang",
+      "flat": "That website asking for my bank PIN looks untrustworthy and possibly like a scam.",
+      "upgraded": "Don't click that link—the whole site looks super sketchy.",
+      "dialogues": [
+        {
+          "context": "Travel · Late Arrival (US/Global)",
+          "lines": [
+            {
+              "speaker": "Alex",
+              "text": "Should we walk back from the station or grab an Uber?"
+            },
+            {
+              "speaker": "Maya",
+              "text": "Let's just Uber—those last two blocks get a bit sketchy after midnight."
+            }
+          ]
+        },
+        {
+          "context": "Lunch · Street Food (UK)",
+          "lines": [
+            {
+              "speaker": "Liam",
+              "text": "You alright? You look a bit pale."
+            },
+            {
+              "speaker": "Chloe",
+              "text": "Ugh, I think I had a dodgy prawn sandwich from that kiosk earlier."
+            }
+          ]
+        }
+      ],
+      "nuance": "The go-to casual words for anything shady, unreliable, or slightly unsafe. 'Sketchy' (also shortened to 'sketch') is universal in North America and widely used everywhere; 'dodgy' is the quintessential UK/Australian equivalent and also covers questionable food ('a dodgy kebab') or faulty gear ('dodgy Wi-Fi').",
+      "polish": "podejrzany / szemrany / lipny / niepewny",
+      "clozeSentence": "A 'free iPhone' text from a random number? Yeah, that's super ___.",
+      "clozeAnswer": "sketchy",
+      "clozeAccepted": [
+        "sketchy",
+        "dodgy",
+        "sketch"
+      ],
+      "clozeHint": "7-letter US slang adjective (or 5-letter UK equivalent 'dodgy') meaning shady/untrustworthy.",
+      "quizPrompt": "The landlord wants cash only and refuses to sign a contract—that seems very suspicious.",
+      "quizOptions": [
+        "Cash only with no contract? That sounds pretty sketchy.",
+        "Cash only with no contract? That seems like a drawing.",
+        "Cash only with no contract? That appears dubious and suspect.",
+        "Cash only with no contract? That's very sneaky-looking."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Natural, instinctive native reaction to a red flag.",
+        "Confuses 'sketchy' with literal art sketches.",
+        "Stiff textbook phrasing.",
+        "'Sneaky' describes clever/secretive behavior, not a shady scammy situation."
+      ],
+      "sandboxPrompt": "Warn a friend about a suspicious online listing, unreliable Wi-Fi, or questionable street shortcut.",
+      "sandboxSample": "I wouldn't buy concert tickets off a brand-new account—the whole listing looks pretty dodgy.",
+      "sandboxRubric": [
+        "Register: Casual, sharp everyday warning.",
+        "Collocation: Uses 'sketchy' or 'dodgy' naturally for an untrustworthy situation.",
+        "Cadence: Direct and idiomatic."
+      ]
+    },
+    {
+      "id": "cns-12",
+      "phrase": "I'm beat / I'm wiped",
+      "ipa": "/aɪm biːt / aɪm waɪpt/",
+      "speechText": "I'm beat, I'm wiped",
+      "category": "Everyday",
+      "register": "Casual",
+      "cefr": "C1",
+      "packId": "mastery-current-native-slang",
+      "flat": "I am extremely tired after spending all day moving boxes.",
+      "upgraded": "Honestly, I'm completely beat—I think I'm gonna crash by nine.",
+      "dialogues": [
+        {
+          "context": "Friday Evening · Couch",
+          "lines": [
+            {
+              "speaker": "Sam",
+              "text": "Still want to cook or should we just order Thai?"
+            },
+            {
+              "speaker": "Julia",
+              "text": "Order, please. After six back-to-back calls, I'm totally wiped."
+            }
+          ]
+        },
+        {
+          "context": "After a Long Flight",
+          "lines": [
+            {
+              "speaker": "Marek",
+              "text": "How are you holding up with the jet lag?"
+            },
+            {
+              "speaker": "Elena",
+              "text": "I'm beat—my brain checked out three hours ago."
+            }
+          ]
+        }
+      ],
+      "nuance": "Native speakers rarely say 'I am very tired' when they're genuinely drained—they reach for 'I'm beat', 'I'm wiped (out)', or (in the UK) 'I'm knackered'. Note that 'beat' here never takes '-en' ('I'm beat', NEVER 'I'm beaten', which means defeated!).",
+      "polish": "padam na twarz / jestem wykończony / nie mam już sił",
+      "clozeSentence": "Twelve hours of walking around Rome—I'm completely ___.",
+      "clozeAnswer": "beat",
+      "clozeAccepted": [
+        "beat",
+        "wiped",
+        "knackered"
+      ],
+      "clozeHint": "4-letter casual adjective meaning totally exhausted (also 'wiped').",
+      "quizPrompt": "I'm utterly exhausted after working overtime all week.",
+      "quizOptions": [
+        "I'm thoroughly beaten after this week.",
+        "I'm totally wiped after pulling overtime all week.",
+        "I am exceedingly fatigued from this week's labor.",
+        "I'm falling on my face after this week."
+      ],
+      "quizCorrectIndex": 1,
+      "quizExplanations": [
+        "'Beaten' means defeated in a fight/game—for exhaustion it's always 'beat' (or 'wiped').",
+        "Natural, vivid, and exactly what native speakers say.",
+        "Sounds like a Victorian novel.",
+        "Direct Polish calque of 'padam na twarz'—doesn't work in English."
+      ],
+      "sandboxPrompt": "Tell a friend why you're skipping late-night plans after a grueling day.",
+      "sandboxSample": "I'd love to come, but after a 10-hour drive I'm completely beat—rain check for next weekend?",
+      "sandboxRubric": [
+        "Register: Natural, tired-but-friendly casual tone.",
+        "Collocation: Exact adjective 'beat' or 'wiped' (not 'beaten').",
+        "Cadence: Short and realistic."
+      ]
+    },
+    {
+      "id": "cns-13",
+      "phrase": "hard pass",
+      "ipa": "/hɑːd pɑːs/",
+      "speechText": "hard pass",
+      "category": "Everyday",
+      "register": "Casual",
+      "cefr": "C1",
+      "packId": "mastery-current-native-slang",
+      "flat": "No thank you, I definitely do not want to participate in that.",
+      "upgraded": "Waking up at 5 a.m. for a winter cold plunge? Yeah, hard pass from me.",
+      "dialogues": [
+        {
+          "context": "Group Chat · Restaurant Idea",
+          "lines": [
+            {
+              "speaker": "Alex",
+              "text": "Anyone want to try that new all-you-can-eat sushi buffet by the highway?"
+            },
+            {
+              "speaker": "Julia",
+              "text": "Highway sushi? Hard pass—let's go literally anywhere else."
+            }
+          ]
+        },
+        {
+          "context": "Job Hunt · Recruiter Pitch",
+          "lines": [
+            {
+              "speaker": "Dan",
+              "text": "The salary was decent, right? Why'd you turn down the interview?"
+            },
+            {
+              "speaker": "Kasia",
+              "text": "Five days in-office plus 'occasional weekend sprints'—instant hard pass."
+            }
+          ]
+        }
+      ],
+      "nuance": "Crisp, witty, and unmistakable way to decline an idea you have zero interest in. Softer and funnier than a flat 'no way', because the playful deadpan delivery takes the sting out. Keep it for friends, peers, and casual debriefs—not for turning down a client or senior executive directly.",
+      "polish": "zdecydowanie pasuję / absolutnie nie / dzięki, postoję",
+      "clozeSentence": "Camping in pouring rain with zero cell signal? That's a ___ pass for me.",
+      "clozeAnswer": "hard",
+      "clozeAccepted": [
+        "hard"
+      ],
+      "clozeHint": "4-letter adjective meaning firm or solid.",
+      "quizPrompt": "Standing in a two-hour line in the rain for a club? Definitely not for me.",
+      "quizOptions": [
+        "Two hours in the rain for a club? Hard pass.",
+        "Two hours in the rain for a club? Strong pass.",
+        "Two hours in the rain for a club? Heavy skip.",
+        "Two hours in the rain for a club? Thanks, I will stand."
+      ],
+      "quizCorrectIndex": 0,
+      "quizExplanations": [
+        "Crisp, witty, and 100% native.",
+        "Fixed collocation is always 'hard pass', never 'strong pass'.",
+        "Not an idiomatic phrase.",
+        "Direct Polish calque of 'dzięki, postoję'—makes no sense in English."
+      ],
+      "sandboxPrompt": "Playfully reject an unappealing activity or offer using 'hard pass'.",
+      "sandboxSample": "A 6 a.m. networking breakfast on a Saturday? Yeah, that's a hard pass from me.",
+      "sandboxRubric": [
+        "Register: Playful, firm casual refusal.",
+        "Collocation: Exact fixed phrase 'hard pass'.",
+        "Cadence: Deadpan setup followed by the punchy refusal."
+      ]
+    },
+    {
+      "id": "cns-14",
+      "phrase": "to crash (at [someone's] place)",
+      "ipa": "/tuː kræʃ æt ˈsʌmwʌnz pleɪs/",
+      "speechText": "crash at my place",
+      "category": "Everyday",
+      "register": "Casual",
+      "cefr": "C1",
+      "packId": "mastery-current-native-slang",
+      "flat": "You are welcome to sleep overnight on my couch if you miss the last bus.",
+      "upgraded": "If the concert runs late, just crash at my place—the guest room's open.",
+      "dialogues": [
+        {
+          "context": "Late Night · After a Show",
+          "lines": [
+            {
+              "speaker": "Jake",
+              "text": "Ugh, Uber surge pricing is like sixty bucks right now."
+            },
+            {
+              "speaker": "Ben",
+              "text": "Don't waste sixty bucks—just crash on my couch and head back in the morning."
+            }
+          ]
+        },
+        {
+          "context": "Weekend · Exhaustion Sense",
+          "lines": [
+            {
+              "speaker": "Elena",
+              "text": "What did you end up doing Friday night?"
+            },
+            {
+              "speaker": "Liam",
+              "text": "Honestly, I got home, ate half a pizza, and crashed by ten."
+            }
+          ]
+        }
+      ],
+      "nuance": "Two super frequent casual meanings every native uses constantly: (1) to stay overnight informally at a friend's place ('crash at mine', 'crash on your couch'), and (2) to fall asleep instantly from exhaustion ('I totally crashed on the sofa'). Bonus 3rd sense: 'crash a party' = show up uninvited!",
+      "polish": "przekimać (u kogoś) / zwalić się na noc / paść ze zmęczenia",
+      "clozeSentence": "Don't pay for a hotel for one night—you're welcome to ___ at my place.",
+      "clozeAnswer": "crash",
+      "clozeAccepted": [
+        "crash"
+      ],
+      "clozeHint": "5-letter casual verb meaning to sleep over informally or collapse into sleep.",
+      "quizPrompt": "Feel free to sleep over on our spare bed if you don't want to drive home in the snow.",
+      "quizOptions": [
+        "Feel free to collide at our place if the roads get snowy.",
+        "Feel free to crash at our place if you don't want to drive in the snow.",
+        "Feel free to smash at our apartment tonight.",
+        "Feel free to overnight yourself at our residence."
+      ],
+      "quizCorrectIndex": 1,
+      "quizExplanations": [
+        "'Collide' only has the literal accident meaning.",
+        "Warm, effortless, and completely natural everyday native speech.",
+        "Wrong verb—'smash' has totally different slang meanings.",
+        "Stiff and ungrammatical."
+      ],
+      "sandboxPrompt": "Offer a friend a casual place to sleep overnight, or describe falling asleep early from exhaustion.",
+      "sandboxSample": "My flight landed at midnight, so I got home and pretty much crashed the second my head hit the pillow.",
+      "sandboxRubric": [
+        "Register: Warm, laid-back everyday spoken English.",
+        "Collocation: Uses 'crash at [someone's] place' or intransitive 'crash' for falling asleep.",
+        "Cadence: Easygoing and natural."
+      ]
+    }
+  ]
+}
