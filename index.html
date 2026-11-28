@@ -1293,12 +1293,17 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
         </button>
       </nav>
 
-      <!-- Right: Quiet Mastered Counter + Theme Toggle + Shortcuts -->
-      <div class="flex items-center gap-2.5 relative">
-        <div class="hidden sm:flex items-center gap-1.5 text-xs font-mono text-stone-500 dark:text-stone-400 mr-1" title="Mastered items">
+      <!-- Right: Mastered Counter + Voice Studio + Theme Toggle + Shortcuts -->
+      <div class="flex items-center gap-2 relative">
+        <div class="hidden sm:flex items-center gap-1.5 text-xs font-mono text-stone-500 dark:text-stone-400 mr-0.5" title="Mastered items">
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
           <span id="header-mastered-count">0/36</span>
         </div>
+
+        <button id="btn-voice-studio" onclick="toggleVoiceModal()" aria-label="Natural Voice Settings" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-paper-border dark:border-charcoal-border bg-paper-card/80 dark:bg-charcoal-card/80 hover:border-[#C46548] text-xs font-medium text-stone-600 dark:text-stone-300 hover:text-paper-ink dark:hover:text-charcoal-cream transition-colors" title="Natural US &amp; UK Voice Studio (V)">
+          <span id="header-voice-dot" class="w-1.5 h-1.5 rounded-full bg-[#C46548]"></span>
+          <span id="header-voice-label" class="font-mono text-[11px]">Voices</span>
+        </button>
 
         <button onclick="toggleTheme()" aria-label="Toggle Light or Dark Theme" class="p-2 rounded-lg text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream hover:bg-paper-subtle/70 dark:hover:bg-charcoal-subtle/70 transition-colors flex items-center justify-center">
           <svg class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
@@ -1316,6 +1321,28 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
       </div>
     </div>
   </header>
+
+  <!-- ==================== NATURAL VOICE STUDIO MODAL (US & UK NEURAL TTS) ==================== -->
+  <div id="voice-modal" class="hidden fixed inset-0 z-50 bg-black/45 backdrop-blur-xs flex items-center justify-center p-4" onclick="if(event.target === this) toggleVoiceModal(false)">
+    <div class="w-full max-w-lg rounded-2xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card shadow-2xl p-5 sm:p-6 space-y-5 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-start justify-between gap-3 pb-3.5 border-b border-paper-border dark:border-charcoal-border">
+        <div>
+          <div class="flex items-center gap-2">
+            <h2 class="serif-display text-xl font-medium text-paper-ink dark:text-charcoal-cream">Natural Voice Studio</h2>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-[#C46548]/12 text-[#A84B30] dark:text-[#E58E73] border border-[#C46548]/25">US &amp; UK</span>
+          </div>
+          <p class="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
+            Human-like neural speech running 100% locally in your browser—no API keys or cloud tracking.
+          </p>
+        </div>
+        <button onclick="toggleVoiceModal(false)" class="px-2.5 py-1 rounded-lg border border-paper-border dark:border-charcoal-border text-xs font-mono text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream">
+          Esc
+        </button>
+      </div>
+
+      <div id="voice-modal-body" class="space-y-4"></div>
+    </div>
+  </div>
 
   <!-- ==================== DESKTOP KEYBOARD SHORTCUTS MODAL ==================== -->
   <div id="shortcuts-modal" class="hidden fixed inset-0 z-50 bg-black/45 backdrop-blur-xs flex items-center justify-center p-4" onclick="if(event.target === this) toggleShortcutsModal(false)">
@@ -1361,6 +1388,10 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
           </div>
         </div>
         <div class="flex items-center justify-between">
+          <span class="text-stone-600 dark:text-stone-300">Open Natural Voice Studio</span>
+          <kbd class="border border-paper-border dark:border-charcoal-border bg-paper-subtle dark:bg-charcoal-subtle">V</kbd>
+        </div>
+        <div class="flex items-center justify-between">
           <span class="text-stone-600 dark:text-stone-300">Cycle Mastery Status</span>
           <kbd class="border border-paper-border dark:border-charcoal-border bg-paper-subtle dark:bg-charcoal-subtle">M</kbd>
         </div>
@@ -1384,13 +1415,18 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
   <main class="flex-1 max-w-4xl w-full mx-auto px-5 sm:px-8 pt-7 sm:pt-10 pb-28 md:pb-16">
 
     <!-- ==================== VIEW 1: TODAY ==================== -->
-    <section id="view-today" class="space-y-6 hidden">
-      <div id="today-header-bar" class="max-w-2xl mx-auto flex items-baseline justify-between gap-4">
-        <div class="flex items-baseline gap-2.5">
-          <h1 class="serif-display text-2xl font-medium text-paper-ink dark:text-charcoal-cream">
-            Today
-          </h1>
-          <span id="today-date-label" class="text-xs text-stone-500 dark:text-stone-400">Sun, Nov 22</span>
+    <section id="view-today" class="space-y-5 hidden">
+      <div id="today-header-bar" class="max-w-2xl mx-auto flex flex-col sm:flex-row sm:items-end justify-between gap-2.5">
+        <div class="space-y-0.5">
+          <div class="flex items-baseline gap-2.5">
+            <h1 class="serif-display text-2xl font-medium text-paper-ink dark:text-charcoal-cream">
+              Today
+            </h1>
+            <span id="today-date-label" class="text-xs text-stone-500 dark:text-stone-400">Sun, Nov 22</span>
+          </div>
+          <p class="text-xs text-stone-500 dark:text-stone-400">
+            3 Everyday · 3 Workplace · 1 Syntax &amp; Discourse
+          </p>
         </div>
 
         <div class="flex items-center gap-3.5 text-xs">
@@ -1398,7 +1434,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
             <button id="btn-today-focus" onclick="setTodayLayout('focus')" class="transition-colors font-medium text-paper-ink dark:text-charcoal-cream">
               Focus
             </button>
-            <button id="btn-today-grid" onclick="setTodayLayout('grid')" class="transition-colors text-stone-400 dark:text-stone-500 hover:text-paper-ink dark:hover:text-charcoal-cream">
+            <button id="btn-today-grid" onclick="setTodayLayout('grid')" class="transition-colors text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream">
               Grid
             </button>
           </div>
@@ -2217,6 +2253,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       TODAY_IDS: 'lexis_pr_today_ids_v5',
       TODAY_DATE: 'lexis_pr_today_date_v5',
       TODAY_LAYOUT: 'lexis_pr_today_layout_v4',
+      VOICE_SETTINGS: 'lexis_pr_voice_settings_v1',
       THEME: 'lexis_pr_theme_v4'
     };
 
@@ -2273,16 +2310,12 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       initTodayLayout();
       updateTodayDateLabel();
       setupKeyboardShortcuts();
+      LexisVoice.init();
 
       await initStorageAndLibrary();
       await loadPracticeStats();
       initTodayBatch();
       renderAll();
-
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.getVoices();
-        window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
-      }
     });
 
     // ==================== BESPOKE SMOKED & FROSTED GLASS PRISM MONOGRAM SVG ====================
@@ -2476,6 +2509,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
 
         if (e.key === 'Escape') {
           toggleShortcutsModal(false);
+          toggleVoiceModal(false);
           if (isTyping && e.target) e.target.blur();
           return;
         }
@@ -2494,6 +2528,13 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         if (e.key === '?') {
           e.preventDefault();
           toggleShortcutsModal();
+          return;
+        }
+
+        // 'V' opens Natural Voice Studio
+        if (e.key.toLowerCase() === 'v') {
+          e.preventDefault();
+          toggleVoiceModal();
           return;
         }
 
@@ -2543,7 +2584,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           if (e.key.toLowerCase() === 's' && step && step.item) {
             e.preventDefault();
             if (step.type === 'listen') practicePlayListenAudio(true);
-            else speakItem(step.item.id, 'US', null, 0.72);
+            else speakItem(step.item.id, 'US', null, 0.75);
             return;
           }
         }
@@ -2574,7 +2615,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           return;
         }
 
-        // 'A' plays US audio
+        // 'A' plays US audio; 'S' plays 0.75x slow US audio
         if (e.key.toLowerCase() === 'a') {
           if (inPracticeLesson) {
             const step = getCurrentPracticeStep();
@@ -2589,6 +2630,15 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           if (activeItem) {
             e.preventDefault();
             speakItem(activeItem.id, 'US');
+          }
+          return;
+        }
+
+        if (e.key.toLowerCase() === 's') {
+          const activeItem = getActiveFocusedItem();
+          if (activeItem) {
+            e.preventDefault();
+            speakItem(activeItem.id, 'US', null, 0.75, `${activeItem.id}-US`);
           }
           return;
         }
@@ -3264,43 +3314,954 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       switchView(appState.currentView);
     }
 
-    // ==================== WEB SPEECH API PRONUNCIATION (US & UK BUTTONS) ====================
-    function speakItem(itemId, accent = 'US', customText = null, rate = 0.95, customAudioKey = null) {
-      if (!('speechSynthesis' in window)) {
-        showToast('Audio pronunciation is unavailable in this browser.');
-        return;
+    // ==================== NATURAL VOICE STUDIO (KOKORO-82M NEURAL + PIPER VITS + RANKED SYSTEM) ====================
+    const KOKORO_VOICES = {
+      US: [
+        { id: 'af_heart', label: 'Heart — Warm & Lifelike (Female ★)', short: 'Heart' },
+        { id: 'af_bella', label: 'Bella — Expressive & Crisp (Female)', short: 'Bella' },
+        { id: 'af_nicole', label: 'Nicole — Calm Studio (Female)', short: 'Nicole' },
+        { id: 'am_michael', label: 'Michael — Natural Conversational (Male ★)', short: 'Michael' },
+        { id: 'am_fenrir', label: 'Fenrir — Rich & Resonant (Male)', short: 'Fenrir' },
+        { id: 'am_puck', label: 'Puck — Upbeat & Friendly (Male)', short: 'Puck' }
+      ],
+      UK: [
+        { id: 'bf_emma', label: 'Emma — Natural British RP (Female ★)', short: 'Emma' },
+        { id: 'bf_isabella', label: 'Isabella — Polished British (Female)', short: 'Isabella' },
+        { id: 'bm_george', label: 'George — Warm British (Male ★)', short: 'George' },
+        { id: 'bm_fable', label: 'Fable — Articulate Narrative (Male)', short: 'Fable' }
+      ]
+    };
+
+    const PIPER_VOICES = {
+      US: [
+        { id: 'en_US-hfc_female-medium', label: 'HFC Studio — Natural Female (US)', short: 'HFC Female' },
+        { id: 'en_US-ryan-medium', label: 'Ryan — Clear Broadcast Male (US)', short: 'Ryan' },
+        { id: 'en_US-kristin-medium', label: 'Kristin — Warm Female (US)', short: 'Kristin' },
+        { id: 'en_US-joe-medium', label: 'Joe — Conversational Male (US)', short: 'Joe' }
+      ],
+      UK: [
+        { id: 'en_GB-cori-medium', label: 'Cori — Crisp British Female (UK)', short: 'Cori' },
+        { id: 'en_GB-alba-medium', label: 'Alba — Expressive UK Female (UK)', short: 'Alba' },
+        { id: 'en_GB-alan-medium', label: 'Alan — Classic British Male (UK)', short: 'Alan' },
+        { id: 'en_GB-jenny_dioco-medium', label: 'Jenny — Warm Isles Female (UK)', short: 'Jenny' }
+      ]
+    };
+
+    const ROBOTIC_VOICE_BLACKLIST = [
+      'espeak', 'festival', 'flite', 'mbrola', 'speechd', 'albert', 'bad news', 'bahh',
+      'bells', 'boing', 'bubbles', 'cellos', 'deranged', 'good news', 'hysterical',
+      'jester', 'organ', 'superstar', 'trinoids', 'whisper', 'wobble', 'zarvox', 'fred', 'ralph', 'kathy', 'junior'
+    ];
+
+    const LexisVoice = (() => {
+      const KOKORO_CDN = 'https://cdn.jsdelivr.net/npm/kokoro-js@1.2.1/dist/kokoro.web.js';
+      const KOKORO_MODEL_ID = 'onnx-community/Kokoro-82M-v1.0-ONNX';
+      const PIPER_CDN = 'https://cdn.jsdelivr.net/npm/@diffusionstudio/vits-web@1.0.3/+esm';
+      const MAX_WAV_CACHE = 64;
+
+      let settings = {
+        engine: 'kokoro', // 'kokoro' | 'piper' | 'system'
+        kokoroUS: 'af_heart',
+        kokoroUK: 'bf_emma',
+        piperUS: 'en_US-hfc_female-medium',
+        piperUK: 'en_GB-cori-medium',
+        systemUS: '',
+        systemUK: '',
+        baseRate: 0.98
+      };
+
+      let kokoroState = 'idle'; // 'idle' | 'loading' | 'ready' | 'error'
+      let kokoroProgress = 0;
+      let kokoroError = null;
+      let kokoroWorker = null;
+      let kokoroWorkerUrl = null;
+      let kokoroMainThreadInstance = null;
+      let kokoroInitPromise = null;
+      let workerReqCounter = 0;
+      const pendingWorkerReqs = new Map();
+
+      let piperModule = null;
+      let piperLoadingVoice = null;
+      let piperProgress = 0;
+
+      let sharedAudioEl = null;
+      let activeObjectUrl = null;
+      let playbackToken = 0;
+      let systemVoices = [];
+      const wavBlobCache = new Map(); // cacheKey -> Blob
+
+      function loadSettings() {
+        try {
+          const raw = localStorage.getItem(STORAGE.VOICE_SETTINGS);
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            if (parsed && typeof parsed === 'object') {
+              if (['kokoro', 'piper', 'system'].includes(parsed.engine)) settings.engine = parsed.engine;
+              if (typeof parsed.kokoroUS === 'string' && KOKORO_VOICES.US.some(v => v.id === parsed.kokoroUS)) settings.kokoroUS = parsed.kokoroUS;
+              if (typeof parsed.kokoroUK === 'string' && KOKORO_VOICES.UK.some(v => v.id === parsed.kokoroUK)) settings.kokoroUK = parsed.kokoroUK;
+              if (typeof parsed.piperUS === 'string' && PIPER_VOICES.US.some(v => v.id === parsed.piperUS)) settings.piperUS = parsed.piperUS;
+              if (typeof parsed.piperUK === 'string' && PIPER_VOICES.UK.some(v => v.id === parsed.piperUK)) settings.piperUK = parsed.piperUK;
+              if (typeof parsed.systemUS === 'string') settings.systemUS = parsed.systemUS;
+              if (typeof parsed.systemUK === 'string') settings.systemUK = parsed.systemUK;
+              const br = Number(parsed.baseRate);
+              if (Number.isFinite(br) && br >= 0.7 && br <= 1.25) settings.baseRate = br;
+            }
+          }
+        } catch (e) {}
       }
 
+      function saveSettings() {
+        try {
+          localStorage.setItem(STORAGE.VOICE_SETTINGS, JSON.stringify(settings));
+        } catch (e) {}
+      }
+
+      function refreshSystemVoices() {
+        if (!('speechSynthesis' in window)) return;
+        try {
+          systemVoices = window.speechSynthesis.getVoices() || [];
+          renderVoiceModalIfOpen();
+        } catch (e) {}
+      }
+
+      function scoreSystemVoice(voice, accent) {
+        if (!voice || !voice.lang) return -999;
+        const langNorm = String(voice.lang).replace('_', '-').toLowerCase();
+        if (!langNorm.startsWith('en')) return -999;
+
+        const targetLang = accent === 'UK' ? 'en-gb' : 'en-us';
+        const nameLower = String(voice.name || '').toLowerCase();
+        let score = 0;
+
+        if (ROBOTIC_VOICE_BLACKLIST.some(bad => nameLower.includes(bad))) {
+          score -= 500;
+        }
+
+        // Accent match
+        if (langNorm === targetLang) score += 60;
+        else if (accent === 'UK' && (langNorm === 'en-ie' || langNorm === 'en-au' || nameLower.includes('united kingdom') || nameLower.includes('british') || nameLower.includes('uk'))) score += 35;
+        else if (accent === 'US' && (langNorm === 'en-ca' || nameLower.includes('united states') || nameLower.includes('american') || nameLower.includes('multilingual'))) score += 35;
+        else score -= 15;
+
+        // Quality tiers (inspired by web-speech-recommended-voices)
+        if (nameLower.includes('online (natural)') || nameLower.includes('natural') || nameLower.includes('neural')) score += 130;
+        else if (nameLower.includes('siri')) score += 115;
+        else if (nameLower.includes('(premium)') || nameLower.includes('premium')) score += 105;
+        else if (nameLower.includes('(enhanced)') || nameLower.includes('enhanced')) score += 90;
+        else if (nameLower.includes('google') && !voice.localService) score += 80;
+        else if (nameLower.includes('google')) score += 55;
+
+        // Well-known natural-sounding named personas per region
+        if (accent === 'US') {
+          if (/\b(ava|aria|jenny|guy|andrew|emma|brian|steffan|christopher|allison|zoe|evan|nicky|aaron)\b/.test(nameLower)) score += 45;
+          else if (/\b(samantha|alex)\b/.test(nameLower)) score += 20;
+          if (nameLower.includes('microsoft david') || nameLower.includes('microsoft zira') || nameLower.includes('microsoft mark')) score -= 25;
+        } else {
+          if (/\b(sonia|ryan|libby|maisie|serena|oliver|martha|arthur|stephanie|jamie)\b/.test(nameLower)) score += 45;
+          else if (/\b(daniel|kate)\b/.test(nameLower)) score += 20;
+          if (nameLower.includes('microsoft hazel') || nameLower.includes('microsoft george') && !nameLower.includes('natural')) score -= 20;
+        }
+
+        if (!voice.localService) score += 12;
+        return score;
+      }
+
+      function getRankedSystemVoices(accent) {
+        if (!systemVoices || systemVoices.length === 0) refreshSystemVoices();
+        return (systemVoices || [])
+          .map(v => ({ voice: v, score: scoreSystemVoice(v, accent) }))
+          .filter(entry => entry.score > -400)
+          .sort((a, b) => b.score - a.score);
+      }
+
+      function pickBestSystemVoice(accent) {
+        const preferredUri = accent === 'UK' ? settings.systemUK : settings.systemUS;
+        if (preferredUri && systemVoices.length > 0) {
+          const exact = systemVoices.find(v => v.voiceURI === preferredUri || v.name === preferredUri);
+          if (exact) return exact;
+        }
+        const ranked = getRankedSystemVoices(accent);
+        return ranked.length > 0 ? ranked[0].voice : null;
+      }
+
+      function encodePcm16WavBlob(samples, sampleRate = 24000) {
+        const numSamples = samples.length;
+        const buffer = new ArrayBuffer(44 + numSamples * 2);
+        const view = new DataView(buffer);
+        const writeAscii = (offset, str) => {
+          for (let i = 0; i < str.length; i++) view.setUint8(offset + i, str.charCodeAt(i));
+        };
+        writeAscii(0, 'RIFF');
+        view.setUint32(4, 36 + numSamples * 2, true);
+        writeAscii(8, 'WAVE');
+        writeAscii(12, 'fmt ');
+        view.setUint32(16, 16, true);
+        view.setUint16(20, 1, true); // PCM 16-bit (universal iOS Safari + desktop support)
+        view.setUint16(22, 1, true); // Mono
+        view.setUint32(24, sampleRate, true);
+        view.setUint32(28, sampleRate * 2, true);
+        view.setUint16(32, 2, true);
+        view.setUint16(34, 16, true);
+        writeAscii(36, 'data');
+        view.setUint32(40, numSamples * 2, true);
+        let offset = 44;
+        for (let i = 0; i < numSamples; i++) {
+          const s = Math.max(-1, Math.min(1, samples[i]));
+          view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
+          offset += 2;
+        }
+        return new Blob([buffer], { type: 'audio/wav' });
+      }
+
+      function cacheWavBlob(key, blob) {
+        if (wavBlobCache.has(key)) wavBlobCache.delete(key);
+        wavBlobCache.set(key, blob);
+        if (wavBlobCache.size > MAX_WAV_CACHE) {
+          const oldest = wavBlobCache.keys().next().value;
+          wavBlobCache.delete(oldest);
+        }
+      }
+
+      function getSharedAudioElement() {
+        if (!sharedAudioEl) {
+          sharedAudioEl = new Audio();
+          sharedAudioEl.preload = 'auto';
+        }
+        return sharedAudioEl;
+      }
+
+      function cleanupActiveAudioUrl() {
+        if (activeObjectUrl) {
+          try { URL.revokeObjectURL(activeObjectUrl); } catch (e) {}
+          activeObjectUrl = null;
+        }
+      }
+
+      function syncHeaderBadge() {
+        const dot = document.getElementById('header-voice-dot');
+        const label = document.getElementById('header-voice-label');
+        if (!dot || !label) return;
+
+        if (settings.engine === 'kokoro') {
+          if (kokoroState === 'ready') {
+            dot.className = 'w-1.5 h-1.5 rounded-full bg-emerald-500';
+            label.textContent = 'HD Voice';
+          } else if (kokoroState === 'loading') {
+            dot.className = 'w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse';
+            label.textContent = kokoroProgress > 0 ? `HD ${kokoroProgress}%` : 'Loading HD…';
+          } else {
+            dot.className = 'w-1.5 h-1.5 rounded-full bg-[#C46548]';
+            label.textContent = 'Voices';
+          }
+        } else if (settings.engine === 'piper') {
+          if (piperLoadingVoice) {
+            dot.className = 'w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse';
+            label.textContent = piperProgress > 0 ? `Piper ${piperProgress}%` : 'Loading…';
+          } else {
+            dot.className = 'w-1.5 h-1.5 rounded-full bg-indigo-500';
+            label.textContent = 'Piper HD';
+          }
+        } else {
+          dot.className = 'w-1.5 h-1.5 rounded-full bg-stone-400';
+          label.textContent = 'System';
+        }
+      }
+
+      function spawnKokoroWorker() {
+        const workerSrc = `
+          import { KokoroTTS } from '${KOKORO_CDN}';
+          let tts = null;
+          let lastProgressPost = 0;
+
+          self.addEventListener('message', async (ev) => {
+            const msg = ev.data || {};
+            if (msg.type === 'init') {
+              try {
+                const fileTotals = new Map();
+                const fileLoaded = new Map();
+                tts = await KokoroTTS.from_pretrained('${KOKORO_MODEL_ID}', {
+                  dtype: 'q8',
+                  device: 'wasm',
+                  progress_callback: (info) => {
+                    if (!info) return;
+                    if (info.file && typeof info.total === 'number' && info.total > 0) {
+                      fileTotals.set(info.file, info.total);
+                      fileLoaded.set(info.file, info.loaded || 0);
+                      const now = Date.now();
+                      if (now - lastProgressPost > 120 || info.status === 'done') {
+                        lastProgressPost = now;
+                        let tot = 0;
+                        let ldd = 0;
+                        fileTotals.forEach((v, k) => { tot += v; ldd += (fileLoaded.get(k) || 0); });
+                        const pct = tot > 0 ? Math.min(99, Math.round((ldd / tot) * 100)) : 0;
+                        self.postMessage({ type: 'progress', pct });
+                      }
+                    }
+                  }
+                });
+                // Tiny warm-up prevents first-syllable clipping on cold start
+                await tts.generate('Hi.', { voice: 'af_heart', speed: 1.0 });
+                self.postMessage({ type: 'ready' });
+              } catch (err) {
+                self.postMessage({ type: 'init_error', message: err && err.message ? err.message : String(err) });
+              }
+              return;
+            }
+
+            if (msg.type === 'synthesize') {
+              if (!tts) {
+                self.postMessage({ type: 'synth_error', reqId: msg.reqId, message: 'Kokoro model not initialized' });
+                return;
+              }
+              try {
+                const out = await tts.generate(msg.text, { voice: msg.voice, speed: msg.speed });
+                const samples = new Float32Array(out.audio);
+                const sampleRate = out.sampling_rate || 24000;
+                self.postMessage({ type: 'audio', reqId: msg.reqId, samples, sampleRate }, [samples.buffer]);
+              } catch (err) {
+                self.postMessage({ type: 'synth_error', reqId: msg.reqId, message: err && err.message ? err.message : String(err) });
+              }
+            }
+          });
+        `;
+        const blob = new Blob([workerSrc], { type: 'application/javascript' });
+        kokoroWorkerUrl = URL.createObjectURL(blob);
+        return new Worker(kokoroWorkerUrl, { type: 'module' });
+      }
+
+      function ensureKokoroReady() {
+        if (kokoroState === 'ready') return Promise.resolve(true);
+        if (kokoroInitPromise) return kokoroInitPromise;
+
+        kokoroState = 'loading';
+        kokoroError = null;
+        syncHeaderBadge();
+        renderVoiceModalIfOpen();
+
+        kokoroInitPromise = new Promise((resolve) => {
+          let settled = false;
+          const fallbackToMainThread = async () => {
+            try {
+              const mod = await import(KOKORO_CDN);
+              kokoroMainThreadInstance = await mod.KokoroTTS.from_pretrained(KOKORO_MODEL_ID, {
+                dtype: 'q8',
+                device: 'wasm',
+                progress_callback: (info) => {
+                  if (info && typeof info.progress === 'number') {
+                    kokoroProgress = Math.min(99, Math.round(info.progress));
+                    syncHeaderBadge();
+                    renderVoiceModalIfOpen();
+                  }
+                }
+              });
+              kokoroState = 'ready';
+              kokoroProgress = 100;
+              syncHeaderBadge();
+              renderVoiceModalIfOpen();
+              settled = true;
+              resolve(true);
+            } catch (err) {
+              kokoroState = 'error';
+              kokoroError = err && err.message ? err.message : 'Could not load neural voice model';
+              kokoroInitPromise = null;
+              syncHeaderBadge();
+              renderVoiceModalIfOpen();
+              settled = true;
+              resolve(false);
+            }
+          };
+
+          try {
+            kokoroWorker = spawnKokoroWorker();
+          } catch (workerErr) {
+            fallbackToMainThread();
+            return;
+          }
+
+          kokoroWorker.onmessage = (ev) => {
+            const msg = ev.data || {};
+            if (msg.type === 'progress') {
+              kokoroProgress = msg.pct || kokoroProgress;
+              syncHeaderBadge();
+              renderVoiceModalIfOpen();
+              return;
+            }
+            if (msg.type === 'ready') {
+              kokoroState = 'ready';
+              kokoroProgress = 100;
+              syncHeaderBadge();
+              renderVoiceModalIfOpen();
+              if (!settled) {
+                settled = true;
+                resolve(true);
+              }
+              return;
+            }
+            if (msg.type === 'init_error') {
+              if (kokoroWorker) {
+                kokoroWorker.terminate();
+                kokoroWorker = null;
+              }
+              if (kokoroWorkerUrl) {
+                URL.revokeObjectURL(kokoroWorkerUrl);
+                kokoroWorkerUrl = null;
+              }
+              if (!settled) fallbackToMainThread();
+              return;
+            }
+            if (msg.type === 'audio' && pendingWorkerReqs.has(msg.reqId)) {
+              const req = pendingWorkerReqs.get(msg.reqId);
+              pendingWorkerReqs.delete(msg.reqId);
+              req.resolve({ samples: msg.samples, sampleRate: msg.sampleRate });
+              return;
+            }
+            if (msg.type === 'synth_error' && pendingWorkerReqs.has(msg.reqId)) {
+              const req = pendingWorkerReqs.get(msg.reqId);
+              pendingWorkerReqs.delete(msg.reqId);
+              req.reject(new Error(msg.message || 'Synthesis failed'));
+            }
+          };
+
+          kokoroWorker.onerror = () => {
+            if (kokoroWorker) {
+              kokoroWorker.terminate();
+              kokoroWorker = null;
+            }
+            if (kokoroWorkerUrl) {
+              URL.revokeObjectURL(kokoroWorkerUrl);
+              kokoroWorkerUrl = null;
+            }
+            if (!settled) fallbackToMainThread();
+          };
+
+          kokoroWorker.postMessage({ type: 'init' });
+        });
+
+        return kokoroInitPromise;
+      }
+
+      async function synthesizeKokoroBlob(text, voiceId, speed) {
+        const clampedSpeed = Math.max(0.65, Math.min(1.35, Number(speed) || 1.0));
+        const cacheKey = `kokoro|${voiceId}|${clampedSpeed.toFixed(2)}|${text}`;
+        if (wavBlobCache.has(cacheKey)) return wavBlobCache.get(cacheKey);
+
+        const ok = await ensureKokoroReady();
+        if (!ok) throw new Error(kokoroError || 'Kokoro unavailable');
+
+        let wavBlob;
+        if (kokoroWorker) {
+          const reqId = ++workerReqCounter;
+          const res = await new Promise((resolve, reject) => {
+            pendingWorkerReqs.set(reqId, { resolve, reject });
+            kokoroWorker.postMessage({ type: 'synthesize', reqId, text, voice: voiceId, speed: clampedSpeed });
+          });
+          wavBlob = encodePcm16WavBlob(res.samples, res.sampleRate);
+        } else if (kokoroMainThreadInstance) {
+          const out = await kokoroMainThreadInstance.generate(text, { voice: voiceId, speed: clampedSpeed });
+          wavBlob = encodePcm16WavBlob(out.audio, out.sampling_rate || 24000);
+        } else {
+          throw new Error('Kokoro runtime not available');
+        }
+
+        cacheWavBlob(cacheKey, wavBlob);
+        return wavBlob;
+      }
+
+      async function synthesizePiperBlob(text, voiceId) {
+        const cacheKey = `piper|${voiceId}|${text}`;
+        if (wavBlobCache.has(cacheKey)) return wavBlobCache.get(cacheKey);
+
+        if (!piperModule) {
+          piperModule = await import(PIPER_CDN);
+        }
+        piperLoadingVoice = voiceId;
+        piperProgress = 0;
+        syncHeaderBadge();
+        renderVoiceModalIfOpen();
+
+        try {
+          const wavBlob = await piperModule.predict({ text, voiceId }, (prog) => {
+            if (prog && prog.total > 0) {
+              piperProgress = Math.min(99, Math.round((prog.loaded / prog.total) * 100));
+              syncHeaderBadge();
+              renderVoiceModalIfOpen();
+            }
+          });
+          cacheWavBlob(cacheKey, wavBlob);
+          return wavBlob;
+        } finally {
+          piperLoadingVoice = null;
+          piperProgress = 0;
+          syncHeaderBadge();
+          renderVoiceModalIfOpen();
+        }
+      }
+
+      function prepareSpeechText(rawText) {
+        return String(rawText || '')
+          .replace(/\[someone\]/gi, 'someone')
+          .replace(/\[doing something\]/gi, 'doing that')
+          .replace(/\[something\]/gi, 'something')
+          .replace(/\[[^\]]+\]/g, 'that')
+          .replace(/\s*—\s*/g, ', ')
+          .replace(/\s+/g, ' ')
+          .trim();
+      }
+
+      function stop() {
+        playbackToken += 1;
+        if (sharedAudioEl) {
+          try {
+            sharedAudioEl.pause();
+            sharedAudioEl.currentTime = 0;
+          } catch (e) {}
+        }
+        cleanupActiveAudioUrl();
+        if ('speechSynthesis' in window) {
+          try { window.speechSynthesis.cancel(); } catch (e) {}
+        }
+        if (appState.speakingKey !== null) {
+          appState.speakingKey = null;
+          syncAudioIndicators();
+        }
+      }
+
+      function playSystemUtterance(text, accent, rate, key, token) {
+        if (!('speechSynthesis' in window)) {
+          if (token === playbackToken) {
+            appState.speakingKey = null;
+            syncAudioIndicators();
+          }
+          showToast('Audio pronunciation is unavailable in this browser.');
+          return;
+        }
+
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        const lang = accent === 'UK' ? 'en-GB' : 'en-US';
+        utterance.lang = lang;
+        utterance.rate = Math.max(0.65, Math.min(1.35, rate));
+
+        const chosenVoice = pickBestSystemVoice(accent);
+        if (chosenVoice) utterance.voice = chosenVoice;
+
+        appState.speakingKey = key;
+        syncAudioIndicators();
+
+        const clearIfCurrent = () => {
+          if (token === playbackToken) {
+            appState.speakingKey = null;
+            syncAudioIndicators();
+          }
+        };
+        utterance.onend = clearIfCurrent;
+        utterance.onerror = clearIfCurrent;
+        window.speechSynthesis.speak(utterance);
+      }
+
+      async function playWavBlob(blob, playbackRate, key, token) {
+        if (token !== playbackToken) return;
+        const audio = getSharedAudioElement();
+        cleanupActiveAudioUrl();
+        const url = URL.createObjectURL(blob);
+        activeObjectUrl = url;
+        audio.src = url;
+        const rate = Math.max(0.65, Math.min(1.5, playbackRate || 1.0));
+        audio.defaultPlaybackRate = rate;
+        audio.playbackRate = rate;
+        if ('preservesPitch' in audio) audio.preservesPitch = true;
+
+        const clearIfCurrent = () => {
+          if (token === playbackToken) {
+            cleanupActiveAudioUrl();
+            appState.speakingKey = null;
+            syncAudioIndicators();
+          }
+        };
+        audio.onended = clearIfCurrent;
+        audio.onerror = clearIfCurrent;
+
+        appState.speakingKey = key;
+        syncAudioIndicators();
+        await audio.play();
+      }
+
+      async function speak({ text, accent = 'US', rate = null, key = 'preview' }) {
+        const cleanText = prepareSpeechText(text);
+        if (!cleanText) return;
+
+        // Clicking the currently active button toggles stop
+        if (appState.speakingKey === key) {
+          stop();
+          return;
+        }
+
+        stop();
+        const token = playbackToken;
+        const effectiveRate = typeof rate === 'number' ? rate : settings.baseRate;
+
+        // Unlock shared HTMLAudioElement on user gesture for iOS Safari
+        const audioEl = getSharedAudioElement();
+        if (audioEl && !audioEl.src) {
+          try { audioEl.load(); } catch (e) {}
+        }
+
+        if (settings.engine === 'kokoro') {
+          const voiceId = accent === 'UK' ? settings.kokoroUK : settings.kokoroUS;
+          if (kokoroState !== 'ready') {
+            ensureKokoroReady().then((ready) => {
+              if (ready) showToast('HD Neural Voices (US & UK) ready!');
+            });
+            if ('speechSynthesis' in window) {
+              const pctNote = kokoroProgress > 0 ? ` (${kokoroProgress}%)` : '';
+              showToast(`Loading HD neural voice${pctNote} — playing system voice meanwhile`);
+              playSystemUtterance(cleanText, accent, effectiveRate, key, token);
+              return;
+            }
+          }
+          appState.speakingKey = key;
+          syncAudioIndicators();
+          try {
+            const wavBlob = await synthesizeKokoroBlob(cleanText, voiceId, effectiveRate);
+            if (token !== playbackToken) return;
+            await playWavBlob(wavBlob, 1.0, key, token);
+            return;
+          } catch (err) {
+            if (token !== playbackToken) return;
+            console.warn('Kokoro synthesis fallback:', err);
+            playSystemUtterance(cleanText, accent, effectiveRate, key, token);
+            return;
+          }
+        }
+
+        if (settings.engine === 'piper') {
+          const voiceId = accent === 'UK' ? settings.piperUK : settings.piperUS;
+          appState.speakingKey = key;
+          syncAudioIndicators();
+          try {
+            const wavBlob = await synthesizePiperBlob(cleanText, voiceId);
+            if (token !== playbackToken) return;
+            await playWavBlob(wavBlob, effectiveRate, key, token);
+            return;
+          } catch (err) {
+            if (token !== playbackToken) return;
+            console.warn('Piper synthesis fallback:', err);
+            showToast('Piper voice download unavailable — using enhanced system voice');
+            playSystemUtterance(cleanText, accent, effectiveRate, key, token);
+            return;
+          }
+        }
+
+        playSystemUtterance(cleanText, accent, effectiveRate, key, token);
+      }
+
+      async function clearVoiceCaches() {
+        stop();
+        wavBlobCache.clear();
+        try {
+          if ('caches' in window) {
+            await Promise.all([
+              caches.delete('kokoro-voices'),
+              caches.delete('transformers-cache')
+            ]);
+          }
+        } catch (e) {}
+        try {
+          if (piperModule && typeof piperModule.flush === 'function') {
+            await piperModule.flush();
+          }
+        } catch (e) {}
+        if (kokoroWorker) {
+          kokoroWorker.terminate();
+          kokoroWorker = null;
+        }
+        if (kokoroWorkerUrl) {
+          URL.revokeObjectURL(kokoroWorkerUrl);
+          kokoroWorkerUrl = null;
+        }
+        kokoroMainThreadInstance = null;
+        kokoroInitPromise = null;
+        kokoroState = 'idle';
+        kokoroProgress = 0;
+        syncHeaderBadge();
+        renderVoiceModalIfOpen();
+        showToast('Cleared cached neural voice models');
+      }
+
+      function getActiveVoiceSummary(accent) {
+        if (settings.engine === 'kokoro') {
+          const id = accent === 'UK' ? settings.kokoroUK : settings.kokoroUS;
+          const found = KOKORO_VOICES[accent].find(v => v.id === id);
+          return found ? `${found.short} · Neural` : 'Neural';
+        }
+        if (settings.engine === 'piper') {
+          const id = accent === 'UK' ? settings.piperUK : settings.piperUS;
+          const found = PIPER_VOICES[accent].find(v => v.id === id);
+          return found ? `${found.short} · Piper` : 'Piper';
+        }
+        const sys = pickBestSystemVoice(accent);
+        return sys ? sys.name.replace(/^Microsoft\s+|Online\s*\(Natural\)\s*-?\s*/gi, '').trim().slice(0, 18) : 'System';
+      }
+
+      function canSpeak() {
+        return ('Audio' in window) || ('speechSynthesis' in window);
+      }
+
+      async function checkCachedAndWarmup() {
+        const isHttp = window.location.protocol === 'http:' || window.location.protocol === 'https:';
+        if (!isHttp || settings.engine !== 'kokoro') return;
+        const saveData = Boolean(navigator.connection && navigator.connection.saveData);
+        let hasCache = false;
+        try {
+          if ('caches' in window) {
+            hasCache = (await caches.has('transformers-cache')) || (await caches.has('kokoro-voices'));
+          }
+        } catch (e) {}
+        if (hasCache || !saveData) {
+          setTimeout(() => {
+            if (settings.engine === 'kokoro' && kokoroState === 'idle') {
+              ensureKokoroReady();
+            }
+          }, hasCache ? 350 : 1400);
+        }
+      }
+
+      function init() {
+        loadSettings();
+        if ('speechSynthesis' in window) {
+          refreshSystemVoices();
+          window.speechSynthesis.onvoiceschanged = () => refreshSystemVoices();
+        }
+        syncHeaderBadge();
+        checkCachedAndWarmup();
+      }
+
+      return {
+        init,
+        speak,
+        stop,
+        canSpeak,
+        ensureKokoroReady,
+        clearVoiceCaches,
+        getActiveVoiceSummary,
+        getRankedSystemVoices,
+        getSettings: () => ({ ...settings }),
+        getStatus: () => ({ kokoroState, kokoroProgress, kokoroError, piperLoadingVoice, piperProgress }),
+        updateSetting(key, val) {
+          settings[key] = val;
+          saveSettings();
+          syncHeaderBadge();
+          if (key === 'engine' && val === 'kokoro' && kokoroState === 'idle') {
+            ensureKokoroReady();
+          }
+          renderVoiceModalIfOpen();
+          if (appState.currentView === 'today') renderTodayView();
+          if (appState.currentView === 'library') renderLibrary();
+        }
+      };
+    })();
+
+    function toggleVoiceModal(forceState) {
+      const modal = document.getElementById('voice-modal');
+      if (!modal) return;
+      const nextOpen = typeof forceState === 'boolean' ? forceState : modal.classList.contains('hidden');
+      modal.classList.toggle('hidden', !nextOpen);
+      if (nextOpen) renderVoiceModal();
+    }
+
+    function renderVoiceModalIfOpen() {
+      const modal = document.getElementById('voice-modal');
+      if (modal && !modal.classList.contains('hidden')) {
+        renderVoiceModal();
+      }
+    }
+
+    function previewStudioVoice(accent) {
+      const sample = accent === 'UK'
+        ? "Fair point — let's circle back once the dust settles a bit."
+        : "Low-key, that phrasing sounds way more natural in everyday conversation.";
+      LexisVoice.speak({ text: sample, accent, key: `studio-preview-${accent}` });
+    }
+
+    function renderVoiceModal() {
+      const body = document.getElementById('voice-modal-body');
+      if (!body) return;
+      const cfg = LexisVoice.getSettings();
+      const st = LexisVoice.getStatus();
+
+      const engines = [
+        {
+          id: 'kokoro',
+          title: 'Kokoro-82M Neural AI',
+          badge: 'Best · Human-like',
+          desc: 'Top-ranked open neural voices (US Heart/Michael & UK Emma/George). Cached locally after ~88 MB one-time download.'
+        },
+        {
+          id: 'piper',
+          title: 'Piper VITS Neural',
+          badge: 'Fast Local ONNX',
+          desc: 'Studio-recorded neural speaker models via @diffusionstudio/vits-web (~60 MB per voice, cached in OPFS).'
+        },
+        {
+          id: 'system',
+          title: 'Ranked System Voices',
+          badge: '0 MB · Instant',
+          desc: 'Prioritizes Siri, Microsoft Natural, Apple Premium/Enhanced, and Google WaveNet voices; filters out robotic voices.'
+        }
+      ];
+
+      let usOptionsHtml = '';
+      let ukOptionsHtml = '';
+      let usSelected = '';
+      let ukSelected = '';
+      let usSettingKey = 'kokoroUS';
+      let ukSettingKey = 'kokoroUK';
+
+      if (cfg.engine === 'kokoro') {
+        usSettingKey = 'kokoroUS';
+        ukSettingKey = 'kokoroUK';
+        usSelected = cfg.kokoroUS;
+        ukSelected = cfg.kokoroUK;
+        usOptionsHtml = KOKORO_VOICES.US.map(v => `<option value="${escapeHtml(v.id)}" ${v.id === usSelected ? 'selected' : ''}>${escapeHtml(v.label)}</option>`).join('');
+        ukOptionsHtml = KOKORO_VOICES.UK.map(v => `<option value="${escapeHtml(v.id)}" ${v.id === ukSelected ? 'selected' : ''}>${escapeHtml(v.label)}</option>`).join('');
+      } else if (cfg.engine === 'piper') {
+        usSettingKey = 'piperUS';
+        ukSettingKey = 'piperUK';
+        usSelected = cfg.piperUS;
+        ukSelected = cfg.piperUK;
+        usOptionsHtml = PIPER_VOICES.US.map(v => `<option value="${escapeHtml(v.id)}" ${v.id === usSelected ? 'selected' : ''}>${escapeHtml(v.label)}</option>`).join('');
+        ukOptionsHtml = PIPER_VOICES.UK.map(v => `<option value="${escapeHtml(v.id)}" ${v.id === ukSelected ? 'selected' : ''}>${escapeHtml(v.label)}</option>`).join('');
+      } else {
+        usSettingKey = 'systemUS';
+        ukSettingKey = 'systemUK';
+        usSelected = cfg.systemUS;
+        ukSelected = cfg.systemUK;
+        const rankedUS = LexisVoice.getRankedSystemVoices('US');
+        const rankedUK = LexisVoice.getRankedSystemVoices('UK');
+        usOptionsHtml = `<option value="" ${!usSelected ? 'selected' : ''}>Auto — Best Natural US Voice</option>` +
+          rankedUS.map(({ voice }) => `<option value="${escapeHtml(voice.voiceURI)}" ${voice.voiceURI === usSelected ? 'selected' : ''}>${escapeHtml(voice.name)} (${escapeHtml(voice.lang)})</option>`).join('');
+        ukOptionsHtml = `<option value="" ${!ukSelected ? 'selected' : ''}>Auto — Best Natural UK Voice</option>` +
+          rankedUK.map(({ voice }) => `<option value="${escapeHtml(voice.voiceURI)}" ${voice.voiceURI === ukSelected ? 'selected' : ''}>${escapeHtml(voice.name)} (${escapeHtml(voice.lang)})</option>`).join('');
+      }
+
+      const paces = [
+        { val: 0.88, label: '0.88× Relaxed' },
+        { val: 0.98, label: '0.98× Natural' },
+        { val: 1.05, label: '1.05× Brisk' }
+      ];
+
+      body.innerHTML = `
+        <div class="space-y-2">
+          <span class="block text-[11px] font-mono uppercase tracking-wider text-stone-500 dark:text-stone-400">Voice Engine</span>
+          <div class="space-y-2">
+            ${engines.map(eng => {
+              const active = cfg.engine === eng.id;
+              return `
+                <button type="button" onclick="LexisVoice.updateSetting('engine', '${eng.id}')" class="w-full text-left p-3.5 rounded-xl border transition-all ${active ? 'border-[#C46548] bg-[#C46548]/[0.06] dark:bg-[#E2876B]/[0.09]' : 'border-paper-border dark:border-charcoal-border hover:border-stone-400 dark:hover:border-stone-600'}">
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="text-sm font-semibold text-paper-ink dark:text-charcoal-cream">${escapeHtml(eng.title)}</span>
+                    <span class="px-2 py-0.5 rounded-full text-[10px] font-mono border ${active ? 'border-[#C46548]/40 bg-[#C46548]/15 text-[#A84B30] dark:text-[#E58E73]' : 'border-paper-border dark:border-charcoal-border text-stone-500 dark:text-stone-400'}">${escapeHtml(eng.badge)}</span>
+                  </div>
+                  <p class="text-xs text-stone-500 dark:text-stone-400 mt-1 leading-relaxed">${escapeHtml(eng.desc)}</p>
+                </button>
+              `;
+            }).join('')}
+          </div>
+        </div>
+
+        ${cfg.engine === 'kokoro' ? `
+          <div class="p-3.5 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-subtle/55 dark:bg-charcoal-subtle/55 space-y-2">
+            <div class="flex items-center justify-between gap-2 text-xs">
+              <span class="font-mono text-stone-600 dark:text-stone-300">
+                ${st.kokoroState === 'ready'
+                  ? '✓ Kokoro-82M Neural Engine active (cached locally)'
+                  : (st.kokoroState === 'loading'
+                      ? `Downloading Kokoro-82M neural weights… ${st.kokoroProgress}%`
+                      : (st.kokoroState === 'error'
+                          ? `Model offline (${escapeHtml(st.kokoroError || 'using fallback')})`
+                          : 'Kokoro-82M ready to initialize (~88 MB one-time download)'))}
+              </span>
+              ${st.kokoroState === 'idle' || st.kokoroState === 'error' ? `
+                <button type="button" onclick="LexisVoice.ensureKokoroReady()" class="px-2.5 py-1 rounded-lg bg-[#C46548] hover:bg-[#B05438] text-white font-mono text-[11px] shrink-0">
+                  Load HD Model
+                </button>
+              ` : ''}
+            </div>
+            ${st.kokoroState === 'loading' ? `
+              <div class="h-1.5 w-full rounded-full bg-paper-border dark:bg-charcoal-border overflow-hidden">
+                <div class="h-full bg-[#C46548] transition-all duration-200" style="width: ${Math.max(6, st.kokoroProgress)}%"></div>
+              </div>
+            ` : ''}
+          </div>
+        ` : ''}
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="space-y-1.5">
+            <div class="flex items-center justify-between">
+              <label for="voice-select-us" class="text-[11px] font-mono uppercase tracking-wider text-stone-500 dark:text-stone-400">US Voice</label>
+              <button type="button" data-audio-key="studio-preview-US" onclick="previewStudioVoice('US')" class="text-[11px] font-mono text-[#B05438] dark:text-[#E58E73] hover:underline">
+                ▶ Sample US
+              </button>
+            </div>
+            <select id="voice-select-us" onchange="LexisVoice.updateSetting('${usSettingKey}', this.value)" class="w-full px-3 py-2 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-bg dark:bg-charcoal-bg text-xs text-paper-ink dark:text-charcoal-cream focus:outline-none focus:border-[#C46548]">
+              ${usOptionsHtml}
+            </select>
+          </div>
+
+          <div class="space-y-1.5">
+            <div class="flex items-center justify-between">
+              <label for="voice-select-uk" class="text-[11px] font-mono uppercase tracking-wider text-stone-500 dark:text-stone-400">UK Voice</label>
+              <button type="button" data-audio-key="studio-preview-UK" onclick="previewStudioVoice('UK')" class="text-[11px] font-mono text-[#B05438] dark:text-[#E58E73] hover:underline">
+                ▶ Sample UK
+              </button>
+            </div>
+            <select id="voice-select-uk" onchange="LexisVoice.updateSetting('${ukSettingKey}', this.value)" class="w-full px-3 py-2 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-bg dark:bg-charcoal-bg text-xs text-paper-ink dark:text-charcoal-cream focus:outline-none focus:border-[#C46548]">
+              ${ukOptionsHtml}
+            </select>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-paper-border dark:border-charcoal-border">
+          <div class="flex items-center gap-1.5">
+            <span class="text-[11px] font-mono uppercase tracking-wider text-stone-500 dark:text-stone-400 mr-1">Pace:</span>
+            ${paces.map(p => `
+              <button type="button" onclick="LexisVoice.updateSetting('baseRate', ${p.val})" class="px-2.5 py-1 rounded-lg border text-[11px] font-mono transition-colors ${Math.abs(cfg.baseRate - p.val) < 0.02 ? 'border-[#C46548] bg-[#C46548]/12 text-[#A84B30] dark:text-[#E58E73]' : 'border-paper-border dark:border-charcoal-border text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream'}">
+                ${escapeHtml(p.label)}
+              </button>
+            `).join('')}
+          </div>
+
+          <button type="button" onclick="LexisVoice.clearVoiceCaches()" class="text-[11px] font-mono text-stone-400 hover:text-rose-600 dark:hover:text-rose-400 transition-colors">
+            Clear cached models
+          </button>
+        </div>
+      `;
+    }
+
+    function stopAllSpeech() {
+      LexisVoice.stop();
+    }
+
+    function speakItem(itemId, accent = 'US', customText = null, rate = null, customAudioKey = null) {
       const item = appState.itemsById.get(itemId) || appState.items.find(i => i.id === itemId);
-      const text = customText || (item ? (item.speechText || item.phrase.replace(/\[.*?\]/g, 'something')) : '');
+      const text = customText || (item ? (item.speechText || item.phrase) : '');
       if (!text) return;
-
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      const lang = accent === 'UK' ? 'en-GB' : 'en-US';
-      utterance.lang = lang;
-      utterance.rate = typeof rate === 'number' ? rate : 0.95;
-
-      const voices = window.speechSynthesis.getVoices();
-      const preferred = voices.find(v => v.lang === lang && (v.name.includes('Natural') || v.name.includes('Daniel') || v.name.includes('Samantha') || v.name.includes('Google')))
-        || voices.find(v => v.lang === lang)
-        || voices.find(v => v.lang.startsWith('en'));
-      if (preferred) utterance.voice = preferred;
-
       const key = customAudioKey || `${itemId}-${accent}`;
-      appState.speakingKey = key;
-      syncAudioIndicators();
+      LexisVoice.speak({ text, accent, rate, key });
+    }
 
-      utterance.onend = () => {
-        appState.speakingKey = null;
-        syncAudioIndicators();
-      };
-      utterance.onerror = () => {
-        appState.speakingKey = null;
-        syncAudioIndicators();
-      };
+    function speakUpgradedSentence(itemId, accent = 'US') {
+      const item = appState.itemsById.get(itemId) || appState.items.find(i => i.id === itemId);
+      if (!item || !item.upgraded) return;
+      speakItem(itemId, accent, item.upgraded, null, `${itemId}-upg-${accent}`);
+    }
 
-      window.speechSynthesis.speak(utterance);
+    function speakDialogue(itemId, dlgIdx = 0, accent = 'US') {
+      const item = appState.itemsById.get(itemId) || appState.items.find(i => i.id === itemId);
+      const dlg = item && Array.isArray(item.dialogues) ? item.dialogues[dlgIdx] : null;
+      if (!dlg || !Array.isArray(dlg.lines) || dlg.lines.length === 0) return;
+      const joined = dlg.lines.map(l => l.text).join(' ... ');
+      speakItem(itemId, accent, joined, null, `${itemId}-dlg-${dlgIdx}`);
     }
 
     function syncAudioIndicators() {
@@ -3351,20 +4312,27 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       if (appState.currentView === 'library') renderLibrary();
     }
 
-    // ==================== SHARED PHRASE CARD COMPONENT ====================
+    // ==================== SHARED PHRASE CARD & SEMANTIC BADGE COMPONENTS ====================
     function normalizeCefrTag(cefr) {
       return String(cefr || 'B2-C1').trim().toUpperCase().replace(/[–—]/g, '-');
     }
 
     function getCefrPillClass(cefr) {
       const tag = normalizeCefrTag(cefr);
-      if (tag.includes('C2')) {
+      if (tag === 'C2') {
         return 'bg-[#C46548]/12 text-[#A84B30] dark:text-[#E58E73] border-[#C46548]/30';
       }
-      if (tag === 'C1') {
+      if (tag.startsWith('C1')) {
         return 'bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border-indigo-500/25';
       }
-      return 'bg-stone-500/10 text-stone-600 dark:text-stone-300 border-stone-500/20';
+      return 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-500/25';
+    }
+
+    function getCefrDotClass(cefr) {
+      const tag = normalizeCefrTag(cefr);
+      if (tag === 'C2') return 'bg-[#C46548] dark:bg-[#E2876B]';
+      if (tag.startsWith('C1')) return 'bg-indigo-500 dark:bg-indigo-400';
+      return 'bg-emerald-500 dark:bg-emerald-400';
     }
 
     function getRegisterPillClass(reg) {
@@ -3381,6 +4349,28 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       if (cat === 'Everyday') return 'bg-sky-500/10 text-sky-700 dark:text-sky-300 border-sky-500/20';
       if (cat === 'Workplace') return 'bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-500/20';
       return 'bg-violet-500/10 text-violet-700 dark:text-violet-300 border-violet-500/20';
+    }
+
+    function renderMetaBadges(item, compact = false) {
+      if (!item) return '';
+      const pad = compact ? 'px-2 py-0.5 text-[10px]' : 'px-2.5 py-0.5 text-[11px]';
+      return `
+        <div class="flex items-center gap-1.5 flex-wrap">
+          ${item.category ? `
+            <span class="${pad} rounded-md font-mono font-medium border ${getCategoryPillClass(item.category)}">
+              ${escapeHtml(item.category)}
+            </span>
+          ` : ''}
+          ${item.cefr ? `
+            <span class="${pad} rounded-md font-mono font-semibold border ${getCefrPillClass(item.cefr)}">
+              ${escapeHtml(item.cefr)}
+            </span>
+          ` : ''}
+          <span class="${pad} rounded-md font-mono border ${getRegisterPillClass(item.register)}">
+            ${escapeHtml(item.register || 'Conversational')}
+          </span>
+        </div>
+      `;
     }
 
     function getStatusPillProps(status) {
@@ -3438,8 +4428,9 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     function renderAudioButton(itemId, accent, showIcon = true) {
       const key = `${itemId}-${accent}`;
       const isSpeaking = appState.speakingKey === key;
+      const voiceSummary = LexisVoice.getActiveVoiceSummary(accent);
       return `
-        <button data-audio-key="${escapeHtml(key)}" onclick="speakItem('${escapeAttr(itemId)}', '${escapeAttr(accent)}')" class="inline-flex items-center gap-1 px-1.5 py-1 rounded-md text-xs text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream hover:bg-paper-subtle/70 dark:hover:bg-charcoal-subtle/70 transition-colors" title="Listen (${escapeHtml(accent)})">
+        <button data-audio-key="${escapeHtml(key)}" onclick="speakItem('${escapeAttr(itemId)}', '${escapeAttr(accent)}')" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-paper-border dark:border-charcoal-border bg-paper-subtle/60 dark:bg-charcoal-subtle/60 hover:border-[#C46548] text-xs font-mono text-stone-600 dark:text-stone-300 hover:text-paper-ink dark:hover:text-charcoal-cream transition-colors min-h-[32px]" title="Listen in ${escapeHtml(accent)} English (${escapeHtml(voiceSummary)})">
           ${showIcon ? `
             <svg class="icon-speaker ${isSpeaking ? 'hidden' : ''} w-3.5 h-3.5 text-[#C46548] dark:text-[#E2876B]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
@@ -3461,119 +4452,154 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       `;
     }
 
-    function renderFullPhraseCard(item) {
+    function renderFullPhraseCard(item, showShortcutHints = false) {
       const isNuanceOpen = appState.openNuanceIds.has(item.id);
       const isPolishOpen = appState.openPolishIds.has(item.id);
       const statusMeta = getStatusPillProps(item.status);
       const dialogues = item.dialogues || [];
-      const metaParts = [
-        item.category ? { text: item.category, mono: false } : null,
-        item.cefr ? { text: item.cefr, mono: true } : null,
-        { text: item.register || 'Conversational', mono: false }
-      ].filter(Boolean);
+      const upgUsKey = `${item.id}-upg-US`;
+      const upgUkKey = `${item.id}-upg-UK`;
 
       return `
-        <article class="rounded-2xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card px-6 sm:px-9 py-7 sm:py-9 transition-all flex flex-col justify-between">
-          <div class="space-y-7">
-            <!-- Quiet Metadata + Minimal Controls -->
-            <div class="flex flex-wrap items-center justify-between gap-3">
-              <div class="flex items-center gap-2 text-xs text-stone-500 dark:text-stone-400 flex-wrap">
-                ${metaParts.map((part, idx) => `
-                  ${idx > 0 ? '<span class="text-stone-300 dark:text-stone-600">·</span>' : ''}
-                  <span class="${part.mono ? 'font-mono' : ''}">${escapeHtml(part.text)}</span>
-                `).join('')}
-              </div>
+        <article class="rounded-2xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card px-5 sm:px-8 py-6 sm:py-8 shadow-xs transition-all flex flex-col justify-between">
+          <div class="space-y-6">
+            <!-- Top Row: Color-Coded Semantic Badges + Natural US/UK Audio + Mastery Status Pill -->
+            <div class="flex flex-wrap items-center justify-between gap-2.5 pb-4 border-b border-paper-border dark:border-charcoal-border">
+              ${renderMetaBadges(item, false)}
 
-              <div class="flex items-center gap-2 text-xs">
+              <div class="flex items-center gap-1.5 flex-wrap">
                 ${renderAudioButton(item.id, 'US', true)}
                 ${renderAudioButton(item.id, 'UK', false)}
-                <span class="text-paper-border dark:text-charcoal-border select-none">·</span>
-                <button onclick="cycleItemStatus('${escapeAttr(item.id)}')" class="inline-flex items-center gap-1.5 px-1.5 py-1 rounded-md text-xs text-paper-ink dark:text-charcoal-cream hover:bg-paper-subtle/70 dark:hover:bg-charcoal-subtle/70 transition-colors" title="Cycle status (New → Practicing → Mastered)">
+                <button onclick="cycleItemStatus('${escapeAttr(item.id)}')" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-xs font-mono font-medium transition-colors min-h-[32px] ${statusMeta.style}" title="Cycle status (New → Practicing → Mastered)">
                   <span class="w-2 h-2 rounded-full ${statusMeta.dot}"></span>
                   <span>${statusMeta.label}</span>
+                  ${showShortcutHints ? `<kbd class="hidden md:inline-block border border-current/20 opacity-75">M</kbd>` : ''}
                 </button>
               </div>
             </div>
 
-            <!-- Hero Phrase + IPA -->
+            <!-- Hero Phrase + IPA Pronunciation -->
             <div class="space-y-1.5">
-              <h2 class="serif-display text-3xl sm:text-4xl font-medium text-paper-ink dark:text-charcoal-cream leading-tight">
+              <h2 class="serif-display text-3xl sm:text-[34px] font-medium text-paper-ink dark:text-charcoal-cream leading-tight">
                 ${escapeHtml(item.phrase)}
               </h2>
               ${item.ipa ? `
-                <p class="font-mono text-sm text-stone-500 dark:text-stone-400">
+                <p class="font-mono text-xs sm:text-sm text-stone-500 dark:text-stone-400">
                   ${escapeHtml(item.ipa)}
                 </p>
               ` : ''}
             </div>
 
-            <!-- Editorial Comparison: Natural Phrasing Elevated, Textbook Baseline Quietly Contrasted -->
-            <div class="space-y-4">
-              <div class="pl-4 border-l-2 border-[#C46548] dark:border-[#E2876B] flex items-start justify-between gap-3">
-                <p class="text-[17px] sm:text-[18px] leading-relaxed text-paper-ink dark:text-charcoal-cream">
+            <!-- Pedagogical Upgrade Contrast: Natural Native Phrasing vs. Flat Textbook Baseline -->
+            <div class="space-y-3">
+              <div class="rounded-xl border border-[#C46548]/25 dark:border-[#E2876B]/25 bg-[#C46548]/[0.045] dark:bg-[#E2876B]/[0.06] border-l-[3px] border-l-[#C46548] dark:border-l-[#E2876B] px-4 py-3.5 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <span class="text-[11px] font-mono uppercase tracking-wider font-semibold text-[#A84B30] dark:text-[#E58E73]">
+                    Natural Native
+                  </span>
+                  <div class="flex items-center gap-2 text-xs font-mono">
+                    <button data-audio-key="${escapeHtml(upgUsKey)}" onclick="speakUpgradedSentence('${escapeAttr(item.id)}', 'US')" class="inline-flex items-center gap-1 text-[11px] text-stone-500 dark:text-stone-400 hover:text-[#C46548] dark:hover:text-[#E58E73] transition-colors" title="Hear full natural sentence (US)">
+                      <span class="icon-speaker ${appState.speakingKey === upgUsKey ? 'hidden' : ''}">▶</span>
+                      <span class="icon-eq ${appState.speakingKey === upgUsKey ? 'flex' : 'hidden'} items-end gap-0.5 h-2.5 w-3 justify-center">
+                        <span class="eq-bar w-0.5 h-full bg-[#C46548] rounded-full"></span>
+                        <span class="eq-bar w-0.5 h-full bg-[#C46548] rounded-full"></span>
+                      </span>
+                      <span>US</span>
+                    </button>
+                    <button data-audio-key="${escapeHtml(upgUkKey)}" onclick="speakUpgradedSentence('${escapeAttr(item.id)}', 'UK')" class="inline-flex items-center gap-1 text-[11px] text-stone-500 dark:text-stone-400 hover:text-[#C46548] dark:hover:text-[#E58E73] transition-colors" title="Hear full natural sentence (UK)">
+                      <span class="icon-speaker ${appState.speakingKey === upgUkKey ? 'hidden' : ''}">▶</span>
+                      <span class="icon-eq ${appState.speakingKey === upgUkKey ? 'flex' : 'hidden'} items-end gap-0.5 h-2.5 w-3 justify-center">
+                        <span class="eq-bar w-0.5 h-full bg-[#C46548] rounded-full"></span>
+                        <span class="eq-bar w-0.5 h-full bg-[#C46548] rounded-full"></span>
+                      </span>
+                      <span>UK</span>
+                    </button>
+                    <span class="text-paper-border dark:text-charcoal-border">·</span>
+                    <button onclick="copyToClipboard('${escapeAttr(item.upgraded)}', 'Copied natural phrasing')" class="text-[11px] text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream transition-colors" title="Copy natural phrasing">
+                      Copy
+                    </button>
+                  </div>
+                </div>
+                <p class="text-base sm:text-[17px] font-medium leading-relaxed text-paper-ink dark:text-charcoal-cream">
                   “${escapeHtml(item.upgraded)}”
                 </p>
-                <button onclick="copyToClipboard('${escapeAttr(item.upgraded)}', 'Copied phrasing')" class="shrink-0 text-xs text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream transition-colors pt-1" title="Copy natural phrasing">
-                  Copy
-                </button>
               </div>
 
-              <p class="pl-4 text-sm text-stone-500 dark:text-stone-400 leading-relaxed">
-                <span class="text-xs uppercase tracking-wider text-stone-500 dark:text-stone-400 mr-1.5">Instead of</span>
-                “${escapeHtml(item.flat)}”
-              </p>
+              <div class="px-4 py-2.5 rounded-xl bg-paper-subtle/55 dark:bg-charcoal-subtle/45 border border-paper-border/80 dark:border-charcoal-border flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2.5">
+                <span class="text-[10px] font-mono uppercase tracking-wider text-stone-500 dark:text-stone-400 shrink-0">
+                  Instead of (Textbook)
+                </span>
+                <p class="text-xs sm:text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
+                  “${escapeHtml(item.flat)}”
+                </p>
+              </div>
             </div>
 
-            <!-- In Context Dialogues (Borderless Editorial Flow) -->
+            <!-- In Context Dialogues (2-Column Scannable Cards + Per-Dialogue Audio) -->
             ${dialogues.length > 0 ? `
-              <div class="pt-6 border-t border-paper-border dark:border-charcoal-border space-y-4">
-                <span class="block text-xs font-medium uppercase tracking-wider text-stone-500 dark:text-stone-400">
-                  In context
+              <div class="space-y-3">
+                <span class="block text-[11px] font-mono uppercase tracking-wider text-stone-500 dark:text-stone-400">
+                  In Context
                 </span>
-                <div class="space-y-5">
-                  ${dialogues.map(ex => `
-                    <div class="space-y-2">
-                      ${ex.context ? `<div class="text-xs text-stone-500 dark:text-stone-400">${escapeHtml(ex.context)}</div>` : ''}
-                      <div class="space-y-1.5 text-[15px] leading-relaxed">
-                        ${(ex.lines || []).map(line => `
-                          <p class="text-stone-700 dark:text-stone-300">
-                            <span class="font-medium text-paper-ink dark:text-charcoal-cream mr-1.5">${escapeHtml(line.speaker)}</span>
-                            ${highlightPhraseInText(line.text, item.phrase)}
-                          </p>
-                        `).join('')}
+                <div class="grid grid-cols-1 ${dialogues.length > 1 ? 'sm:grid-cols-2' : ''} gap-3">
+                  ${dialogues.map((ex, dIdx) => {
+                    const dlgKey = `${item.id}-dlg-${dIdx}`;
+                    return `
+                      <div class="p-3.5 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-bg/70 dark:bg-charcoal-bg/70 space-y-2">
+                        <div class="flex items-center justify-between gap-2 pb-1.5 border-b border-paper-border/80 dark:border-charcoal-border">
+                          <span class="text-[11px] font-mono text-stone-500 dark:text-stone-400 truncate">${escapeHtml(ex.context || 'Conversation')}</span>
+                          <button data-audio-key="${escapeHtml(dlgKey)}" onclick="speakDialogue('${escapeAttr(item.id)}', ${dIdx}, 'US')" class="inline-flex items-center gap-1 text-[10px] font-mono text-stone-500 dark:text-stone-400 hover:text-[#C46548] dark:hover:text-[#E58E73] shrink-0" title="Listen to dialogue">
+                            <span class="icon-speaker ${appState.speakingKey === dlgKey ? 'hidden' : ''}">▶</span>
+                            <span class="icon-eq ${appState.speakingKey === dlgKey ? 'flex' : 'hidden'} items-end gap-0.5 h-2.5 w-2.5 justify-center">
+                              <span class="eq-bar w-0.5 h-full bg-[#C46548] rounded-full"></span>
+                              <span class="eq-bar w-0.5 h-full bg-[#C46548] rounded-full"></span>
+                            </span>
+                            <span>Listen</span>
+                          </button>
+                        </div>
+                        <div class="space-y-1.5 text-xs sm:text-sm leading-relaxed">
+                          ${(ex.lines || []).map(line => `
+                            <p class="text-stone-700 dark:text-stone-300">
+                              <span class="font-mono text-[11px] font-semibold text-stone-500 dark:text-stone-400 mr-1">${escapeHtml(line.speaker)}:</span>
+                              ${highlightPhraseInText(line.text, item.phrase)}
+                            </p>
+                          `).join('')}
+                        </div>
                       </div>
-                    </div>
-                  `).join('')}
+                    `;
+                  }).join('')}
                 </div>
               </div>
             ` : ''}
           </div>
 
-          <!-- Quiet Hairline Disclosures: Nuance + Polish -->
-          <div class="mt-7 pt-2 border-t border-paper-border dark:border-charcoal-border">
-            <div>
-              <button onclick="toggleDrawer('nuance', '${escapeAttr(item.id)}')" class="w-full py-3 flex items-center justify-between text-left text-sm transition-colors">
-                <span class="font-medium ${isNuanceOpen ? 'text-paper-ink dark:text-charcoal-cream' : 'text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream'}">
-                  Nuance &amp; pitfalls
+          <!-- High-Signal Disclosures: Amber-Cued Nuance & Pitfalls + Polish Equivalent -->
+          <div class="mt-6 pt-3 border-t border-paper-border dark:border-charcoal-border space-y-2">
+            <div class="rounded-xl border ${isNuanceOpen ? 'border-amber-500/35 bg-amber-500/[0.04]' : 'border-paper-border dark:border-charcoal-border bg-paper-subtle/40 dark:bg-charcoal-subtle/40'} overflow-hidden transition-colors">
+              <button onclick="toggleDrawer('nuance', '${escapeAttr(item.id)}')" class="w-full px-3.5 py-2.5 flex items-center justify-between text-left text-xs sm:text-sm transition-colors min-h-[42px]">
+                <span class="inline-flex items-center gap-2 font-mono text-xs font-medium text-amber-800 dark:text-amber-300">
+                  <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                  <span>Nuance &amp; Pitfalls</span>
                 </span>
-                <span class="text-xs text-stone-500 dark:text-stone-400">${isNuanceOpen ? 'Hide' : 'Show'}</span>
+                <span class="text-xs font-mono text-stone-500 dark:text-stone-400">${isNuanceOpen ? 'Hide ↑' : 'Show ↓'}</span>
               </button>
               ${isNuanceOpen ? `
-                <p class="pb-4 text-[15px] text-stone-700 dark:text-stone-300 leading-relaxed">
+                <p class="px-3.5 pb-3.5 pt-2 border-t border-amber-500/20 text-xs sm:text-sm text-stone-700 dark:text-stone-300 leading-relaxed">
                   ${escapeHtml(item.nuance)}
                 </p>
               ` : ''}
             </div>
 
-            <div class="border-t border-paper-border dark:border-charcoal-border">
-              <button onclick="toggleDrawer('polish', '${escapeAttr(item.id)}')" class="w-full py-3 flex items-center justify-between text-left text-sm transition-colors">
-                <span class="font-medium ${isPolishOpen ? 'text-paper-ink dark:text-charcoal-cream' : 'text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream'}">
-                  Polish equivalent
+            <div class="rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-subtle/40 dark:bg-charcoal-subtle/40 overflow-hidden">
+              <button onclick="toggleDrawer('polish', '${escapeAttr(item.id)}')" class="w-full px-3.5 py-2.5 flex items-center justify-between text-left text-xs sm:text-sm transition-colors min-h-[42px]">
+                <span class="inline-flex items-center gap-2 font-mono text-xs font-medium text-stone-600 dark:text-stone-300">
+                  <span class="px-1.5 py-0.5 rounded bg-paper-card dark:bg-charcoal-card border border-paper-border dark:border-charcoal-border text-[10px]">PL</span>
+                  <span>Polish Equivalent</span>
                 </span>
-                <span class="text-xs text-stone-500 dark:text-stone-400">${isPolishOpen ? 'Hide' : 'Show'}</span>
+                <span class="text-xs font-mono text-stone-500 dark:text-stone-400">${isPolishOpen ? 'Hide ↑' : 'Show ↓'}</span>
               </button>
               ${isPolishOpen ? `
-                <p class="pb-3 text-[15px] text-paper-ink dark:text-charcoal-cream leading-relaxed">
+                <p class="px-3.5 pb-3.5 pt-2 border-t border-paper-border dark:border-charcoal-border text-xs sm:text-sm font-medium text-paper-ink dark:text-charcoal-cream leading-relaxed">
                   ${escapeHtml(item.polish)}
                 </p>
               ` : ''}
@@ -3626,7 +4652,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       if (appState.todayLayout === 'grid') {
         workspace.innerHTML = `
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
-            ${cards.map(item => renderFullPhraseCard(item)).join('')}
+            ${cards.map(item => renderFullPhraseCard(item, false)).join('')}
           </div>
         `;
         return;
@@ -3634,31 +4660,38 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
 
       const idx = appState.todayIndex % cards.length;
       const currentItem = cards[idx];
+      const pct = Math.round(((idx + 1) / cards.length) * 100);
 
       workspace.innerHTML = `
-        <div class="max-w-2xl mx-auto space-y-6">
-          <!-- Active Focus Card -->
-          ${renderFullPhraseCard(currentItem)}
+        <div class="max-w-2xl mx-auto space-y-4">
+          <!-- Deck Progress Bar & Level-Tinted Dots -->
+          <div class="flex items-center justify-between gap-3 px-0.5">
+            <div class="flex-1 h-1.5 rounded-full bg-paper-subtle dark:bg-charcoal-subtle overflow-hidden">
+              <div class="h-full bg-[#C46548] dark:bg-[#E2876B] transition-all duration-300" style="width: ${pct}%"></div>
+            </div>
+            <div class="flex items-center gap-1.5 shrink-0">
+              ${cards.map((c, cIdx) => `
+                <button onclick="appState.todayIndex = ${cIdx}; renderTodayView();" title="${escapeHtml((c.cefr || '') + ' · ' + c.phrase)}" aria-label="Go to card ${cIdx + 1}" class="h-2 rounded-full transition-all ${cIdx === idx ? `w-5 ${getCefrDotClass(c.cefr)}` : 'w-2 bg-stone-300 dark:bg-stone-700 hover:bg-stone-400'}"></button>
+              `).join('')}
+            </div>
+            <span class="text-xs font-mono text-stone-500 dark:text-stone-400 shrink-0">
+              Card ${idx + 1} of ${cards.length}
+            </span>
+          </div>
 
-          <!-- Quiet Pagination Footer -->
+          <!-- Active Focus Card -->
+          ${renderFullPhraseCard(currentItem, true)}
+
+          <!-- Navigation Footer -->
           <div class="flex items-center justify-between gap-3 pt-1">
-            <button onclick="stepTodayFocusCard(-1)" class="text-sm text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream py-2 px-1 transition-colors">
-              ← Previous
+            <button onclick="stepTodayFocusCard(-1)" class="px-3.5 py-2 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-card dark:bg-charcoal-card hover:bg-paper-subtle dark:hover:bg-charcoal-subtle text-xs sm:text-sm font-medium transition-colors flex items-center gap-2 min-h-[42px]">
+              <span>← Previous</span>
+              <kbd class="hidden md:inline-block border border-paper-border dark:border-charcoal-border bg-paper-subtle dark:bg-charcoal-subtle text-stone-400">K</kbd>
             </button>
 
-            <div class="flex items-center gap-3">
-              <div class="flex items-center gap-1.5">
-                ${cards.map((c, cIdx) => `
-                  <button onclick="appState.todayIndex = ${cIdx}; renderTodayView();" aria-label="Go to card ${cIdx + 1}" class="h-1.5 rounded-full transition-all ${cIdx === idx ? 'w-5 bg-[#C46548] dark:bg-[#E2876B]' : 'w-1.5 bg-paper-border dark:bg-charcoal-border hover:bg-stone-400'}"></button>
-                `).join('')}
-              </div>
-              <span class="text-xs font-mono text-stone-400 dark:text-stone-500">
-                ${idx + 1} / ${cards.length}
-              </span>
-            </div>
-
-            <button onclick="stepTodayFocusCard(1)" class="px-4 py-2 rounded-xl bg-paper-ink dark:bg-charcoal-cream text-paper-bg dark:text-charcoal-bg text-sm font-medium hover:opacity-90 transition-opacity">
-              Next →
+            <button onclick="stepTodayFocusCard(1)" class="px-4 py-2 rounded-xl bg-paper-ink dark:bg-charcoal-cream text-paper-bg dark:text-charcoal-bg text-xs sm:text-sm font-medium hover:opacity-90 transition-opacity flex items-center gap-2 min-h-[42px]">
+              <span>Next Card →</span>
+              <kbd class="hidden md:inline-block border border-white/20 dark:border-black/20 opacity-80">J</kbd>
             </button>
           </div>
         </div>
@@ -4168,7 +5201,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         for (let i = 0; i < targetLen; i++) {
           let kind = pattern[i % pattern.length];
           if (kind === 'match' && uniqueMatchPool.length < 3) kind = 'upgrade';
-          if (kind === 'listen' && !('speechSynthesis' in window)) kind = 'cloze';
+          if (kind === 'listen' && !LexisVoice.canSpeak()) kind = 'cloze';
 
           if (kind === 'match') {
             const batch = [];
@@ -4236,8 +5269,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     }
 
     function exitPracticeLesson() {
-      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-      appState.speakingKey = null;
+      stopAllSpeech();
       appState.practice.stage = 'hub';
       appState.practice.session = null;
       renderPracticeStudio();
@@ -4322,7 +5354,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     function practicePlayListenAudio(slow = false) {
       const step = getCurrentPracticeStep();
       if (!step || !step.item) return;
-      const rate = slow ? 0.72 : 0.95;
+      const rate = slow ? 0.75 : null;
       const key = slow ? 'listen-slow' : 'listen-normal';
       const text = step.type === 'listen' ? step.audioText : null;
       speakItem(step.item.id, 'US', text, rate, key);
@@ -4331,7 +5363,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     function practicePlaySandboxModel() {
       const step = getCurrentPracticeStep();
       if (!step || step.type !== 'sandbox' || !step.item) return;
-      speakItem(step.item.id, 'US', step.modelAnswer, 0.95, 'sandbox-model');
+      speakItem(step.item.id, 'US', step.modelAnswer, null, 'sandbox-model');
     }
 
     function practiceTapMatchTile(side, id) {
@@ -4344,7 +5376,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       if (side === 'left') {
         step.selectedLeft = step.selectedLeft === id ? null : id;
         const leftEntry = step.left.find(l => l.id === id);
-        if (step.selectedLeft && leftEntry && leftEntry.item && 'speechSynthesis' in window) {
+        if (step.selectedLeft && leftEntry && leftEntry.item && LexisVoice.canSpeak()) {
           speakItem(leftEntry.item.id, 'US');
         }
       } else {
@@ -4581,8 +5613,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
 
       // Audio "Can't listen now" skips cleanly without penalty
       if (step.type === 'listen') {
-        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-        appState.speakingKey = null;
+        stopAllSpeech();
         if (!step.isReview && session.initialStepCount > 0) {
           session.initialStepCount -= 1;
         }
@@ -4601,8 +5632,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     function advancePracticeStep() {
       const session = appState.practice.session;
       if (!session) return;
-      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-      appState.speakingKey = null;
+      stopAllSpeech();
 
       if (session.currentIndex + 1 < session.steps.length) {
         session.currentIndex += 1;
@@ -4972,11 +6002,8 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       const item = step.item;
       return `
         <div class="flex flex-wrap items-center justify-between gap-2">
-          <div class="flex items-center gap-2">
-            <span class="px-2.5 py-1 rounded-lg text-[11px] font-mono border ${getCategoryPillClass(item.category)}">
-              ${escapeHtml(item.category)}
-            </span>
-            <span class="text-xs font-mono text-stone-400">${escapeHtml(item.register || '')}</span>
+          <div class="flex items-center gap-2 flex-wrap">
+            ${renderMetaBadges(item, true)}
           </div>
           <span class="text-[11px] font-mono uppercase tracking-wider text-stone-400">Precision Upgrade</span>
         </div>
@@ -5050,10 +6077,8 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
 
       return `
         <div class="flex flex-wrap items-center justify-between gap-2">
-          <div class="flex items-center gap-2">
-            <span class="px-2.5 py-1 rounded-lg text-[11px] font-mono border ${getCategoryPillClass(item.category)}">
-              ${escapeHtml(item.category)}
-            </span>
+          <div class="flex items-center gap-2 flex-wrap">
+            ${renderMetaBadges(item, true)}
             <span class="text-xs font-mono text-stone-400">${step.useKeyboard ? 'Hard Mode · Type' : 'Word Bank'}</span>
           </div>
 
@@ -5112,10 +6137,8 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
 
       return `
         <div class="flex flex-wrap items-center justify-between gap-2">
-          <div class="flex items-center gap-2">
-            <span class="px-2.5 py-1 rounded-lg text-[11px] font-mono border ${getCategoryPillClass(item.category)}">
-              ${escapeHtml(item.category)}
-            </span>
+          <div class="flex items-center gap-2 flex-wrap">
+            ${renderMetaBadges(item, true)}
             <span class="text-xs font-mono text-stone-400">Sentence Builder</span>
           </div>
           ${!step.checked && step.selectedIndices.length > 0 ? `
@@ -5225,10 +6248,8 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
 
       return `
         <div class="flex flex-wrap items-center justify-between gap-2">
-          <div class="flex items-center gap-2">
-            <span class="px-2.5 py-1 rounded-lg text-[11px] font-mono border ${getCategoryPillClass(item.category)}">
-              ${escapeHtml(item.category)}
-            </span>
+          <div class="flex items-center gap-2 flex-wrap">
+            ${renderMetaBadges(item, true)}
             <span class="text-xs font-mono text-stone-400">Audio Recall</span>
           </div>
           <button onclick="const s=getCurrentPracticeStep(); if(s){s.showTranscript=!s.showTranscript; renderPracticeStudio();}" class="text-xs font-mono text-stone-500 dark:text-stone-400 hover:text-[#C46548] min-h-[32px]">
@@ -5321,10 +6342,8 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
 
       return `
         <div class="flex flex-wrap items-center justify-between gap-2">
-          <div class="flex items-center gap-2">
-            <span class="px-2.5 py-1 rounded-lg text-[11px] font-mono border ${getCategoryPillClass(item.category)}">
-              ${escapeHtml(item.category)}
-            </span>
+          <div class="flex items-center gap-2 flex-wrap">
+            ${renderMetaBadges(item, true)}
             <span class="text-xs font-mono text-stone-400">Free Production</span>
           </div>
           <div class="flex items-center gap-1.5">
@@ -5745,7 +6764,13 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
 
       const filtered = appState.items.filter(item => {
         if (appState.libraryFilters.category !== 'All' && item.category !== appState.libraryFilters.category) return false;
-        if (appState.libraryFilters.cefr !== 'All' && normalizeCefrTag(item.cefr) !== normalizeCefrTag(appState.libraryFilters.cefr)) return false;
+        if (appState.libraryFilters.cefr !== 'All') {
+          const itemCefr = normalizeCefrTag(item.cefr);
+          const filterCefr = normalizeCefrTag(appState.libraryFilters.cefr);
+          // "C1" also surfaces bridging "C1-C2" items so they are never hidden
+          const cefrMatch = filterCefr === 'C1' ? itemCefr.startsWith('C1') : itemCefr === filterCefr;
+          if (!cefrMatch) return false;
+        }
         if (appState.libraryFilters.register !== 'All' && String(item.register || '').toLowerCase() !== appState.libraryFilters.register.toLowerCase()) return false;
         if (appState.libraryFilters.status !== 'All' && item.status !== appState.libraryFilters.status) return false;
         if (appState.libraryFilters.pack !== 'All' && (item.packId || 'custom') !== appState.libraryFilters.pack) return false;
@@ -5789,7 +6814,6 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           ${visibleSlice.map(item => {
             const isExpanded = appState.expandedLibraryIds.has(item.id);
             const statusMeta = getStatusPillProps(item.status);
-            const metaParts = [item.category, item.cefr, item.register].filter(Boolean);
 
             if (isExpanded) {
               return `
@@ -5806,23 +6830,25 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
 
             return `
               <div class="px-5 sm:px-6 py-5 hover:bg-paper-subtle/35 dark:hover:bg-charcoal-subtle/35 transition-colors flex items-start justify-between gap-4">
-                <button onclick="toggleLibraryCardExpand('${escapeAttr(item.id)}')" class="text-left space-y-1.5 min-w-0 flex-1 focus:outline-none">
+                <button onclick="toggleLibraryCardExpand('${escapeAttr(item.id)}')" class="text-left space-y-2 min-w-0 flex-1 focus:outline-none">
+                  ${renderMetaBadges(item, true)}
                   <span class="flex items-baseline gap-2.5 flex-wrap">
                     <span class="serif-display text-xl font-medium text-paper-ink dark:text-charcoal-cream">
                       ${escapeHtml(item.phrase)}
                     </span>
-                    <span class="text-xs text-stone-500 dark:text-stone-400">
-                      ${metaParts.map(p => escapeHtml(p)).join(' · ')}
-                    </span>
+                    ${item.ipa ? `
+                      <span class="font-mono text-xs text-stone-500 dark:text-stone-400">${escapeHtml(item.ipa)}</span>
+                    ` : ''}
                   </span>
                   <span class="block text-[15px] text-stone-600 dark:text-stone-300 leading-relaxed line-clamp-2">
                     “${escapeHtml(item.upgraded)}”
                   </span>
                 </button>
 
-                <div class="flex items-center gap-2.5 shrink-0 pt-1 text-xs">
+                <div class="flex items-center gap-1.5 sm:gap-2 shrink-0 pt-1 text-xs flex-wrap justify-end">
                   ${renderAudioButton(item.id, 'US', true)}
-                  <button onclick="cycleItemStatus('${escapeAttr(item.id)}')" class="inline-flex items-center gap-1.5 text-stone-500 dark:text-stone-400 hover:text-paper-ink dark:hover:text-charcoal-cream transition-colors py-1 px-1" title="Cycle status">
+                  ${renderAudioButton(item.id, 'UK', false)}
+                  <button onclick="cycleItemStatus('${escapeAttr(item.id)}')" class="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[11px] transition-colors ${statusMeta.style}" title="Cycle status">
                     <span class="w-2 h-2 rounded-full ${statusMeta.dot}"></span>
                     <span class="hidden sm:inline">${statusMeta.label}</span>
                   </button>
@@ -5851,13 +6877,15 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     // ==================== VIEW 4: BACKUP & PORTABLE APP ====================
     function downloadStandaloneHtml() {
       const clone = document.documentElement.cloneNode(true);
-      const clearIds = ['today-workspace', 'practice-workspace', 'library-cards-list', 'library-pagination', 'packs-catalog-list', 'toast-stack', 'header-app-icon', 'backup-icon-preview'];
+      const clearIds = ['today-workspace', 'practice-workspace', 'library-cards-list', 'library-pagination', 'packs-catalog-list', 'toast-stack', 'header-app-icon', 'backup-icon-preview', 'voice-modal-body'];
       clearIds.forEach(id => {
         const el = clone.querySelector(`#${id}`);
         if (el) el.innerHTML = '';
       });
-      const modal = clone.querySelector('#shortcuts-modal');
-      if (modal) modal.classList.add('hidden');
+      ['#shortcuts-modal', '#voice-modal'].forEach(sel => {
+        const modal = clone.querySelector(sel);
+        if (modal) modal.classList.add('hidden');
+      });
 
       const htmlString = '<!DOCTYPE html>\n' + clone.outerHTML;
       const blob = new Blob([htmlString], { type: 'text/html;charset=utf-8' });
