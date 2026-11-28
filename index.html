@@ -1424,7 +1424,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
             </h1>
             <span id="today-date-label" class="text-xs text-stone-500 dark:text-stone-400">Sun, Nov 22</span>
           </div>
-          <p class="text-xs text-stone-500 dark:text-stone-400">
+          <p id="today-mix-label" class="text-xs text-stone-500 dark:text-stone-400">
             3 Everyday · 3 Workplace · 1 Syntax &amp; Discourse
           </p>
         </div>
@@ -2639,7 +2639,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           const activeItem = getActiveFocusedItem();
           if (activeItem) {
             e.preventDefault();
-            speakItem(activeItem.id, 'US', null, 0.75, `${activeItem.id}-US`);
+            speakItem(activeItem.id, 'US', null, 0.75, `${activeItem.id}-US-slow`);
           }
           return;
         }
@@ -3314,33 +3314,33 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     // ==================== NATURAL VOICE STUDIO (KOKORO-82M NEURAL + PIPER VITS + RANKED SYSTEM) ====================
     const KOKORO_VOICES = {
       US: [
-        { id: 'af_heart', label: 'Heart — Warm & Lifelike (Female ★)', short: 'Heart' },
-        { id: 'af_bella', label: 'Bella — Expressive & Crisp (Female)', short: 'Bella' },
-        { id: 'af_nicole', label: 'Nicole — Calm Studio (Female)', short: 'Nicole' },
-        { id: 'am_michael', label: 'Michael — Natural Conversational (Male ★)', short: 'Michael' },
-        { id: 'am_fenrir', label: 'Fenrir — Rich & Resonant (Male)', short: 'Fenrir' },
-        { id: 'am_puck', label: 'Puck — Upbeat & Friendly (Male)', short: 'Puck' }
+        { id: 'af_heart', label: 'Heart · Warm Female ★', short: 'Heart' },
+        { id: 'af_bella', label: 'Bella · Crisp Female', short: 'Bella' },
+        { id: 'af_nicole', label: 'Nicole · Calm Female', short: 'Nicole' },
+        { id: 'am_michael', label: 'Michael · Natural Male ★', short: 'Michael' },
+        { id: 'am_fenrir', label: 'Fenrir · Rich Male', short: 'Fenrir' },
+        { id: 'am_puck', label: 'Puck · Friendly Male', short: 'Puck' }
       ],
       UK: [
-        { id: 'bf_emma', label: 'Emma — Natural British RP (Female ★)', short: 'Emma' },
-        { id: 'bf_isabella', label: 'Isabella — Polished British (Female)', short: 'Isabella' },
-        { id: 'bm_george', label: 'George — Warm British (Male ★)', short: 'George' },
-        { id: 'bm_fable', label: 'Fable — Articulate Narrative (Male)', short: 'Fable' }
+        { id: 'bf_emma', label: 'Emma · British RP Female ★', short: 'Emma' },
+        { id: 'bf_isabella', label: 'Isabella · Polished Female', short: 'Isabella' },
+        { id: 'bm_george', label: 'George · Warm Male ★', short: 'George' },
+        { id: 'bm_fable', label: 'Fable · Narrative Male', short: 'Fable' }
       ]
     };
 
     const PIPER_VOICES = {
       US: [
-        { id: 'en_US-hfc_female-medium', label: 'HFC Studio — Natural Female (US)', short: 'HFC Female' },
-        { id: 'en_US-ryan-medium', label: 'Ryan — Clear Broadcast Male (US)', short: 'Ryan' },
-        { id: 'en_US-kristin-medium', label: 'Kristin — Warm Female (US)', short: 'Kristin' },
-        { id: 'en_US-joe-medium', label: 'Joe — Conversational Male (US)', short: 'Joe' }
+        { id: 'en_US-hfc_female-medium', label: 'HFC · Natural US Female', short: 'HFC' },
+        { id: 'en_US-ryan-medium', label: 'Ryan · Clear US Male', short: 'Ryan' },
+        { id: 'en_US-kristin-medium', label: 'Kristin · Warm US Female', short: 'Kristin' },
+        { id: 'en_US-joe-medium', label: 'Joe · Casual US Male', short: 'Joe' }
       ],
       UK: [
-        { id: 'en_GB-cori-medium', label: 'Cori — Crisp British Female (UK)', short: 'Cori' },
-        { id: 'en_GB-alba-medium', label: 'Alba — Expressive UK Female (UK)', short: 'Alba' },
-        { id: 'en_GB-alan-medium', label: 'Alan — Classic British Male (UK)', short: 'Alan' },
-        { id: 'en_GB-jenny_dioco-medium', label: 'Jenny — Warm Isles Female (UK)', short: 'Jenny' }
+        { id: 'en_GB-cori-medium', label: 'Cori · Crisp UK Female', short: 'Cori' },
+        { id: 'en_GB-alba-medium', label: 'Alba · Expressive UK Female', short: 'Alba' },
+        { id: 'en_GB-alan-medium', label: 'Alan · Classic UK Male', short: 'Alan' },
+        { id: 'en_GB-jenny_dioco-medium', label: 'Jenny · Warm UK Female', short: 'Jenny' }
       ]
     };
 
@@ -3354,7 +3354,11 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       const KOKORO_CDN = 'https://cdn.jsdelivr.net/npm/kokoro-js@1.2.1/dist/kokoro.web.js';
       const KOKORO_MODEL_ID = 'onnx-community/Kokoro-82M-v1.0-ONNX';
       const PIPER_CDN = 'https://cdn.jsdelivr.net/npm/@diffusionstudio/vits-web@1.0.3/+esm';
-      const MAX_WAV_CACHE = 64;
+      const MAX_WAV_CACHE = 96;
+      const WORKER_INIT_TIMEOUT_MS = 45000;
+      const WORKER_SYNTH_TIMEOUT_MS = 25000;
+      // 1-sample silent PCM WAV data URI to reliably unlock iOS Safari audio on user gesture
+      const SILENT_WAV_URI = 'data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA';
 
       let settings = {
         engine: 'kokoro', // 'kokoro' | 'piper' | 'system'
@@ -3368,6 +3372,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       };
 
       let kokoroState = 'idle'; // 'idle' | 'loading' | 'ready' | 'error'
+      let kokoroDevice = null; // 'webgpu' | 'wasm' | null
       let kokoroProgress = 0;
       let kokoroError = null;
       let kokoroWorker = null;
@@ -3382,10 +3387,16 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       let piperProgress = 0;
 
       let sharedAudioEl = null;
+      let audioUnlocked = false;
       let activeObjectUrl = null;
       let playbackToken = 0;
       let systemVoices = [];
+      let systemVoicesSig = '';
       const wavBlobCache = new Map(); // cacheKey -> Blob
+      const inFlightSynth = new Map(); // cacheKey -> Promise<Blob>
+      let activeUserSynthCount = 0;
+      const prefetchQueue = [];
+      let prefetchRunning = false;
 
       function loadSettings() {
         try {
@@ -3413,12 +3424,25 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         } catch (e) {}
       }
 
-      function refreshSystemVoices() {
-        if (!('speechSynthesis' in window)) return;
+      function readSystemVoices() {
+        if (!('speechSynthesis' in window)) return [];
         try {
-          systemVoices = window.speechSynthesis.getVoices() || [];
+          const list = window.speechSynthesis.getVoices() || [];
+          systemVoices = list;
+          return list;
+        } catch (e) {
+          return systemVoices || [];
+        }
+      }
+
+      function refreshSystemVoices(notify = false) {
+        const list = readSystemVoices();
+        if (!notify) return;
+        const sig = list.map(v => `${v.voiceURI || v.name}|${v.lang}`).join(';');
+        if (sig !== systemVoicesSig) {
+          systemVoicesSig = sig;
           renderVoiceModalIfOpen();
-        } catch (e) {}
+        }
       }
 
       function scoreSystemVoice(voice, accent) {
@@ -3464,17 +3488,18 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       }
 
       function getRankedSystemVoices(accent) {
-        if (!systemVoices || systemVoices.length === 0) refreshSystemVoices();
-        return (systemVoices || [])
+        const list = (systemVoices && systemVoices.length > 0) ? systemVoices : readSystemVoices();
+        return list
           .map(v => ({ voice: v, score: scoreSystemVoice(v, accent) }))
           .filter(entry => entry.score > -400)
           .sort((a, b) => b.score - a.score);
       }
 
       function pickBestSystemVoice(accent) {
+        const list = (systemVoices && systemVoices.length > 0) ? systemVoices : readSystemVoices();
         const preferredUri = accent === 'UK' ? settings.systemUK : settings.systemUS;
-        if (preferredUri && systemVoices.length > 0) {
-          const exact = systemVoices.find(v => v.voiceURI === preferredUri || v.name === preferredUri);
+        if (preferredUri && list.length > 0) {
+          const exact = list.find(v => v.voiceURI === preferredUri || v.name === preferredUri);
           if (exact) return exact;
         }
         const ranked = getRankedSystemVoices(accent);
@@ -3527,11 +3552,37 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         return sharedAudioEl;
       }
 
+      function unlockSharedAudio() {
+        if (audioUnlocked) return;
+        const audio = getSharedAudioElement();
+        try {
+          audio.src = SILENT_WAV_URI;
+          const p = audio.play();
+          if (p && typeof p.then === 'function') {
+            p.then(() => {
+              audio.pause();
+              audioUnlocked = true;
+            }).catch(() => {});
+          } else {
+            audioUnlocked = true;
+          }
+        } catch (e) {}
+      }
+
       function cleanupActiveAudioUrl() {
         if (activeObjectUrl) {
           try { URL.revokeObjectURL(activeObjectUrl); } catch (e) {}
           activeObjectUrl = null;
         }
+      }
+
+      function rejectPendingWorkerReqs(reason) {
+        pendingWorkerReqs.forEach((req) => {
+          if (req.timer) clearTimeout(req.timer);
+          req.reject(new Error(reason));
+        });
+        pendingWorkerReqs.clear();
+        inFlightSynth.clear();
       }
 
       function syncHeaderBadge() {
@@ -3542,7 +3593,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         if (settings.engine === 'kokoro') {
           if (kokoroState === 'ready') {
             dot.className = 'w-1.5 h-1.5 rounded-full bg-emerald-500';
-            label.textContent = 'HD Voice';
+            label.textContent = kokoroDevice === 'webgpu' ? 'HD GPU' : 'HD Voice';
           } else if (kokoroState === 'loading') {
             dot.className = 'w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse';
             label.textContent = kokoroProgress > 0 ? `HD ${kokoroProgress}%` : 'Loading HD…';
@@ -3568,37 +3619,68 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         const workerSrc = `
           import { KokoroTTS } from '${KOKORO_CDN}';
           let tts = null;
+          let activeDevice = 'wasm';
           let lastProgressPost = 0;
+
+          async function detectWebGPU() {
+            try {
+              if (typeof navigator !== 'undefined' && navigator.gpu) {
+                const adapter = await navigator.gpu.requestAdapter();
+                return Boolean(adapter);
+              }
+            } catch (e) {}
+            return false;
+          }
 
           self.addEventListener('message', async (ev) => {
             const msg = ev.data || {};
             if (msg.type === 'init') {
-              try {
+              const makeProgressCb = () => {
                 const fileTotals = new Map();
                 const fileLoaded = new Map();
+                return (info) => {
+                  if (!info) return;
+                  if (info.file && typeof info.total === 'number' && info.total > 0) {
+                    fileTotals.set(info.file, info.total);
+                    fileLoaded.set(info.file, info.loaded || 0);
+                    const now = Date.now();
+                    if (now - lastProgressPost > 120 || info.status === 'done') {
+                      lastProgressPost = now;
+                      let tot = 0;
+                      let ldd = 0;
+                      fileTotals.forEach((v, k) => { tot += v; ldd += (fileLoaded.get(k) || 0); });
+                      const pct = tot > 0 ? Math.min(99, Math.round((ldd / tot) * 100)) : 0;
+                      self.postMessage({ type: 'progress', pct });
+                    }
+                  }
+                };
+              };
+
+              try {
+                const hasWebGPU = await detectWebGPU();
+                if (hasWebGPU) {
+                  try {
+                    tts = await KokoroTTS.from_pretrained('${KOKORO_MODEL_ID}', {
+                      dtype: 'fp32',
+                      device: 'webgpu',
+                      progress_callback: makeProgressCb()
+                    });
+                    activeDevice = 'webgpu';
+                    await tts.generate('Hi', { voice: 'af_heart', speed: 1.0 });
+                    self.postMessage({ type: 'ready', device: activeDevice });
+                    return;
+                  } catch (gpuErr) {
+                    tts = null;
+                  }
+                }
                 tts = await KokoroTTS.from_pretrained('${KOKORO_MODEL_ID}', {
                   dtype: 'q8',
                   device: 'wasm',
-                  progress_callback: (info) => {
-                    if (!info) return;
-                    if (info.file && typeof info.total === 'number' && info.total > 0) {
-                      fileTotals.set(info.file, info.total);
-                      fileLoaded.set(info.file, info.loaded || 0);
-                      const now = Date.now();
-                      if (now - lastProgressPost > 120 || info.status === 'done') {
-                        lastProgressPost = now;
-                        let tot = 0;
-                        let ldd = 0;
-                        fileTotals.forEach((v, k) => { tot += v; ldd += (fileLoaded.get(k) || 0); });
-                        const pct = tot > 0 ? Math.min(99, Math.round((ldd / tot) * 100)) : 0;
-                        self.postMessage({ type: 'progress', pct });
-                      }
-                    }
-                  }
+                  progress_callback: makeProgressCb()
                 });
-                // Tiny warm-up prevents first-syllable clipping on cold start
-                await tts.generate('Hi.', { voice: 'af_heart', speed: 1.0 });
-                self.postMessage({ type: 'ready' });
+                activeDevice = 'wasm';
+                await tts.generate('Hi', { voice: 'af_heart', speed: 1.0 });
+                self.postMessage({ type: 'ready', device: activeDevice });
               } catch (err) {
                 self.postMessage({ type: 'init_error', message: err && err.message ? err.message : String(err) });
               }
@@ -3626,6 +3708,18 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         return new Worker(kokoroWorkerUrl, { type: 'module' });
       }
 
+      function triggerActiveViewPrefetch() {
+        if (settings.engine === 'system') return;
+        if (settings.engine === 'kokoro' && kokoroState !== 'ready') return;
+        if (appState.currentView === 'today') {
+          const item = getActiveFocusedItem();
+          if (item) prefetchItem(item);
+        } else if (appState.currentView === 'practice') {
+          const step = typeof getCurrentPracticeStep === 'function' ? getCurrentPracticeStep() : null;
+          if (step) prefetchPracticeStep(step);
+        }
+      }
+
       function ensureKokoroReady() {
         if (kokoroState === 'ready') return Promise.resolve(true);
         if (kokoroInitPromise) return kokoroInitPromise;
@@ -3637,34 +3731,88 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
 
         kokoroInitPromise = new Promise((resolve) => {
           let settled = false;
-          const fallbackToMainThread = async () => {
-            try {
-              const mod = await import(KOKORO_CDN);
-              kokoroMainThreadInstance = await mod.KokoroTTS.from_pretrained(KOKORO_MODEL_ID, {
-                dtype: 'q8',
-                device: 'wasm',
-                progress_callback: (info) => {
-                  if (info && typeof info.progress === 'number') {
-                    kokoroProgress = Math.min(99, Math.round(info.progress));
-                    syncHeaderBadge();
-                    renderVoiceModalIfOpen();
-                  }
-                }
-              });
+          let initTimer = null;
+
+          const finish = (ok, device = null, errMsg = null) => {
+            if (initTimer) {
+              clearTimeout(initTimer);
+              initTimer = null;
+            }
+            if (ok) {
               kokoroState = 'ready';
+              kokoroDevice = device || 'wasm';
               kokoroProgress = 100;
+              kokoroError = null;
               syncHeaderBadge();
               renderVoiceModalIfOpen();
-              settled = true;
-              resolve(true);
-            } catch (err) {
+              setTimeout(triggerActiveViewPrefetch, 120);
+            } else {
               kokoroState = 'error';
-              kokoroError = err && err.message ? err.message : 'Could not load neural voice model';
+              kokoroDevice = null;
+              kokoroError = errMsg || 'Could not load neural voice model';
               kokoroInitPromise = null;
               syncHeaderBadge();
               renderVoiceModalIfOpen();
+            }
+            if (!settled) {
               settled = true;
-              resolve(false);
+              resolve(ok);
+            }
+          };
+
+          const cleanupWorker = () => {
+            if (kokoroWorker) {
+              try { kokoroWorker.terminate(); } catch (e) {}
+              kokoroWorker = null;
+            }
+            if (kokoroWorkerUrl) {
+              try { URL.revokeObjectURL(kokoroWorkerUrl); } catch (e) {}
+              kokoroWorkerUrl = null;
+            }
+          };
+
+          const fallbackToMainThread = async () => {
+            try {
+              const mod = await import(KOKORO_CDN);
+              let loadedDevice = 'wasm';
+              let hasWebGPU = false;
+              try {
+                if (typeof navigator !== 'undefined' && navigator.gpu) {
+                  hasWebGPU = Boolean(await navigator.gpu.requestAdapter());
+                }
+              } catch (e) {}
+
+              const onProg = (info) => {
+                if (info && typeof info.progress === 'number') {
+                  kokoroProgress = Math.min(99, Math.round(info.progress));
+                  syncHeaderBadge();
+                  renderVoiceModalIfOpen();
+                }
+              };
+
+              if (hasWebGPU) {
+                try {
+                  kokoroMainThreadInstance = await mod.KokoroTTS.from_pretrained(KOKORO_MODEL_ID, {
+                    dtype: 'fp32',
+                    device: 'webgpu',
+                    progress_callback: onProg
+                  });
+                  loadedDevice = 'webgpu';
+                } catch (gpuErr) {
+                  kokoroMainThreadInstance = null;
+                }
+              }
+              if (!kokoroMainThreadInstance) {
+                kokoroMainThreadInstance = await mod.KokoroTTS.from_pretrained(KOKORO_MODEL_ID, {
+                  dtype: 'q8',
+                  device: 'wasm',
+                  progress_callback: onProg
+                });
+                loadedDevice = 'wasm';
+              }
+              finish(true, loadedDevice);
+            } catch (err) {
+              finish(false, null, err && err.message ? err.message : 'Could not load neural voice model');
             }
           };
 
@@ -3675,6 +3823,14 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
             return;
           }
 
+          initTimer = setTimeout(() => {
+            if (!settled) {
+              cleanupWorker();
+              rejectPendingWorkerReqs('Kokoro initialization timed out');
+              finish(false, null, 'Neural model load timed out');
+            }
+          }, WORKER_INIT_TIMEOUT_MS);
+
           kokoroWorker.onmessage = (ev) => {
             const msg = ev.data || {};
             if (msg.type === 'progress') {
@@ -3684,51 +3840,42 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
               return;
             }
             if (msg.type === 'ready') {
-              kokoroState = 'ready';
-              kokoroProgress = 100;
-              syncHeaderBadge();
-              renderVoiceModalIfOpen();
-              if (!settled) {
-                settled = true;
-                resolve(true);
-              }
+              finish(true, msg.device || 'wasm');
               return;
             }
             if (msg.type === 'init_error') {
-              if (kokoroWorker) {
-                kokoroWorker.terminate();
-                kokoroWorker = null;
-              }
-              if (kokoroWorkerUrl) {
-                URL.revokeObjectURL(kokoroWorkerUrl);
-                kokoroWorkerUrl = null;
-              }
+              cleanupWorker();
               if (!settled) fallbackToMainThread();
               return;
             }
             if (msg.type === 'audio' && pendingWorkerReqs.has(msg.reqId)) {
               const req = pendingWorkerReqs.get(msg.reqId);
               pendingWorkerReqs.delete(msg.reqId);
+              if (req.timer) clearTimeout(req.timer);
               req.resolve({ samples: msg.samples, sampleRate: msg.sampleRate });
               return;
             }
             if (msg.type === 'synth_error' && pendingWorkerReqs.has(msg.reqId)) {
               const req = pendingWorkerReqs.get(msg.reqId);
               pendingWorkerReqs.delete(msg.reqId);
+              if (req.timer) clearTimeout(req.timer);
               req.reject(new Error(msg.message || 'Synthesis failed'));
             }
           };
 
           kokoroWorker.onerror = () => {
-            if (kokoroWorker) {
-              kokoroWorker.terminate();
-              kokoroWorker = null;
+            cleanupWorker();
+            rejectPendingWorkerReqs('Kokoro worker crashed');
+            if (!settled) {
+              fallbackToMainThread();
+            } else {
+              kokoroState = 'error';
+              kokoroDevice = null;
+              kokoroError = 'Neural worker restarted — click Load HD Model to retry';
+              kokoroInitPromise = null;
+              syncHeaderBadge();
+              renderVoiceModalIfOpen();
             }
-            if (kokoroWorkerUrl) {
-              URL.revokeObjectURL(kokoroWorkerUrl);
-              kokoroWorkerUrl = null;
-            }
-            if (!settled) fallbackToMainThread();
           };
 
           kokoroWorker.postMessage({ type: 'init' });
@@ -3741,56 +3888,82 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         const clampedSpeed = Math.max(0.65, Math.min(1.35, Number(speed) || 1.0));
         const cacheKey = `kokoro|${voiceId}|${clampedSpeed.toFixed(2)}|${text}`;
         if (wavBlobCache.has(cacheKey)) return wavBlobCache.get(cacheKey);
+        if (inFlightSynth.has(cacheKey)) return inFlightSynth.get(cacheKey);
 
-        const ok = await ensureKokoroReady();
-        if (!ok) throw new Error(kokoroError || 'Kokoro unavailable');
+        const promise = (async () => {
+          const ok = await ensureKokoroReady();
+          if (!ok) throw new Error(kokoroError || 'Kokoro unavailable');
 
-        let wavBlob;
-        if (kokoroWorker) {
-          const reqId = ++workerReqCounter;
-          const res = await new Promise((resolve, reject) => {
-            pendingWorkerReqs.set(reqId, { resolve, reject });
-            kokoroWorker.postMessage({ type: 'synthesize', reqId, text, voice: voiceId, speed: clampedSpeed });
-          });
-          wavBlob = encodePcm16WavBlob(res.samples, res.sampleRate);
-        } else if (kokoroMainThreadInstance) {
-          const out = await kokoroMainThreadInstance.generate(text, { voice: voiceId, speed: clampedSpeed });
-          wavBlob = encodePcm16WavBlob(out.audio, out.sampling_rate || 24000);
-        } else {
-          throw new Error('Kokoro runtime not available');
+          let wavBlob;
+          if (kokoroWorker) {
+            const reqId = ++workerReqCounter;
+            const res = await new Promise((resolve, reject) => {
+              const timer = setTimeout(() => {
+                if (pendingWorkerReqs.has(reqId)) {
+                  pendingWorkerReqs.delete(reqId);
+                  reject(new Error('Kokoro synthesis timed out'));
+                }
+              }, WORKER_SYNTH_TIMEOUT_MS);
+              pendingWorkerReqs.set(reqId, { resolve, reject, timer });
+              kokoroWorker.postMessage({ type: 'synthesize', reqId, text, voice: voiceId, speed: clampedSpeed });
+            });
+            wavBlob = encodePcm16WavBlob(res.samples, res.sampleRate);
+          } else if (kokoroMainThreadInstance) {
+            const out = await kokoroMainThreadInstance.generate(text, { voice: voiceId, speed: clampedSpeed });
+            wavBlob = encodePcm16WavBlob(out.audio, out.sampling_rate || 24000);
+          } else {
+            throw new Error('Kokoro runtime not available');
+          }
+
+          cacheWavBlob(cacheKey, wavBlob);
+          return wavBlob;
+        })();
+
+        inFlightSynth.set(cacheKey, promise);
+        try {
+          return await promise;
+        } finally {
+          inFlightSynth.delete(cacheKey);
         }
-
-        cacheWavBlob(cacheKey, wavBlob);
-        return wavBlob;
       }
 
       async function synthesizePiperBlob(text, voiceId) {
         const cacheKey = `piper|${voiceId}|${text}`;
         if (wavBlobCache.has(cacheKey)) return wavBlobCache.get(cacheKey);
+        if (inFlightSynth.has(cacheKey)) return inFlightSynth.get(cacheKey);
 
-        if (!piperModule) {
-          piperModule = await import(PIPER_CDN);
-        }
-        piperLoadingVoice = voiceId;
-        piperProgress = 0;
-        syncHeaderBadge();
-        renderVoiceModalIfOpen();
-
-        try {
-          const wavBlob = await piperModule.predict({ text, voiceId }, (prog) => {
-            if (prog && prog.total > 0) {
-              piperProgress = Math.min(99, Math.round((prog.loaded / prog.total) * 100));
-              syncHeaderBadge();
-              renderVoiceModalIfOpen();
-            }
-          });
-          cacheWavBlob(cacheKey, wavBlob);
-          return wavBlob;
-        } finally {
-          piperLoadingVoice = null;
+        const promise = (async () => {
+          if (!piperModule) {
+            piperModule = await import(PIPER_CDN);
+          }
+          piperLoadingVoice = voiceId;
           piperProgress = 0;
           syncHeaderBadge();
           renderVoiceModalIfOpen();
+
+          try {
+            const wavBlob = await piperModule.predict({ text, voiceId }, (prog) => {
+              if (prog && prog.total > 0) {
+                piperProgress = Math.min(99, Math.round((prog.loaded / prog.total) * 100));
+                syncHeaderBadge();
+                renderVoiceModalIfOpen();
+              }
+            });
+            cacheWavBlob(cacheKey, wavBlob);
+            return wavBlob;
+          } finally {
+            piperLoadingVoice = null;
+            piperProgress = 0;
+            syncHeaderBadge();
+            renderVoiceModalIfOpen();
+          }
+        })();
+
+        inFlightSynth.set(cacheKey, promise);
+        try {
+          return await promise;
+        } finally {
+          inFlightSynth.delete(cacheKey);
         }
       }
 
@@ -3803,6 +3976,93 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           .replace(/\s*—\s*/g, ', ')
           .replace(/\s+/g, ' ')
           .trim();
+      }
+
+      function getCacheKeyForCurrentEngine(cleanText, accent, rate) {
+        const effectiveRate = typeof rate === 'number' ? rate : settings.baseRate;
+        if (settings.engine === 'kokoro') {
+          const voiceId = accent === 'UK' ? settings.kokoroUK : settings.kokoroUS;
+          const clampedSpeed = Math.max(0.65, Math.min(1.35, Number(effectiveRate) || 1.0));
+          return `kokoro|${voiceId}|${clampedSpeed.toFixed(2)}|${cleanText}`;
+        }
+        if (settings.engine === 'piper') {
+          const voiceId = accent === 'UK' ? settings.piperUK : settings.piperUS;
+          return `piper|${voiceId}|${cleanText}`;
+        }
+        return null;
+      }
+
+      async function drainPrefetchQueue() {
+        if (prefetchRunning) return;
+        prefetchRunning = true;
+        try {
+          while (prefetchQueue.length > 0) {
+            if (activeUserSynthCount > 0) {
+              await new Promise(r => setTimeout(r, 250));
+              continue;
+            }
+            const job = prefetchQueue.shift();
+            if (!job) continue;
+            const cacheKey = getCacheKeyForCurrentEngine(job.text, job.accent, job.rate);
+            if (!cacheKey || wavBlobCache.has(cacheKey) || inFlightSynth.has(cacheKey)) continue;
+
+            try {
+              if (settings.engine === 'kokoro' && kokoroState === 'ready') {
+                const voiceId = job.accent === 'UK' ? settings.kokoroUK : settings.kokoroUS;
+                const effectiveRate = typeof job.rate === 'number' ? job.rate : settings.baseRate;
+                await synthesizeKokoroBlob(job.text, voiceId, effectiveRate);
+              } else if (settings.engine === 'piper' && piperModule) {
+                const voiceId = job.accent === 'UK' ? settings.piperUK : settings.piperUS;
+                const stored = typeof piperModule.stored === 'function' ? await piperModule.stored() : [];
+                if (stored.includes(voiceId)) {
+                  await synthesizePiperBlob(job.text, voiceId);
+                }
+              }
+            } catch (e) {
+              // Ignore silent prefetch errors
+            }
+            await new Promise(r => setTimeout(r, 40));
+          }
+        } finally {
+          prefetchRunning = false;
+        }
+      }
+
+      function prefetch({ text, accent = 'US', rate = null }) {
+        if (settings.engine === 'system') return;
+        if (settings.engine === 'kokoro' && kokoroState !== 'ready') return;
+        if (settings.engine === 'piper' && !piperModule) return;
+        const cleanText = prepareSpeechText(text);
+        if (!cleanText || cleanText.length > 260) return;
+        const cacheKey = getCacheKeyForCurrentEngine(cleanText, accent, rate);
+        if (!cacheKey || wavBlobCache.has(cacheKey) || inFlightSynth.has(cacheKey)) return;
+        if (prefetchQueue.some(j => j.cacheKey === cacheKey)) return;
+        if (prefetchQueue.length >= 6) prefetchQueue.shift();
+        prefetchQueue.push({ text: cleanText, accent, rate, cacheKey });
+        drainPrefetchQueue();
+      }
+
+      function prefetchItem(item) {
+        if (!item) return;
+        const phraseText = item.speechText || item.phrase;
+        if (phraseText) {
+          prefetch({ text: phraseText, accent: 'US' });
+          prefetch({ text: phraseText, accent: 'UK' });
+        }
+        if (item.upgraded) {
+          prefetch({ text: item.upgraded, accent: 'US' });
+        }
+      }
+
+      function prefetchPracticeStep(step) {
+        if (!step || !step.item) return;
+        if (step.type === 'listen' && step.audioText) {
+          prefetch({ text: step.audioText, accent: 'US' });
+        } else if (step.type === 'sandbox' && step.modelAnswer) {
+          prefetch({ text: step.modelAnswer, accent: 'US' });
+        } else if (step.item.speechText || step.item.phrase) {
+          prefetch({ text: step.item.speechText || step.item.phrase, accent: 'US' });
+        }
       }
 
       function stop() {
@@ -3830,7 +4090,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
             syncAudioIndicators();
           }
           showToast('Audio pronunciation is unavailable in this browser.');
-          return;
+          return Promise.resolve();
         }
 
         window.speechSynthesis.cancel();
@@ -3845,19 +4105,22 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         appState.speakingKey = key;
         syncAudioIndicators();
 
-        const clearIfCurrent = () => {
-          if (token === playbackToken) {
-            appState.speakingKey = null;
-            syncAudioIndicators();
-          }
-        };
-        utterance.onend = clearIfCurrent;
-        utterance.onerror = clearIfCurrent;
-        window.speechSynthesis.speak(utterance);
+        return new Promise((resolve) => {
+          const finish = () => {
+            if (token === playbackToken) {
+              appState.speakingKey = null;
+              syncAudioIndicators();
+            }
+            resolve();
+          };
+          utterance.onend = finish;
+          utterance.onerror = finish;
+          window.speechSynthesis.speak(utterance);
+        });
       }
 
-      async function playWavBlob(blob, playbackRate, key, token) {
-        if (token !== playbackToken) return;
+      function playWavBlob(blob, playbackRate, key, token, keepSpeakingOnEnd = false) {
+        if (token !== playbackToken) return Promise.resolve();
         const audio = getSharedAudioElement();
         cleanupActiveAudioUrl();
         const url = URL.createObjectURL(blob);
@@ -3868,19 +4131,29 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         audio.playbackRate = rate;
         if ('preservesPitch' in audio) audio.preservesPitch = true;
 
-        const clearIfCurrent = () => {
-          if (token === playbackToken) {
-            cleanupActiveAudioUrl();
-            appState.speakingKey = null;
-            syncAudioIndicators();
+        return new Promise((resolve, reject) => {
+          const finish = () => {
+            if (token === playbackToken) {
+              cleanupActiveAudioUrl();
+              if (!keepSpeakingOnEnd) {
+                appState.speakingKey = null;
+                syncAudioIndicators();
+              }
+            }
+            resolve();
+          };
+          audio.onended = finish;
+          audio.onerror = finish;
+          appState.speakingKey = key;
+          syncAudioIndicators();
+          const playPromise = audio.play();
+          if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch((err) => {
+              finish();
+              reject(err);
+            });
           }
-        };
-        audio.onended = clearIfCurrent;
-        audio.onerror = clearIfCurrent;
-
-        appState.speakingKey = key;
-        syncAudioIndicators();
-        await audio.play();
+        });
       }
 
       async function speak({ text, accent = 'US', rate = null, key = 'preview' }) {
@@ -3896,28 +4169,24 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         stop();
         const token = playbackToken;
         const effectiveRate = typeof rate === 'number' ? rate : settings.baseRate;
-
-        // Unlock shared HTMLAudioElement on user gesture for iOS Safari
-        const audioEl = getSharedAudioElement();
-        if (audioEl && !audioEl.src) {
-          try { audioEl.load(); } catch (e) {}
-        }
+        unlockSharedAudio();
 
         if (settings.engine === 'kokoro') {
           const voiceId = accent === 'UK' ? settings.kokoroUK : settings.kokoroUS;
           if (kokoroState !== 'ready') {
             ensureKokoroReady().then((ready) => {
-              if (ready) showToast('HD Neural Voices (US & UK) ready!');
+              if (ready) showToast(`Kokoro HD (${kokoroDevice === 'webgpu' ? 'WebGPU' : 'WASM'}) ready!`);
             });
             if ('speechSynthesis' in window) {
               const pctNote = kokoroProgress > 0 ? ` (${kokoroProgress}%)` : '';
-              showToast(`Loading HD neural voice${pctNote} — playing system voice meanwhile`);
-              playSystemUtterance(cleanText, accent, effectiveRate, key, token);
+              showToast(`Loading Kokoro HD voice${pctNote} — playing system voice meanwhile`);
+              await playSystemUtterance(cleanText, accent, effectiveRate, key, token);
               return;
             }
           }
           appState.speakingKey = key;
           syncAudioIndicators();
+          activeUserSynthCount += 1;
           try {
             const wavBlob = await synthesizeKokoroBlob(cleanText, voiceId, effectiveRate);
             if (token !== playbackToken) return;
@@ -3926,8 +4195,10 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           } catch (err) {
             if (token !== playbackToken) return;
             console.warn('Kokoro synthesis fallback:', err);
-            playSystemUtterance(cleanText, accent, effectiveRate, key, token);
+            await playSystemUtterance(cleanText, accent, effectiveRate, key, token);
             return;
+          } finally {
+            activeUserSynthCount = Math.max(0, activeUserSynthCount - 1);
           }
         }
 
@@ -3935,6 +4206,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           const voiceId = accent === 'UK' ? settings.piperUK : settings.piperUS;
           appState.speakingKey = key;
           syncAudioIndicators();
+          activeUserSynthCount += 1;
           try {
             const wavBlob = await synthesizePiperBlob(cleanText, voiceId);
             if (token !== playbackToken) return;
@@ -3944,17 +4216,84 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
             if (token !== playbackToken) return;
             console.warn('Piper synthesis fallback:', err);
             showToast('Piper voice download unavailable — using enhanced system voice');
-            playSystemUtterance(cleanText, accent, effectiveRate, key, token);
+            await playSystemUtterance(cleanText, accent, effectiveRate, key, token);
             return;
+          } finally {
+            activeUserSynthCount = Math.max(0, activeUserSynthCount - 1);
           }
         }
 
-        playSystemUtterance(cleanText, accent, effectiveRate, key, token);
+        await playSystemUtterance(cleanText, accent, effectiveRate, key, token);
+      }
+
+      async function speakSequence({ lines = [], accent = 'US', rate = null, key = 'dialogue' }) {
+        const cleanLines = lines.map(prepareSpeechText).filter(Boolean);
+        if (cleanLines.length === 0) return;
+        if (cleanLines.length === 1) {
+          return speak({ text: cleanLines[0], accent, rate, key });
+        }
+        if (appState.speakingKey === key) {
+          stop();
+          return;
+        }
+
+        stop();
+        const token = playbackToken;
+        const effectiveRate = typeof rate === 'number' ? rate : settings.baseRate;
+        unlockSharedAudio();
+
+        if (settings.engine === 'system' || (settings.engine === 'kokoro' && kokoroState !== 'ready')) {
+          if (settings.engine === 'kokoro' && kokoroState !== 'ready') {
+            ensureKokoroReady();
+          }
+          await playSystemUtterance(cleanLines.join(' ... '), accent, effectiveRate, key, token);
+          return;
+        }
+
+        appState.speakingKey = key;
+        syncAudioIndicators();
+        activeUserSynthCount += 1;
+        try {
+          const synthLine = (line) => {
+            if (settings.engine === 'kokoro') {
+              const voiceId = accent === 'UK' ? settings.kokoroUK : settings.kokoroUS;
+              return synthesizeKokoroBlob(line, voiceId, effectiveRate);
+            }
+            const voiceId = accent === 'UK' ? settings.piperUK : settings.piperUS;
+            return synthesizePiperBlob(line, voiceId);
+          };
+
+          let nextPromise = synthLine(cleanLines[0]);
+          for (let i = 0; i < cleanLines.length; i++) {
+            if (token !== playbackToken) return;
+            const blob = await nextPromise;
+            if (token !== playbackToken) return;
+            // Start synthesizing the next line while this line plays for 0ms gap
+            if (i + 1 < cleanLines.length) {
+              nextPromise = synthLine(cleanLines[i + 1]);
+            }
+            const playbackRate = settings.engine === 'kokoro' ? 1.0 : effectiveRate;
+            const hasMore = i + 1 < cleanLines.length;
+            await playWavBlob(blob, playbackRate, key, token, hasMore);
+          }
+        } catch (err) {
+          if (token !== playbackToken) return;
+          console.warn('Sequence synthesis fallback:', err);
+          await playSystemUtterance(cleanLines.join(' ... '), accent, effectiveRate, key, token);
+        } finally {
+          activeUserSynthCount = Math.max(0, activeUserSynthCount - 1);
+          if (token === playbackToken && appState.speakingKey === key) {
+            appState.speakingKey = null;
+            syncAudioIndicators();
+          }
+        }
       }
 
       async function clearVoiceCaches() {
         stop();
+        prefetchQueue.length = 0;
         wavBlobCache.clear();
+        rejectPendingWorkerReqs('Voice caches cleared');
         try {
           if ('caches' in window) {
             await Promise.all([
@@ -3979,6 +4318,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         kokoroMainThreadInstance = null;
         kokoroInitPromise = null;
         kokoroState = 'idle';
+        kokoroDevice = null;
         kokoroProgress = 0;
         syncHeaderBadge();
         renderVoiceModalIfOpen();
@@ -3989,7 +4329,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         if (settings.engine === 'kokoro') {
           const id = accent === 'UK' ? settings.kokoroUK : settings.kokoroUS;
           const found = KOKORO_VOICES[accent].find(v => v.id === id);
-          return found ? `${found.short} · Neural` : 'Neural';
+          return found ? `${found.short} · Kokoro` : 'Kokoro';
         }
         if (settings.engine === 'piper') {
           const id = accent === 'UK' ? settings.piperUK : settings.piperUS;
@@ -4007,27 +4347,27 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       async function checkCachedAndWarmup() {
         const isHttp = window.location.protocol === 'http:' || window.location.protocol === 'https:';
         if (!isHttp || settings.engine !== 'kokoro') return;
-        const saveData = Boolean(navigator.connection && navigator.connection.saveData);
         let hasCache = false;
         try {
           if ('caches' in window) {
             hasCache = (await caches.has('transformers-cache')) || (await caches.has('kokoro-voices'));
           }
         } catch (e) {}
-        if (hasCache || !saveData) {
+        // Only auto-load on page load when weights are already cached locally (zero network surprise)
+        if (hasCache) {
           setTimeout(() => {
             if (settings.engine === 'kokoro' && kokoroState === 'idle') {
               ensureKokoroReady();
             }
-          }, hasCache ? 350 : 1400);
+          }, 300);
         }
       }
 
       function init() {
         loadSettings();
         if ('speechSynthesis' in window) {
-          refreshSystemVoices();
-          window.speechSynthesis.onvoiceschanged = () => refreshSystemVoices();
+          refreshSystemVoices(false);
+          window.speechSynthesis.onvoiceschanged = () => refreshSystemVoices(true);
         }
         syncHeaderBadge();
         checkCachedAndWarmup();
@@ -4036,6 +4376,10 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       return {
         init,
         speak,
+        speakSequence,
+        prefetch,
+        prefetchItem,
+        prefetchPracticeStep,
         stop,
         canSpeak,
         ensureKokoroReady,
@@ -4043,13 +4387,16 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         getActiveVoiceSummary,
         getRankedSystemVoices,
         getSettings: () => ({ ...settings }),
-        getStatus: () => ({ kokoroState, kokoroProgress, kokoroError, piperLoadingVoice, piperProgress }),
+        getStatus: () => ({ kokoroState, kokoroDevice, kokoroProgress, kokoroError, piperLoadingVoice, piperProgress }),
         updateSetting(key, val) {
           settings[key] = val;
           saveSettings();
           syncHeaderBadge();
           if (key === 'engine' && val === 'kokoro' && kokoroState === 'idle') {
             ensureKokoroReady();
+          }
+          if (['kokoroUS', 'kokoroUK', 'piperUS', 'piperUK', 'baseRate'].includes(key)) {
+            setTimeout(triggerActiveViewPrefetch, 80);
           }
           renderVoiceModalIfOpen();
           if (appState.currentView === 'today') renderTodayView();
@@ -4090,14 +4437,14 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         {
           id: 'kokoro',
           title: 'Kokoro-82M Neural AI',
-          badge: 'Best · Human-like',
-          desc: 'Top-ranked open neural voices (US Heart/Michael & UK Emma/George). Cached locally after ~88 MB one-time download.'
+          badge: 'Best · WebGPU + Prefetch',
+          desc: 'Most natural US & UK voices (Heart, Michael, Emma, George). Auto-accelerates with WebGPU when available and pre-synthesizes active cards for instant playback.'
         },
         {
           id: 'piper',
           title: 'Piper VITS Neural',
-          badge: 'Fast Local ONNX',
-          desc: 'Studio-recorded neural speaker models via @diffusionstudio/vits-web (~60 MB per voice, cached in OPFS).'
+          badge: 'Fast CPU ONNX',
+          desc: 'Lightweight studio-recorded speaker models via @diffusionstudio/vits-web (~60 MB per voice, cached in OPFS). Great speed on CPU-only devices.'
         },
         {
           id: 'system',
@@ -4171,12 +4518,12 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
             <div class="flex items-center justify-between gap-2 text-xs">
               <span class="font-mono text-stone-600 dark:text-stone-300">
                 ${st.kokoroState === 'ready'
-                  ? '✓ Kokoro-82M Neural Engine active (cached locally)'
+                  ? `✓ Kokoro-82M ready (${st.kokoroDevice === 'webgpu' ? 'WebGPU · Ultra-fast' : 'WASM CPU · Prefetch on'})`
                   : (st.kokoroState === 'loading'
                       ? `Downloading Kokoro-82M neural weights… ${st.kokoroProgress}%`
                       : (st.kokoroState === 'error'
                           ? `Model offline (${escapeHtml(st.kokoroError || 'using fallback')})`
-                          : 'Kokoro-82M ready to initialize (~88 MB one-time download)'))}
+                          : 'Click Load HD Model or press any Play button to initialize'))}
               </span>
               ${st.kokoroState === 'idle' || st.kokoroState === 'error' ? `
                 <button type="button" onclick="LexisVoice.ensureKokoroReady()" class="px-2.5 py-1 rounded-lg bg-[#C46548] hover:bg-[#B05438] text-white font-mono text-[11px] shrink-0">
@@ -4189,6 +4536,17 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
                 <div class="h-full bg-[#C46548] transition-all duration-200" style="width: ${Math.max(6, st.kokoroProgress)}%"></div>
               </div>
             ` : ''}
+          </div>
+        ` : ''}
+
+        ${cfg.engine === 'piper' && st.piperLoadingVoice ? `
+          <div class="p-3.5 rounded-xl border border-paper-border dark:border-charcoal-border bg-paper-subtle/55 dark:bg-charcoal-subtle/55 space-y-2">
+            <div class="text-xs font-mono text-stone-600 dark:text-stone-300">
+              Downloading Piper voice (${escapeHtml(st.piperLoadingVoice)})… ${st.piperProgress}%
+            </div>
+            <div class="h-1.5 w-full rounded-full bg-paper-border dark:bg-charcoal-border overflow-hidden">
+              <div class="h-full bg-indigo-500 transition-all duration-200" style="width: ${Math.max(6, st.piperProgress)}%"></div>
+            </div>
           </div>
         ` : ''}
 
@@ -4239,6 +4597,13 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       LexisVoice.stop();
     }
 
+    function prefetchItemAudio(itemId, accent = 'US', kind = 'phrase') {
+      const item = appState.itemsById.get(itemId) || appState.items.find(i => i.id === itemId);
+      if (!item) return;
+      const text = kind === 'upgraded' ? item.upgraded : (item.speechText || item.phrase);
+      if (text) LexisVoice.prefetch({ text, accent });
+    }
+
     function speakItem(itemId, accent = 'US', customText = null, rate = null, customAudioKey = null) {
       const item = appState.itemsById.get(itemId) || appState.items.find(i => i.id === itemId);
       const text = customText || (item ? (item.speechText || item.phrase) : '');
@@ -4257,8 +4622,8 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       const item = appState.itemsById.get(itemId) || appState.items.find(i => i.id === itemId);
       const dlg = item && Array.isArray(item.dialogues) ? item.dialogues[dlgIdx] : null;
       if (!dlg || !Array.isArray(dlg.lines) || dlg.lines.length === 0) return;
-      const joined = dlg.lines.map(l => l.text).join(' ... ');
-      speakItem(itemId, accent, joined, null, `${itemId}-dlg-${dlgIdx}`);
+      const lines = dlg.lines.map(l => l.text).filter(Boolean);
+      LexisVoice.speakSequence({ lines, accent, key: `${itemId}-dlg-${dlgIdx}` });
     }
 
     function syncAudioIndicators() {
@@ -4351,11 +4716,14 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
     function renderMetaBadges(item, compact = false) {
       if (!item) return '';
       const pad = compact ? 'px-2 py-0.5 text-[10px]' : 'px-2.5 py-0.5 text-[11px]';
+      const cat = String(item.category || '').trim();
+      const reg = String(item.register || '').trim();
+      const showRegister = Boolean(reg) && reg.toLowerCase() !== cat.toLowerCase();
       return `
         <div class="flex items-center gap-1.5 flex-wrap">
-          ${item.category ? `
-            <span class="${pad} rounded-md font-mono font-medium border ${getCategoryPillClass(item.category)}">
-              ${escapeHtml(item.category)}
+          ${cat ? `
+            <span class="${pad} rounded-md font-mono font-medium border ${getCategoryPillClass(cat)}">
+              ${escapeHtml(cat)}
             </span>
           ` : ''}
           ${item.cefr ? `
@@ -4363,9 +4731,11 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
               ${escapeHtml(item.cefr)}
             </span>
           ` : ''}
-          <span class="${pad} rounded-md font-mono border ${getRegisterPillClass(item.register)}">
-            ${escapeHtml(item.register || 'Conversational')}
-          </span>
+          ${showRegister ? `
+            <span class="${pad} rounded-md font-mono border ${getRegisterPillClass(reg)}">
+              ${escapeHtml(reg)}
+            </span>
+          ` : ''}
         </div>
       `;
     }
@@ -4427,7 +4797,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       const isSpeaking = appState.speakingKey === key;
       const voiceSummary = LexisVoice.getActiveVoiceSummary(accent);
       return `
-        <button data-audio-key="${escapeHtml(key)}" onclick="speakItem('${escapeAttr(itemId)}', '${escapeAttr(accent)}')" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-paper-border dark:border-charcoal-border bg-paper-subtle/60 dark:bg-charcoal-subtle/60 hover:border-[#C46548] text-xs font-mono text-stone-600 dark:text-stone-300 hover:text-paper-ink dark:hover:text-charcoal-cream transition-colors min-h-[32px]" title="Listen in ${escapeHtml(accent)} English (${escapeHtml(voiceSummary)})">
+        <button data-audio-key="${escapeHtml(key)}" onpointerenter="prefetchItemAudio('${escapeAttr(itemId)}', '${escapeAttr(accent)}', 'phrase')" onclick="speakItem('${escapeAttr(itemId)}', '${escapeAttr(accent)}')" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-paper-border dark:border-charcoal-border bg-paper-subtle/60 dark:bg-charcoal-subtle/60 hover:border-[#C46548] text-xs font-mono text-stone-600 dark:text-stone-300 hover:text-paper-ink dark:hover:text-charcoal-cream transition-colors min-h-[32px]" title="Listen in ${escapeHtml(accent)} English (${escapeHtml(voiceSummary)})">
           ${showIcon ? `
             <svg class="icon-speaker ${isSpeaking ? 'hidden' : ''} w-3.5 h-3.5 text-[#C46548] dark:text-[#E2876B]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
@@ -4495,7 +4865,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
                     Natural Native
                   </span>
                   <div class="flex items-center gap-2 text-xs font-mono">
-                    <button data-audio-key="${escapeHtml(upgUsKey)}" onclick="speakUpgradedSentence('${escapeAttr(item.id)}', 'US')" class="inline-flex items-center gap-1 text-[11px] text-stone-500 dark:text-stone-400 hover:text-[#C46548] dark:hover:text-[#E58E73] transition-colors" title="Hear full natural sentence (US)">
+                    <button data-audio-key="${escapeHtml(upgUsKey)}" onpointerenter="prefetchItemAudio('${escapeAttr(item.id)}', 'US', 'upgraded')" onclick="speakUpgradedSentence('${escapeAttr(item.id)}', 'US')" class="inline-flex items-center gap-1 text-[11px] text-stone-500 dark:text-stone-400 hover:text-[#C46548] dark:hover:text-[#E58E73] transition-colors" title="Hear full natural sentence (US)">
                       <span class="icon-speaker ${appState.speakingKey === upgUsKey ? 'hidden' : ''}">▶</span>
                       <span class="icon-eq ${appState.speakingKey === upgUsKey ? 'flex' : 'hidden'} items-end gap-0.5 h-2.5 w-3 justify-center">
                         <span class="eq-bar w-0.5 h-full bg-[#C46548] rounded-full"></span>
@@ -4503,7 +4873,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
                       </span>
                       <span>US</span>
                     </button>
-                    <button data-audio-key="${escapeHtml(upgUkKey)}" onclick="speakUpgradedSentence('${escapeAttr(item.id)}', 'UK')" class="inline-flex items-center gap-1 text-[11px] text-stone-500 dark:text-stone-400 hover:text-[#C46548] dark:hover:text-[#E58E73] transition-colors" title="Hear full natural sentence (UK)">
+                    <button data-audio-key="${escapeHtml(upgUkKey)}" onpointerenter="prefetchItemAudio('${escapeAttr(item.id)}', 'UK', 'upgraded')" onclick="speakUpgradedSentence('${escapeAttr(item.id)}', 'UK')" class="inline-flex items-center gap-1 text-[11px] text-stone-500 dark:text-stone-400 hover:text-[#C46548] dark:hover:text-[#E58E73] transition-colors" title="Hear full natural sentence (UK)">
                       <span class="icon-speaker ${appState.speakingKey === upgUkKey ? 'hidden' : ''}">▶</span>
                       <span class="icon-eq ${appState.speakingKey === upgUkKey ? 'flex' : 'hidden'} items-end gap-0.5 h-2.5 w-3 justify-center">
                         <span class="eq-bar w-0.5 h-full bg-[#C46548] rounded-full"></span>
@@ -4641,6 +5011,25 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         .map(id => appState.items.find(i => i.id === id))
         .filter(Boolean);
 
+      const mixEl = document.getElementById('today-mix-label');
+      if (mixEl && cards.length > 0) {
+        const counts = new Map();
+        cards.forEach(c => {
+          const cat = c.category || 'Everyday';
+          counts.set(cat, (counts.get(cat) || 0) + 1);
+        });
+        const order = ['Everyday', 'Workplace', 'Syntax'];
+        const parts = [];
+        order.forEach(cat => {
+          if (counts.has(cat)) {
+            parts.push(`${counts.get(cat)} ${cat === 'Syntax' ? 'Syntax & Discourse' : cat}`);
+            counts.delete(cat);
+          }
+        });
+        counts.forEach((n, cat) => parts.push(`${n} ${cat}`));
+        mixEl.textContent = parts.join(' · ');
+      }
+
       if (cards.length === 0) {
         workspace.innerHTML = `<p class="max-w-2xl mx-auto text-sm text-stone-500">No items loaded. Click New batch above.</p>`;
         return;
@@ -4658,6 +5047,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       const idx = appState.todayIndex % cards.length;
       const currentItem = cards[idx];
       const pct = Math.round(((idx + 1) / cards.length) * 100);
+      LexisVoice.prefetchItem(currentItem);
 
       workspace.innerHTML = `
         <div class="max-w-2xl mx-auto space-y-4">
@@ -5932,6 +6322,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         exitPracticeLesson();
         return;
       }
+      LexisVoice.prefetchPracticeStep(step);
 
       const isReviewPhase = step.isReview;
       const completedCount = session.currentIndex + (step.checked ? 1 : 0);
