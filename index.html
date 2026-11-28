@@ -3836,6 +3836,13 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           }
 
           initTimer = setTimeout(() => {
+            if (initGen !== kokoroInitGen) {
+              if (!settled) {
+                settled = true;
+                resolve(false);
+              }
+              return;
+            }
             if (!settled) {
               cleanupWorker();
               rejectPendingWorkerReqs('Kokoro initialization timed out');
@@ -3844,6 +3851,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           }, WORKER_INIT_TIMEOUT_MS);
 
           kokoroWorker.onmessage = (ev) => {
+            if (initGen !== kokoroInitGen) return;
             const msg = ev.data || {};
             if (msg.type === 'progress') {
               kokoroProgress = msg.pct || kokoroProgress;
@@ -3876,6 +3884,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           };
 
           kokoroWorker.onerror = () => {
+            if (initGen !== kokoroInitGen) return;
             cleanupWorker();
             rejectPendingWorkerReqs('Kokoro worker crashed');
             if (!settled) {
