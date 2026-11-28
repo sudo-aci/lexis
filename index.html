@@ -3379,6 +3379,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       let kokoroWorkerUrl = null;
       let kokoroMainThreadInstance = null;
       let kokoroInitPromise = null;
+      let kokoroInitGen = 0;
       let workerReqCounter = 0;
       const pendingWorkerReqs = new Map();
 
@@ -3390,6 +3391,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
       let audioUnlocked = false;
       let activeObjectUrl = null;
       let playbackToken = 0;
+      let cancelActivePlayback = null;
       let systemVoices = [];
       let systemVoicesSig = '';
       const wavBlobCache = new Map(); // cacheKey -> Blob
@@ -3560,7 +3562,9 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           const p = audio.play();
           if (p && typeof p.then === 'function') {
             p.then(() => {
-              audio.pause();
+              if (audio.src === SILENT_WAV_URI && !activeObjectUrl) {
+                audio.pause();
+              }
               audioUnlocked = true;
             }).catch(() => {});
           } else {
@@ -3730,6 +3734,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         renderVoiceModalIfOpen();
 
         kokoroInitPromise = new Promise((resolve) => {
+          const initGen = ++kokoroInitGen;
           let settled = false;
           let initTimer = null;
 
@@ -3737,6 +3742,13 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
             if (initTimer) {
               clearTimeout(initTimer);
               initTimer = null;
+            }
+            if (initGen !== kokoroInitGen) {
+              if (!settled) {
+                settled = true;
+                resolve(false);
+              }
+              return;
             }
             if (ok) {
               kokoroState = 'ready';
@@ -4067,6 +4079,11 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
 
       function stop() {
         playbackToken += 1;
+        if (cancelActivePlayback) {
+          const cancelFn = cancelActivePlayback;
+          cancelActivePlayback = null;
+          cancelFn();
+        }
         if (sharedAudioEl) {
           try {
             sharedAudioEl.pause();
@@ -4106,13 +4123,20 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         syncAudioIndicators();
 
         return new Promise((resolve) => {
+          let done = false;
           const finish = () => {
+            if (done) return;
+            done = true;
+            utterance.onend = null;
+            utterance.onerror = null;
+            if (cancelActivePlayback === finish) cancelActivePlayback = null;
             if (token === playbackToken) {
               appState.speakingKey = null;
               syncAudioIndicators();
             }
             resolve();
           };
+          cancelActivePlayback = finish;
           utterance.onend = finish;
           utterance.onerror = finish;
           window.speechSynthesis.speak(utterance);
@@ -4132,7 +4156,13 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         if ('preservesPitch' in audio) audio.preservesPitch = true;
 
         return new Promise((resolve, reject) => {
+          let done = false;
           const finish = () => {
+            if (done) return;
+            done = true;
+            audio.onended = null;
+            audio.onerror = null;
+            if (cancelActivePlayback === finish) cancelActivePlayback = null;
             if (token === playbackToken) {
               cleanupActiveAudioUrl();
               if (!keepSpeakingOnEnd) {
@@ -4142,16 +4172,32 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
             }
             resolve();
           };
+          cancelActivePlayback = finish;
           audio.onended = finish;
           audio.onerror = finish;
           appState.speakingKey = key;
           syncAudioIndicators();
           const playPromise = audio.play();
-          if (playPromise && typeof playPromise.catch === 'function') {
-            playPromise.catch((err) => {
-              finish();
-              reject(err);
+          if (playPromise && typeof playPromise.then === 'function') {
+            playPromise.then(() => {
+              audioUnlocked = true;
+            }).catch((err) => {
+              if (done) return;
+              done = true;
+              audio.onended = null;
+              audio.onerror = null;
+              if (cancelActivePlayback === finish) cancelActivePlayback = null;
+              if (token === playbackToken) {
+                cleanupActiveAudioUrl();
+                appState.speakingKey = null;
+                syncAudioIndicators();
+                reject(err);
+              } else {
+                resolve();
+              }
             });
+          } else {
+            audioUnlocked = true;
           }
         });
       }
@@ -4169,7 +4215,9 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         stop();
         const token = playbackToken;
         const effectiveRate = typeof rate === 'number' ? rate : settings.baseRate;
-        unlockSharedAudio();
+        const cacheKey = getCacheKeyForCurrentEngine(cleanText, accent, effectiveRate);
+        const isCacheHit = Boolean(cacheKey && wavBlobCache.has(cacheKey));
+        if (!isCacheHit) unlockSharedAudio();
 
         if (settings.engine === 'kokoro') {
           const voiceId = accent === 'UK' ? settings.kokoroUK : settings.kokoroUS;
@@ -4186,9 +4234,14 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           }
           appState.speakingKey = key;
           syncAudioIndicators();
-          activeUserSynthCount += 1;
           try {
-            const wavBlob = await synthesizeKokoroBlob(cleanText, voiceId, effectiveRate);
+            let wavBlob;
+            activeUserSynthCount += 1;
+            try {
+              wavBlob = await synthesizeKokoroBlob(cleanText, voiceId, effectiveRate);
+            } finally {
+              activeUserSynthCount = Math.max(0, activeUserSynthCount - 1);
+            }
             if (token !== playbackToken) return;
             await playWavBlob(wavBlob, 1.0, key, token);
             return;
@@ -4197,8 +4250,6 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
             console.warn('Kokoro synthesis fallback:', err);
             await playSystemUtterance(cleanText, accent, effectiveRate, key, token);
             return;
-          } finally {
-            activeUserSynthCount = Math.max(0, activeUserSynthCount - 1);
           }
         }
 
@@ -4206,9 +4257,14 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           const voiceId = accent === 'UK' ? settings.piperUK : settings.piperUS;
           appState.speakingKey = key;
           syncAudioIndicators();
-          activeUserSynthCount += 1;
           try {
-            const wavBlob = await synthesizePiperBlob(cleanText, voiceId);
+            let wavBlob;
+            activeUserSynthCount += 1;
+            try {
+              wavBlob = await synthesizePiperBlob(cleanText, voiceId);
+            } finally {
+              activeUserSynthCount = Math.max(0, activeUserSynthCount - 1);
+            }
             if (token !== playbackToken) return;
             await playWavBlob(wavBlob, effectiveRate, key, token);
             return;
@@ -4218,8 +4274,6 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
             showToast('Piper voice download unavailable — using enhanced system voice');
             await playSystemUtterance(cleanText, accent, effectiveRate, key, token);
             return;
-          } finally {
-            activeUserSynthCount = Math.max(0, activeUserSynthCount - 1);
           }
         }
 
@@ -4240,7 +4294,8 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
         stop();
         const token = playbackToken;
         const effectiveRate = typeof rate === 'number' ? rate : settings.baseRate;
-        unlockSharedAudio();
+        const firstCacheKey = getCacheKeyForCurrentEngine(cleanLines[0], accent, effectiveRate);
+        if (!(firstCacheKey && wavBlobCache.has(firstCacheKey))) unlockSharedAudio();
 
         if (settings.engine === 'system' || (settings.engine === 'kokoro' && kokoroState !== 'ready')) {
           if (settings.engine === 'kokoro' && kokoroState !== 'ready') {
@@ -4252,15 +4307,17 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
 
         appState.speakingKey = key;
         syncAudioIndicators();
-        activeUserSynthCount += 1;
         try {
           const synthLine = (line) => {
-            if (settings.engine === 'kokoro') {
-              const voiceId = accent === 'UK' ? settings.kokoroUK : settings.kokoroUS;
-              return synthesizeKokoroBlob(line, voiceId, effectiveRate);
-            }
-            const voiceId = accent === 'UK' ? settings.piperUK : settings.piperUS;
-            return synthesizePiperBlob(line, voiceId);
+            activeUserSynthCount += 1;
+            const p = settings.engine === 'kokoro'
+              ? synthesizeKokoroBlob(line, accent === 'UK' ? settings.kokoroUK : settings.kokoroUS, effectiveRate)
+              : synthesizePiperBlob(line, accent === 'UK' ? settings.piperUK : settings.piperUS);
+            const wrapped = p.finally(() => {
+              activeUserSynthCount = Math.max(0, activeUserSynthCount - 1);
+            });
+            wrapped.catch(() => {}); // Prevent unhandled rejection if playback stops before awaiting lookahead
+            return wrapped;
           };
 
           let nextPromise = synthLine(cleanLines[0]);
@@ -4281,7 +4338,6 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
           console.warn('Sequence synthesis fallback:', err);
           await playSystemUtterance(cleanLines.join(' ... '), accent, effectiveRate, key, token);
         } finally {
-          activeUserSynthCount = Math.max(0, activeUserSynthCount - 1);
           if (token === playbackToken && appState.speakingKey === key) {
             appState.speakingKey = null;
             syncAudioIndicators();
@@ -4291,6 +4347,7 @@ Output ONLY a valid JSON array matching this exact schema (no markdown outside t
 
       async function clearVoiceCaches() {
         stop();
+        kokoroInitGen += 1;
         prefetchQueue.length = 0;
         wavBlobCache.clear();
         rejectPendingWorkerReqs('Voice caches cleared');
